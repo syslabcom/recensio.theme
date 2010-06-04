@@ -5,6 +5,6 @@ class IThemeSpecific(IDefaultPloneLayer):
     """Marker interface that defines a Zope 3 browser layer.
     """
 
-class IICTExtranetLayer(Interface):
+class IRecensioLayer(Interface):
     """Marker Interface for a custom BrowserLayer
     """
