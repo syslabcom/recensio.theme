@@ -9,13 +9,13 @@
     <browser:resourceDirectory
         name="recensio.theme.images"
         directory="images"
-        layer=".interfaces.IICTExtranetLayer"
+        layer=".interfaces.IRecensioLayer"
         />
 
     <browser:resourceDirectory
         name="recensio.theme.stylesheets"
         directory="stylesheets"
-        layer=".interfaces.IICTExtranetLayer"
+        layer=".interfaces.IRecensioLayer"
         />
 
 </configure>
