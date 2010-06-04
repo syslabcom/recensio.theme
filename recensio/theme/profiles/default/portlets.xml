@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<portlets>
+    <portlet
+        addview="recensio.theme.RecensioNavigation"
+        title="Recensio Navigation"
+        description="A special navigation portlet specifically for the XDV enabled theme"
+        />
+</portlets>

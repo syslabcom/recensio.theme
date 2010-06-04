@@ -1,0 +1,40 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="recensio.theme">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="recensio.theme"
+        directory="profiles/default"
+        description='Extension profile for the Recensio Plone theme.'
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <!--
+    <genericsetup:importStep
+        name="ictextranet.theme.various"
+        title="ICT Extranet: miscellaneous import steps"
+        description="Various import steps that are not handled by GS import/export handlers."
+        handler="ictextranet.theme.setuphandlers.setupVarious">
+        <depends name="skins"/>
+    </genericsetup:importStep>
+
+    <genericsetup:importStep
+        name="ictextranet.theme.setupPortlets"
+        title="ICT Extranet: Setup portlets"
+        description="Set the default portlets for the Extranet site."
+        handler="ictextranet.theme.setuphandlers.setupPortlets">
+        <depends name="portlets"/>
+    </genericsetup:importStep>
+
+    <genericsetup:importStep
+        name="ictextranet.theme.setTypeIcons"
+        title="ICT Extranet: Set the type icons"
+        description="Set the default icons for the types in the Extranet site."
+        handler="ictextranet.theme.setuphandlers.setTypeIcons">
+        <depends name="skins"/>
+        <depends name="portlets"/>
+        <depends name="content"/>
+    </genericsetup:importStep>
+    -->
+</configure>
