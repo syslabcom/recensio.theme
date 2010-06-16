@@ -25,6 +25,9 @@ setup(name='recensio.theme',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'collective.xdv',
+          'logilab-common',
+          'reportlab',
       ],
       entry_points="""
       # -*- Entry points: -*-
