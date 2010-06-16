@@ -8,3 +8,16 @@ class IThemeSpecific(IDefaultPloneLayer):
 class IRecensioLayer(Interface):
     """Marker Interface for a custom BrowserLayer
     """
+
+class IGeneratePdfRecension(Interface):
+    """Interface for PDF generation BrowserView
+    """
+    
+    def genPdfRecension(self):
+        """Generate and return a PDF version of the recension
+        """
+
+    def __call__(self):
+        """Generate and return a PDF version of the recension
+        """
+

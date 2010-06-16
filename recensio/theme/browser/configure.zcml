@@ -18,4 +18,12 @@
         layer=".interfaces.IRecensioLayer"
         />
 
+    <browser:page
+        for="*"
+        name="generate-pdf-recension"
+        allowed_interface=".interfaces.IGeneratePdfRecension"
+        class=".pdfgen.GeneratePdfRecension"
+        permission="zope2.View"
+        />
+
 </configure>
