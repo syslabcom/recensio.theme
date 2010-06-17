@@ -19,7 +19,7 @@
         />
 
     <browser:page
-        for="recensio.content.interfaces.Irezension"
+        for="recensio.contenttypes.interfaces.IRezension"
         name="generate-pdf-recension"
         allowed_interface=".interfaces.IGeneratePdfRecension"
         class=".pdfgen.GeneratePdfRecension"

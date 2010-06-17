@@ -10,6 +10,6 @@
     <include file="skins.zcml" />
     <include file="profiles.zcml" />
     <include package="collective.xdv" />
-    <include package="recensio.content" />"
+    <include package="recensio.contenttypes" />"
 
 </configure>
