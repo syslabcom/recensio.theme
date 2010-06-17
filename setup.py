@@ -25,6 +25,7 @@ setup(name='recensio.theme',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'recensio.content',
           'collective.xdv',
           'logilab-common',
           'reportlab',
