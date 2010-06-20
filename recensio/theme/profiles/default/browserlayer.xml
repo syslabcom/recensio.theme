@@ -1,6 +1,6 @@
 <layers>
     <layer
         name="recensio.theme"
-        interface="recensio.theme.browser.interfaces.IRecensioLayer"
-     />
+        interface="recensio.theme.interfaces.IRecensioLayer"
+        />
 </layers>
