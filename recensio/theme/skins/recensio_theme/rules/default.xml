@@ -4,35 +4,31 @@
 	<replace content='/html/head/base' theme='/html/head/base' />
 
 	<prepend content='/html/head/link' theme='/html/head' />
-	<prepend content='/html/head/style' theme='/html/head' />
+	<!--prepend content='/html/head/style' theme='/html/head' /-->
 	<prepend content='/html/head/script' theme='/html/head' /> 
 
 	<!-- Copy over the id/class attributes on the body tag, this is important
 	     for Kupu and per-section styling -->
 	<prepend theme="/html/body" content="/html/body/@class" />
 	<prepend theme="/html/body" content="/html/body/@id" />
-
-    <!--
-    <drop theme='//*[@id="top-navigation"]/*' />
-	<append content='//*[@id="portal-globalnav"]/*' theme='//*[@id="top-navigation"]' />
-    -->
+<!--
     <replace content='//*[@id="portal-personaltools"]' theme='//*[@id="portal-personaltools"]' />
     <replace content='//*[@id="portal-searchbox"]/*' theme='//*[@id="search-container"]/*' />
 
     <replace content='//*[@id="portal-breadcrumbs"]' theme='//*[@id="breadcrumbs"]'/>
-    
+-->
     <!-- rule for control panel, apply only if a portlet prefs portlet is present -->
-    <append content='//*[@id="portal-column-one"]' theme='//*[@id="portlet-slot-1"]' 
+<!--    <append content='//*[@id="portal-column-one"]' theme='//*[@id="portlet-slot-1"]' 
             if-content="//dl[@id='portlet-prefs']"/>
     <append content='//*[@id="portal-column-one"]' theme='//*[@id="portlet-slot-1"]' 
             if-content="//div[@id='portletmanager-plone-leftcolumn']"/>
-
+-->
     <!-- add the right portlet column -->
-    <append content='//*[@id="portal-column-two"]' theme='//*[@id="portlet-slot-2"]' />
+<!--    <append content='//*[@id="portal-column-two"]' theme='//*[@id="portlet-slot-2"]' />
     
     <append content='//*[@id="status-messages"]/*' theme='//*[@id="status-messages-container"]'/>
     <replace content='//*[@id="portal-column-content"]/div/*' theme='//*[@id="folder-contents"]/*' />
 
     <replace content='//*[@id="footpanel"]' theme='//*[@id="dockbottoms-inner"]' />
-
+-->
 </rules>
