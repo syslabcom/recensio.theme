@@ -9,7 +9,7 @@
     <prepend content='/html/head/script' theme='/html/head' /> 
     <!-- once we sort out the css content problems, include this -->
     <!-- Pull in Plone CSS -->
-    <!--append theme="/html/head" content="/html/head/link | /html/head/style" /-->
+    <append theme="/html/head" content="/html/head/link | /html/head/style" />
     
     
     <!-- Copy over the id/class attributes on the body tag, this is important
@@ -39,6 +39,18 @@
     <!-- transfer the link on the logo -->
     <prepend content="//*[@id='portal-logo']/attribute::href" 
             theme="//*[@id='logo']" />
+            
+    <!-- transfer the content views for editing -->
+    <prepend css:content="div#edit-bar"
+             css:theme="div#edit-bar"  />
+
+    <!-- site actions -->
+    <replace content="//*[@id='portal-siteactions']" 
+             theme="//*[@id='portal-siteactions']" />
+
+    <!-- personaltools -->
+    <replace content="//*[@id='portal-personaltools-wrapper']" 
+             theme="//*[@id='portal-personaltools-wrapper']" />
     
     <!-- portal searchbox goes into column3 -->
     <prepend css:content="div#portal-searchbox"
