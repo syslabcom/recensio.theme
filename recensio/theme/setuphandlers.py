@@ -3,7 +3,7 @@ from zope import component
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from Products.CMFCore.utils import getToolByName
-from Products.PortalTransforms import unsafe_transforms
+from Products.PortalTransforms.unsafe_transforms import build_transforms
 from plone.registry.interfaces import IRegistry
 from collective.xdv.interfaces import ITransformSettings
 
@@ -130,6 +130,6 @@ def addUnsafeTransforms(context):
     portal_transforms = getToolByName(context, 'portal_transforms', None)
     if portal_transforms:
         log.info('calling build_transforms.initialize()')
-        unsafe_transforms.build_transforms.initialize(portal_transforms)
+        build_transforms.initialize(portal_transforms)
     else:
         log.warn('no portal_transforms found, not adding unsafe transfers')
