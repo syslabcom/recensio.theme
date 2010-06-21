@@ -40,7 +40,9 @@
     <prepend content="//*[@id='portal-logo']/attribute::href" 
             theme="//*[@id='logo']" />
     
-
+    <!-- portal searchbox goes into column3 -->
+    <prepend css:content="div#portal-searchbox"
+             css:theme="div#column3" />
 <!--
     <replace content='//*[@id="portal-personaltools"]' theme='//*[@id="portal-personaltools"]' />
     <replace content='//*[@id="portal-searchbox"]/*' theme='//*[@id="search-container"]/*' />
