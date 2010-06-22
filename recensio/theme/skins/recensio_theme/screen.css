@@ -312,7 +312,7 @@ padding-left:0em;
 /* To adjust the width of the livesearch container I have to add some extra styles to it. */
 
 ul.LSTable {
-   width:170px; 
+   width:180px; 
    margin:0;
    padding:0;
 }
