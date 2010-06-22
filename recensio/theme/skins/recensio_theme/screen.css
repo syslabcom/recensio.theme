@@ -1123,3 +1123,105 @@ div.overlay .formControls a {
 }
 
 /* @end */
+
+/* @group Data tables */
+
+table.listing,
+table.plain {
+	border-spacing: 0;
+	border-collapse: collapse; 
+}
+
+table.invisible td, 
+table.invisible th,
+table.plain td, 
+table.plain th,
+table.listing td, 
+table.listing th {
+	padding: 0.5em 1em;
+	vertical-align: top;
+}
+table.plain th,
+table.plain td {
+    border: 1px solid #ddd;
+}
+
+table.listing td.listingCheckbox, 
+table.listing th.listingCheckbox {
+	text-align: center;
+}
+
+table.listing th {
+	text-align: left;
+	color: #666;
+	border: 0.1em solid #e7e7e7;
+	border-style: solid none none;
+}
+table.listing tr.odd th {
+	border: 0.1em solid #fff;
+	border-style: solid solid none none;
+}
+table.listing tbody th {
+	font-weight: bold;
+}
+table.listing tbody tr {
+	text-align:left;
+}
+table.listing tbody tr.odd {
+	background: #eee;
+}
+table.listing tbody tr td { 
+	background: transparent;
+}
+table.listing tbody tr.odd td { 
+	background: #eee;
+}
+table.listing a { 
+	line-height: 2em;
+	border: none;
+	display: inline-block;
+	border-bottom: none !important;
+}
+
+table.listing td.draggable {
+	text-shadow: White 1px 1px 1px;
+	background: #ddd !important;
+	border-bottom: 1px solid white;
+	padding: 0.4em 0.4em 0 0.5em;
+}
+.dragindicator {
+	outline: 2px solid #FFD700;
+}
+
+#foldercontents-order-column {
+	padding: 0;
+}
+
+div.listingBar {
+	font-size: 80%;	
+	margin: 1em 0;
+}
+
+div.listingBar .next {
+	display: inline-block;
+	float: right;
+}
+
+div.listingBar .previous {
+	display: inline-block;
+}
+
+div.listingBar a {
+	display: inline-block;
+	padding: 0.25em 0.5em;
+	border: 0.1em solid #ccc;
+}
+
+div.listingBar a:focus,
+div.listingBar a:hover {
+	color: White;
+	background-color: #329fd7;
+	border-color: #329fd7;
+}
+
+/* @end */
