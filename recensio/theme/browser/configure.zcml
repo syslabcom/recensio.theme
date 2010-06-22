@@ -4,18 +4,16 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="recensio.theme">
 
-    <include package="plone.app.portlets"  />
-    
     <browser:resourceDirectory
         name="recensio.theme.images"
         directory="images"
-        layer=".interfaces.IRecensioLayer"
+        layer="recensio.theme.interfaces.IRecensioLayer"
         />
 
     <browser:resourceDirectory
         name="recensio.theme.stylesheets"
         directory="stylesheets"
-        layer=".interfaces.IRecensioLayer"
+        layer="recensio.theme.interfaces.IRecensioLayer"
         />
 
     <browser:page
