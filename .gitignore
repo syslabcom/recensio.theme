@@ -1,2 +1,3 @@
 *.svn/
 *.egg/
+recensio/theme/skins/recensio_theme/theme.xsl
