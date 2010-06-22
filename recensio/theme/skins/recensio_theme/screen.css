@@ -311,7 +311,7 @@ padding-left:0em;
 
 /* To adjust the width of the livesearch container I have to add some extra styles to it. */
 
-#livesearchContainer {
+.livesearchContainer {
     
 }
 
