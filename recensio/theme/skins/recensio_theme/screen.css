@@ -305,10 +305,9 @@ To fix this the padding left, should be set to padding-left:0em. */
 #contentActionMenus ul {
 padding-left:0em;
 }
-#content-views ul {
+#content-views {
 padding-left:0em;
 }
-
 
 
 
