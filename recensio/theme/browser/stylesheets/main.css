@@ -267,3 +267,8 @@ ul {
     float:right;
 }
 
+body.template-newsletter-settings textarea {
+    width: 570px;
+    height: 150px;
+}
+
