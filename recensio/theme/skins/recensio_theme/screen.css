@@ -317,8 +317,8 @@ ul.LSTable {
    padding:0;
 }
 
-ul.LSTable li div {
- 
+ul.LSTable li {
+  width:170px; 
 }
 
 
