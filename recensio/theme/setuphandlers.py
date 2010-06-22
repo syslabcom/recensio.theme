@@ -89,9 +89,9 @@ def setupXDVTheme(context):
     settings = component.getUtility(IRegistry).forInterface(ITransformSettings)
     settings.enabled = True
     settings.domains = set([u'localhost:8010', u'recensio.syslab.com', u'recensio:8010'])
-    settings.theme = u'/home/zope/recensio/parts/omelette/recensio/theme/skins/recensio_theme/theme.html'
-    settings.rules = u'/home/zope/recensio/parts/omelette/recensio/theme/skins/recensio_theme/rules/default.xml'
-    settings.boilerplate = u'/home/zope/recensio/parts/omelette/recensio/theme/skins/recensio_theme/theme.xsl'
+    settings.theme = u'python://recensio.theme/skins/recensio_theme/theme.html'
+    settings.rules = u'python://recensio.theme/skins/recensio_theme/rules/default.xml'
+    settings.boilerplate = u'python://recensio.theme/skins/recensio_theme/theme.xsl'
     settings.absolute_prefix = unicode(site.getId())
     default_notheme = [
         u'^.*/emptypage$',
