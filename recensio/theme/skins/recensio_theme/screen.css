@@ -302,7 +302,7 @@ ul#portal-languageselector li a:hover {
 /* The ul in the folder actions has a very wide padding on the left side, padding-left:1.6em, this has an influence on the whole folder actions tab.
 To fix this the padding left, should be set to padding-left:0em. */
 
-#contentActionMenus ul {
+#contentActionMenus ul, #content-views ul {
 padding-left:0em;
 }
 
