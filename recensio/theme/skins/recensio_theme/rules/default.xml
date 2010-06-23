@@ -44,6 +44,9 @@
     <prepend css:content="div#edit-bar"
              css:theme="div#edit-bar"  />
 
+    <replace css:content="dl.portalMessage"
+             css:theme="dl.portalMessage" />
+
     <!-- site actions -->
     <replace content="//*[@id='portal-siteactions']" 
              theme="//*[@id='portal-siteactions']" />
