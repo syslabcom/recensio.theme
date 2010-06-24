@@ -324,14 +324,7 @@ ul.LSTable li {
   width:170px; 
 }
 
-#manageTopicIndex {
-    margin-top:109px;
-}
 
-#recordsTable {
-    font-size:9.9px;
-    margin-top:156px;
-}
 
 
 
@@ -1229,6 +1222,40 @@ div.listingBar a:hover {
 	color: White;
 	background-color: #329fd7;
 	border-color: #329fd7;
+}
+
+/* @end */
+
+/* @group Login form */
+
+body.template-logged_out #content,
+body.template-login_form #content,
+.pb-ajax #login-form {
+	text-align: center;
+}
+
+#fieldset-openid-login input, #login-form input {
+    font-size: 150%;
+}
+
+
+body.template-register #content input,
+body.template-new-user #content input {
+    font-size: 150%;
+    width: inherit;
+
+}
+
+#fieldset-openid-login label, #login-form label {
+    margin-right:0.5em;
+    padding-top:0.2em;
+    text-align:right;    
+	width: 7em;
+	display: inline-block;
+}
+
+#fieldset-openid-login .formControls input, #login-form .formControls input {
+margin-left: 0.25em;
 }
 
 /* @end */
