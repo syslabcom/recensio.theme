@@ -328,8 +328,10 @@ ul.LSTable li {
 .documentDescription {
     margin-bottom: 5px;
 }
-
-
+/******************to fix a margin problem regarding the calendar portlet I have to change some styles************/
+.portletCalendar .portletItem {
+    margin-left:0px;
+}
 
 
 
@@ -1262,3 +1264,81 @@ margin-left: 0.25em;
 }
 
 /* @end */
+
+/* @portlet.css styles for calendar */
+/***to fix the calendar I added these styles out of the portlet.css***/
+
+.portletCalendar {
+    width: 100%;
+    margin: 1em 0 1em 0;
+}
+
+.portletCalendar dt {
+    background-color: #eee;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6em;
+    border-bottom: none;
+}
+
+.portletCalendar dd {
+    margin: 0;
+    padding: 0;
+}
+
+.portletCalendar dt a#calendar-previous {
+    float: left;
+    padding: 0 1em;
+    margin: 0 -.5em;
+}
+
+.portletCalendar dt a#calendar-next {
+    float: right;
+    padding: 0 1em;
+    margin: 0 -.5em;
+}
+
+.portletCalendar a, .portletCalendar a:focus,
+.portletCalendar a, .portletCalendar a:hover {
+    text-decoration: none;
+}
+
+.ploneCalendar {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.ploneCalendar a {
+    text-decoration: none;
+    border-bottom: none !important;
+}
+
+.ploneCalendar td {
+    background-color: transparent;
+    width: 14%;
+    text-align: center;
+    padding: 2px;
+}
+
+.ploneCalendar .weekdays th {
+    background-color: #eee;
+    text-align: center;
+    padding: 2px;
+    font-weight: normal;
+}
+
+.ploneCalendar .event {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+.ploneCalendar .todayevent {
+    background-color: #eee;
+    border: 2px solid #205C90;
+    font-weight: bold;
+}
+
+.ploneCalendar .todaynoevent {
+    border: 2px solid #205C90;
+}
+/*end*/
