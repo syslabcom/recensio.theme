@@ -324,7 +324,10 @@ ul.LSTable li {
   width:170px; 
 }
 
-
+/**************to fix the whitespace between document description and the fields that come below I have to add a small margin****/
+.documentDescription {
+    margin-bottom: 5px;
+}
 
 
 
@@ -1235,13 +1238,13 @@ body.template-login_form #content,
 }
 
 #fieldset-openid-login input, #login-form input {
-    font-size: 150%;
+    font-size: 100%;
 }
 
 
 body.template-register #content input,
 body.template-new-user #content input {
-    font-size: 150%;
+    font-size: 100%;
     width: inherit;
 
 }
