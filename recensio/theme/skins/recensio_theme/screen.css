@@ -1342,3 +1342,42 @@ margin-left: 0.25em;
     border: 2px solid #205C90;
 }
 /*end*/
+
+/******to fix the display of the displayed tabs in the edit area I have to add some styles out of the public.css plone****/
+
+ul.formTabs {
+-moz-border-radius-topleft:0.5em;
+-moz-border-radius-topright:0.5em;
+border-style:solid solid none;
+display:block;
+margin-left:0;
+background-color:#DDDDDD;
+border-color:#DDDDDD #DDDDDD -moz-use-text-color;
+border-width:0.3em 0.3em 0;
+}
+li.formTab {
+display:inline;
+margin-right:0.25em;
+}
+li.formTab a.selected, li.formTab a:focus, li.formTab a:hover {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:White none repeat scroll 0 0;
+color:Black;
+}
+
+li.formTab a {
+border:medium none;
+display:inline-block;
+line-height:2em;
+margin:0;
+padding:0 0.75em;
+text-decoration:none;
+}
+
+#content-views li.selected a, #content-views li a:focus, #content-views li a:hover, li.formTab a.selected, li.formTab a:focus, li.formTab a:hover {
+-moz-border-radius-topleft:0.5em;
+-moz-border-radius-topright:0.5em;
+}
+
