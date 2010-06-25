@@ -340,6 +340,10 @@ input {
 margin:0 3px;
 }
 
+/****************to fix the margin problem for the TinyMC Editior I have to add some extra styles**********/
+#content .mceEditor #content {
+    margin:0 !important;
+}
 
 
 
