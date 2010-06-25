@@ -278,6 +278,10 @@ defined for the footer */
 	padding-bottom:35px;
 
 }
+/* In case we are editing, then we want a larger content because we drop the portlets */
+body.template-atct_edit #content_left {
+    width: 860px;
+}
 /* The design treats the first item differently to avoid a white line (relic of the 3d separator) by
 adding a special class. We cannot do that without changing plone so we should use a pseudo selector */
 div#navigation ul li:first-child {
@@ -1394,4 +1398,11 @@ text-decoration:none;
 -moz-border-radius-topright:0.5em;
 }
 
+
 /*end*/
+
+
+/* There is a huge whitespace in the TinyMce Editor (http://recensio.syslab.com/front-page/edit), 
+   caused by a defined margin for #content, #content_impressum */
+body#content .mceContentBody {margin:0 !important;}
+

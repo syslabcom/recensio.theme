@@ -36,6 +36,7 @@
     <append content="//div[@id='portal-column-two']/*" 
              theme="//div[@id='column3']/span" />
 
+    <drop css:theme="div#column3" css:condition="body.template-atct_edit" />
     <!-- transfer the link on the logo -->
     <prepend content="//*[@id='portal-logo']/attribute::href" 
             theme="//*[@id='logo']" />
