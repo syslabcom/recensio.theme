@@ -332,6 +332,14 @@ ul.LSTable li {
 .portletCalendar .portletItem {
     margin-left:0px;
 }
+/*********************to fix the position of the formcontrols and the input fields I add a margin********/
+div.formControls {
+margin:1em 0;
+}
+input {
+margin:0 3px;
+}
+
 
 
 
@@ -1382,3 +1390,4 @@ text-decoration:none;
 -moz-border-radius-topright:0.5em;
 }
 
+/*end*/
