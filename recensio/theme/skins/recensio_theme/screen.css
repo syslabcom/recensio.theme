@@ -1354,6 +1354,7 @@ margin-left:0;
 background-color:#DDDDDD;
 border-color:#DDDDDD #DDDDDD -moz-use-text-color;
 border-width:0.3em 0.3em 0;
+padding-left:0;
 }
 li.formTab {
 display:inline;
