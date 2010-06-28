@@ -236,7 +236,7 @@
                      tal:attributes="class field_collapsible_class" 
                      tal:define="portal_languages nocall:portal/portal_languages;
                                  supp_languages python:portal_languages.getSupportedLanguages();
-                                 all_checked python:(len(supp_languages) == len(request.get('praesentationTextsprache', []))) or first_call;
+                                 all_checked python:(len(supp_languages) == len(request.get('languagePresentation', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label i18n:translate="label_recension_language"
                            class="collapser">Language of the Recension</label>
@@ -255,7 +255,7 @@
                                class="noborder"
                                checked="checked" 
                                tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'praesentationTextsprache:list', ${toggle_select_state});"/>
+                                               onclick string:javascript:toggleSelect(this, 'languagePresentation:list', ${toggle_select_state});"/>
                         <label for="pt_toggle"
                                i18n:translate="label_toggle"
                                >Select All/None
@@ -268,16 +268,16 @@
                          tal:repeat="sublist languageLists">
                         <tal:items repeat="lang sublist">
                         <input type="checkbox"
-                               name="praesentationTextsprache:list"
+                               name="languagePresentation:list"
                                value="#"
                                class="noborder"
                                checked="checked"
                                tal:attributes="value lang;
-                                               id string:praesentationTextsprache_${repeat/sublist/number}_${repeat/lang/number};
-                                               checked python:((lang in request.get('praesentationTextsprache', [])) or first_call) and 'checked' or ''"/>
+                                               id string:languagePresentation_${repeat/sublist/number}_${repeat/lang/number};
+                                               checked python:((lang in request.get('languagePresentation', [])) or first_call) and 'checked' or ''"/>
                         <label for=""
                                i18n:translate=""
-                               tal:attributes="for string:praesentationTextsprache_${repeat/sublist/number}_${repeat/lang/number}"
+                               tal:attributes="for string:languagePresentation_${repeat/sublist/number}_${repeat/lang/number}"
                                tal:content="python: portal_languages.getNameForLanguageCode(lang)"
                                />
                         <br />
@@ -291,7 +291,7 @@
                      tal:attributes="class field_collapsible_class" 
                      tal:define="portal_languages nocall:portal/portal_languages;
                                  supp_languages python:portal_languages.getSupportedLanguages();
-                                 all_checked python:(len(supp_languages) == len(request.get('praesentiertenSchriftTextsprache', []))) or first_call;
+                                 all_checked python:(len(supp_languages) == len(request.get('languageReview', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label i18n:translate="label_works_language"
                            class="collapser">Language of the Reviewed Works</label>
@@ -310,7 +310,7 @@
                                class="noborder"
                                checked="checked" 
                                tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'praesentiertenSchriftTextsprache:list', ${toggle_select_state});"/>
+                                               onclick string:javascript:toggleSelect(this, 'languageReview:list', ${toggle_select_state});"/>
                         <label for="pt_toggle"
                                i18n:translate="label_toggle"
                                >Select All/None
@@ -323,16 +323,16 @@
                          tal:repeat="sublist languageLists">
                         <tal:items repeat="lang sublist">
                         <input type="checkbox"
-                               name="praesentiertenSchriftTextsprache:list"
+                               name="languageReview:list"
                                value="#"
                                class="noborder"
                                checked="checked"
                                tal:attributes="value lang;
-                                               id string:praesentiertenSchriftTextsprache_${repeat/sublist/number}_${repeat/lang/number};
-                                               checked python:((lang in request.get('praesentiertenSchriftTextsprache', [])) or first_call) and 'checked' or ''"/>
+                                               id string:languageReview_${repeat/sublist/number}_${repeat/lang/number};
+                                               checked python:((lang in request.get('languageReview', [])) or first_call) and 'checked' or ''"/>
                         <label for=""
                                i18n:translate=""
-                               tal:attributes="for string:praesentiertenSchriftTextsprache_${repeat/sublist/number}_${repeat/lang/number}"
+                               tal:attributes="for string:languageReview_${repeat/sublist/number}_${repeat/lang/number}"
                                tal:content="python: portal_languages.getNameForLanguageCode(lang)"
                                />
                         <br />
@@ -407,9 +407,9 @@
                      tal:attributes="class field_collapsible_class">
                     <label for="author" 
                            class="collapser"
-                           i18n:translate="label_rezension_autor">Autor/Herausgeber</label>
+                           i18n:translate="label_review_autor">Autor/Herausgeber</label>
                     <div class="collapse">
-                    <div class="formHelp" i18n:translate="help_rezension_autor">
+                    <div class="formHelp" i18n:translate="help_review_autor">
                     Autor von Monographie/Aufsatz/Kommentar oder Herausgeber des Sammelbandes
                     </div>
 
@@ -522,7 +522,7 @@
                            i18n:translate="label_titel_buch_aufsatz_zeitschrift">Titel (Buch, Aufsatz, Zeitschrift)</label>
                     <div class="collapse">
                     <div class="formHelp" i18n:translate="help_titel_buch_aufsatz_zeitschrift">
-                    Titel des rezensierten Buches, des Aufsatzes oder der Zeitschrift, in der die Rezension erschienen ist
+                    Titel des rezensierten Buches, des Aufsatzes oder der Zeitschrift, in der die Review erschienen ist
                     </div>
 
                     <input type="text"
@@ -574,38 +574,38 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="verlag" 
+                    <label for="publisher" 
                            class="collapser"
-                           i18n:translate="label_verlag">Verlag</label>
+                           i18n:translate="label_publisher">Verlag</label>
                     <div class="collapse">
-                    <div class="formHelp" i18n:translate="help_verlag">
+                    <div class="formHelp" i18n:translate="help_publisher">
                     Verlag, in dem das Buch/die Zeitschrift erschienen ist
                     </div>
 
                     <input type="text"
-                           id="verlag"
-                           name="verlag"
+                           id="publisher"
+                           name="publisher"
                            size="25"
-                           tal:attributes="value request/verlag|nothing"
+                           tal:attributes="value request/publisher|nothing"
                            />
                 </div>
                     </div>
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="reihe" 
+                    <label for="series" 
                            class="collapser"
-                           i18n:translate="label_reihe">Reihe</label>
+                           i18n:translate="label_series">Reihe</label>
                     <div class="collapse">
-                    <div class="formHelp" i18n:translate="help_reihe">
+                    <div class="formHelp" i18n:translate="help_series">
                     
                     </div>
 
                     <input type="text"
-                           id="reihe"
-                           name="reihe"
+                           id="series"
+                           name="series"
                            size="25"
-                           tal:attributes="value request/reihe|nothing"
+                           tal:attributes="value request/series|nothing"
                            />
                 </div>
                     </div>
@@ -617,7 +617,7 @@
                            i18n:translate="label_isbn">ISBN</label>
                     <div class="collapse">
                     <div class="formHelp" i18n:translate="help_isbn">
-                   Internationale Standardbuchnummer 
+                   Internationale Standardbuchvolume 
                     </div>
 
                     <input type="text"
@@ -635,7 +635,7 @@
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
                      tal:define="avail_regions python:map(lambda x: x[1][0], context.portal_vocabularies.getVocabularyByName('region_values').getVocabularyLines());
-                                 all_checked python:(len(avail_regions) == len(request.get('ddcRaum', []))) or first_call;
+                                 all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="region" 
                            class="collapser"
@@ -654,7 +654,7 @@
                                class="noborder"
                                checked="checked" 
                                tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'ddcRaum:list', ${toggle_select_state});"/>
+                                               onclick string:javascript:toggleSelect(this, 'ddcPlace:list', ${toggle_select_state});"/>
                         <label for="pt_toggle"
                                i18n:translate="label_toggle"
                                >Select All/None
@@ -667,16 +667,16 @@
                          tal:repeat="sublist regionLists">
                         <tal:items repeat="reg sublist">
                         <input type="checkbox"
-                               name="ddcRaum:list"
+                               name="ddcPlace:list"
                                value="#"
                                class="noborder"
                                checked="checked"
                                tal:attributes="value reg;
-                                               id string:ddcRaum_${repeat/sublist/number}_${repeat/reg/number};
-                                               checked python:((reg in request.get('ddcRaum', [])) or first_call) and 'checked' or ''"/>
+                                               id string:ddcPlace_${repeat/sublist/number}_${repeat/reg/number};
+                                               checked python:((reg in request.get('ddcPlace', [])) or first_call) and 'checked' or ''"/>
                         <label for=""
                                i18n:translate=""
-                               tal:attributes="for string:ddcRaum_${repeat/sublist/number}_${repeat/reg/number}"
+                               tal:attributes="for string:ddcPlace_${repeat/sublist/number}_${repeat/reg/number}"
                                tal:content="reg"
                                />
                         <br />
@@ -690,7 +690,7 @@
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
                      tal:define="avail_epochs python:map(lambda x: x[1][0], context.portal_vocabularies.getVocabularyByName('epoch_values').getVocabularyLines());
-                                 all_checked python:(len(avail_epochs) == len(request.get('ddcZeit', []))) or first_call;
+                                 all_checked python:(len(avail_epochs) == len(request.get('ddcTime', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="epoch" 
                            class="collapser"
@@ -709,7 +709,7 @@
                                class="noborder"
                                checked="checked" 
                                tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'ddcZeit:list', ${toggle_select_state});"/>
+                                               onclick string:javascript:toggleSelect(this, 'ddcTime:list', ${toggle_select_state});"/>
                         <label for="pt_toggle"
                                i18n:translate="label_toggle"
                                >Select All/None
@@ -722,16 +722,16 @@
                          tal:repeat="sublist epochLists">
                         <tal:items repeat="epo sublist">
                         <input type="checkbox"
-                               name="ddcZeit:list"
+                               name="ddcTime:list"
                                value="#"
                                class="noborder"
                                checked="checked"
                                tal:attributes="value epo;
-                                               id string:ddcZeit_${repeat/sublist/number}_${repeat/epo/number};
-                                               checked python:((epo in request.get('ddcZeit', [])) or first_call) and 'checked' or ''"/>
+                                               id string:ddcTime_${repeat/sublist/number}_${repeat/epo/number};
+                                               checked python:((epo in request.get('ddcTime', [])) or first_call) and 'checked' or ''"/>
                         <label for=""
                                i18n:translate=""
-                               tal:attributes="for string:ddcZeit_${repeat/sublist/number}_${repeat/epo/number}"
+                               tal:attributes="for string:ddcTime_${repeat/sublist/number}_${repeat/epo/number}"
                                tal:content="epo"
                                />
                         <br />
@@ -745,7 +745,7 @@
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
                      tal:define="avail_topics python:map(lambda x: x[1], context.portal_vocabularies.getVocabularyByName('topic_values').getVocabularyLines());
-                                 all_checked python:(len(avail_topics) == len(request.get('ddcSach', []))) or first_call;
+                                 all_checked python:(len(avail_topics) == len(request.get('ddcSubject', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="topic" 
                            class="collapser"
@@ -764,7 +764,7 @@
                                class="noborder"
                                checked="checked" 
                                tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'ddcSach:list', ${toggle_select_state});"/>
+                                               onclick string:javascript:toggleSelect(this, 'ddcSubject:list', ${toggle_select_state});"/>
                         <label for="pt_toggle"
                                i18n:translate="label_toggle"
                                >Select All/None
@@ -777,16 +777,16 @@
                          tal:repeat="sublist topicLists">
                         <tal:items repeat="top sublist">
                         <input type="checkbox"
-                               name="ddcSach:list"
+                               name="ddcSubject:list"
                                value="#"
                                class="noborder"
                                checked="checked"
                                tal:attributes="value top;
-                                               id string:ddcSach_${repeat/sublist/number}_${repeat/top/number};
-                                               checked python:((top in request.get('ddcSach', [])) or first_call) and 'checked' or ''"/>
+                                               id string:ddcSubject_${repeat/sublist/number}_${repeat/top/number};
+                                               checked python:((top in request.get('ddcSubject', [])) or first_call) and 'checked' or ''"/>
                         <label for=""
                                i18n:translate=""
-                               tal:attributes="for string:ddcSach_${repeat/sublist/number}_${repeat/top/number}"
+                               tal:attributes="for string:ddcSubject_${repeat/sublist/number}_${repeat/top/number}"
                                tal:content="top"
                                />
                         <br />
