@@ -663,7 +663,8 @@ dl.error dd {
 	background: #75ad0a;
 	margin: 0;
 	position: relative;
-	top: -0.23em;
+	/***changed the position top from 0.23em to -2px***/
+	top: -2px;
 	right:-0.24em;
 	padding: 0.1em 0.24em 0 0;
     border-radius: 0.5em;
