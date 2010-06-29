@@ -1044,9 +1044,10 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 
 /* @end */
 /* @group Accessibility elements, applied by JS */
+/***changed the font size of large and small, so that this messurements fit the normal font size which is 11px. ***/
 
-body.largeText { font-size: 125%; }
-body.smallText { font-size: 85%; }
+body.largeText { font-size: 85%; }
+body.smallText { font-size: 60%; }
 
 /* @end */
 
