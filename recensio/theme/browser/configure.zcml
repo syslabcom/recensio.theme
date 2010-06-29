@@ -24,4 +24,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="recensio.contenttypes.interfaces.IReviewMonograph"
+        name="generate-pdf-recension"
+        allowed_interface=".interfaces.IGeneratePdfRecension"
+        class=".pdfgen.GeneratePdfRecension"
+        permission="zope2.View"
+        />
+
 </configure>
