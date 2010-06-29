@@ -41,7 +41,7 @@
             
     <!-- transfer the content views for editing -->
     <prepend css:content="div#edit-bar"
-             css:theme="div#edit-bar"  />
+             css:theme="div#mainContent"  />
 
     <!--replace css:content="dl.portalMessage"
              css:theme="dl.portalMessage" /-->
