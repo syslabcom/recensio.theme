@@ -407,10 +407,10 @@
                      tal:attributes="class field_collapsible_class">
                     <label for="author" 
                            class="collapser"
-                           i18n:translate="label_review_autor">Autor/Herausgeber</label>
+                           i18n:translate="label_review_autor">Autor/Editor</label>
                     <div class="collapse">
                     <div class="formHelp" i18n:translate="help_review_autor">
-                    Autor von Monographie/Aufsatz/Kommentar oder Herausgeber des Sammelbandes
+                    Autor von Monographie/Aufsatz/Kommentar oder Editor des Sammelbandes
                     </div>
 
                     <input type="text"
