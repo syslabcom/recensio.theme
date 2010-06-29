@@ -23,7 +23,7 @@ class GeneratePdfRecension(BrowserView):
         self.copyright = u"This article may be downloaded and/or used within the private copying\nexemption. Any further use without permission of the rights shall be subject to\nlegal licences (§§ 44a-63a UrhG / German Copyright Act).\n\nDieser Beitrag kann vom Nutzer zu eigenen nicht-kommerziellen Zwecken\nheruntergeladen und/oder ausgedruckt werden. Darüber hinaus gehende\nNutzungen sind ohne weitere Genehmigung der Rechteinhaber nur im Rahmen\nder gesetzlichen Schrankenbestimmungen (§§ 44a-63a UrhG) zulässig."
 
         self.metadata_template = {
-            "ReviewMonograph": u"%(reviewAuthor)s, review of: %(authors)s, %(title)s%(titel_divider)s%(subtitle)s, \n%(yearOfPublication)s: %(publisher)s %(yearOfPublication)s, in: %(series)s \nBand %(seriesVol)s, p. %(pages)s, %(absolute_url)s",
+            "ReviewMonograph": u"%(reviewAuthor)s, review of: %(authors)s, %(title)s%(titel_divider)s%(subtitle)s, \n%(placeOfPublication)s: %(publisher)s %(yearOfPublication)s, in: %(series)s \nBand %(seriesVol)s, p. %(pages)s, %(absolute_url)s",
             }
 
     def __call__(self):
@@ -36,7 +36,7 @@ class GeneratePdfRecension(BrowserView):
         R.setHeader('content-length', str(contentlength))
 
     def _genCoverSheet(self):
-        metadata_fields = map(lambda f: f.getName(), self.context.schema.getSchemataFields('default')) # [ 'reviewAuthor', 'autorDesBuchs', 'titel', 'subtitle', 'yearOfPublication', 'publisher', 'yearOfPublication', 'series', 'seriesVol', 'pages',  ]
+        metadata_fields = map(lambda f: f.getName(), self.context.schema.getSchemataFields('default')) # [ 'reviewAuthor', 'autorDesBuchs', 'titel', 'subtitle', 'placeOfPublication', 'publisher', 'yearOfPublication', 'series', 'seriesVol', 'pages',  ]
         metadata_dict = dict()
         metadata_dict['pages'] = '123-456'
         for field in metadata_fields:
