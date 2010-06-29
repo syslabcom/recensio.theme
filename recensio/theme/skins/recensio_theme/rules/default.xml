@@ -25,14 +25,15 @@
     <replace css:content="ul#portal-languageselector "
              css:theme="p#language " />
 
-    <!-- Main content rule: Put plone content into recensio content_left -->
+    <!-- Main content rule: Put plone content into recensio content -->
     <append content="//div[@id='content']/*" 
-             theme="//div[@id='content_left']" />
+             theme="//div[@id='content']" />
     <!-- Main portlet rule: Put plone right column into recensio column3 -->
     <append content="//div[@id='portal-column-two']/*" 
              theme="//div[@id='column3']/span" />
 
     <drop css:theme="div#column3" css:if-content="body.template-atct_edit" />
+    <drop css:theme="div#column3" if-content="not(//div[@id='portal-column-two']/*)" />
 
     <!-- transfer the link on the logo -->
     <prepend content="//*[@id='portal-logo']/attribute::href" 

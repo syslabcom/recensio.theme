@@ -273,13 +273,13 @@ ul {
 /* in the mockup, the column1 and 2 have a size, instead of the content_left box. We fill plone content 
 into content_left and skip the columns so we need that div to have a size. I take 570px as it is 
 defined for the footer */
-#content_left {
+#content {
     width: 570px;
 	padding-bottom:35px;
 
 }
 /* In case we are editing, then we want a larger content because we drop the portlets */
-body.template-atct_edit #content_left {
+body.template-atct_edit #content {
     width: 860px;
 }
 /* The design treats the first item differently to avoid a white line (relic of the 3d separator) by
