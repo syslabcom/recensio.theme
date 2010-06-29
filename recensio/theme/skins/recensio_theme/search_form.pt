@@ -30,7 +30,7 @@
 
         <form action="search"
               class="enableAutoFocus"
-              method="get"
+              method="post"
               name="search"
               id="searchform"
               tal:define="DateTime python:modules['DateTime'].DateTime;
@@ -405,7 +405,7 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="author" 
+                    <label for="authors" 
                            class="collapser"
                            i18n:translate="label_review_autor">Autor/Editor</label>
                     <div class="collapse">
@@ -414,10 +414,10 @@
                     </div>
 
                     <input type="text"
-                           id="author"
-                           name="author"
+                           id="authors"
+                           name="authors"
                            size="25"
-                           tal:attributes="value request/author|nothing"
+                           tal:attributes="value request/authors|nothing"
                            />
                 </div>
                     </div>
@@ -517,57 +517,57 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="titel_buch_aufsatz_zeitschrift" 
+                    <label for="titleOrShortname" 
                            class="collapser"
-                           i18n:translate="label_titel_buch_aufsatz_zeitschrift">Titel (Buch, Aufsatz, Zeitschrift)</label>
+                           i18n:translate="label_titleOrShortname">Titel (Buch, Aufsatz, Zeitschrift)</label>
                     <div class="collapse">
-                    <div class="formHelp" i18n:translate="help_titel_buch_aufsatz_zeitschrift">
+                    <div class="formHelp" i18n:translate="help_titleOrShortname">
                     Titel des rezensierten Buches, des Aufsatzes oder der Zeitschrift, in der die Review erschienen ist
                     </div>
 
                     <input type="text"
-                           id="titel_buch_aufsatz_zeitschrift"
-                           name="titel_buch_aufsatz_zeitschrift"
+                           id="titleOrShortname"
+                           name="titleOrShortname"
                            size="25"
-                           tal:attributes="value request/titel_buch_aufsatz_zeitschrift|nothing"
+                           tal:attributes="value request/titleOrShortname|nothing"
                            />
                 </div>
                     </div>
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="jahr" 
+                    <label for="year" 
                            class="collapser"
-                           i18n:translate="label_jahr">Jahr</label>
+                           i18n:translate="label_year">Jahr</label>
                     <div class="collapse">
-                    <div class="formHelp" i18n:translate="help_jahr">
-                    Erscheinungsjahr oder gezähltes Jahr
+                    <div class="formHelp" i18n:translate="help_year">
+                    Erscheinungsyear oder gezähltes Jahr
                     </div>
 
                     <input type="text"
-                           id="jahr"
-                           name="jahr"
+                           id="year"
+                           name="year"
                            size="4"
-                           tal:attributes="value request/jahr|nothing"
+                           tal:attributes="value request/year|nothing"
                            />
                 </div>
                     </div>
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="ort" 
+                    <label for="place" 
                            class="collapser"
-                           i18n:translate="label_ort">Ort</label>
+                           i18n:translate="label_place">Ort</label>
                     <div class="collapse">
-                    <div class="formHelp" i18n:translate="help_ort">
-                    Erscheinungsort
+                    <div class="formHelp" i18n:translate="help_place">
+                    Erscheinungsplace
                     </div>
 
                     <input type="text"
-                           id="ort"
-                           name="ort"
+                           id="place"
+                           name="place"
                            size="25"
-                           tal:attributes="value request/ort|nothing"
+                           tal:attributes="value request/place|nothing"
                            />
                 </div>
                     </div>
@@ -634,7 +634,7 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
-                     tal:define="avail_regions python:map(lambda x: x[1][0], context.portal_vocabularies.getVocabularyByName('region_values').getVocabularyLines());
+                     tal:define="avail_regions python:context.getAvailValues('region_values');
                                  all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="region" 
@@ -671,13 +671,13 @@
                                value="#"
                                class="noborder"
                                checked="checked"
-                               tal:attributes="value reg;
+                               tal:attributes="value reg/value;
                                                id string:ddcPlace_${repeat/sublist/number}_${repeat/reg/number};
-                                               checked python:((reg in request.get('ddcPlace', [])) or first_call) and 'checked' or ''"/>
+                                               checked python:((reg['value'] in request.get('ddcPlace', [])) or first_call) and 'checked' or ''"/>
                         <label for=""
                                i18n:translate=""
                                tal:attributes="for string:ddcPlace_${repeat/sublist/number}_${repeat/reg/number}"
-                               tal:content="reg"
+                               tal:content="reg/label"
                                />
                         <br />
                         </tal:items>
@@ -689,7 +689,7 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
-                     tal:define="avail_epochs python:map(lambda x: x[1][0], context.portal_vocabularies.getVocabularyByName('epoch_values').getVocabularyLines());
+                     tal:define="avail_epochs python:context.getAvailValues('epoch_values');
                                  all_checked python:(len(avail_epochs) == len(request.get('ddcTime', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="epoch" 
@@ -726,13 +726,13 @@
                                value="#"
                                class="noborder"
                                checked="checked"
-                               tal:attributes="value epo;
+                               tal:attributes="value epo/value;
                                                id string:ddcTime_${repeat/sublist/number}_${repeat/epo/number};
-                                               checked python:((epo in request.get('ddcTime', [])) or first_call) and 'checked' or ''"/>
+                                               checked python:((epo['value'] in request.get('ddcTime', [])) or first_call) and 'checked' or ''"/>
                         <label for=""
                                i18n:translate=""
                                tal:attributes="for string:ddcTime_${repeat/sublist/number}_${repeat/epo/number}"
-                               tal:content="epo"
+                               tal:content="epo/label"
                                />
                         <br />
                         </tal:items>
