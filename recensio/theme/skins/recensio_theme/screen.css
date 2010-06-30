@@ -275,8 +275,8 @@ into content_left and skip the columns so we need that div to have a size. I tak
 defined for the footer */
 #content {
     width: 570px;
-	padding-bottom:35px;
-
+    padding-bottom:35px;
+    float: left;
 }
 /* In case we are editing, then we want a larger content because we drop the portlets */
 body.template-atct_edit #content {
