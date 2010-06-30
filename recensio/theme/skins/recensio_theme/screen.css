@@ -354,6 +354,10 @@ input.searchButton {
     margin: 0.5em 0 0;
 }
 
+/****************to fix the position of the dd in the #column3 I have to add a specific margin*********/
+#column3 dd {
+    margin-left:10px;
+}
 
 
 
