@@ -151,20 +151,21 @@
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                   <img tal:replace="structure item_icon/html_tag" />
+                  <span class="result-type" tal:attributes="class string:result-type" tal:content="result_type" /> - 
+                  <span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/getAuthors"><tal:block replace="author" /><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end">: </tal:c></span></span>
                    <a
                      href="#" 
                      tal:attributes="href url;
                                      class string:$item_wf_state_class"
-                     tal:content="result/pretty_title_or_id" />
+                     tal:content="result/pretty_title_or_id" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
+                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
+                  <span class="review-author" tal:attributes="class string:review-author" tal:condition="result/getReviewAuthor">(<tal:block tal:content="result/getReviewAuthor" />)</span>
                 </dt>
             
                 <dd>
-                    <span tal:replace="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">
-                        Cropped description
-                    </span>
 
                 <span class="documentByLine"
-                      tal:condition="python:not isAnon or site_properties.allowAnonymousViewAbout">
+                      >
                     <span class="documentAuthor"
                         i18n:translate="label_by_author">
                     by

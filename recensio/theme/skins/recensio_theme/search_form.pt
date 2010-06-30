@@ -634,7 +634,8 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
-                     tal:define="avail_regions python:context.getAvailValues('region_values');
+                     tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
+                                 avail_regions python:voc.getDisplayList(voc).items();
                                  all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="region" 
@@ -645,41 +646,14 @@
                     
                     </div>
 
-                    <span class="optionsToggle">
-                        <input type="checkbox"
-                               onclick=""
-                               name="pt_toggle"
-                               value="#"
-                               id="pt_toggle"
-                               class="noborder"
-                               checked="checked" 
-                               tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'ddcPlace:list', ${toggle_select_state});"/>
-                        <label for="pt_toggle"
-                               i18n:translate="label_toggle"
-                               >Select All/None
-                        </label>
-                    </span>
-                    <br />
                     <div style="float:left; margin-right: 2em;"
                          tal:define="regionLists python:context.createMultiColumnList(avail_regions, numCols=2, sort_on=None);"
-                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
-                         tal:repeat="sublist regionLists">
-                        <tal:items repeat="reg sublist">
-                        <input type="checkbox"
-                               name="ddcPlace:list"
-                               value="#"
-                               class="noborder"
-                               checked="checked"
-                               tal:attributes="value reg/value;
-                                               id string:ddcPlace_${repeat/sublist/number}_${repeat/reg/number};
-                                               checked python:((reg['value'] in request.get('ddcPlace', [])) or first_call) and 'checked' or ''"/>
-                        <label for=""
-                               i18n:translate=""
-                               tal:attributes="for string:ddcPlace_${repeat/sublist/number}_${repeat/reg/number}"
-                               tal:content="reg/label"
-                               />
-                        <br />
+                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
+                        <select multiple="multiple"
+                                name="ddcSubject:list"
+                                size="10">
+                        <tal:items repeat="reg avail_regions">
+                            <option tal:attributes="value python:reg[0]; selected python:((reg[0] in request.get('ddcSubject', [])) or first_call) and 'selected'" tal:content="python:reg[1]" />
                         </tal:items>
                     </div>
                 <div class="visualClear" id="clear-after-region"><!-- --></div>
@@ -689,7 +663,8 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
-                     tal:define="avail_epochs python:context.getAvailValues('epoch_values');
+                     tal:define="voc python:context.portal_vocabularies.getVocabularyByName('epoch_values');
+                                 avail_epochs python:voc.getDisplayList(voc).items();
                                  all_checked python:(len(avail_epochs) == len(request.get('ddcTime', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="epoch" 
@@ -700,42 +675,15 @@
                     
                     </div>
 
-                    <span class="optionsToggle">
-                        <input type="checkbox"
-                               onclick=""
-                               name="pt_toggle"
-                               value="#"
-                               id="pt_toggle"
-                               class="noborder"
-                               checked="checked" 
-                               tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'ddcTime:list', ${toggle_select_state});"/>
-                        <label for="pt_toggle"
-                               i18n:translate="label_toggle"
-                               >Select All/None
-                        </label>
-                    </span>
-                    <br />
                     <div style="float:left; margin-right: 2em;"
-                         tal:define="epochLists python:context.createMultiColumnList(avail_epochs, numCols=2, sort_on=None);"
-                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
-                         tal:repeat="sublist epochLists">
-                        <tal:items repeat="epo sublist">
-                        <input type="checkbox"
-                               name="ddcTime:list"
-                               value="#"
-                               class="noborder"
-                               checked="checked"
-                               tal:attributes="value epo/value;
-                                               id string:ddcTime_${repeat/sublist/number}_${repeat/epo/number};
-                                               checked python:((epo['value'] in request.get('ddcTime', [])) or first_call) and 'checked' or ''"/>
-                        <label for=""
-                               i18n:translate=""
-                               tal:attributes="for string:ddcTime_${repeat/sublist/number}_${repeat/epo/number}"
-                               tal:content="epo/label"
-                               />
-                        <br />
+                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
+                        <select multiple="multiple"
+                                name="ddcSubject:list"
+                                size="10">
+                        <tal:items repeat="epo avail_epochs">
+                            <option tal:attributes="value python:epo[0]; selected python:((epo[0] in request.get('ddcSubject', [])) or first_call) and 'selected'" tal:content="python:epo[1]" />
                         </tal:items>
+                        </select>
                     </div>
                 <div class="visualClear" id="clear-after-epoch"><!-- --></div>
 
@@ -744,7 +692,8 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
-                     tal:define="avail_topics python:map(lambda x: x[1], context.portal_vocabularies.getVocabularyByName('topic_values').getVocabularyLines());
+                     tal:define="voc python:context.portal_vocabularies.getVocabularyByName('topic_values');
+                                 avail_topics python:voc.getDisplayList(voc).items();
                                  all_checked python:(len(avail_topics) == len(request.get('ddcSubject', []))) or first_call;
                                  toggle_select_state python:all_checked and 'true' or 'false';">
                     <label for="topic" 
@@ -755,42 +704,16 @@
                     
                     </div>
 
-                    <span class="optionsToggle">
-                        <input type="checkbox"
-                               onclick=""
-                               name="pt_toggle"
-                               value="#"
-                               id="pt_toggle"
-                               class="noborder"
-                               checked="checked" 
-                               tal:attributes="checked python:all_checked and 'checked' or '';
-                                               onclick string:javascript:toggleSelect(this, 'ddcSubject:list', ${toggle_select_state});"/>
-                        <label for="pt_toggle"
-                               i18n:translate="label_toggle"
-                               >Select All/None
-                        </label>
-                    </span>
-                    <br />
+
                     <div style="float:left; margin-right: 2em;"
-                         tal:define="topicLists python:context.createMultiColumnList(avail_topics, numCols=2, sort_on=None);"
-                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
-                         tal:repeat="sublist topicLists">
-                        <tal:items repeat="top sublist">
-                        <input type="checkbox"
-                               name="ddcSubject:list"
-                               value="#"
-                               class="noborder"
-                               checked="checked"
-                               tal:attributes="value top;
-                                               id string:ddcSubject_${repeat/sublist/number}_${repeat/top/number};
-                                               checked python:((top in request.get('ddcSubject', [])) or first_call) and 'checked' or ''"/>
-                        <label for=""
-                               i18n:translate=""
-                               tal:attributes="for string:ddcSubject_${repeat/sublist/number}_${repeat/top/number}"
-                               tal:content="top"
-                               />
-                        <br />
+                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
+                        <select multiple="multiple"
+                                name="ddcSubject:list"
+                                size="10">
+                        <tal:items repeat="top avail_topics">
+                            <option tal:attributes="value python:top[0]; selected python:((top[0] in request.get('ddcSubject', [])) or first_call) and 'selected'" tal:content="python:top[1]" />
                         </tal:items>
+                        </select>
                     </div>
                 <div class="visualClear" id="clear-after-topic"><!-- --></div>
 
