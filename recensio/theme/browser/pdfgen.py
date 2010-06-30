@@ -11,6 +11,7 @@ from reportlab.lib.units import cm
 from reportlab.lib.colors import grey
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
+from recensio.theme.util import getCitationString
 
 log = logging.getLogger('recensio.theme/pdfgen.py')
 
@@ -22,9 +23,6 @@ class GeneratePdfRecension(BrowserView):
         BrowserView.__init__(self, context, request)
         self.copyright = u"This article may be downloaded and/or used within the private copying\nexemption. Any further use without permission of the rights shall be subject to\nlegal licences (§§ 44a-63a UrhG / German Copyright Act).\n\nDieser Beitrag kann vom Nutzer zu eigenen nicht-kommerziellen Zwecken\nheruntergeladen und/oder ausgedruckt werden. Darüber hinaus gehende\nNutzungen sind ohne weitere Genehmigung der Rechteinhaber nur im Rahmen\nder gesetzlichen Schrankenbestimmungen (§§ 44a-63a UrhG) zulässig."
 
-        self.metadata_template = {
-            "ReviewMonograph": u"%(reviewAuthor)s, review of: %(authors)s, %(title)s%(titel_divider)s%(subtitle)s, \n%(placeOfPublication)s: %(publisher)s %(yearOfPublication)s, in: %(series)s \nBand %(seriesVol)s, p. %(pages)s, %(absolute_url)s",
-            }
 
     def __call__(self):
         return self.genPdfRecension()
@@ -36,25 +34,6 @@ class GeneratePdfRecension(BrowserView):
         R.setHeader('content-length', str(contentlength))
 
     def _genCoverSheet(self):
-        metadata_fields = map(lambda f: f.getName(), self.context.schema.getSchemataFields('default')) # [ 'reviewAuthor', 'autorDesBuchs', 'titel', 'subtitle', 'placeOfPublication', 'publisher', 'yearOfPublication', 'series', 'seriesVol', 'pages',  ]
-        metadata_dict = dict()
-        metadata_dict['pages'] = '123-456'
-        for field in metadata_fields:
-            log.debug('getting field %s' % field)
-            metadata_dict[field] = self.context.getField(field).getAccessor(self.context)()
-            if isinstance(metadata_dict[field], (tuple,list)):
-                strval = ''
-                for val in metadata_dict[field]:
-                    strval += val + ', '
-                metadata_dict[field] = strval[:-2]
-            if metadata_dict[field] and not isinstance(metadata_dict[field], unicode):
-                try:
-                    metadata_dict[field] = metadata_dict[field].decode('utf8')
-                except AttributeError:
-                    log.warn('AttributeError while trying to decode %s (%s)' % (field, metadata_dict[field]))
-        metadata_dict['titel_divider'] = u'. ' if metadata_dict['subtitle'] else u''
-        metadata_dict['absolute_url'] = unicode(self.context.absolute_url())
-        log.debug(metadata_dict)
 
         tmpfile,tmppath = tempfile.mkstemp(prefix='cover', suffix='.pdf')
         cover = canvas.Canvas(tmpfile, pagesize=A4)
@@ -72,9 +51,9 @@ class GeneratePdfRecension(BrowserView):
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
         style = ParagraphStyle('citation style', fontName = 'Helvetica', fontSize = 10, textColor = grey)
-        P = Paragraph(self.metadata_template[self.context.meta_type] % metadata_dict, style)
-        P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
-        P.drawOn(cover, 6.20*cm, pheight-6.5*cm)
+        P = Paragraph(getCitationString(self.context), style)
+        realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
+        P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
 
         copyright_txt = cover.beginText(6.20*cm, pheight-22.5*cm)
         copyright_txt.textLines(self.copyright)
