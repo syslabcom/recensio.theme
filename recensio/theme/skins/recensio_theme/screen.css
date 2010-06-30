@@ -496,7 +496,7 @@ dl.error dd {
 #edit-bar {
 	background-color: #75ad0a;
 	border: 0.25em solid #75ad0a;
-	font-size: 75%;
+	font-size: 11px;
 	min-height: 2.5em;
 	margin-bottom: 1em;
 }
