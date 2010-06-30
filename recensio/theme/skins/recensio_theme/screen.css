@@ -359,6 +359,44 @@ input.searchButton {
     margin-left:10px;
 }
 
+/* deactivate portlets in portal_registry. This is temporary, we should deactivate portlets totally in plone control panel */
+body.section-portal_registry div#column3 {
+    display:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 
