@@ -1063,7 +1063,8 @@ div.overlay {
     display: none;
     /* some padding to layout nested elements nicely  */
     margin: 1em;
-	font-size: 80%;
+    /*it was necessary to change the font size to 100% from 80 so the the picture fits in nicely with the changed accessibility font sizes*/
+	font-size: 100%;
 }
 
 div.overlay-iframe,
