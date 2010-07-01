@@ -379,9 +379,9 @@ position:relative;
     width:400px;
 }
 
-*+html ul {
+/**+html ul {
 padding-left:0;
-}
+}*/
 
 *+html #footer {
 z-index:1000 !important;
