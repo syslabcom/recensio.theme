@@ -382,6 +382,9 @@ position:relative;
     width:400px;
 }
 
+*+html #content-core ul {
+    padding-left:0;
+}
 
 
 
