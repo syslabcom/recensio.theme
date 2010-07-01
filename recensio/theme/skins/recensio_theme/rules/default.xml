@@ -28,6 +28,8 @@
     <!-- Main content rule: Put plone content into recensio content -->
     <append content="//div[@id='content']/*" 
              theme="//div[@id='content']" />
+
+
     <!-- Main portlet rule: Put plone right column into recensio column3 -->
     <append content="//div[@id='portal-column-two']/*" 
              theme="//div[@id='column3']/span" />
@@ -45,6 +47,8 @@
 
     <append css:content="div#viewlet-below-content"
             css:theme="div#mainContent" />
+    <!--append content="//div[@id='viewlet-below-content']/*" 
+             theme="//div[@id='viewlet-below-content']" /-->
 
     <!--replace css:content="dl.portalMessage"
              css:theme="dl.portalMessage" /-->
