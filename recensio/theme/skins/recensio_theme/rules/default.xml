@@ -43,6 +43,9 @@
     <prepend css:content="div#edit-bar"
              css:theme="div#mainContent"  />
 
+    <append css:content="div#viewlet-below-content"
+            css:theme="div#mainContent" />
+
     <!--replace css:content="dl.portalMessage"
              css:theme="dl.portalMessage" /-->
 
