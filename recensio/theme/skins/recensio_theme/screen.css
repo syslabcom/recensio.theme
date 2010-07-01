@@ -383,7 +383,9 @@ position:relative;
 padding-left:0;
 }
 
-
+*+html #footer {
+z-index:1000 !important;
+}
 
 
 
