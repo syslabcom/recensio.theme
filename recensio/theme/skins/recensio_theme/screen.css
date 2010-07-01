@@ -370,8 +370,11 @@ bottom:20px;
 position:relative;
 }
 
-
-
+/*********************have to add specific styles for the .row box to fix the position**************/
+.row {
+    position:relative;
+    bottom:10px;
+}
 
 
 /**********************IE7 Fixes**********************/
@@ -379,13 +382,7 @@ position:relative;
     width:400px;
 }
 
-/**+html ul {
-padding-left:0;
-}*/
 
-*+html #footer {
-z-index:1000 !important;
-}
 
 
 
