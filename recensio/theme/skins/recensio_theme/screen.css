@@ -384,6 +384,7 @@ position:relative;
 
 *+html #content-core ul {
     padding-left:0;
+    margin-left:0;
 }
 
 
