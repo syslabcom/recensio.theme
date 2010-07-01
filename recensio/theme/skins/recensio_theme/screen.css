@@ -374,7 +374,10 @@ position:relative;
 
 
 
-
+/**********************IE7 Fixes**********************/
+*+html .logo-text {
+    width:200px;
+}
 
 
 
