@@ -364,7 +364,11 @@ body.section-portal_registry div#column3 {
     display:none;
 }
 
-
+/*********************have to add specific styles for the commenting box to fix the position**************/
+.discussion, #commenting {
+bottom:20px;
+position:relative;
+}
 
 
 
@@ -1490,7 +1494,8 @@ textarea:focus {
 
 #content textarea {
     font: 100% Monaco, "Courier New", Courier, monospace;
-    width: 100%;
+    /*had to change the width from 100 to 76% so that the fields stay where they supposed to**/
+    width: 76%;
 }
 #content select {
     vertical-align: top;
@@ -1541,7 +1546,8 @@ dl.enableFormTabbing dd {
 	/*width: 100%;*/
 }
 input#title {
-	width: 100%;
+    /*changed the width to 75%**/
+	width: 75%;
 }
 .error input#title {
     width:99%;
