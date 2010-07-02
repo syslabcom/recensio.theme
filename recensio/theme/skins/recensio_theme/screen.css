@@ -391,13 +391,25 @@ position:relative;
     margin-left:0;
 }
 
+/************styling of the form#mag_upload and the included div.errors*************/
+ div.errors {
+     margin:10px;
+     padding:0 5px 5px;
+     border:1px solid #cdcdcd;
+ }
 
+div.errors p {
+    font-weight:bold;
+}
 
+div.errors table {
+    margin-top:10px;
+}
 
-
-
-
-
+div.errors th {
+    border:1px solid #efefef;
+    border-collapse:collapse;
+}
 
 
 
