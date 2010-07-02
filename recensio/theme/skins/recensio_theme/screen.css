@@ -411,6 +411,10 @@ div.errors th {
     border-collapse:collapse;
 }
 
+div.errors tr.bad {
+    font-weight:bold;
+}
+
 
 
 
