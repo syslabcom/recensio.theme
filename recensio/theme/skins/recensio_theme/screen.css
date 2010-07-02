@@ -376,6 +376,10 @@ position:relative;
     bottom:10px;
 }
 
+/*****to fix the width of the editor table which was broken by a plone style that was recently added *****/
+#review_tbl {
+    width:846px !important;
+}
 
 /**********************IE7 Fixes**********************/
 *+html .logo-text {
