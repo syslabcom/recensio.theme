@@ -69,3 +69,8 @@ div.overlay-iframe,
 div.overlay-ajax {
 	width: 90%;
 }
+
+/***specific recensio styles****/
+body {
+    font-size:6px;
+}
