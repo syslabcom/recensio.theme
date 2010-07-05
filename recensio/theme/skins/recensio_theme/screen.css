@@ -1631,13 +1631,3 @@ tr.selected {
 }
 
 
-/* There is a huge whitespace in the TinyMce Editor (http://recensio.syslab.com/front-page/edit), 
-   caused by a defined margin for #content, #content_impressum */
-body#content .mceContentBody {
-    margin:0 !important;
-    }
-
-    .mceContentBody {
-    font-family:Verdana,Arial,Helvetica !important;
-    font-size:11px !important;
-    }
