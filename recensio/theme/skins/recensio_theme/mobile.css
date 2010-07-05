@@ -71,4 +71,6 @@ div.overlay-ajax {
 }
 
 /***specific recensio styles****/
-
+body {
+    font-size:4px;
+}
