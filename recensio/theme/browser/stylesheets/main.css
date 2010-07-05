@@ -4,3 +4,7 @@ body.template-newsletter-settings textarea {
     height: 150px;
 }
 
+.mceContentBody {
+font-family:Verdana,Arial,Helvetica !important;
+font-size:11px !important;
+}
