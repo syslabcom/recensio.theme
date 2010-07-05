@@ -73,7 +73,7 @@ div.overlay-ajax {
 /***specific recensio styles****/
 body {
     font-size:4px;
-    width:500px;
+   /* width:500px;*/
 }
 
 #page_image {
@@ -84,8 +84,8 @@ body {
 margin:0px 0 0;
 }
 
-#container {
+/*#container {
 margin-left:auto;
 margin-right:auto;
 width:500px;
-}
+}*/
