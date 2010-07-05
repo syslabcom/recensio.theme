@@ -11,6 +11,11 @@
 #portal-logo {
 	display: none;
 }
+/****specific recensio styles***/
+#logo {
+    display:none;
+}
+//*end*/
 #portal-top {
 	font-size: 180%;
 }
