@@ -83,9 +83,6 @@ body {
 margin:0px 0 0;
 }
 
-#Navigationshintergrund Start {
-    display:none;
-}
-#Navigationshintergrund Ende {
-    display:none;
+#navigation img {
+display:none;
 }
