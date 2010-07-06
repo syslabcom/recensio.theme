@@ -99,3 +99,7 @@ width:500px;
 #column3 {
     display:none;
 }
+
+#navigation li {
+padding:0 5px;
+}
