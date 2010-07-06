@@ -12,10 +12,10 @@
 	display: none;
 }
 /****specific recensio styles***/
-#logo {
+/*#logo {
     display:none;
-}
-//*end*/
+}*/
+/*end*/
 #portal-top {
 	font-size: 180%;
 }
@@ -73,7 +73,6 @@ div.overlay-ajax {
 /***specific recensio styles****/
 body {
     font-size:4px;
-   /* width:500px;*/
 }
 
 #page_image {
@@ -83,9 +82,3 @@ body {
 #mainContent, #content_impressum {
 margin:0px 0 0;
 }
-
-/*#container {
-margin-left:auto;
-margin-right:auto;
-width:500px;
-}*/
