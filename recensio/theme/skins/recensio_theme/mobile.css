@@ -118,3 +118,12 @@ background:#fff;
 .logo-text {
     background:#fff;
 }
+#footer {
+display:none;
+}
+#portal-siteactions {
+    display:none;
+}
+#notes { 
+    display:none;
+    }
