@@ -90,3 +90,8 @@ display:none;
 #navigation ul {
     background:transparent;
 }
+
+#container {
+text-align:left;
+width:500px;
+}
