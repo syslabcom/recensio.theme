@@ -139,7 +139,10 @@ dl.captioned {
 #mainContent, #content_impressum {
 margin:0px 0 20px;
 page-break-after:always;
-width:100%;
+}
+
+#content-core {
+    width:900px;
 }
 
 /*#footer {
