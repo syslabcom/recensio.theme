@@ -84,5 +84,9 @@ margin:0px 0 0;
 }
 
 #navigation img {
-display:none;
+display:nonedis;
+}
+
+#navigation ul {
+    display:none;
 }
