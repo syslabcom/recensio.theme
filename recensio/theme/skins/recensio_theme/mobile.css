@@ -93,7 +93,10 @@ display:none;
 
 #container {
 text-align:left;
-width:400px;
+width:450px;
+}
+#content-core {
+    width:450px;
 }
 
 #column3 {
