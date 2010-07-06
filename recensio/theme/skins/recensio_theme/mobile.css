@@ -109,5 +109,11 @@ width:450px;
 padding:0 5px;
 }
 #loc {
-background-color:#fff;
+background:#fff;
+}
+#logo {
+    background:#fff;
+}
+.logo-text {
+    background:#fff;
 }
