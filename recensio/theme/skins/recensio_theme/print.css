@@ -142,19 +142,15 @@ dl.captioned {
 
 #mainContent, #content_impressum {
 margin:0px 0 20px;
-page-break-after:always;
 }
 
 #content-core {
     width:900px;
 }
 
-#content {
-    page-break-after:always;
-}
-
 .discussion {
-    margin-top:2em;
+    page-break-before:always;
+    padding-top:2em;
 }
 
 /*#footer {
