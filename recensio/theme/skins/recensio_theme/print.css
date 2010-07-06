@@ -149,6 +149,14 @@ page-break-after:always;
     width:900px;
 }
 
+#content {
+    page-break-after:always;
+}
+
+.discussion {
+    margin-top:2em;
+}
+
 /*#footer {
     border:1px solid #fff;
     margin-top:20px;
