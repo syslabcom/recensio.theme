@@ -75,7 +75,6 @@ body {
     background:#fff;
     font-size:4px;
     margin:0px;
-    width:400px;
 }
 
 #page_image {
@@ -130,5 +129,3 @@ display:none;
 #notes { 
     display:none;
     }
-.float_right {
-}
