@@ -138,3 +138,7 @@ display:none;
 .logo-text {
     float:left;
 }
+#portal-languageselector {
+    position:relative;
+    left:40px;
+}
