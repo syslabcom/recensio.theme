@@ -116,7 +116,7 @@ width:420px;
 
 #navigation li {
 padding:0 5px;
-margin-top:10px;
+margin-top:15px;
 }
 #loc {
 background:#fff;
@@ -144,6 +144,6 @@ display:none;
     width:400px;
     margin-bottom:20px;
     position:relative;
-    right:375px;
+    right:378px;
     top:100px;
 }
