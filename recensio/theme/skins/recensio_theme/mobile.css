@@ -98,6 +98,8 @@ display:none;
 #container {
 text-align:left;
 width:400px;
+position:relative;
+right:15px;
 }
 #content-core {
     padding:0  0 10px 10px;
