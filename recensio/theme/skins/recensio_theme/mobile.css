@@ -132,3 +132,6 @@ display:none;
 #notes { 
     display:none;
     }
+.logo-text {
+    float:left;
+}
