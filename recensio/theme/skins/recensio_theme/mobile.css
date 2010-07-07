@@ -145,4 +145,8 @@ display:none;
 .logo-text {
     width:400px;
     border:1px solid red;
+    margin-bottom:10px;
+    position:relative;
+    right:400px;
+    top:100px;
 }
