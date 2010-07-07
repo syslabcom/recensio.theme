@@ -84,7 +84,7 @@ body {
 #mainContent, #content_impressum {
 margin:0;
 padding:0 10px 0 0;
-width:300px;
+width:2700px;
 }
 
 #navigation img {
@@ -134,3 +134,7 @@ display:none;
 #notes { 
     display:none;
     }
+.float_right {
+    position:relative;
+    left:400px;
+}
