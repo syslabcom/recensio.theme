@@ -97,6 +97,7 @@ display:none;
 
 #container {
 text-align:left;
+width:500px;
 position:relative;
 right:120px;
 }
