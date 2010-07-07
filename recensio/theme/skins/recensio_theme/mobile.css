@@ -116,6 +116,7 @@ width:420px;
 
 #navigation li {
 padding:0 5px;
+margin-top:10px;
 }
 #loc {
 background:#fff;
@@ -135,18 +136,14 @@ display:none;
 #notes { 
     display:none;
     }
-.logo-text {
-    float:left;
-}
 #portal-languageselector {
     position:relative;
     left:75px;
 }
 .logo-text {
     width:400px;
-    border:1px solid red;
     margin-bottom:20px;
     position:relative;
-    right:370px;
+    right:375px;
     top:100px;
 }
