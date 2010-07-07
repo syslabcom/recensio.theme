@@ -97,13 +97,13 @@ display:none;
 
 #container {
 text-align:left;
-width:300px;
+width:270px;
 position:relative;
 right:80px;
 }
 #content-core {
     padding:0  0 10px 10px;
-    width:470x;
+    width:460x;
 }
 #content-core ul {
     padding:0;
