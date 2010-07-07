@@ -83,8 +83,8 @@ body {
 
 #mainContent, #content_impressum {
 margin:0;
-padding:0 10px;
-width:450;
+padding:0 10px 0 0;
+width:390px;
 }
 
 #navigation img {
