@@ -87,7 +87,7 @@ padding:0 10px 0 0;
 }
 
 #navigation img {
-display:none;
+ display:none;
 }
 
 #navigation ul {
@@ -98,6 +98,7 @@ padding:0!important;
 }
 #container {
 text-align:left;
+padding:0 10px;
 }
 #content-core {
     padding:0  0 10px 10px;
