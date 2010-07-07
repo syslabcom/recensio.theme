@@ -93,7 +93,9 @@ display:none;
 #navigation ul {
     background:#fff;
 }
-
+#navigation li {
+padding:0 15px;
+}
 #container {
 text-align:left;
 }
