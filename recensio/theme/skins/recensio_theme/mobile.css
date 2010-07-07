@@ -84,7 +84,7 @@ body {
 #mainContent, #content_impressum {
 margin:0;
 padding:0 10px 0 0;
-width:390px;
+width:360px;
 }
 
 #navigation img {
@@ -97,13 +97,13 @@ display:none;
 
 #container {
 text-align:left;
-width:400px;
+width:370px;
 position:relative;
 right:20px;
 }
 #content-core {
     padding:0  0 10px 10px;
-    width:390px;
+    width:360px;
 }
 #content-core ul {
     padding:0;
