@@ -142,3 +142,7 @@ display:none;
     position:relative;
     left:75px;
 }
+.logo-text {
+    width:200px;
+    border:1px solid red;
+}
