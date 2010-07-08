@@ -3,7 +3,7 @@ log = logging.getLogger('recensio.theme/util.py')
 
 citation_templates = {
     "Review einer Monographie": u"%(reviewAuthor)s, review of: %(authors)s, %(title)s%(titel_divider)s%(subtitle)s, %(placeOfPublication)s: %(publisher)s %(yearOfPublication)s, in: %(series)s, %(seriesVol)s, p. %(pages)s, %(absolute_url)s",
-    "Review einer Zeitschrift": u"%(reviewAuthor)s, review of: %(shortnameJournal)s, %(volume)s, %(number)s, (%(yearOfPublication)s/%(officialYearOfPublication)s, %(absolute_url)s",
+    "Presentation Article Review": u"%(reviewAuthor)s, review of: %(shortnameJournal)s, %(volume)s, %(number)s, (%(yearOfPublication)s/%(officialYearOfPublication)s, %(absolute_url)s",
     "Praesentationen von Monographien": u"%(authors)s, presentation of: %(authors)s, %(title)s%(titel_divider)s%(subtitle)s, %(placeOfPublication)s: %(publisher)s %(yearOfPublication)s, %(absolute_url)s",
     }
 
