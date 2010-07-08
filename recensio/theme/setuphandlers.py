@@ -94,6 +94,7 @@ def setupXDVTheme(context):
     settings.boilerplate = u'python://recensio.theme/skins/recensio_theme/theme.xsl'
     settings.absolute_prefix = unicode(site.getId())
     default_notheme = [
+        u'^.*popup$',
         u'^.*/emptypage$',
         u'^.*/manage$',
         u'^.*/manage_(?!translations_form)[^/]+$',
