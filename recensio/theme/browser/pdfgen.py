@@ -1,3 +1,4 @@
+from Products.statusmessages.interfaces import IStatusMessage
 # vim:fileencoding=utf8
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -6,6 +7,7 @@ from Products.CMFCore.utils import getToolByName
 import logging
 import tempfile
 import os
+from pkg_resources import resource_filename
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter, A4
@@ -35,7 +37,20 @@ class GeneratePdfRecension(BrowserView):
         BrowserView.__init__(self, context, request)
 
     def __call__(self):
-        return self.genPdfRecension()
+        try:
+            cover = self.genPdfRecension()
+            original = self.context.pdf.blob.open().name
+            new = tempfile.mkstemp(prefix = 'final', suffix = '.pdf')[1]
+            error_code = os.system('ulimit -t 5;pdftk %s %s cat output %s' % (cover, original, new))
+            if error_code:
+                IStatusMessage(self.request).add('Creating the pdf has failed! Please try again or ask for support', 'error')
+                return
+            pdfdata = file(new).read()
+        finally:
+            os.remove(cover)
+            os.remove(new)
+        self._prepareHeader(len(pdfdata))
+        return pdfdata
 
     def _prepareHeader(self, contentlength, filename='recension.pdf'):
         R = self.request.RESPONSE
@@ -43,23 +58,29 @@ class GeneratePdfRecension(BrowserView):
         R.setHeader('content-disposition', 'inline; filename="%s"' % filename)
         R.setHeader('content-length', str(contentlength))
 
-    def _genCoverSheet(self):
-        tmpfile,tmppath = tempfile.mkstemp(prefix='cover', suffix='.pdf')
-        cover = canvas.Canvas(tmpfile, pagesize=A4)
-        pwidth,pheight = A4
-        cover.drawImage(os.path.join(os.path.split(os.path.abspath(__file__))[0],
-            'images/logo2_fuer-Deckblatt.jpg'), 0, pheight-4.21*cm,
-            width=28.28*cm, height=4.21*cm)
-        cover.drawImage(os.path.join(os.path.split(os.path.abspath(__file__))[0],
-            'images/logo_icon_watermark.jpg'), pwidth/2.-.5*13.76*cm, pheight/2-.5*13.76*cm,
-            width=13.76*cm, height=13.76*cm, preserveAspectRatio=True, anchor='c')
+    def _drawImage(self, filename, x, y, width, height, **kw):
+        fullPath = resource_filename(__name__, os.path.join('images', filename))
+        self.canvas.drawImage(fullPath,
+            x, y, width, height,
+            **kw)
 
+    def _genCoverSheet(self):
+        file_handle, tmpfile = tempfile.mkstemp(prefix='cover', suffix='.pdf')
+        self.canvas = cover = canvas.Canvas(tmpfile, pagesize=A4)
+        pwidth,pheight = A4
+
+        self._drawImage('logo2_fuer-Deckblatt.jpg', 0, pheight - 4.21*cm,
+            28.28*cm, 4.21*cm)
+        self._drawImage('logo_icon_watermark.jpg', pwidth/2.0 - 5*13.76*cm,
+            pheight/2.5 * 13.76*cm, 13.76*cm, 13.76*cm, preserveAspectRatio=True,
+            anchor='c')
         cover.setFont('Helvetica', 10)
         cover.setFillColor(grey)
         cover.drawString(2.50*cm, pheight-5.5*cm, u'citation style')
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
-        style = ParagraphStyle('citation style', fontName = 'Helvetica', fontSize = 10, textColor = grey)
+        style = ParagraphStyle('citation style', fontName = 'Helvetica', \
+            fontSize = 10, textColor = grey)
         P = Paragraph(getCitationString(self.context), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
@@ -69,11 +90,11 @@ class GeneratePdfRecension(BrowserView):
         cover.drawText(copyright_txt)
 
         cover.showPage()
-        return cover.getpdfdata()
+        cover.save()
+        return tmpfile
 
     def genPdfRecension(self):
         """Generate and return a PDF version of the recension
         """
         pdfdata = self._genCoverSheet()
-        self._prepareHeader(len(pdfdata))
         return pdfdata

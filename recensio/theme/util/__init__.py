@@ -13,7 +13,7 @@ def getCitationString(review):
     metadata_dict = dict()
     metadata_dict['pages'] = '123-456'
     for field in metadata_fields:
-        log.debug('getting field %s' % field)
+        #log.debug('getting field %s' % field)
         metadata_dict[field] = review.getField(field).getAccessor(review)()
         if isinstance(metadata_dict[field], (tuple,list)):
             strval = ''
@@ -24,8 +24,9 @@ def getCitationString(review):
             try:
                 metadata_dict[field] = metadata_dict[field].decode('utf8')
             except AttributeError:
-                log.warn('AttributeError while trying to decode %s (%s)' % (field, metadata_dict[field]))
+                pass
+                #log.warn('AttributeError while trying to decode %s (%s)' % (field, metadata_dict[field]))
     metadata_dict['titel_divider'] = u'. ' if metadata_dict['subtitle'] else u''
     metadata_dict['absolute_url'] = unicode(review.absolute_url())
-    log.debug(metadata_dict)
+    #log.debug(metadata_dict)
     return citation_templates[review.portal_type] % metadata_dict
