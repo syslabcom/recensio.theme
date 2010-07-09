@@ -291,7 +291,10 @@ div#navigation ul li:first-child {
 /* We do our own language selector and it is a ul in plone by default, so we exchange it and add 
 our own defs */
 ul#portal-languageselector {
-    width:260px;
+float:left;
+position:relative;
+top:50px;
+width:260px;
 }
 ul#portal-languageselector li {
     display: inline;
