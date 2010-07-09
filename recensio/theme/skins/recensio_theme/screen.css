@@ -395,6 +395,11 @@ position:relative;
     margin-left:0;
 }
 
+*+html ul#portal-languageselector {
+position:relative;
+top:60px;
+}
+
 /************styling of the form#mag_upload and the included div.errors*************/
  div.errors {
      margin:10px;
