@@ -141,6 +141,8 @@ display:none;
     left:75px;
     border:1px solid red;
     height:20px;
+    width:100px;
+    float:left;
 }
 .logo-text {
     width:400px;
