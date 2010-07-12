@@ -137,9 +137,10 @@ display:none;
     display:none;
     }
 #portal-languageselector {
-position:relative;
-    left:00px;
+    position:relative;
+    left:0px;
     height:20px;
+    border:1px solid red;
 }
 .logo-text {
    /* width:400px;
