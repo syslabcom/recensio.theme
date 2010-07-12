@@ -139,8 +139,6 @@ display:none;
 #portal-languageselector {
     position:relative;
     right:400px;
-    top:-100px;
-    height:20px;
     border:1px solid red;
 }
 .logo-text {
