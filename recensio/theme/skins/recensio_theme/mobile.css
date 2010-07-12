@@ -139,6 +139,7 @@ display:none;
 #portal-languageselector {
     position:relative;
     right:430px;
+    float:right;
 }
 .logo-text {
    /* width:400px;
