@@ -1639,4 +1639,7 @@ tr.selected {
     background-color: #ffa;
 }
 
-
+/*******styles for the history tag******/
+.reviewHistory, .contentHistory {
+font-size:85% !important;
+}
