@@ -37,8 +37,8 @@
                           portal context/@@plone_portal_state/portal;
                           portal_catalog nocall:portal/portal_catalog;
                           options context/@@searchform-options;
-                          field_collapsible_class  python:'field'+(options.collapse() and ' collapsible' or '');
-                          first_call  not:request/advanced_search|nothing">
+                          field_collapsible_class  python:'field'+(options.collapse() and ' collapsible' or '');"
+            >
 
           <input type="hidden" name="advanced_search" value="True" />
           
@@ -121,32 +121,17 @@
                tal:define="portal_types portal/portal_types;
                            all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
                            used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
-                           all_checked python:(len(used_types) == len(request.get('portal_type', []))) or first_call;
+                           all_checked python:(len(used_types) == len(request.get('portal_type', [])));
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label i18n:translate="label_item_type"
                    class="collapser">Item type</label>
+            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('portal_type', '')"/>
 
     		<div class="collapse">
               <div class="formHelp" i18n:translate="help_search_item_type">
                 Return items of a specific type.
               </div>
               
-              <span class="optionsToggle">
-                <input type="checkbox"
-                       onclick=""
-                       name="pt_toggle"
-                       value="#"
-                       id="pt_toggle"
-                       class="noborder"
-                       checked="checked" 
-                       tal:attributes="checked python:all_checked and 'checked' or '';
-                                       onclick string:javascript:toggleSelect(this, 'portal_type:list', ${toggle_select_state});"/>
-                <label for="pt_toggle"
-                       i18n:translate="label_toggle"
-                       >Select All/None
-                </label>
-              </span>
-              <br />
               <div style="float:left; margin-right: 2em;"
                    tal:define="typeLists python:context.createMultiColumnList(used_types, numCols=2, sort_on='self');"
                    tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
@@ -159,7 +144,7 @@
                          checked="checked"
                          tal:attributes="value type;
                                          id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
-                                         checked python:((type in request.get('portal_type', [])) or first_call) and 'checked' or ''"/>
+                                         checked python:((type in request.get('portal_type', []))) and 'checked' or ''"/>
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
@@ -236,32 +221,17 @@
                tal:attributes="class field_collapsible_class" 
                tal:define="portal_languages nocall:portal/portal_languages;
                            supp_languages python:portal_languages.getSupportedLanguages();
-                           all_checked python:(len(supp_languages) == len(request.get('languagePresentation', []))) or first_call;
-                           toggle_select_state python:all_checked and 'true' or 'false';">
+                           all_checked python:(len(supp_languages) == len(request.get('languagePresentation', []))and 1);
+                           toggle_select_state python:all_checked and 'true' or 'false' or 'true';">
             <label i18n:translate="label_recension_language"
                    class="collapser">Language of the Recension</label>
 
+            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languagePresentation', '')"/>
     		<div class="collapse">
               <div class="formHelp" i18n:translate="help_search_recension_language">
                 Return items in selected languages.
               </div>
               
-              <span class="optionsToggle">
-                <input type="checkbox"
-                       onclick=""
-                       name="pt_toggle"
-                       value="#"
-                       id="pt_toggle"
-                       class="noborder"
-                       checked="checked" 
-                       tal:attributes="checked python:all_checked and 'checked' or '';
-                                       onclick string:javascript:toggleSelect(this, 'languagePresentation:list', ${toggle_select_state});"/>
-                <label for="pt_toggle"
-                       i18n:translate="label_toggle"
-                       >Select All/None
-                </label>
-              </span>
-              <br />
               <div style="float:left; margin-right: 2em;"
                    tal:define="languageLists python:context.createMultiColumnList(supp_languages, numCols=3, sort_on='self');"
                    tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
@@ -274,7 +244,7 @@
                          checked="checked"
                          tal:attributes="value lang;
                                          id string:languagePresentation_${repeat/sublist/number}_${repeat/lang/number};
-                                         checked python:((lang in request.get('languagePresentation', [])) or first_call) and 'checked' or ''"/>
+                                         checked python:((lang in request.get('languagePresentation', []))) and 'checked' or ''"/>
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:languagePresentation_${repeat/sublist/number}_${repeat/lang/number}"
@@ -291,32 +261,17 @@
                tal:attributes="class field_collapsible_class" 
                tal:define="portal_languages nocall:portal/portal_languages;
                            supp_languages python:portal_languages.getSupportedLanguages();
-                           all_checked python:(len(supp_languages) == len(request.get('languageReview', []))) or first_call;
+                           all_checked python:(len(supp_languages) == len(request.get('languageReview', [])));
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label i18n:translate="label_works_language"
                    class="collapser">Language of the Reviewed Works</label>
+            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languageReview', '')"/>
 
     		<div class="collapse">
               <div class="formHelp" i18n:translate="help_search_works_language">
                 Return items that review works in selected languages.
               </div>
               
-              <span class="optionsToggle">
-                <input type="checkbox"
-                       onclick=""
-                       name="pt_toggle"
-                       value="#"
-                       id="pt_toggle"
-                       class="noborder"
-                       checked="checked" 
-                       tal:attributes="checked python:all_checked and 'checked' or '';
-                                       onclick string:javascript:toggleSelect(this, 'languageReview:list', ${toggle_select_state});"/>
-                <label for="pt_toggle"
-                       i18n:translate="label_toggle"
-                       >Select All/None
-                </label>
-              </span>
-              <br />
               <div style="float:left; margin-right: 2em;"
                    tal:define="languageLists python:context.createMultiColumnList(supp_languages, numCols=3, sort_on='self');"
                    tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
@@ -329,7 +284,7 @@
                          checked="checked"
                          tal:attributes="value lang;
                                          id string:languageReview_${repeat/sublist/number}_${repeat/lang/number};
-                                         checked python:((lang in request.get('languageReview', [])) or first_call) and 'checked' or ''"/>
+                                         checked python:((lang in request.get('languageReview', []))) and 'checked' or ''"/>
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:languageReview_${repeat/sublist/number}_${repeat/lang/number}"
@@ -349,36 +304,20 @@
             <label for="review_state" 
                    class="collapser"
                    i18n:translate="label_review_status">Review status</label>
+            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('review_state', '')"/>
             
             <div class="collapse"
                  tal:define="navtree_props portal/portal_properties/navtree_properties;
                              states python:portal.portal_workflow.listWFStatesByTitle(filter_similar=1);
                              used_states python:portal.portal_catalog.uniqueValuesFor('review_state');
                              filtered_states python:[state for state in states if state[1] in used_states];
-                             all_checked python:(len(filtered_states) == len(request.get('review_state', []))) or first_call;
+                             all_checked python:(len(filtered_states) == len(request.get('review_state', [])));
                              toggle_select_state python:all_checked and 'true' or 'false';">
               <div class="formHelp" i18n:translate="help_search_review_status">
                 You may search for items based on their
                 review state. If you wish to constrain results to items
                 in certain states, select them from this list.
               </div>
-              
-              <span class="optionsToggle">
-                <input type="checkbox"
-                       onclick="javascript:toggleSelect(this, 'review_state:list', true);"
-                       name="rs_toggle"
-                       value="#"
-                       id="rs_toggle"
-                       class="noborder"
-                       checked="checked" 
-                       tal:attributes="checked python:all_checked and 'checked' or '';
-                                       onclick string:javascript:toggleSelect(this, 'review_state:list', ${toggle_select_state});"/>
-                <label for="rs_toggle"
-                       i18n:translate="label_toggle"
-                       >Select All/None
-                </label>
-                <br />
-              </span>
 
               <tal:states define="
                                   state_lists python:context.createMultiColumnList(filtered_states, numCols=1, sort_on='self');
@@ -391,7 +330,7 @@
                          checked="checked"
                          tal:attributes="value python:state[1];
                                          id python:normalizeString(state[1]);
-                                         checked python:((state[1] in request.get('review_state', [])) or first_call) and 'checked' or ''" />
+                                         checked python:((state[1] in request.get('review_state', [])) ) and 'checked' or ''" />
                   <label for=""
                          tal:attributes="for python:normalizeString(state[1])"
                          i18n:translate=""
@@ -459,7 +398,7 @@
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class" 
                tal:define="avail_magazines python:portal_catalog(portal_type='Zeitschrift');
-                           all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) or first_call;
+                           all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label i18n:translate="label_magazines"
                    class="collapser">Zeitschriften</label>
@@ -497,7 +436,7 @@
                          checked="checked"
                          tal:attributes="value mag;
                                          id string:magazines_${repeat/sublist/number}_${repeat/mag/number};
-                                         checked python:((lang in request.get('magazines', [])) or first_call) and 'checked' or ''"/>
+                                         checked python:((lang in request.get('magazines', [])) ) and 'checked' or ''"/>
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:magazines_${repeat/sublist/number}_${repeat/mag/number}"
@@ -636,7 +575,7 @@
                tal:attributes="class field_collapsible_class"
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
                            avail_regions python:voc.getDisplayList(voc).items();
-                           all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) or first_call;
+                           all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label for="region" 
                    class="collapser"
@@ -653,7 +592,7 @@
                         name="ddcSubject:list"
                         size="10">
                   <tal:items repeat="reg avail_regions">
-                    <option tal:attributes="value python:reg[0]; selected python:((reg[0] in request.get('ddcSubject', [])) or first_call) and 'selected'" tal:content="python:reg[1]" />
+                    <option tal:attributes="value python:reg[0]; selected python:((reg[0] in request.get('ddcSubject', [])) ) and 'selected'" tal:content="python:reg[1]" />
                   </tal:items>
                 </select>
               </div>
@@ -666,7 +605,7 @@
                tal:attributes="class field_collapsible_class"
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('epoch_values');
                            avail_epochs python:voc.getDisplayList(voc).items();
-                           all_checked python:(len(avail_epochs) == len(request.get('ddcTime', []))) or first_call;
+                           all_checked python:(len(avail_epochs) == len(request.get('ddcTime', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label for="epoch" 
                    class="collapser"
@@ -682,7 +621,7 @@
                         name="ddcSubject:list"
                         size="10">
                   <tal:items repeat="epo avail_epochs">
-                    <option tal:attributes="value python:epo[0]; selected python:((epo[0] in request.get('ddcSubject', [])) or first_call) and 'selected'" tal:content="python:epo[1]" />
+                    <option tal:attributes="value python:epo[0]; selected python:((epo[0] in request.get('ddcSubject', [])) ) and 'selected'" tal:content="python:epo[1]" />
                   </tal:items>
                 </select>
               </div>
@@ -695,7 +634,7 @@
                tal:attributes="class field_collapsible_class"
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('topic_values');
                            avail_topics python:voc.getDisplayList(voc).items();
-                           all_checked python:(len(avail_topics) == len(request.get('ddcSubject', []))) or first_call;
+                           all_checked python:(len(avail_topics) == len(request.get('ddcSubject', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label for="topic" 
                    class="collapser"
@@ -712,7 +651,7 @@
                         name="ddcSubject:list"
                         size="10">
                   <tal:items repeat="top avail_topics">
-                    <option tal:attributes="value python:top[0]; selected python:((top[0] in request.get('ddcSubject', [])) or first_call) and 'selected'" tal:content="python:top[1]" />
+                    <option tal:attributes="value python:top[0]; selected python:((top[0] in request.get('ddcSubject', [])) ) and 'selected'" tal:content="python:top[1]" />
                   </tal:items>
                 </select>
               </div>

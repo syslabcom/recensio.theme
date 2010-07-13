@@ -1643,3 +1643,7 @@ tr.selected {
 .reviewHistory, .contentHistory {
 font-size:85% !important;
 }
+
+.collapse_trick{
+    display:None;
+}
