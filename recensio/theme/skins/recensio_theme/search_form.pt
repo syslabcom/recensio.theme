@@ -655,6 +655,7 @@
                         <tal:items repeat="reg avail_regions">
                             <option tal:attributes="value python:reg[0]; selected python:((reg[0] in request.get('ddcSubject', [])) or first_call) and 'selected'" tal:content="python:reg[1]" />
                         </tal:items>
+                        </select>
                     </div>
                 <div class="visualClear" id="clear-after-region"><!-- --></div>
 
