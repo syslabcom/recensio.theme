@@ -16,8 +16,6 @@ from reportlab.lib.colors import grey
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
 
-from recensio.theme.util import getCitationString
-
 log = logging.getLogger('recensio.theme/pdfgen.py')
 
 COPYRIGHT = u"""This article may be downloaded and/or used within the private copying
@@ -81,7 +79,7 @@ class GeneratePdfRecension(BrowserView):
 
         style = ParagraphStyle('citation style', fontName = 'Helvetica', \
             fontSize = 10, textColor = grey)
-        P = Paragraph(getCitationString(self.context), style)
+        P = Paragraph(self.context.get_citation_string(), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
 
