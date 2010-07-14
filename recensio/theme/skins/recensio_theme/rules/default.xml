@@ -63,9 +63,8 @@
     
     <!-- portal searchbox goes into column3 -->
     <prepend css:content="div#portal-searchbox"
-             css:theme="div#column3" />
-             
-             
+             css:theme="span#searchbox" />
+
     <!-- FIXES -->
     <!-- Clear space before navigation inflicts a large offset of the content from the header. We drop it -->
     <drop content="//*[@id='clear-space-before-navigation']" />
