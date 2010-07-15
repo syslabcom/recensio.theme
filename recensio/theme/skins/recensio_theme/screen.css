@@ -335,7 +335,7 @@ ul.LSTable {
 }
 
 ul.LSTable li {
-  width:170px; 
+  /*width:170px; */
 }
 
 /**************to fix the whitespace between document description and the fields that come below I have to add a small margin****/
