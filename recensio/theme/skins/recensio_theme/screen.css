@@ -329,7 +329,7 @@ fieldset.livesearchContainer {
 }
 
 ul.LSTable {
-   width:180px;
+   /*width:180px;*/
    margin:0;
    padding:0;
 }
