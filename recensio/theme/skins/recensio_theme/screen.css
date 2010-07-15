@@ -1647,3 +1647,8 @@ font-size:85% !important;
 .collapse_trick{
     display:None;
 }
+
+/******Styles to fix the livesearch*******/
+fieldset.livesearchContainer {
+    
+}
