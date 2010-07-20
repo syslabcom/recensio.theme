@@ -1663,3 +1663,8 @@ min-width:25% !important;
 padding:0.5em !important;
 }
 
+/*****styles for width of content only regarding the search template******/
+.template-search #content {
+width:100%;
+}
+
