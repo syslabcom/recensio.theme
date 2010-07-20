@@ -1657,9 +1657,9 @@ font-size:85% !important;
 /******style for searchfacts********/
 
 #portal-searchfacets {
-background-color:#EFEFEF;
-margin:0 0 0 10px;
-min-width:25%;
-padding:0.5em;
+background-color:#EFEFEF !important;
+margin:0 0 0 10px !important;
+min-width:25% !important;
+padding:0.5em !important;
 }
 
