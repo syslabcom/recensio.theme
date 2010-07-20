@@ -1654,4 +1654,12 @@ font-size:85% !important;
     display:None;
 }
 
+/******style for searchfacts********/
+
+#portal-searchfacets {
+background-color:#EFEFEF;
+margin:0 0 0 10px;
+min-width:25%;
+padding:0.5em;
+}
 
