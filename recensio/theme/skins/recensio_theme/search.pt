@@ -153,6 +153,7 @@
             <tal:results repeat="result batch">
             <tal:entry define="result_url result/getURL;
                                result_type result/portal_type;
+                               is_recension python:'Review' in result_type;
                                item_icon python:plone_view.getIcon(result);
                                url python:result_url+'/view' if result_type in use_view_action else result_url+'/';
                                url python:url if searchterm is None else '%s?searchterm=%s' % (url, searchterm);">
@@ -160,14 +161,14 @@
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                   <img tal:replace="structure item_icon/html_tag" />
                   <span class="result-type" tal:attributes="class string:result-type" tal:content="result_type" /> - 
-                  <span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/getAuthors"><tal:block replace="author" /><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end">: </tal:c></span></span>
+                  <span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><tal:block replace="author" /><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span>: </span>
                    <a
                      href="#" 
                      tal:attributes="href url;
                                      class string:$item_wf_state_class"
                      tal:content="result/pretty_title_or_id" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
                   <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
-                  <span class="review-author" tal:attributes="class string:review-author" tal:condition="result/getReviewAuthor">(<tal:block tal:content="result/getReviewAuthor" />)</span>
+                  <span class="review-author" tal:attributes="class string:review-author" tal:condition="is_recension">(reviewed by <tal:block tal:content="result/getReviewAuthorFirstname" /> <tal:block tal:content="result/getReviewAuthorLastname" />)</span>
                 </dt>
             
                 <dd>
