@@ -27,15 +27,6 @@ class BrowseTopicsView(SearchFacetsView):
     def getResults(self):
         return self.results
 
-    def facets(self):
-        """ prepare and return facetting info for the given SolrResponse """
-        results = self.results
-        fcs = getattr(results, 'facet_counts', None)
-        if results is not None and fcs is not None:
-            return convertFacets(fcs.get('facet_fields', {}),
-                self.context, self.request.form or self.default_query, None)
-        else:
-            return None
 
     def getMenu(self):
         voc = getToolByName(self.context, 'portal_vocabularies', None)
@@ -58,7 +49,7 @@ class BrowseTopicsView(SearchFacetsView):
                 elif isinstance(item[1], tuple):
                     itemvoc = item[1][0]
 
-                iteminfo = dict(name=item[0], voc=itemvoc, count=0, query='')
+                iteminfo = dict(name=item[0], voc=itemvoc, count=0, query='', submenu=[])
                 # look if we have info from facets()
                 if facet:
                     facetinfo = filter(lambda x: x['name'] == item[0], facet['counts'])
@@ -74,7 +65,7 @@ class BrowseTopicsView(SearchFacetsView):
                 # recurse if we have subordinate vocabulary items
                 if isinstance(item[1][1], dict) or isinstance(item[1][1], OrderedDict):
                     subsubmenu = getSubmenu(item[1][1], facet, selected)
-                    submenu = submenu + subsubmenu
+                    iteminfo['submenu'] = subsubmenu
                     iteminfo['count'] += sum(map(lambda x: x['count'], subsubmenu))
 
                 submenu.append(iteminfo)
@@ -92,7 +83,10 @@ class BrowseTopicsView(SearchFacetsView):
             if facets_sub or selected_sub:
                 submenu = getSubmenu(vocDict[attrib], facets_sub, selected_sub)
             menu[attrib] = submenu
-
         return menu
 
-                
+    def showSubmenu(self,submenu):
+        """Returns True if submenu has an entry with count > 0 or clearquery set, 
+            i.e. should be displayed
+        """
+        return not filter(lambda x: x.has_key('clearquery') or x['count'] > 0, submenu) == []

@@ -30,9 +30,10 @@
         <div id="browsing-menu" tal:define="menu view/getMenu;">
             <div tal:repeat="submenu submenus" id="submenu">
                 <h5 i18n:translate="" tal:content="submenu/title" />
-                <div tal:repeat="item python:menu[submenu['id']]">
+                <div class="collapsible" tal:repeat="item python:menu[submenu['id']]">
                   <tal:block tal:condition="python:item['count'] or item.has_key('clearquery')">
-                    <dt>
+                    <label tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapser' or ''">
+                      <dt>
                         <a href="#" tal:content="item/voc"
                             tal:condition="item/query"
                             tal:attributes="href string:${request/ACTUAL_URL}?${item/query}" />
@@ -45,12 +46,40 @@
                                 &otimes;
                             </a>
                         </tal:block>
-                    </dt>
-                    <dd tal:condition="item/count" tal:content="item/count" />
+                      </dt>
+                      <dd tal:condition="item/count" tal:content="item/count" />
+                    </label>
+                    
+                      <div tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapse' or ''">
+                        <tal:block tal:repeat="subitem item/submenu">
+                          <tal:block tal:condition="python:subitem['count'] or subitem.has_key('clearquery')">
+                            <div>
+                              <dt>
+                                <a href="#" tal:content="subitem/voc"
+                                    tal:condition="subitem/query"
+                                    tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query}" />
+                                <span tal:content="subitem/voc"
+                                    tal:condition="not:subitem/query" />
+                                <tal:block tal:condition="exists:subitem/clearquery">
+                                    <a title="Remove this selection" i18n:attributes="title"
+                                        tal:attributes="href string:${request/ACTUAL_URL}?${subitem/clearquery}">
+                                        &otimes;
+                                    </a>
+                                </tal:block>
+                              </dt>
+                              <dd tal:condition="subitem/count" tal:content="subitem/count" />
+                            </div>
+                          </tal:block>
+                        </tal:block>
+                      </div>
                     <div class="visualClear"><!-- --></div>
                   </tal:block>
                 </div>
             </div>
+
+            <script type="text/javascript">
+                jq('.collapsible').do_search_collapse()
+            </script>
         </div>
 
         <h1 class="documentFirstHeading">
