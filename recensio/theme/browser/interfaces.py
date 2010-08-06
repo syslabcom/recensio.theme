@@ -13,3 +13,10 @@ class IGeneratePdfRecension(Interface):
         """Generate and return a PDF version of the recension
         """
 
+class IBrowseTopics(Interface):
+    """Interface for topical browsing (ddcPlace etc.)
+    """
+
+    def __call__(self):
+        """render the view
+        """

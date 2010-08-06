@@ -1,0 +1,165 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+<metal:main fill-slot="main"
+    tal:define="results view/getResults;
+                Batch python:modules['Products.CMFPlone'].Batch;
+                b_size python:30; b_size request/b_size | b_size;
+                b_start python:0;b_start request/b_start | b_start;
+                desc_length site_properties/search_results_description_length;
+                desc_ellipsis site_properties/ellipsis;
+                use_view_action site_properties/typesUseViewActionInListings|python:();
+                portal_url context/portal_url;
+                submenus python:[dict(title='Region',id='ddcPlace'), dict(title='Epoch',id='ddcTime'), dict(title='Topic', id='ddcSubject')];"
+                >
+
+    <div id="content-core">
+
+        <div id="browsing-menu" tal:define="menu view/getMenu;">
+            <div tal:repeat="submenu submenus" id="submenu">
+                <h5 i18n:translate="" tal:content="submenu/title" />
+                <div tal:repeat="item python:menu[submenu['id']]">
+                  <tal:block tal:condition="python:item['count'] or item.has_key('clearquery')">
+                    <dt>
+                        <a href="#" tal:content="item/voc"
+                            tal:condition="item/query"
+                            tal:attributes="href string:${request/ACTUAL_URL}?${item/query}" />
+                        <!-- <span tal:condition="not: item/count" tal:content="item/voc" /> -->
+                        <span tal:content="item/voc"
+                            tal:condition="not:item/query" />
+                        <tal:block tal:condition="exists:item/clearquery">
+                            <a title="Remove this selection" i18n:attributes="title"
+                                tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
+                                &otimes;
+                            </a>
+                        </tal:block>
+                    </dt>
+                    <dd tal:condition="item/count" tal:content="item/count" />
+                    <div class="visualClear"><!-- --></div>
+                  </tal:block>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="documentFirstHeading">
+            <span i18n:translate="heading_browsing_results">
+                Browsing
+            </span>
+            <span class="discreet">
+            &mdash;
+            <span i18n:translate="batch_x_items_matching_your_criteria"
+            ><span i18n:name="number" 
+            tal:omit-tag="" 
+            tal:content="python:len(results)">234</span> items matching</span>
+          </span>
+        </h1>
+
+        <div tal:condition="results"
+              tal:define="normalizeString nocall: context/plone_utils/normalizeString;
+                          isAnon context/@@plone_portal_state/anonymous;
+                          toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                          batch python:Batch(results, b_size, int(b_start), orphan=1);">
+
+            <dl class="searchResults">
+            <tal:results repeat="result batch">
+            <tal:entry define="result_url result/getURL;
+                               result_type result/portal_type;
+                               is_recension python:'Review' in result_type;
+                               item_icon python:plone_view.getIcon(result);
+                               url python:result_url+'/view' if result_type in use_view_action else result_url+'/';">
+                <dt tal:define="item_wf_state_class string:state-${result/review_state};"
+                    tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
+                  <img tal:replace="structure item_icon/html_tag" />
+                  <span class="result-type" tal:attributes="class string:result-type" tal:content="result_type" /><tal:block condition="result/listAuthors"> - <span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><tal:block replace="author" /><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span></tal:block>: 
+                   <a
+                     href="#" 
+                     tal:attributes="href url;
+                                     class string:$item_wf_state_class"
+                     tal:content="result/pretty_title_or_id" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
+                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
+                  <span class="review-author" tal:attributes="class string:review-author" tal:condition="is_recension">(reviewed by <tal:block tal:content="result/getReviewAuthorFirstname" /> <tal:block tal:content="result/getReviewAuthorLastname" />)</span>
+                </dt>
+            
+                <dd>
+
+                <span class="documentByLine"
+                      >
+                    <span class="documentAuthor"
+                        i18n:translate="label_by_author">
+                    by
+                        <tal:block tal:condition="result/Creator"
+                            tal:define="author python:context.portal_membership.getMemberInfo(result.Creator)">
+                          <a href="#"
+                             tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${result/Creator}"
+                             tal:content="python:author and author['fullname'] or result.Creator"
+                             tal:omit-tag="not:result/Creator"
+                             i18n:name="author">
+                            Bob Dobalina
+                          </a>
+                        </tal:block>  
+                    </span>
+
+                    <span class="documentModified">
+                      &mdash;
+                        <span i18n:translate="box_last_modified">
+                        last modified
+                        </span>
+                        <span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=1)">
+                        August 16, 2001 at 23:35:59
+                        </span>
+                    </span>
+
+
+                    <span tal:define="tags result/Subject|nothing"
+                          tal:condition="tags">
+                        &mdash;
+                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
+                            <span tal:repeat="tag tags">
+                                <a href=""
+                                   class="link-tag"
+                                   rel="tag"
+                                   tal:content="tag"
+                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
+                                   Tag
+                                </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
+                            </span>
+                    </span>
+
+                    <span class="relevance"
+                          tal:condition="python: result.data_record_normalized_score_ > 1">
+                        &mdash;
+                        <tal:relevance i18n:translate="label_relevance_percentage">
+                        Relevance:
+                            <span tal:content="result/data_record_normalized_score_"
+                                   tal:omit-tag=""
+                                   i18n:name="percentage">23</span>%
+                        </tal:relevance>
+                    </span>
+                </span>
+
+                </dd>
+
+            </tal:entry>
+            </tal:results>
+            </dl>
+         
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+        </div>
+    </div>
+
+</metal:main>
+</body>
+</html>

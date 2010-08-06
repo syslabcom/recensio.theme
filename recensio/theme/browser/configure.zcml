@@ -32,4 +32,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="browse-topics"
+        template="topical.pt"
+        class=".topical.BrowseTopicsView"
+        permission="zope2.View"
+        />
+
 </configure>

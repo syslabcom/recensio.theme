@@ -41,7 +41,10 @@
             >
 
           <input type="hidden" name="advanced_search" value="True" />
-          
+          <div tal:define="view nocall: context/@@search-facets | nothing"
+              tal:condition="python: view"
+              tal:replace="structure view/hiddenfields" />
+                                   
           <div class="field">
             <label for="SearchableText" i18n:translate="label_search_text">Search text</label>
 
