@@ -1670,6 +1670,6 @@ width:100%;
 
 /*************styles for margin .card************/
 
-.card span {
+.card a {
     margin-top:5px;
 }
