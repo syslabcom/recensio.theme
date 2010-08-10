@@ -1673,3 +1673,9 @@ width:100%;
 .card a {
     margin-top:5px;
 }
+
+/*************styles for the dd tag for the #review-metadata***********/
+
+#review-metadata dd {
+    margin-left:0x;
+}
