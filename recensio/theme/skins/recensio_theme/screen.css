@@ -1679,3 +1679,7 @@ width:100%;
 #review-metadata dd {
     margin-left:0px;
 }
+
+.summary img {
+    margin-top:3px;
+}
