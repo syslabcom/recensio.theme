@@ -30,9 +30,9 @@
         <div id="browsing-menu" tal:define="menu view/getMenu;">
             <div tal:repeat="submenu submenus" id="submenu">
                 <h5 i18n:translate="" tal:content="submenu/title" />
-                <div class="collapsible" tal:repeat="item python:menu[submenu['id']]">
-                  <tal:block tal:condition="python:item['count'] or item.has_key('clearquery')">
-                    <label tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapser' or ''">
+                <tal:block tal:repeat="item python:menu[submenu['id']]">
+                  <div tal:attributes="class python:'collapsible collapsedOnLoad' if view.expandSubmenu(item['submenu']) else 'collapsible'" tal:condition="python:item['query'] or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                    <label tal:attributes="class python:'collapser' if view.showSubmenu(item['submenu']) else ''">
                       <dt>
                         <a href="#" tal:content="item/voc"
                             tal:condition="item/query"
@@ -47,12 +47,12 @@
                             </a>
                         </tal:block>
                       </dt>
-                      <dd tal:condition="item/count" tal:content="item/count" />
+                      <dd tal:condition="python:item['count'] > 0" tal:content="item/count" />
                     </label>
                     
                       <div tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapse' or ''">
                         <tal:block tal:repeat="subitem item/submenu">
-                          <tal:block tal:condition="python:subitem['count'] or subitem.has_key('clearquery')">
+                          <tal:block tal:condition="python:subitem['query'] or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
                             <div>
                               <dt>
                                 <a href="#" tal:content="subitem/voc"
@@ -67,14 +67,14 @@
                                     </a>
                                 </tal:block>
                               </dt>
-                              <dd tal:condition="subitem/count" tal:content="subitem/count" />
+                              <dd tal:condition="python:subitem['count'] > 0" tal:content="subitem/count" />
                             </div>
                           </tal:block>
                         </tal:block>
                       </div>
                     <div class="visualClear"><!-- --></div>
-                  </tal:block>
-                </div>
+                  </div>
+                </tal:block>
             </div>
 
             <script type="text/javascript">

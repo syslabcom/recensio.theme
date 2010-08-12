@@ -22,11 +22,23 @@ class BrowseTopicsView(SearchFacetsView):
         query.update(self.request.form)
         catalog = getToolByName(self.context, 'portal_catalog')
         self.results = catalog(query)
+        if not self.kw.has_key('results'):
+            self.kw['results'] = self.results
         return super(BrowseTopicsView, self).__call__(*args, **kw)
 
     def getResults(self):
-        return self.results
+        return self.results or self.kw['results']
 
+    def facets(self):
+        """ prepare and return facetting info for the given SolrResponse """
+        results = self.kw.get('results', None)
+        fcs = getattr(results, 'facet_counts', None)
+        if results is not None and fcs is not None:
+            filter = None # lambda name, count: name and count > 0
+            return convertFacets(fcs.get('facet_fields', {}),
+                self.context, self.request.form, filter)
+        else:
+            return None
 
     def getMenu(self):
         voc = getToolByName(self.context, 'portal_vocabularies', None)
@@ -36,6 +48,7 @@ class BrowseTopicsView(SearchFacetsView):
         vocDict['ddcPlace'] = voc.getVocabularyByName('region_values').getVocabularyDict(voc)
         vocDict['ddcTime'] = voc.getVocabularyByName('epoch_values').getVocabularyDict(voc)
         vocDict['ddcSubject'] = voc.getVocabularyByName('topic_values').getVocabularyDict(voc)
+
         facets = self.facets()
         selected = self.selected()
         
@@ -53,7 +66,7 @@ class BrowseTopicsView(SearchFacetsView):
                 # look if we have info from facets()
                 if facet:
                     facetinfo = filter(lambda x: x['name'] == item[0], facet['counts'])
-                    if facetinfo and facetinfo[0]['count'] > 0:
+                    if facetinfo: # and facetinfo[0]['count'] > 0:
                         iteminfo.update(facetinfo[0])
                 # look if we have info from selected()
                 if selected:
@@ -66,7 +79,7 @@ class BrowseTopicsView(SearchFacetsView):
                 if isinstance(item[1][1], dict) or isinstance(item[1][1], OrderedDict):
                     subsubmenu = getSubmenu(item[1][1], facet, selected)
                     iteminfo['submenu'] = subsubmenu
-                    iteminfo['count'] += sum(map(lambda x: x['count'], subsubmenu))
+                    #iteminfo['count'] += sum(map(lambda x: x['count'], subsubmenu))
 
                 submenu.append(iteminfo)
 
@@ -76,8 +89,15 @@ class BrowseTopicsView(SearchFacetsView):
 
         for attrib in ['ddcPlace', 'ddcTime', 'ddcSubject']:
             submenu = []
-            facets_sub = filter(lambda x: x['title'] == attrib, facets)
-            selected_sub = filter(lambda x: x['title'] == attrib, selected)
+            if facets:
+                facets_sub = filter(lambda x: x['title'] == attrib, facets)
+            else:
+                facets_sub = []
+            if selected:
+                selected_sub = filter(lambda x: x['title'] == attrib, selected)
+            else:
+                selected_sub = []
+
             if facets_sub:
                 facets_sub = facets_sub[0]
             if facets_sub or selected_sub:
@@ -85,8 +105,14 @@ class BrowseTopicsView(SearchFacetsView):
             menu[attrib] = submenu
         return menu
 
-    def showSubmenu(self,submenu):
-        """Returns True if submenu has an entry with count > 0 or clearquery set, 
+    def showSubmenu(self, submenu):
+        """Returns True if submenu has an entry with query or clearquery set, 
             i.e. should be displayed
         """
-        return not filter(lambda x: x.has_key('clearquery') or x['count'] > 0, submenu) == []
+        return not filter(lambda x: x.has_key('clearquery') or x['query'], submenu) == []
+
+    def expandSubmenu(self, submenu):
+        """Returns True if submenu has an entry with clearquery set, i.e.
+           should be displayed expanded
+        """
+        return not filter(lambda x: x.has_key('clearquery'), submenu) == []
