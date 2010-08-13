@@ -31,7 +31,7 @@
             <div tal:repeat="submenu submenus" id="submenu">
                 <h5 i18n:translate="" tal:content="submenu/title" />
                 <tal:block tal:repeat="item python:menu[submenu['id']]">
-                  <div tal:attributes="class python:'collapsible collapsedOnLoad' if view.expandSubmenu(item['submenu']) else 'collapsible'" tal:condition="python:item['query'] or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                  <div tal:attributes="class python:'collapsible collapsedOnLoad' if view.expandSubmenu(item['submenu']) else 'collapsible'" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
                     <label tal:attributes="class python:'collapser' if view.showSubmenu(item['submenu']) else ''">
                       <dt>
                         <a href="#" tal:content="item/voc"
@@ -52,7 +52,7 @@
                     
                       <div tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapse' or ''">
                         <tal:block tal:repeat="subitem item/submenu">
-                          <tal:block tal:condition="python:subitem['query'] or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
+                          <tal:block tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
                             <div>
                               <dt>
                                 <a href="#" tal:content="subitem/voc"

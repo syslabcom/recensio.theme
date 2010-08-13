@@ -3,8 +3,50 @@ from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from collective.solr.browser.facets import convertFacets, SearchFacetsView
 from Products.Archetypes.utils import OrderedDict
+from zope.component import queryUtility
+from collective.solr.interfaces import ISolrConnectionConfig
+from collective.solr.browser.facets import param, facetParameters
+from copy import deepcopy
+from ZTUtils import make_query
 
 log = logging.getLogger('recensio.theme/topical.py')
+
+def convertFacets(fields, context=None, request={}, filter=None):
+    """ convert facet info to a form easy to process in templates """
+    info = []
+    params = request.copy()   # request needs to be a dict, i.e. request.form
+    facets, dependencies = list(facetParameters(context, request))
+    params['facet.field'] = facets = list(facets)
+    fq = params.get('fq', [])
+    if isinstance(fq, basestring):
+        fq = params['fq'] = [fq]
+    selected = set([facet.split(':', 1)[0] for facet in fq ])
+    for field, values in fields.items():
+        counts = []
+        second = lambda a, b: cmp(b[1], a[1])
+        for name, count in sorted(values.items(), cmp=second):
+            p = deepcopy(params)
+            p.setdefault('fq', []).append('%s:"%s"' % (field, name.encode('utf-8')))
+            #if field in p.get('facet.field', []):
+            #    p['facet.field'].remove(field)
+            if filter is None or filter(name, count):
+                counts.append(dict(name=name, count=count,
+                    query=make_query(p, doseq=True)))
+        deps = dependencies.get(field, None)
+        visible = deps is None or selected.intersection(deps)
+        if counts and visible:
+            info.append(dict(title=field, counts=counts))
+    if facets:          # sort according to given facets (if available)
+        def pos(item):
+            try:
+                return facets.index(item)
+            except ValueError:
+                return len(facets)      # position the item at the end
+        func = lambda a, b: cmp(pos(a), pos(b))
+    else:               # otherwise sort by title
+        func = lambda a, b: cmp(a['title'], b['title'])
+    return sorted(info, cmp=func)
+
 
 class BrowseTopicsView(SearchFacetsView):
     """View for topical browsing (ddcPlace etc.)
@@ -109,7 +151,7 @@ class BrowseTopicsView(SearchFacetsView):
         """Returns True if submenu has an entry with query or clearquery set, 
             i.e. should be displayed
         """
-        return not filter(lambda x: x.has_key('clearquery') or x['query'], submenu) == []
+        return not filter(lambda x: x.has_key('clearquery') or x['count']>0, submenu) == []
 
     def expandSubmenu(self, submenu):
         """Returns True if submenu has an entry with clearquery set, i.e.
