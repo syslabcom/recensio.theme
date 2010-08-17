@@ -40,4 +40,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="Products.ATContentTypes.interfaces.document.IATDocument"
+        name="homepage-view"
+        class=".homepage.HomepageView"
+        permission="zope2.View"
+        />
+
 </configure>

@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+
+<body>
+<metal:main fill-slot="main">
+
+        <div id="content_left">
+        <div id="column1">
+            <div class="box">
+            <h1 i18n:translate="label_latest_review_parts">Neueste Rezensionsteile online</h1>
+            <p>Dynamic content</p>
+            </div>
+            <div class="box">
+            <h2 i18n:translate="label_latest_reviews">Neueste Rezensionen online</h2>
+            <p>Dynamic content</p> 
+            </div>
+        </div>
+        <div id="column2">
+            <div class="box">
+            <h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätze</h2>
+            <p>Dynamic content</p> 
+            </div>
+            <div class="box">
+            <h2 i18n:translate="label_latest_internet_resources">Neueste Präsentationen von Internetressourcen</h2>
+            <p>Dynamic content</p>    
+            </div>
+        </div>
+        <div style="clear:left;"></div>
+        <div id="column_wide">
+            Teilehmende Zeitschriften
+        </div>
+        </div>
+        
+
+
+
+</metal:main>
+</body>
+</html>
