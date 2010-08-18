@@ -78,5 +78,34 @@ ul.newsticker span {
 /* ---------------------------- */
 
 .boxrow ul{
-    list-style: disc;
+    list-style: circle;
+}
+
+/*Search portlet*/
+dl.portletSearch dt{
+    margin-bottom: 10px;
+}
+dl.portletSearch dt a{
+    font-weight: bold;
+    text-decoration: none;
+}
+dl.portletSearch dd, #column3 dl.portletSearch dd{
+    margin-left: 0;
+}
+dl.portletSearch input.searchField{
+    background-color:#e8e1d0;
+    border:1px solid #58595B;
+    width: 170px;
+}
+dl.portletSearch input.searchButton{
+    background-color:#F3F0E9;
+    border:1px solid #58595B;
+    width: 80px;
+    float: right;
+}
+dl.portletSearch div.LSResult{
+    clear: both;
+}
+dl.portletSearch dd.portletFooter{
+    display: none;
 }
