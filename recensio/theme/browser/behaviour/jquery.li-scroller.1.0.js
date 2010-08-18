@@ -27,9 +27,7 @@ jQuery.fn.liScroll = function(settings) {
 				$strip.find("li").each(function(i){
 				stripWidth += jQuery(this, i).outerWidth(true); // thanks to Michael Haszprunar
 				});
-				$strip.width(stripWidth);		
-                // alert('stripWidth: ' + stripWidth);  
-                // alert('containerWidth: ' + containerWidth);
+				$strip.width(stripWidth);
                 var totalTravel = stripWidth+containerWidth;
 				var defTiming = totalTravel/settings.travelocity;	// thanks to Scott Waye		
 				function scrollnews(spazio, tempo){
