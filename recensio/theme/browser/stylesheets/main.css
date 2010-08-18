@@ -31,10 +31,7 @@ left: 5px;
 width: 240px;
 overflow: hidden;
 }
-ul.newsticker {
-
-
-/* that's your list */
+ul.newsticker, .boxrow ul.newsticker {
     position: relative;
 /*    left: 750px;*/
     list-style-type: none;
@@ -75,5 +72,11 @@ ul.newsticker span {
     display: inline-block;
     text-decoration: none;
     color: #6c6966;
-    font-weight: bold;
+/*    font-weight: bold;*/
+}
+
+/* ---------------------------- */
+
+.boxrow ul{
+    list-style: disc;
 }
