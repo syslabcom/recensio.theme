@@ -21,7 +21,7 @@ class HomepageView(BrowserView):
             sort_on='effective',
             sort_order='reverse')
         resultset = list()
-        for lang in ('de', 'en', 'fr'):
+        for lang in ('en', 'de', 'fr'):
             q = query.copy()
             q['languageReview'] = lang
             res = pc(q)
@@ -66,7 +66,9 @@ class HomepageView(BrowserView):
                 continue
             publication = o.get_publication_object()
             publication_title = publication and publication.Title() or u''
-            resultset.append(dict(Title=r.Title, url=r.getURL(),
+            publication_url = publication and publication.absolute_url() or u''
+            resultset.append(dict(Title=r.Title, review_url=r.getURL(),
                 publication_title=publication_title,
+                publication_url=publication_url,
                 ))
         return resultset

@@ -25,7 +25,7 @@
               <h2 i18n:translate="label_latest_review_journals">Neueste Rezensionsteile online</h2>
               <div id="latest_internet_resources_box" tal:define="results view/getReviewJournals">
                 <ul>
-                    <li tal:repeat="res results">&quot;<span tal:replace="res/Title" />&quot; in <em tal:content="res/publication_title" /></li>
+                    <li tal:repeat="res results">&quot;<a href="#" tal:attributes="href res/review_url"  tal:content="res/Title">title</a>&quot; in <a href="#" tal:attributes="href res/publication_url"><em tal:content="res/publication_title">title</em></a></li>
                 </ul>
               </div>
             </div>
@@ -35,7 +35,7 @@
               <h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätze</h2>
               <div id="latest_monographies_box" tal:define="results view/getPrintedPresentations">
                 <ul>
-                    <li tal:repeat="res results"><span tal:replace="res/Title" /></li>
+                    <li tal:repeat="res results"><a href="#" tal:attributes="href res/getURL" tal:content="res/Title">title</a></li>
                 </ul>
               </div>
             </div>
@@ -67,7 +67,7 @@
               <h2 i18n:translate="label_latest_internet_resources">Neueste Präsentationen von Internetressourcen</h2>
               <div id="latest_internet_resources_box" tal:define="results view/getOnlinePresentations">
                 <ul>
-                    <li tal:repeat="res results"><span tal:replace="res/Title" /></li>
+                    <li tal:repeat="res results"><a href="#" tal:attributes="href res/getURL" tal:content="res/Title">title</a></li>
                 </ul>
               </div>
             </div>
