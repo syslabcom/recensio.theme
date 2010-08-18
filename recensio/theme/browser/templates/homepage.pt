@@ -13,22 +13,41 @@
         <div id="content_left">
         <div id="column1">
             <div class="box">
-            <h1 i18n:translate="label_latest_review_parts">Neueste Rezensionsteile online</h1>
-            <p>Dynamic content</p>
+              <h2 i18n:translate="label_latest_review_journals">Neueste Rezensionsteile online</h2>
+              <div id="latest_internet_resources_box" tal:define="results view/getReviewJournals">
+				<ul tal:repeat="res results">
+					<li><span tal:replace="res/Title" /> in <span tal:replace="res/publication_title" /></li>
+				</ul>
+			  </div>
             </div>
             <div class="box">
-            <h2 i18n:translate="label_latest_reviews">Neueste Rezensionen online</h2>
-            <p>Dynamic content</p> 
+              <h2 i18n:translate="label_latest_reviews">Neueste Rezensionen online</h2>
+              <div id="latest_reviews_box" tal:define="results view/getReviewMonographs">
+                <span tal:repeat="langres results">
+        		    <label><span tal:replace="langres/langname" /></label>
+                    <ul tal:repeat="res langres/results">
+                        <li><span tal:replace="res/Title" /></li>
+                    </ul>
+                </span>
+              </div>
             </div>
         </div>
         <div id="column2">
             <div class="box">
-            <h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätze</h2>
-            <p>Dynamic content</p> 
+              <h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätze</h2>
+              <div id="latest_monographies_box" tal:define="results view/getPrintedPresentations">
+				<ul tal:repeat="res results">
+					<li><span tal:replace="res/Title" /></li>
+				</ul>
+			  </div>
             </div>
             <div class="box">
-            <h2 i18n:translate="label_latest_internet_resources">Neueste Präsentationen von Internetressourcen</h2>
-            <p>Dynamic content</p>    
+              <h2 i18n:translate="label_latest_internet_resources">Neueste Präsentationen von Internetressourcen</h2>
+              <div id="latest_internet_resources_box" tal:define="results view/getOnlinePresentations">
+				<ul tal:repeat="res results">
+					<li><span tal:replace="res/Title" /></li>
+				</ul>
+			  </div>
             </div>
         </div>
         <div style="clear:left;"></div>
