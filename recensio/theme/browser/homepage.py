@@ -18,7 +18,7 @@ class HomepageView(BrowserView):
         # import pdb; pdb.set_trace()
         query = dict(portal_type="Review Monograph",
             Language='all',
-            sort_on='created',
+            sort_on='effective',
             sort_order='reverse')
         resultset = list()
         for lang in ('de', 'en', 'fr'):
@@ -36,7 +36,7 @@ class HomepageView(BrowserView):
         query = dict(portal_type=('Presentation Article Review',
                 'Presentation Monograph', 'Presentation Collection'),
             Language='all',
-            sort_on='created',
+            sort_on='effective',
             sort_order='reverse')
         res = pc(query)
         return res[:5]
@@ -45,7 +45,7 @@ class HomepageView(BrowserView):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type='Presentation Online Resource',
             Language='all',
-            sort_on='created',
+            sort_on='effective',
             sort_order='reverse')
         res = pc(query)
         return res[:5]
@@ -54,7 +54,7 @@ class HomepageView(BrowserView):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type='Review Journal',
             Language='all',
-            sort_on='created',
+            sort_on='effective',
             sort_order='reverse')
         res = pc(query)
         resultset = list()

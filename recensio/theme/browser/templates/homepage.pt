@@ -7,16 +7,22 @@
       i18n:domain="plone">
 
 
+  <metal:javascript_head fill-slot="javascript_head_slot">
+
+		<script src="/++resource++recensio.theme.behaviour/jquery.li-scroller.1.0.js" type="text/javascript" charset="utf-8"> </script>
+	</metal:javascript_head>
+
 <body>
-<metal:main fill-slot="main">
+<metal:main fill-slot="main"
+	tal:define="ploneview python:context.restrictedTraverse('@@plone')">
 
         <div id="content_left">
         <div id="column1">
             <div class="box">
               <h2 i18n:translate="label_latest_review_journals">Neueste Rezensionsteile online</h2>
               <div id="latest_internet_resources_box" tal:define="results view/getReviewJournals">
-				<ul tal:repeat="res results">
-					<li><span tal:replace="res/Title" /> in <span tal:replace="res/publication_title" /></li>
+				<ul>
+					<li tal:repeat="res results"><span tal:replace="res/Title" /> in <span tal:replace="res/publication_title" /></li>
 				</ul>
 			  </div>
             </div>
@@ -25,8 +31,14 @@
               <div id="latest_reviews_box" tal:define="results view/getReviewMonographs">
                 <span tal:repeat="langres results">
         		    <label><span tal:replace="langres/langname" /></label>
-                    <ul tal:repeat="res langres/results">
-                        <li><span tal:replace="res/Title" /></li>
+                    <ul id="list_reviews" tal:attributes="id string:list_reviews_${langres/language}"
+						class="newsticker">
+                        <li tal:repeat="res langres/results">
+							<a href="#" tal:attributes="href res/getURL">
+								<span class="date" tal:content="python:ploneview.toLocalizedTime(res.effective)">01.02.2003</span>
+								<span tal:replace="res/Title" />
+							</a>
+						</li>
                     </ul>
                 </span>
               </div>
@@ -36,16 +48,16 @@
             <div class="box">
               <h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätze</h2>
               <div id="latest_monographies_box" tal:define="results view/getPrintedPresentations">
-				<ul tal:repeat="res results">
-					<li><span tal:replace="res/Title" /></li>
+				<ul>
+					<li tal:repeat="res results"><span tal:replace="res/Title" /></li>
 				</ul>
 			  </div>
             </div>
             <div class="box">
               <h2 i18n:translate="label_latest_internet_resources">Neueste Präsentationen von Internetressourcen</h2>
               <div id="latest_internet_resources_box" tal:define="results view/getOnlinePresentations">
-				<ul tal:repeat="res results">
-					<li><span tal:replace="res/Title" /></li>
+				<ul>
+					<li tal:repeat="res results"><span tal:replace="res/Title" /></li>
 				</ul>
 			  </div>
             </div>
@@ -56,7 +68,22 @@
         </div>
         </div>
         
+    <script type="text/javascript">
+//<![CDATA[
 
+      $(function(){
+        $("ul#list_reviews_de").liScroll({travelocity: 0.1});
+      });
+
+      $(function(){
+        $("ul#list_reviews_en").liScroll({travelocity: 0.1});
+      });
+
+      $(function(){
+        $("ul#list_reviews_fr").liScroll({travelocity: 0.1});
+      });
+    //]]>
+    </script>
 
 
 </metal:main>
