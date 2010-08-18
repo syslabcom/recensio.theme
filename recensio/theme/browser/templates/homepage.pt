@@ -9,7 +9,9 @@
 
   <metal:javascript_head fill-slot="javascript_head_slot">
 
-		<script src="/++resource++recensio.theme.behaviour/jquery.li-scroller.1.0.js" type="text/javascript" charset="utf-8"> </script>
+		<script src="/++resource++recensio.theme.behaviour/jquery.li-scroller.1.0.js" 
+		tal:attributes="src string:${context/absolute_url}/++resource++recensio.theme.behaviour/jquery.li-scroller.1.0.js
+		" type="text/javascript" charset="utf-8"> </script>
 	</metal:javascript_head>
 
 <body>
