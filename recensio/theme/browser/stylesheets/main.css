@@ -81,6 +81,7 @@ ul.newsticker span {
     list-style: circle;
 }
 
+/* ---------------------------- */
 /*Search portlet*/
 dl.portletSearch dt{
     margin-bottom: 10px;
@@ -108,4 +109,11 @@ dl.portletSearch div.LSResult{
 }
 dl.portletSearch dd.portletFooter{
     display: none;
+}
+
+
+/* ---------------------------- */
+
+li.inline_listing {
+    display: inline;
 }
