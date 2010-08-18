@@ -17,7 +17,8 @@ class AuthorSearchView(BrowserView):
             catalog = getToolByName(self.context, 'portal_catalog')
             authors = self.request.get('authors')
             if authors:
-                self._authors = [x for x in catalog.uniqueValuesFor('authors') if True in [y in x for y in authors.split(' ')]]
+                items = [isinstance(x, str) and x.decode('utf-8') or x for x in authors.split(' ')]
+                self._authors = [x for x in catalog.uniqueValuesFor('authors') if True in [y in x for y in items]]
             else:
                 self._authors = catalog.uniqueValuesFor('authors')
         return self._authors

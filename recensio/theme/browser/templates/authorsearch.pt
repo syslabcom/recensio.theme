@@ -7,8 +7,8 @@
       i18n:domain="plone">
 
 <body>
-    <metal:main fill-slot="content"
-    	tal:define="ploneview python:context.restrictedTraverse('@@plone')">
+    <metal:main fill-slot="main"
+        tal:define="ploneview python:context.restrictedTraverse('@@plone')">
         <div>
             <p>
 Sie finden hier die Autorinnen und Autoren von auf recensio.net publizierten Rezensionen, Präsentationen (Aufsätze, Monographien, Internetressourcen) und Kommentaren sowie die Autoren von hier rezensierten Werken. Jedem der drei Genres ist ein Icon zugeordnet, das vor dem Namen des jeweiligen Autors deutlich macht, welche Textart(en) dieser verfasst hat.
@@ -21,35 +21,42 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
                 <input type="submit" value="Search" />
             </form>
             <a href="search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection">
-                <img style="height: 32px;" src="rezension.png" alt="Rezensions" />
+                <img style="height: 32px;" src="presentation.png" alt="Presentations" title="All Presentations" />
             </a>
             <a href="search?portal_type:list=Review+Journal&portal_type:list=Review+Monograph">
-                <img style="height: 32px;" src="presentation.png" alt="Presentations" />
+                <img style="height: 32px;" src="rezension.png" alt="Reviews" title="All Reviews" />
             </a>
             <a href="search?portal_type:list=Discussion+Item">
-                <img style="height: 32px;" src="comment.png" alt="Comments" />
+                <img style="height: 32px;" src="comment.png" alt="Comments" title="All Comments" />
             </a>
             <div tal:condition="not: view/authors">
                 Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
             </div>
+
             <ul tal:condition="view/authors">
                 <li tal:repeat="author view/authors">
-                    <a href="." tal:attributes="href string:search?authors=${author}" tal:content="author">Author</a>
-                    <ul>
-                        <li>
+                    
+                    <ul tal:condition="author">
+                        <li class="inline_listing">
                             <a href="." tal:attributes="href string:search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection&authors=${author}">
-                                <img style="height: 32px;" src="rezension.png" alt="Rezensions" />
+                                <img style="height: 32px;" src="presentation.png" alt="Presentations" title="Presentations"
+                                    tal:attributes="title string:All Presentations of $author" />
                             </a>
                         </li>
-                        <li>
+                        <li class="inline_listing">
                             <a href="." tal:attributes="href string:search?portal_type:list=Review+Journal&portal_type:list=Review+Monograph&authors=${author}">
-                                <img style="height: 32px;" src="presentation.png" alt="Presentations" />
+                                <img style="height: 32px;" src="rezension.png" alt="Reviews" title="Reviews"
+                                tal:attributes="title string:All Reviews of $author" />
                             </a>
                         </li>
-                        <li>
+                        <li class="inline_listing">
                             <a href="." tal:attributes="href string:search?portal_type:list=Discussion+Item&authors=${author}">
-                                <img style="height: 32px;" src="comment.png" alt="Comments" />
+                                <img style="height: 32px;" src="comment.png" alt="Comments" title="Comments"
+                                tal:attributes="title string:All Comments of $author" />
                             </a>
+                        </li>
+                        <li class="inline_listing">
+                            <a href="." tal:attributes="href string:search?authors=${author}" tal:content="author">Author</a>
                         </li>
                     </ul>
                 </li>
