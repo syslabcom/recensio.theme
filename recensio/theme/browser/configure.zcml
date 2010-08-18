@@ -47,6 +47,13 @@
         />
 
     <browser:page
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        name="authorsearch"
+        class=".authorsearch.AuthorSearchView"
+        permission="zope2.View"
+        />
+
+    <browser:page
         for="Products.ATContentTypes.interfaces.document.IATDocument"
         name="homepage-view"
         class=".homepage.HomepageView"
