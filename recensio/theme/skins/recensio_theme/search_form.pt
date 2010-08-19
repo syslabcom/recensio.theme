@@ -224,55 +224,15 @@
                tal:attributes="class field_collapsible_class" 
                tal:define="portal_languages nocall:portal/portal_languages;
                            supp_languages python:portal_languages.getSupportedLanguages();
-                           all_checked python:(len(supp_languages) == len(request.get('languagePresentation', []))and 1);
+                           all_checked python:(len(supp_languages) == len(request.get('languageReview', []))and 1);
                            toggle_select_state python:all_checked and 'true' or 'false' or 'true';">
             <label i18n:translate="label_recension_language"
-                   class="collapser">Language of the Recension</label>
+                   class="collapser">Language of the Review or Presentation</label>
 
-            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languagePresentation', '')"/>
+            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languageReview', '')"/>
     		<div class="collapse">
               <div class="formHelp" i18n:translate="help_search_recension_language">
                 Return items in selected languages.
-              </div>
-              
-              <div style="float:left; margin-right: 2em;"
-                   tal:define="languageLists python:context.createMultiColumnList(supp_languages, numCols=3, sort_on='self');"
-                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
-                   tal:repeat="sublist languageLists">
-                <tal:items repeat="lang sublist">
-                  <input type="checkbox"
-                         name="languagePresentation:list"
-                         value="#"
-                         class="noborder"
-                         checked="checked"
-                         tal:attributes="value lang;
-                                         id string:languagePresentation_${repeat/sublist/number}_${repeat/lang/number};
-                                         checked python:((lang in request.get('languagePresentation', []))) and 'checked' or ''"/>
-                  <label for=""
-                         i18n:translate=""
-                         tal:attributes="for string:languagePresentation_${repeat/sublist/number}_${repeat/lang/number}"
-                         tal:content="python: portal_languages.getNameForLanguageCode(lang)"
-                         />
-                  <br />
-                </tal:items>
-              </div>
-              <div class="visualClear" id="clear-after-recension-language"><!-- --></div>
-            </div>
-    	  </div>
-
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class" 
-               tal:define="portal_languages nocall:portal/portal_languages;
-                           supp_languages python:portal_languages.getSupportedLanguages();
-                           all_checked python:(len(supp_languages) == len(request.get('languageReview', [])));
-                           toggle_select_state python:all_checked and 'true' or 'false';">
-            <label i18n:translate="label_works_language"
-                   class="collapser">Language of the Reviewed Works</label>
-            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languageReview', '')"/>
-
-    		<div class="collapse">
-              <div class="formHelp" i18n:translate="help_search_works_language">
-                Return items that review works in selected languages.
               </div>
               
               <div style="float:left; margin-right: 2em;"
@@ -286,11 +246,51 @@
                          class="noborder"
                          checked="checked"
                          tal:attributes="value lang;
-                                         id string:languageReview_${repeat/sublist/number}_${repeat/lang/number};
+                                         id string:languageReview${repeat/sublist/number}_${repeat/lang/number};
                                          checked python:((lang in request.get('languageReview', []))) and 'checked' or ''"/>
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:languageReview_${repeat/sublist/number}_${repeat/lang/number}"
+                         tal:content="python: portal_languages.getNameForLanguageCode(lang)"
+                         />
+                  <br />
+                </tal:items>
+              </div>
+              <div class="visualClear" id="clear-after-recension-language"><!-- --></div>
+            </div>
+    	  </div>
+
+          <div class="field collapsible"
+               tal:attributes="class field_collapsible_class" 
+               tal:define="portal_languages nocall:portal/portal_languages;
+                           supp_languages python:portal_languages.getSupportedLanguages();
+                           all_checked python:(len(supp_languages) == len(request.get('languageReviewedText', [])));
+                           toggle_select_state python:all_checked and 'true' or 'false';">
+            <label i18n:translate="label_works_language"
+                   class="collapser">Language of the Reviewed Works</label>
+            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languageReviewedText', '')"/>
+
+    		<div class="collapse">
+              <div class="formHelp" i18n:translate="help_search_works_language">
+                Return items that review works in selected languages.
+              </div>
+              
+              <div style="float:left; margin-right: 2em;"
+                   tal:define="languageLists python:context.createMultiColumnList(supp_languages, numCols=3, sort_on='self');"
+                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
+                   tal:repeat="sublist languageLists">
+                <tal:items repeat="lang sublist">
+                  <input type="checkbox"
+                         name="languageReviewedText:list"
+                         value="#"
+                         class="noborder"
+                         checked="checked"
+                         tal:attributes="value lang;
+                                         id string:languageReviewedText${repeat/sublist/number}_${repeat/lang/number};
+                                         checked python:((lang in request.get('languageReviewedText', []))) and 'checked' or ''"/>
+                  <label for=""
+                         i18n:translate=""
+                         tal:attributes="for string:languageReviewedText_${repeat/sublist/number}_${repeat/lang/number}"
                          tal:content="python: portal_languages.getNameForLanguageCode(lang)"
                          />
                   <br />
