@@ -32,8 +32,7 @@
                 <h5 i18n:translate="" tal:content="submenu/title" />
                 <tal:block tal:repeat="item python:menu[submenu['id']]">
                   <div tal:attributes="class python:'collapsible collapsedOnLoad' if view.expandSubmenu(item['submenu']) else 'collapsible'" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
-                    <label tal:attributes="class python:'collapser' if view.showSubmenu(item['submenu']) else ''">
-                      <dt>
+                    <dt>
                         <a href="#" tal:content="item/voc"
                             tal:condition="item/query"
                             tal:attributes="href string:${request/ACTUAL_URL}?${item/query}" />
@@ -46,8 +45,9 @@
                                 &otimes;
                             </a>
                         </tal:block>
-                      </dt>
-                      <dd tal:condition="python:item['count'] > 0" tal:content="item/count" />
+                    </dt>
+                    <label tal:attributes="class python:'collapser' if view.showSubmenu(item['submenu']) else ''">
+                        <dd tal:condition="python:item['count'] > 0" tal:content="item/count" />
                     </label>
                     
                       <div tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapse' or ''">
