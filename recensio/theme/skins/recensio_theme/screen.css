@@ -1736,6 +1736,11 @@ top:5px;
     clear:both;
 }
 
+
+.template-browse-topics .searchResults {
+    width:860px;
+}
+
 /***************styles for footer pictures and links************/
 #column_wide {
 /*margin-bottom:35px;*/
