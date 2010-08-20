@@ -1698,3 +1698,23 @@ top:5px;
 .template-browse-topics .collapsible {
     
 }
+
+
+/***************styles for footer pictures and links************/
+#column_wide {
+/*margin-bottom:35px;*/
+margin-top:0;
+text-align:left;
+width:570px;
+}
+
+#column_wide span {
+font-size:0.75em;
+}
+
+#column_wide img {
+margin-right:15px;
+margin-top:10px;
+}
+
+
