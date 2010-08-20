@@ -1718,6 +1718,12 @@ top:5px;
     float:left;
     width:32%;
 }
+
+.template-browse-topics #submenu_ddcSubject dd {
+    float:right;
+       margin:0;
+       width:100%;
+}
 .template-browse-topics #submenu_ddcPlace h5 {
     clear:both;
 }
