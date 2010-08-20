@@ -1695,7 +1695,7 @@ top:5px;
 
 /****************** styles for browse topics*******************/
 
-#browsing-menu {
+.template-browse-topics #browsing-menu {
     width:860px;
 }
 .template-browse-topics #submenu_ddcPlace {
