@@ -1736,29 +1736,6 @@ top:5px;
     clear:both;
 }
 
-#submenu_ddcPlace {
-    
-}
-#submenu_ddcTime {
-    position:relative;
-    top:30px;
-}
-#submenu_ddcSubject {
-    position:relative;
-    top:60px;
-}
-
-.template-browse-topics .searchResults {
-    width:860px;
-    position:relative;
-    top:90px;
-}
-
-.template-browse-topics dt {
-    width:860px;
-    position:relative;
-    top:90px;
-}
 /***************styles for footer pictures and links************/
 #column_wide {
 /*margin-bottom:35px;*/
