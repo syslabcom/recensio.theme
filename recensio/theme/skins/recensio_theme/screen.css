@@ -1698,6 +1698,12 @@ top:5px;
 .template-browse-topics #browsing-menu {
     width:860px;
 }
+
+.template-browse-topics #browsing-menu dd {
+    float:right;
+    margin:0;
+    width:90%;
+}
 .template-browse-topics #submenu_ddcPlace .collapsible {
     float:left;
     width:25%;
