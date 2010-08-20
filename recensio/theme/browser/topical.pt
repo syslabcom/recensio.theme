@@ -77,6 +77,8 @@
                   </div>
                 </tal:block>
             </div>
+            <br />
+            <br />
           </tal:block>
 
             <script type="text/javascript">
