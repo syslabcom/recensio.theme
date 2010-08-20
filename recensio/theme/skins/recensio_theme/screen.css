@@ -1753,6 +1753,12 @@ top:5px;
     position:relative;
     top:90px;
 }
+
+.template-browse-topics dt {
+    width:860px;
+    position:relative;
+    top:90px;
+}
 /***************styles for footer pictures and links************/
 #column_wide {
 /*margin-bottom:35px;*/
