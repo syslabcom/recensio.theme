@@ -1699,7 +1699,8 @@ top:5px;
     width:860px;
 }
 .template-browse-topics #submenu_ddcPlace .collapsible {
-
+    float:left;
+    width:25%;
 }
 
 .template-browse-topics #submenu_ddcTime .collapsible {
@@ -1710,6 +1711,17 @@ top:5px;
 .template-browse-topics #submenu_ddcSubject .collapsible {
     float:left;
     width:32%;
+}
+.template-browse-topics #submenu_ddcPlace h5 {
+    clear:both;
+}
+
+.template-browse-topics #submenu_ddcTime h5 {
+    clear:both;
+}
+
+.template-browse-topics #submenu_ddcSubject h5 {
+    clear:both;
 }
 /***************styles for footer pictures and links************/
 #column_wide {
