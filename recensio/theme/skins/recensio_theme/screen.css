@@ -1740,10 +1740,18 @@ top:5px;
     
 }
 #submenu_ddcTime {
-    
+    position:relative;
+    top:30px;
 }
 #submenu_ddcSubject {
-    
+    position:relative;
+    top:60px;
+}
+
+.template-browse-topics .searchResults {
+    width:860px;
+    position:relative;
+    top:90px;
 }
 /***************styles for footer pictures and links************/
 #column_wide {
