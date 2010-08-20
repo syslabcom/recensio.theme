@@ -1699,17 +1699,17 @@ top:5px;
     width:860px;
 }
 .template-browse-topics #submenu_ddcPlace .collapsible {
-    float:left;
-    width:25%; 
+
 }
 
 .template-browse-topics #submenu_ddcTime .collapsible {
     float:left;
-    width:32%; 
+    width:25%;
 }
 
 .template-browse-topics #submenu_ddcSubject .collapsible {
-    
+    float:left;
+    width:32%;
 }
 /***************styles for footer pictures and links************/
 #column_wide {
