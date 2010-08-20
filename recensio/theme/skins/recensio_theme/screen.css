@@ -1695,11 +1695,17 @@ top:5px;
 
 /****************** styles for browse topics*******************/
 
-.template-browse-topics .collapsible {
+.template-browse-topics #submenu_ddcPlace {
     
 }
 
+.template-browse-topics #submenu_ddcTime {
+    
+}
 
+.template-browse-topics #submenu_ddcSubject {
+    
+}
 /***************styles for footer pictures and links************/
 #column_wide {
 /*margin-bottom:35px;*/
