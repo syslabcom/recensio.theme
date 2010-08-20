@@ -1716,6 +1716,7 @@ top:5px;
 
 .template-browse-topics #submenu_ddcSubject .collapsible {
     float:left;
+    margin-right:5px;
     width:32%;
 }
 
