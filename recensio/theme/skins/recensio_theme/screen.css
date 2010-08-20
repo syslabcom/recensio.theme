@@ -1698,15 +1698,15 @@ top:5px;
 .template-browse-topics #browsing-menu {
     width:860px;
 }
-.template-browse-topics #submenu_ddcPlace {
+.template-browse-topics #submenu_ddcPlace .collapsible {
     
 }
 
-.template-browse-topics #submenu_ddcTime {
+.template-browse-topics #submenu_ddcTime .collapsible {
     
 }
 
-.template-browse-topics #submenu_ddcSubject {
+.template-browse-topics #submenu_ddcSubject .collapsible {
     
 }
 /***************styles for footer pictures and links************/
