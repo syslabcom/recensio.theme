@@ -9,7 +9,11 @@
 <body>
     <metal:main fill-slot="main"
         tal:define="ploneview python:context.restrictedTraverse('@@plone')">
-        <div class="authorsearch">
+        <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                         b_size python:30; b_size request/b_size | b_size;
+                         b_start python:0; b_start request/b_start | b_start;
+                         batch python:Batch(view.authors, b_size, int(b_start), orphan=1);"
+             class="authorsearch">
             <p class="description" i18n:translate="">
 Sie finden hier die Autorinnen und Autoren von auf recensio.net publizierten Rezensionen, Präsentationen (Aufsätze, Monographien, Internetressourcen) und Kommentaren sowie die Autoren von hier rezensierten Werken. Jedem der drei Genres ist ein Icon zugeordnet, das vor dem Namen des jeweiligen Autors deutlich macht, welche Textart(en) dieser verfasst hat.
             </p>
@@ -45,8 +49,7 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
             </div>
 
             <ul class="authors" tal:condition="view/authors">
-                <li tal:repeat="author view/authors">
-                    
+                <li tal:repeat="author batch">
                     <ul tal:condition="author">
                         <li class="inline_listing">
                             <a href="." i18n:attributes="title" title="Alle Präsentationen des Autors" tal:attributes="href string:search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection&authors=${author}">
@@ -69,6 +72,7 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
                     </ul>
                 </li>
             </ul>
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </div>
 
