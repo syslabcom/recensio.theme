@@ -386,7 +386,7 @@
                      id="authorsFulltext"
                      name="authorsFulltext"
                      size="25"
-                     tal:attributes="value request/authorsFulltext|nothing"
+                     tal:attributes="value request/authorsFulltext|request/authors|nothing"
                      />
             </div>
           </div>
