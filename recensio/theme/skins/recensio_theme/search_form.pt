@@ -163,10 +163,10 @@
           </div>
           
 
-		<tal:datetime define="today python:DateTime().earliestTime();
+        <tal:datetime define="today python:DateTime().earliestTime();
                                     isAnon context/@@plone_portal_state/anonymous;
                                     member context/@@plone_portal_state/member;
-									yesterday python:(today-1).Date();
+                                    yesterday python:(today-1).Date();
                                     lastweek python:(today-7).Date();
                                     lastmonth python:(today-31).Date();
                                     threemonths python:(today-90).Date();
@@ -270,7 +270,7 @@
             
             <input type="hidden" name="modified_usage" value="range:min" />
           </div>
-		</tal:datetime>
+        </tal:datetime>
 
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
@@ -325,6 +325,7 @@
             </div>
           </div>
 
+
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class"
                tal:condition="options/show_review_state">
@@ -370,9 +371,10 @@
             </div>
           </div>
 
+
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
-            <label for="authors" 
+            <label for="authorsFulltext" 
                    class="collapser"
                    i18n:translate="label_review_autor">Autor/Editor</label>
             <div class="collapse">
@@ -381,10 +383,10 @@
               </div>
 
               <input type="text"
-                     id="authors"
-                     name="authors"
+                     id="authorsFulltext"
+                     name="authorsFulltext"
                      size="25"
-                     tal:attributes="value request/authors|nothing"
+                     tal:attributes="value request/authorsFulltext|nothing"
                      />
             </div>
           </div>
