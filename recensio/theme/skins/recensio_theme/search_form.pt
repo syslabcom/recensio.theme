@@ -162,7 +162,16 @@
             </div>
           </div>
           
-          
+
+		<tal:datetime define="today python:DateTime().earliestTime();
+                                    isAnon context/@@plone_portal_state/anonymous;
+                                    member context/@@plone_portal_state/member;
+									yesterday python:(today-1).Date();
+                                    lastweek python:(today-7).Date();
+                                    lastmonth python:(today-31).Date();
+                                    threemonths python:(today-90).Date();
+                                    sixmonths python:(today-180).Date();
+                                    ever string:1970/02/01;">
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
             <label for="created" 
@@ -174,18 +183,9 @@
                 Return items added since you were last logged on, the last week, etc.
               </div>
               
-              <tal:datetime define="today python:DateTime().earliestTime();
-                                    isAnon context/@@plone_portal_state/anonymous;
-                                    member context/@@plone_portal_state/member;">
                 <select name="created:list:date"
                         id="created"
-                        tal:define="yesterday python:(today-1).Date();
-                                    lastweek python:(today-7).Date();
-                                    lastmonth python:(today-31).Date();
-                                    threemonths python:(today-90).Date();
-                                    sixmonths python:(today-180).Date();
-                                    ever string:1970/02/01;
-                                    selected python:request.get('created', []);
+                        tal:define="selected python:request.get('created', []);
                                     selected python:(len(selected) == 1) and selected[0].Date() or ever">
                   <option value="#"
                           tal:condition="not: isAnon"
@@ -216,11 +216,61 @@
                                           selected python:selected==ever and 'selected' or '';" 
                           i18n:translate="time_ever"> Ever </option>
                 </select>
-              </tal:datetime>
             </div>
             
             <input type="hidden" name="created_usage" value="range:min" />
           </div>
+
+
+          <div class="field collapsible"
+               tal:attributes="class field_collapsible_class">
+            <label for="created" 
+                   class="collapser"
+                   i18n:translate="label_modified_items_since">Modified items since</label>
+
+            <div class="collapse">
+              <div class="formHelp" i18n:translate="help_search_modified_items_since">
+                Return items modified since you were last logged on, the last week, etc.
+              </div>
+              
+                <select name="modified:list:date"
+                        id="created"
+                        tal:define="selected python:request.get('modified', []);
+                                    selected python:(len(selected) == 1) and selected[0].Date() or ever">
+                  <option value="#"
+                          tal:condition="not: isAnon"
+                          tal:define="value python:member is not None and member.getProperty('last_login_time') or today"
+                          tal:attributes="value value;
+                                          selected python:selected==value and 'selected' or '';" 
+                          i18n:translate="last_login">Last log-in</option>
+                  <option value="#" 
+                          tal:attributes="value yesterday;
+                                          selected python:selected==yesterday and 'selected' or '';" 
+                          i18n:translate="time_yesterday"> Yesterday </option>
+                  <option value="#" 
+                          tal:attributes="value lastweek;
+                                          selected python:selected==lastweek and 'selected' or '';" 
+                          i18n:translate="time_last_week"> Last week </option>
+                  <option value="#" tal:attributes="value lastmonth;
+                                                    selected python:selected==lastmonth and 'selected' or '';" 
+                          i18n:translate="time_last_month"> Last month </option>
+                  <option value="#" tal:attributes="value threemonths;
+                                                    selected python:selected==threemonths and 'selected' or '';" 
+                          i18n:translate="time_three_months"> 3 months ago </option>
+                  <option value="#" tal:attributes="value sixmonths;
+                                                    selected python:selected==sixmonths and 'selected' or '';" 
+                          i18n:translate="time_six_months"> 6 months ago </option>
+                  <option value="#"
+                          class="default_option"
+                          tal:attributes="value ever;
+                                          selected python:selected==ever and 'selected' or '';" 
+                          i18n:translate="time_ever"> Ever </option>
+                </select>
+            </div>
+            
+            <input type="hidden" name="modified_usage" value="range:min" />
+          </div>
+		</tal:datetime>
 
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
