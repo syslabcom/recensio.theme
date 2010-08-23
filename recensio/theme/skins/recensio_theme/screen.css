@@ -164,7 +164,7 @@ ul {
     padding-left: 40px;
     margin: 5px 25px 0 0;
     background-repeat:no-repeat;
-    padding-bottom:25px;
+    padding-bottom:125px;
 }
 #column_wide {
     width:570px;
@@ -1546,6 +1546,9 @@ textarea:focus {
     font: 100% Monaco, "Courier New", Courier, monospace;
     /*had to change the width from 100 to 76% so that the fields stay where they supposed to**/
     width: 76%;
+}
+#content textarea#form-widgets-available_content_languages{
+    width: 60px;
 }
 #content select {
     vertical-align: top;
