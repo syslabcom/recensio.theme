@@ -4,12 +4,32 @@ from Products.CMFCore.utils import getToolByName
 from collective.solr.browser.facets import convertFacets, SearchFacetsView
 from Products.Archetypes.utils import OrderedDict
 from zope.component import queryUtility
+from collective.solr.monkey import searchResults
 from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.browser.facets import param, facetParameters
 from copy import deepcopy
 from ZTUtils import make_query
 
 log = logging.getLogger('recensio.theme/topical.py')
+
+facet_fields = ['ddcPlace', 'ddcTime', 'ddcSubject']
+
+def facetParameters(context, request):
+    """ determine facet fields to be queried for """
+    marker = []
+    fields = request.get('facet.field', request.get('facet_field', marker))
+    if isinstance(fields, basestring):
+        fields = [fields]
+    if fields is marker:
+        fields = getattr(context, 'facet_fields', marker)
+    if fields is marker:
+        fields = facet_fields
+    dependencies = {}
+    for idx, field in enumerate(fields):
+        if ':' in field:
+            facet, dep = map(strip, field.split(':', 1))
+            dependencies[facet] = map(strip, dep.split(','))
+    return fields, dependencies
 
 def convertFacets(fields, context=None, request={}, filter=None):
     """ convert facet info to a form easy to process in templates """
@@ -54,7 +74,7 @@ class BrowseTopicsView(SearchFacetsView):
 
     def __init__(self, context, request):
         self.default_query = {'facet': 'true', 
-                              'facet.field': ['ddcPlace', 'ddcTime', 'ddcSubject']}
+                              'facet.field': facet_fields }
         BrowserView.__init__(self, context, request)
 
     def __call__(self, *args, **kw):
