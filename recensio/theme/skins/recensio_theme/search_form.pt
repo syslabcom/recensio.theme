@@ -463,13 +463,13 @@
                    tal:repeat="sublist magazineLists">
                 <tal:items repeat="mag sublist">
                   <input type="checkbox"
-                         name="magazines:list"
+                         name="path:list"
                          value="#"
                          class="noborder"
                          checked="checked"
-                         tal:attributes="value mag;
+                         tal:attributes="value mag/physicalPath;
                                          id string:magazines_${repeat/sublist/number}_${repeat/mag/number};
-                                         checked python:((lang in request.get('magazines', [])) ) and 'checked' or ''"/>
+                                         checked python:((mag.physicalPath in request.get('path', [])) ) and 'checked' or ''"/>
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:magazines_${repeat/sublist/number}_${repeat/mag/number}"
