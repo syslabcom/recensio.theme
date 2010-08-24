@@ -1671,6 +1671,8 @@ font-size:85% !important;
 background-color:#EFEFEF !important;
 margin:0 0 0 10px !important;
 min-width:25% !important;
+max-width:30%;
+overflow:hidden;
 padding:0.5em !important;
 }
 
