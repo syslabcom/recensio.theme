@@ -115,7 +115,7 @@
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                   <img tal:replace="structure item_icon/html_tag" />
-                  <span class="result-type" tal:attributes="class string:result-type" tal:content="result_type" /><tal:block condition="result/listAuthors"> - <span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><tal:block replace="author" /><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span></tal:block>: 
+                  <span class="result-type" tal:attributes="class string:result-type" tal:content="result_type" /><tal:block condition="result/listAuthors"> - <span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><a href="seach" tal:attributes="href string:$portal_url/search?authors:list=$author"><tal:block replace="author" /></a><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span></tal:block>: 
                    <a
                      href="#" 
                      tal:attributes="href url;
