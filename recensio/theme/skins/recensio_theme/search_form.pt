@@ -39,6 +39,8 @@
                           portal_catalog nocall:portal/portal_catalog;
                           options context/@@searchform-options;
                           supp_languages recensioview/getSupportedLanguages;
+                          authors request/authors|string:;
+                          authors python:getattr(authors, 'append', None) and ' '.join(authors) or authors;
                           field_collapsible_class  python:'field'+(options.collapse() and ' collapsible' or '');"
             >
 
@@ -386,7 +388,7 @@
                      id="authorsFulltext"
                      name="authorsFulltext"
                      size="25"
-                     tal:attributes="value request/authorsFulltext|request/authors|nothing"
+                     tal:attributes="value request/authorsFulltext|authors|nothing"
                      />
             </div>
           </div>
