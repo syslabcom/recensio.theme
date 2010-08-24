@@ -127,6 +127,7 @@
                tal:attributes="class field_collapsible_class" 
                tal:define="portal_types portal/portal_types;
                            all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
+                           all_used_types python:[x for x in all_used_types if x not in ('Topic', 'Folder', 'Document')];
                            used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
                            all_checked python:(len(used_types) == len(request.get('portal_type', [])));
                            toggle_select_state python:all_checked and 'true' or 'false';">
@@ -309,7 +310,7 @@
 
             <div class="collapse">
               <div class="formHelp" i18n:translate="help_search_works_language">
-                Return items that review works in selected languages.
+                Return items that review works in selected the languages.
               </div>
               
               <select style="float:left; margin-right: 2em;"
@@ -429,7 +430,7 @@
 
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class" 
-               tal:define="avail_magazines python:portal_catalog(portal_type='Zeitschrift');
+               tal:define="avail_magazines python:portal_catalog(portal_type='Publication');
                            all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label i18n:translate="label_magazines"
