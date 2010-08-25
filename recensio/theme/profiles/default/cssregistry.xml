@@ -32,5 +32,7 @@
  <stylesheet id="forms.css" />
  <stylesheet id="ploneKss.css" 
  expression="not: request/HTTP_X_XDV | nothing"/>
+ <stylesheet id="screen.css" 
+ expression="request/HTTP_X_XDV | nothing"/>
 
 </object>
