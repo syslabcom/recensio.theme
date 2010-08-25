@@ -121,6 +121,11 @@ li.inline_listing {
 /*****styles for authorsearch*****/
 .all li {
     margin:10px 0;
+    width:20%;
+    float:left;
+}
+ul.all {
+    border:1px solid #efefef !important;
 }
 
 .authors {
