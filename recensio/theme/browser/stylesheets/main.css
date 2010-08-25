@@ -125,11 +125,16 @@ float:left;
 margin:10px 0;
 width:33%;
 }
+.inline_listing {
+    float:none;
+}
 
 .authors {
     padding:0px;
 }
 
 .authors li {
+    float:left;
     margin:10px 0;
+    width:45%;
 }
