@@ -122,6 +122,9 @@ li.inline_listing {
 .all li {
     margin:10px 0;
 }
+.all {
+    margin-bottom:10px;
+}
 
 .authors {
     padding:0px;
