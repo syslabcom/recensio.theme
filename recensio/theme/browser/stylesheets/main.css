@@ -117,3 +117,16 @@ dl.portletSearch dd.portletFooter{
 li.inline_listing {
     display: inline;
 }
+
+/*****styles for authorsearch*****/
+.all li {
+    margin:10px 0;
+}
+
+.authors {
+    padding:0px;
+}
+
+.authors li {
+    margin:10px 0;
+}
