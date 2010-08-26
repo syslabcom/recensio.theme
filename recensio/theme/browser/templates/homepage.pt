@@ -56,7 +56,6 @@
                         class="easyticker">
                         <li tal:repeat="res langres/results">
                             <a href="#" tal:attributes="href res/getURL">
-                                <span class="date" tal:content="python:ploneview.toLocalizedTime(res.effective)">01.02.2003</span>
                                 <span tal:replace="res/Title" />
                             </a>
                         </li>
