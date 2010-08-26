@@ -12,6 +12,8 @@ font-size:11px !important;
 /* ---------------------------- */
 /* liScroll styles */
 
+/* Probably not needed any longer (newsticker)!*/
+
 .tickercontainer { /* the outer div with the black border */
 border: 1px solid #dedad4;
 border-right-style: none;
@@ -73,6 +75,24 @@ ul.newsticker span {
     text-decoration: none;
     color: #6c6966;
 /*    font-weight: bold;*/
+}
+
+/*   END newsticker*/
+
+
+/* ---------------------------- */
+/* easyticker*/
+
+ul.easyticker {
+    overflow: hidden;
+    position: relative;
+    height: 30px;
+}
+ul.easyticker li {
+    display:none;
+    position:absolute;
+    top:0px;
+    left:0px;
 }
 
 /* ---------------------------- */

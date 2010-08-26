@@ -8,9 +8,12 @@
 
 
   <metal:javascript_head fill-slot="javascript_head_slot">
+        <script src="/++resource++recensio.theme.behaviour/jquery.timers.js"
+        tal:attributes="src string:${context/absolute_url}/++resource++recensio.theme.behaviour/jquery.timers.js
+        " type="text/javascript" charset="utf-8"> </script>
 
-        <script src="/++resource++recensio.theme.behaviour/jquery.li-scroller.1.0.js"
-        tal:attributes="src string:${context/absolute_url}/++resource++recensio.theme.behaviour/jquery.li-scroller.1.0.js
+        <script src="/++resource++recensio.theme.behaviour/jquery.easyticker.js"
+        tal:attributes="src string:${context/absolute_url}/++resource++recensio.theme.behaviour/jquery.easyticker.js
         " type="text/javascript" charset="utf-8"> </script>
     </metal:javascript_head>
 
@@ -48,9 +51,9 @@
               <h2 i18n:translate="label_latest_reviews">Neueste Rezensionen online</h2>
               <div id="latest_reviews_box" tal:define="results view/getReviewMonographs">
                 <span tal:repeat="langres results">
-                    <label><span tal:replace="langres/langname" /></label>
+                    <!-- <label><span tal:replace="langres/langname" /></label> -->
                     <ul id="list_reviews" tal:attributes="id string:list_reviews_${langres/language}"
-                        class="newsticker">
+                        class="easyticker">
                         <li tal:repeat="res langres/results">
                             <a href="#" tal:attributes="href res/getURL">
                                 <span class="date" tal:content="python:ploneview.toLocalizedTime(res.effective)">01.02.2003</span>
@@ -82,17 +85,36 @@
     <script type="text/javascript">
 //<![CDATA[
 
-      $(function(){
-        $("ul#list_reviews_de").liScroll({travelocity: 0.1});
-      });
+	$(document).ready(function() {
+		$('#list_reviews_de').easyticker({
+		speed: 'fast', 
+		dureeAffichage: 3000
+		});
+		}); 
+	$(document).ready(function() {
+		$('#list_reviews_fr').easyticker({
+		speed: 'fast', 
+		dureeAffichage: 3000
+		});
+		});
+	$(document).ready(function() {
+		$('#list_reviews_en').easyticker({
+		speed: 'fast', 
+		dureeAffichage: 3000
+		})
+		}); 
 
-      $(function(){
-        $("ul#list_reviews_en").liScroll({travelocity: 0.1});
-      });
-
-      $(function(){
-        $("ul#list_reviews_fr").liScroll({travelocity: 0.1});
-      });
+      // $(function(){
+      //   $("ul#list_reviews_de").liScroll({travelocity: 0.1});
+      // });
+      // 
+      // $(function(){
+      //   $("ul#list_reviews_en").liScroll({travelocity: 0.1});
+      // });
+      // 
+      // $(function(){
+      //   $("ul#list_reviews_fr").liScroll({travelocity: 0.1});
+      // });
     //]]>
     </script>
 
