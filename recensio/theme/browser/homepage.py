@@ -15,45 +15,42 @@ class HomepageView(BrowserView):
         pc = getToolByName(self.context, 'portal_catalog')
         plt = getToolByName(self.context, 'portal_languages')
         langinfo = plt.getAvailableLanguageInformation()
-        # import pdb; pdb.set_trace()
-        query = dict(portal_type="Review Monograph",
-            Language='all',
+        query = dict(portal_type=["Review Monograph"],
             sort_on='effective',
             sort_order='reverse')
         resultset = list()
         for lang in ('en', 'de', 'fr'):
             q = query.copy()
-            q['languageReview'] = lang
+            q['languageReview'] = [lang]
             res = pc(q)
             resultset.append(dict(language=lang,
                 langname=langinfo[lang]['native'],
                 results=res[:5]))
-
+            # print "getReviewMonographs", lang, len(res)
         return resultset
 
     def getPrintedPresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
-        query = dict(portal_type=('Presentation Article Review',
-                'Presentation Monograph', 'Presentation Collection'),
-            Language='all',
+        query = dict(portal_type=['Presentation Article Review',
+                'Presentation Monograph', 'Presentation Collection'],
             sort_on='effective',
             sort_order='reverse')
         res = pc(query)
+        # print "getPrintedPresentations", len(res)
         return res[:5]
 
     def getOnlinePresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
-        query = dict(portal_type='Presentation Online Resource',
-            Language='all',
+        query = dict(portal_type=['Presentation Online Resource'],
             sort_on='effective',
             sort_order='reverse')
         res = pc(query)
+        # print "getOnlinePresentations", len(res)
         return res[:5]
 
     def getReviewJournals(self):
         pc = getToolByName(self.context, 'portal_catalog')
-        query = dict(portal_type='Review Journal',
-            Language='all',
+        query = dict(portal_type=['Review Journal'],
             sort_on='effective',
             sort_order='reverse')
         res = pc(query)
@@ -71,4 +68,5 @@ class HomepageView(BrowserView):
                 publication_title=publication_title,
                 publication_url=publication_url,
                 ))
+        # print "getReviewJournals", len(res)
         return resultset
