@@ -44,9 +44,14 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
                     </a>
                 </li>
             </ul>
+
+			<div class="visualClear"></div>
+			
             <div id="no_authors" tal:condition="not: view/authors" i18n:translate="">
                 Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
             </div>
+
+			<div class="visualClear"></div>
 
             <ul class="authors" tal:condition="view/authors">
                 <li tal:repeat="author batch">
@@ -72,6 +77,9 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
                     </ul>
                 </li>
             </ul>
+
+			<div class="visualClear"></div>
+			
             <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </div>
