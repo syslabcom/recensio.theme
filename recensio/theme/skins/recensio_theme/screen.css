@@ -300,8 +300,6 @@ div#navigation ul li:first-child {
 our own defs */
 ul#portal-languageselector {
 float:left;
-position:relative;
-top:35px;
 width:260px;
 }
 ul#portal-languageselector li {
