@@ -450,7 +450,7 @@
                        class="noborder"
                        checked="checked" 
                        tal:attributes="checked python:all_checked and 'checked' or '';
-                                       onclick string:javascript:toggleSelect(this, 'magazines:list', ${toggle_select_state});"/>
+                                       onclick string:javascript:toggleSelect(this, 'path:list', ${toggle_select_state});"/>
                 <label for="pt_toggle"
                        i18n:translate="label_toggle"
                        >Select All/None
@@ -467,9 +467,9 @@
                          value="#"
                          class="noborder"
                          checked="checked"
-                         tal:attributes="value mag/physicalPath;
+                         tal:attributes="value mag/getPath;
                                          id string:magazines_${repeat/sublist/number}_${repeat/mag/number};
-                                         checked python:((mag.physicalPath in request.get('path', [])) ) and 'checked' or ''"/>
+                                         checked python:((mag.getPath() in request.get('path', [])) ) and 'checked' or ''"/>
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:magazines_${repeat/sublist/number}_${repeat/mag/number}"
@@ -619,7 +619,6 @@
               </div>
 
               <div style="float:left; margin-right: 2em;"
-                   tal:define="regionLists python:context.createMultiColumnList(avail_regions, numCols=2, sort_on=None);"
                    tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
                 <select multiple="multiple"
                         name="ddcPlace:list"

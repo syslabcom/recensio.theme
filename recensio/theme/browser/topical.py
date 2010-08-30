@@ -4,7 +4,6 @@ from Products.CMFCore.utils import getToolByName
 from collective.solr.browser.facets import convertFacets, SearchFacetsView
 from Products.Archetypes.utils import OrderedDict
 from zope.component import queryUtility
-from collective.solr.monkey import searchResults
 from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.browser.facets import param, facetParameters
 from copy import deepcopy
@@ -73,7 +72,10 @@ class BrowseTopicsView(SearchFacetsView):
     """
 
     def __init__(self, context, request):
-        self.default_query = {'facet': 'true', 
+        catalog = getToolByName(context, 'portal_catalog')
+        types = [x for x in catalog.uniqueValuesFor('portal_type') if x not in ('Topic', 'Folder', 'Document')]
+        self.default_query = {'portal_type': types,
+                              'facet': 'true', 
                               'facet.field': facet_fields }
         BrowserView.__init__(self, context, request)
 
@@ -96,11 +98,19 @@ class BrowseTopicsView(SearchFacetsView):
         results = self.kw.get('results', None)
         fcs = getattr(results, 'facet_counts', None)
         if results is not None and fcs is not None:
-            filter = None # lambda name, count: name and count > 0
+            filt = None # lambda name, count: name and count > 0
             return convertFacets(fcs.get('facet_fields', {}),
-                self.context, self.request.form, filter)
+                self.context, self.request.form, filt)
         else:
             return None
+        if results is not None: # we have no facet information, solr probably not running
+            filt = None
+            catalog = getToolByName(self.context, 'portal_catalog')
+            indexes = filter(lambda i: i.id in facet_fields, catalog.getIndexObjects())
+            # I know this is sick, but it shouldn't get used anyway
+            ffdict = dict(map(lambda ind: (ind.id, dict(map(lambda x: (x, 1), [item for sublist in ind.uniqueValues() for item in sublist] ))), indexes))
+            return convertFacets(ffdict,
+                self.context, self.request.form, filt)
 
     def getMenu(self):
         voc = getToolByName(self.context, 'portal_vocabularies', None)
