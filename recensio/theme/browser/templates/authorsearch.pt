@@ -54,7 +54,7 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
 			<div class="visualClear"></div>
 
             <ul class="authors" tal:condition="view/authors">
-                <li tal:repeat="author batch">
+                <li class="author" tal:repeat="author batch">
                     <ul tal:condition="author">
                         <li class="inline_listing">
                             <a href="." i18n:attributes="title" title="Alle Präsentationen des Autors" tal:attributes="href string:search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection&authors:list=${author}">

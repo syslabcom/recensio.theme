@@ -1764,6 +1764,7 @@ margin-right:15px;
 margin-top:10px;
 }
 
-.hide_content {
+/* Trick to only hide content in view mode. Not in Edit mode */
+.kssattr-templateId-widgets\/rich .hide_content {
     display: None;
 }
