@@ -39,7 +39,7 @@
         />
 
     <browser:page
-        for="OFS.interfaces.IFolder"
+        for="*"
         name="browse-topics"
         template="topical.pt"
         class=".topical.BrowseTopicsView"
@@ -47,7 +47,7 @@
         />
 
     <browser:page
-        for="OFS.interfaces.IFolder"
+        for="*"
         name="authorsearch"
         class=".authorsearch.AuthorSearchView"
         permission="zope2.View"
