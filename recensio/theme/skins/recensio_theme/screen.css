@@ -1766,3 +1766,9 @@ margin-top:10px;
 .kssattr-templateId-widgets\/rich .hide_content {
     display: None;
 }
+
+
+/*** ***/
+.authorsearch img, .searchResults img {
+    padding-right: 5px;
+}
