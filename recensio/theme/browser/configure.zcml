@@ -39,7 +39,7 @@
         />
 
     <browser:page
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        for="OFS.interfaces.IFolder"
         name="browse-topics"
         template="topical.pt"
         class=".topical.BrowseTopicsView"
@@ -47,7 +47,7 @@
         />
 
     <browser:page
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+        for="OFS.interfaces.IFolder"
         name="authorsearch"
         class=".authorsearch.AuthorSearchView"
         permission="zope2.View"
