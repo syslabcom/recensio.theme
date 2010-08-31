@@ -22,6 +22,7 @@
                 desc_ellipsis site_properties/ellipsis;
                 use_view_action site_properties/typesUseViewActionInListings|python:();
                 portal_url context/portal_url;
+                usedFacets view/getUsedFacets;
                 submenus python:[dict(title='Region',id='ddcPlace'), dict(title='Epoch',id='ddcTime'), dict(title='Topic', id='ddcSubject')];"
                 >
 
@@ -30,7 +31,8 @@
         <div id="browsing-menu" tal:define="menu view/getMenu;">
           <div id="menu_headlines">
             <tal:block repeat="submenu submenus">
-                <p i18n:translate="" tal:attributes="id python:'headline_' + submenu['id'];" tal:content="submenu/title" />
+                <p i18n:translate="" tal:attributes="id python:'headline_' + submenu['id']; class python:submenu['id'] in usedFacets and 'used_facet' or''" 
+                    tal:content="submenu/title" />
             </tal:block>
             <div class="visualClear"></div>
           </div>

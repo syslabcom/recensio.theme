@@ -93,6 +93,13 @@ class BrowseTopicsView(SearchFacetsView):
     def getResults(self):
         return self.results or self.kw['results']
 
+    def getUsedFacets(self):
+        fq = self.request.get('fq', [])
+        if isinstance(fq, basestring):
+            fq = params['fq'] = [fq]
+        used = set([facet.split(':', 1)[0] for facet in fq if facet[0]!='+'])
+        return tuple(used)
+
     def facets(self):
         """ prepare and return facetting info for the given SolrResponse """
         results = self.kw.get('results', None)
