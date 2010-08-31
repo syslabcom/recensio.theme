@@ -180,7 +180,9 @@ ul.authors li.author {
 
 /**************styles for themen-epochen-regionen****************/
 #menu_headlines {
-    border:1px solid #cdcdcd;
+    border:1px solid #CDCDCD;
+    margin:0 0 10px;
+    padding:0 0 0 10px;
 }
 
 #headline_ddcPlace {
