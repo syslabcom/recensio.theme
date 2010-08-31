@@ -171,3 +171,9 @@ ul.authors li.author {
 .template-folder_listing #content-core dt {
     margin-bottom:0.5em;
 }
+
+/********************Styles for ul Suche Authorsearch***************/
+
+.template-search #content-core dt {
+    margin-bottom:0.5em;
+}
