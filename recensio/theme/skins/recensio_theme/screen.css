@@ -1710,12 +1710,14 @@ width:100%;
 }
 .template-browse-topics #submenu_ddcPlace .collapsible {
     float:left;
-    width:25%;
+    font-size:11px;
+    width:14%;
 }
 
 .template-browse-topics #submenu_ddcTime .collapsible {
     float:left;
-    width:25%;
+    font-size:11px;
+    width:14%;
 }
 
 .template-browse-topics #submenu_ddcSubject .collapsible {
