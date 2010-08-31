@@ -197,6 +197,38 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+//<![CDATA[
+	$('p#headline_ddcPlace').toggle(function() {
+		$('div#submenu_ddcPlace').show('slow');
+		$('div#submenu_ddcTime').hide('slow');
+		$('div#submenu_ddcSubject').hide('slow');
+	  }, function(){
+		$('div#submenu_ddcPlace').hide('slow');
+	  }
+	);
+
+	$('p#headline_ddcTime').toggle(function() {
+		$('div#submenu_ddcTime').show('slow');
+		$('div#submenu_ddcPlace').hide('slow');
+		$('div#submenu_ddcSubject').hide('slow');
+	  }, function(){
+		$('div#submenu_ddcTime').hide('slow');
+	  }
+	);
+
+	$('p#headline_ddcSubject').toggle(function() {
+		$('div#submenu_ddcSubject').show('slow');
+		$('div#submenu_ddcPlace').hide('slow');
+		$('div#submenu_ddcTime').hide('slow');
+	  }, function(){
+		$('div#submenu_ddcSubject').hide('slow');
+	  }
+	);
+    
+//]]>
+    </script>
+
 </metal:main>
 </body>
 </html>
