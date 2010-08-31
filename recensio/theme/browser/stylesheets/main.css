@@ -202,13 +202,11 @@ ul.authors li.author {
 
 #submenu_ddcSubject {
     display:none;
-    bottom:122px;
     position:relative;
 }
 
 #submenu_ddcTime {
     display:none;
-    bottom:92px;
     position:relative;
 }
 
