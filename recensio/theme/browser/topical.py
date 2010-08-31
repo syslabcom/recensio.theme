@@ -73,7 +73,8 @@ class BrowseTopicsView(SearchFacetsView):
 
     def __init__(self, context, request):
         catalog = getToolByName(context, 'portal_catalog')
-        types = [x for x in catalog.uniqueValuesFor('portal_type') if x not in ('Topic', 'Folder', 'Document')]
+        types = [x for x in catalog.uniqueValuesFor('portal_type') if x not
+            in ('Topic', 'Folder', 'Document', 'Image')]
         self.default_query = {'portal_type': types,
                               'facet': 'true', 
                               'facet.field': facet_fields }
@@ -96,8 +97,8 @@ class BrowseTopicsView(SearchFacetsView):
     def getUsedFacets(self):
         fq = self.request.get('fq', [])
         if isinstance(fq, basestring):
-            fq = params['fq'] = [fq]
-        used = set([facet.split(':', 1)[0] for facet in fq if facet[0]!='+'])
+            fq = [fq]
+        used = set([facet.split(':', 1)[0] for facet in fq if facet[0] != '+'])
         return tuple(used)
 
     def facets(self):
