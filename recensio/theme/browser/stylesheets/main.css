@@ -163,6 +163,6 @@ ul.authors li.author {
 
 /********************Styles for ul Zeitschriften***************/
 
-.template-folder_listing span.summary {
-    
+.template-folder_listing #content-core dt {
+    margin-bottom:0.5em;
 }
