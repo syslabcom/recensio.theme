@@ -29,11 +29,11 @@
 
         <div id="browsing-menu" tal:define="menu view/getMenu;">
           <div id="menu_headlines">
-	 		<tal:block repeat="submenu submenus">
+            <tal:block repeat="submenu submenus">
                 <p i18n:translate="" tal:attributes="id python:'headline_' + submenu['id'];" tal:content="submenu/title" />
-			</tal:block>
-		  </div>
-		 <div class="visualClear"></div>
+            </tal:block>
+            <div class="visualClear"></div>
+          </div>
            <tal:block repeat="submenu submenus">
             <div class="submenu" tal:attributes="id python:'submenu_' + submenu['id'];">
                 <tal:block tal:repeat="item python:menu[submenu['id']]">
