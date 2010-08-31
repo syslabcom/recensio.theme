@@ -179,6 +179,9 @@ ul.authors li.author {
 }
 
 /**************styles for themen-epochen-regionen****************/
+#menu_headlines {
+    border:1px solid #cdcdcd;
+}
 
 #headline_ddcPlace {
     width:33%;
