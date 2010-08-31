@@ -1771,5 +1771,7 @@ margin-top:10px;
 
 /*** ***/
 .authorsearch img, .searchResults img {
-    padding-right: 5px;
+padding-right:5px;
+position:relative;
+top:3px;
 }
