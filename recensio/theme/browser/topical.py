@@ -131,6 +131,10 @@ class BrowseTopicsView(SearchFacetsView):
         info = []
         facets = param(self, 'facet.field')
         fq = param(self, 'fq')
+        fq = [x for x in fq if not x.startswith('+')]
+        form = self.form
+        if 'fq' in form:
+            form['fq'] = [x for x in form['fq'] if not x.startswith('+')]
         for idx, query in enumerate(fq):
             field, value = query.split(':', 1)
             params = self.form.copy()
