@@ -125,6 +125,24 @@ class BrowseTopicsView(SearchFacetsView):
             return convertFacets(ffdict,
                 self.context, self.form, filt)
 
+    def selected(self):
+        """ determine selected facets and prepare links to clear them;
+            this assumes that facets are selected using filter queries """
+        info = []
+        facets = param(self, 'facet.field')
+        fq = param(self, 'fq')
+        for idx, query in enumerate(fq):
+            field, value = query.split(':', 1)
+            params = self.form.copy()
+            params['fq'] = fq[:idx] + fq[idx+1:]
+            if field not in facets:
+                params['facet.field'] = facets + [field]
+            if value.startswith('"') and value.endswith('"'):
+                info.append(dict(title=field, value=value[1:-1],
+                    query=make_query(params, doseq=True)))
+        return info
+
+
     def getMenu(self):
         voc = getToolByName(self.context, 'portal_vocabularies', None)
         if not voc:
