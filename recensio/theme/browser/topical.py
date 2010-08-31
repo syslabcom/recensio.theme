@@ -84,7 +84,12 @@ class BrowseTopicsView(SearchFacetsView):
         self.args = args
         self.kw = kw
         query = self.default_query.copy()
-        query.update(self.request.form)
+        form = self.request.form
+        if 'fq' in form:
+            # filter out everything that starts with a plus
+            form['fq'] = [x for x in form['fq'] if not x.startswith('+')]
+        self.form = form
+        query.update(self.form)
         catalog = getToolByName(self.context, 'portal_catalog')
         self.results = catalog(query)
         if not self.kw.has_key('results'):
@@ -108,7 +113,7 @@ class BrowseTopicsView(SearchFacetsView):
         if results is not None and fcs is not None:
             filt = None # lambda name, count: name and count > 0
             return convertFacets(fcs.get('facet_fields', {}),
-                self.context, self.request.form, filt)
+                self.context, self.form, filt)
         else:
             return None
         if results is not None: # we have no facet information, solr probably not running
@@ -118,7 +123,7 @@ class BrowseTopicsView(SearchFacetsView):
             # I know this is sick, but it shouldn't get used anyway
             ffdict = dict(map(lambda ind: (ind.id, dict(map(lambda x: (x, 1), [item for sublist in ind.uniqueValues() for item in sublist] ))), indexes))
             return convertFacets(ffdict,
-                self.context, self.request.form, filt)
+                self.context, self.form, filt)
 
     def getMenu(self):
         voc = getToolByName(self.context, 'portal_vocabularies', None)
