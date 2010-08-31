@@ -197,3 +197,19 @@ ul.authors li.author {
     width:33%;
     float:left;
 }
+
+#submenu_ddcSubject {
+    display:none;
+    bottom:122px;
+    position:relative;
+}
+
+#submenu_ddcTime {
+    display:none;
+    bottom:92px;
+    position:relative;
+}
+
+#submenu_ddcPlace {
+    display:none;
+}
