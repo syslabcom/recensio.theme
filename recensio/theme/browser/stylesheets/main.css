@@ -185,27 +185,12 @@ ul.authors li.author {
     padding:0 0 0 10px;
 }
 
-#headline_ddcPlace {
+div#menu_headlines p {
     width:33%;
     float:left;
 }
 
-#headline_ddcTime {
-    width:33%;
-    float:left;
-}
-
-#headline_ddcSubject {
-    width:33%;
-    float:left;
-}
-
-#submenu_ddcSubject {
-    display:none;
-    position:relative;
-}
-
-#submenu_ddcTime {
+div.submenu {
     display:none;
     position:relative;
 }
@@ -214,6 +199,3 @@ ul.authors li.author {
     margin-bottom:0.5em;
 }
 
-#submenu_ddcPlace {
-    display:none;
-}
