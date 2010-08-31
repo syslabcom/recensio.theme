@@ -1692,8 +1692,9 @@ width:100%;
 }
 
 .summary img {
-position:relative;
-top:5px;
+    margin-right:3px;
+    position:relative;
+    top:3px;
 }
 
 /****************** styles for browse topics*******************/
