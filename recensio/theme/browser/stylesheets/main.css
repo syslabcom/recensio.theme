@@ -139,6 +139,10 @@ li.inline_listing {
 }
 
 /*****styles for authorsearch*****/
+ul.all {
+    border:1px solid #efefef;
+}
+
 .all li {
 clear:right;
 float:left;
@@ -158,7 +162,7 @@ padding:5px 5px 0 0;
 
 ul.authors li.author {
     float:left;
-    width:50%;
+    width:49%;
 }
 
 /********************Styles for ul Zeitschriften***************/
