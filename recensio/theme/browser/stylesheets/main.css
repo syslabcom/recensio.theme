@@ -140,7 +140,8 @@ li.inline_listing {
 
 /*****styles for authorsearch*****/
 ul.all {
-    border:1px solid #efefef;
+    background:#EFEFEF none repeat scroll 0 0;
+    border:1px solid #CDCDCD;
 }
 
 .all li {
