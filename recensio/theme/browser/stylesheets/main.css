@@ -177,3 +177,20 @@ ul.authors li.author {
 .template-search #content-core dt {
     margin-bottom:0.5em;
 }
+
+/**************styles for themen-epochen-regionen****************/
+
+#headline_ddcPlace {
+    width:33%;
+    float:left;
+}
+
+#headline_ddcTime {
+    width:33%;
+    float:left;
+}
+
+#headline_ddcSubject {
+    width:33%;
+    float:left;
+}
