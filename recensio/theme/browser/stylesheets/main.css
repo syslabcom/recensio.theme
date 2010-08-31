@@ -210,6 +210,10 @@ ul.authors li.author {
     position:relative;
 }
 
+.template-browse-topics .searchResults dd {
+    margin-bottom:0.5em;
+}
+
 #submenu_ddcPlace {
     display:none;
 }
