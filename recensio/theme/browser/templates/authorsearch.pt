@@ -22,7 +22,7 @@ Sie finden hier die Autorinnen und Autoren von auf recensio.net publizierten Rez
 Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierten Texte. Der Klick auf ein spezielles Icon zeigt Ihnen gezielt die Treffer eines Genres an.
             </p>
             <form class="authorsearchform">
-                <input type="text" name="authors" />
+                <input type="text" name="authors" tal:attributes="value request/authors|nothing"/>
                 <input type="submit" i18n:attributes="value" value="Search" />
             </form>
             <ul class="all">
