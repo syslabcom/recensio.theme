@@ -28,9 +28,14 @@
     <div id="content-core">
 
         <div id="browsing-menu" tal:define="menu view/getMenu;">
-          <tal:block repeat="submenu submenus">
-            <div id="submenu" tal:attributes="class python:'submenu_' + submenu['id']; id python:'submenu_' + submenu['id'];">
-                <h5 i18n:translate="" tal:content="submenu/title" />
+          <div id="menu_headlines">
+	 		<tal:block repeat="submenu submenus">
+                <p i18n:translate="" tal:attributes="id python:'headline_' + submenu['id'];" tal:content="submenu/title" />
+			</tal:block>
+		  </div>
+		 <div class="visualClear"></div>
+           <tal:block repeat="submenu submenus">
+            <div class="submenu" tal:attributes="id python:'submenu_' + submenu['id'];">
                 <tal:block tal:repeat="item python:menu[submenu['id']]">
                   <div tal:attributes="class python:'collapsible collapsedOnLoad' if view.expandSubmenu(item['submenu']) else 'collapsible'" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
                     <dt>
@@ -77,8 +82,7 @@
                   </div>
                 </tal:block>
             </div>
-            <br />
-            <br />
+          <div class="visualClear"></div>
           </tal:block>
 
             <script type="text/javascript">
