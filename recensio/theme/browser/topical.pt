@@ -203,8 +203,12 @@
 		$('div#submenu_ddcPlace').show('slow');
 		$('div#submenu_ddcTime').hide('slow');
 		$('div#submenu_ddcSubject').hide('slow');
+		$('p#headline_ddcPlace').addClass('selected_facet');
+		$('p#headline_ddcTime').removeClass('selected_facet');
+		$('p#headline_ddcSubject').removeClass('selected_facet');
 	  }, function(){
 		$('div#submenu_ddcPlace').hide('slow');
+		$('p#headline_ddcPlace').removeClass('selected_facet');
 	  }
 	);
 
@@ -212,8 +216,12 @@
 		$('div#submenu_ddcTime').show('slow');
 		$('div#submenu_ddcPlace').hide('slow');
 		$('div#submenu_ddcSubject').hide('slow');
+		$('p#headline_ddcTime').addClass('selected_facet');
+		$('p#headline_ddcPlace').removeClass('selected_facet');
+		$('p#headline_ddcSubject').removeClass('selected_facet');
 	  }, function(){
 		$('div#submenu_ddcTime').hide('slow');
+		$('p#headline_ddcTime').removeClass('selected_facet');
 	  }
 	);
 
@@ -221,8 +229,12 @@
 		$('div#submenu_ddcSubject').show('slow');
 		$('div#submenu_ddcPlace').hide('slow');
 		$('div#submenu_ddcTime').hide('slow');
+		$('p#headline_ddcSubject').addClass('selected_facet');
+		$('p#headline_ddcTime').removeClass('selected_facet');
+		$('p#headline_ddcPlace').removeClass('selected_facet');
 	  }, function(){
 		$('div#submenu_ddcSubject').hide('slow');
+		$('p#headline_ddcSubject').removeClass('selected_facet');
 	  }
 	);
     
