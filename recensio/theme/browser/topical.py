@@ -8,6 +8,7 @@ from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.browser.facets import param, facetParameters
 from copy import deepcopy
 from ZTUtils import make_query
+from recensio.contenttypes.config import PORTAL_TYPES
 
 log = logging.getLogger('recensio.theme/topical.py')
 
@@ -73,9 +74,7 @@ class BrowseTopicsView(SearchFacetsView):
 
     def __init__(self, context, request):
         catalog = getToolByName(context, 'portal_catalog')
-        types = [x for x in catalog.uniqueValuesFor('portal_type') if x not
-            in ('Topic', 'Folder', 'Document', 'Image')]
-        self.default_query = {'portal_type': types,
+        self.default_query = {'portal_type': PORTAL_TYPES,
                               'facet': 'true', 
                               'facet.field': facet_fields }
         BrowserView.__init__(self, context, request)
