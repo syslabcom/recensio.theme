@@ -38,7 +38,7 @@ class GeneratePdfRecension(BrowserView):
         try:
             cover = self.genPdfRecension()
             pdf = self.context.get_review_pdf()
-            original = pdf.blob.open().name
+            original = pdf.open().name
             new = tempfile.mkstemp(prefix = 'final', suffix = '.pdf')[1]
             error_code = os.system('ulimit -t 5;pdftk %s %s cat output %s' % (cover, original, new))
             if error_code:
