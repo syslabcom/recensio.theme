@@ -207,3 +207,17 @@ div.submenu {
     margin-bottom:0.5em;
 }
 
+#submenu_ddcPlace {
+    display:none;
+}
+
+.submenu_title {
+    float:left;
+    margin-right:5px;
+}
+
+.submenu_number {
+    float:left;
+    width:8px;
+}
+
