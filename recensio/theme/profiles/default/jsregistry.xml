@@ -6,7 +6,4 @@
  <javascript authenticated="False" cacheable="True" compression="safe"
     conditionalcomment="" cookable="True" enabled="on" expression=""
     id="javascript.js" inline="False"/>
- <javascript authenticated="False" cacheable="True" compression="safe"
-    conditionalcomment="" cookable="True" enabled="on" expression=""
-    id="mootools-fluid16-autoselect.js" inline="False"/>
 </object>
