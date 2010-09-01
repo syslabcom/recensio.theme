@@ -14,7 +14,8 @@
 <body>
 <metal:main fill-slot="main"
     tal:define="ploneview python:context.restrictedTraverse('@@plone')">
-
+    <h1 i18n:translate="heading_publications">Publications</h1>
+    <p i18n:translate="description_publications">These are the publications... Frau Landes?</p>
     <div id="content_left">
       <tal:rep repeat="publication view/publications">
         <h2 tal:content="publication/Title">Publication Title</h2>
