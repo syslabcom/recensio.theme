@@ -232,6 +232,6 @@ div.submenu {
     
 }
 
-.oaisuggestion ul {
-    margin-bottom:5px;
+.oaisuggestion ul form input {
+    margin-bottom:10px;
 }
