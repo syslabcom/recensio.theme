@@ -1711,19 +1711,19 @@ width:100%;
 .template-browse-topics #submenu_ddcPlace .collapsible {
     float:left;
     font-size:11px;
-    width:14%;
+    width:25%;
 }
 
 .template-browse-topics #submenu_ddcTime .collapsible {
     float:left;
     font-size:11px;
-    width:14%;
+    width:20%;
 }
 
 .template-browse-topics #submenu_ddcSubject .collapsible {
     float:left;
     margin-right:5px;
-    width:32%;
+    width:49%;
 }
 
 .template-browse-topics #submenu_ddcSubject dd {
