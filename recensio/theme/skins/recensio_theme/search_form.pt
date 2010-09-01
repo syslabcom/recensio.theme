@@ -532,7 +532,7 @@
                    i18n:translate="label_place">Ort</label>
             <div class="collapse">
               <div class="formHelp" i18n:translate="help_place">
-                Erscheinungsplace
+                Erscheinungsort
               </div>
 
               <input type="text"

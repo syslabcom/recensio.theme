@@ -13,22 +13,12 @@ from recensio.contenttypes.config import PORTAL_TYPES
 log = logging.getLogger('recensio.theme/topical.py')
 
 facet_fields = ['ddcPlace', 'ddcTime', 'ddcSubject']
+forbidden_types = ('Topic', 'Folder', 'Document', 'Image', 'Issue', 'Publication', 'SimpleVocabulary', 'SimpleVocabularyTerm', 'TreeVocabulary', 'TreeVocabularyTerm', 'Volume')
 
 def facetParameters(context, request):
     """ determine facet fields to be queried for """
-    marker = []
-    fields = request.get('facet.field', request.get('facet_field', marker))
-    if isinstance(fields, basestring):
-        fields = [fields]
-    if fields is marker:
-        fields = getattr(context, 'facet_fields', marker)
-    if fields is marker:
-        fields = facet_fields
+    fields = facet_fields
     dependencies = {}
-    for idx, field in enumerate(fields):
-        if ':' in field:
-            facet, dep = map(strip, field.split(':', 1))
-            dependencies[facet] = map(strip, dep.split(','))
     return fields, dependencies
 
 def convertFacets(fields, context=None, request={}, filter=None):
@@ -40,15 +30,14 @@ def convertFacets(fields, context=None, request={}, filter=None):
     fq = params.get('fq', [])
     if isinstance(fq, basestring):
         fq = params['fq'] = [fq]
-    selected = set([facet.split(':', 1)[0] for facet in fq ])
+    selected = set([facet.split(':', 1)[0].strip('+') for facet in fq ])
+    selected = selected.intersection(set(facet_fields))
     for field, values in fields.items():
         counts = []
         second = lambda a, b: cmp(b[1], a[1])
         for name, count in sorted(values.items(), cmp=second):
             p = deepcopy(params)
             p.setdefault('fq', []).append('%s:"%s"' % (field, name.encode('utf-8')))
-            #if field in p.get('facet.field', []):
-            #    p['facet.field'].remove(field)
             if filter is None or filter(name, count):
                 counts.append(dict(name=name, count=count,
                     query=make_query(p, doseq=True)))
@@ -85,8 +74,8 @@ class BrowseTopicsView(SearchFacetsView):
         query = self.default_query.copy()
         form = self.request.form
         if 'fq' in form:
-            # filter out everything that starts with a plus
-            form['fq'] = [x for x in form['fq'] if not x.startswith('+')]
+            # filter out everything but our ddc attributes
+            form['fq'] = [x for x in form['fq'] if x.split(':')[0].strip('+') in facet_fields]
         self.form = form
         query.update(self.form)
         catalog = getToolByName(self.context, 'portal_catalog')
@@ -102,7 +91,8 @@ class BrowseTopicsView(SearchFacetsView):
         fq = self.request.get('fq', [])
         if isinstance(fq, basestring):
             fq = [fq]
-        used = set([facet.split(':', 1)[0] for facet in fq if facet[0] != '+'])
+        used = set([facet.split(':', 1)[0].strip('+') for facet in fq])
+        used = used.intersection(set(facet_fields))
         return tuple(used)
 
     def facets(self):
@@ -111,6 +101,9 @@ class BrowseTopicsView(SearchFacetsView):
         fcs = getattr(results, 'facet_counts', None)
         if results is not None and fcs is not None:
             filt = None # lambda name, count: name and count > 0
+            if 'fq' in self.form:
+                # filter out everything but our ddc attributes
+                self.form['fq'] = [x for x in self.form['fq'] if x.split(':')[0].strip('+') in facet_fields]
             return convertFacets(fcs.get('facet_fields', {}),
                 self.context, self.form, filt)
         else:
@@ -130,10 +123,9 @@ class BrowseTopicsView(SearchFacetsView):
         info = []
         facets = param(self, 'facet.field')
         fq = param(self, 'fq')
-        fq = [x for x in fq if not x.startswith('+')]
+        fq = [x for x in fq]
+        fq = filter(lambda x: x.split(':')[0].strip('+') in facet_fields, fq)
         form = self.form
-        if 'fq' in form:
-            form['fq'] = [x for x in form['fq'] if not x.startswith('+')]
         for idx, query in enumerate(fq):
             field, value = query.split(':', 1)
             params = self.form.copy()
@@ -193,7 +185,7 @@ class BrowseTopicsView(SearchFacetsView):
 
         menu = dict()
 
-        for attrib in ['ddcPlace', 'ddcTime', 'ddcSubject']:
+        for attrib in facet_fields:
             submenu = []
             if facets:
                 facets_sub = filter(lambda x: x['title'] == attrib, facets)
