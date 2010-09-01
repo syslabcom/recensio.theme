@@ -86,7 +86,8 @@ ul.newsticker span {
 ul.easyticker {
     overflow: hidden;
     position: relative;
-    height: 30px;
+    height: 1.2em;
+    margin: 0 0;
 }
 ul.easyticker li {
     display:none;

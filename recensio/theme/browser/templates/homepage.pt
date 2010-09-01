@@ -54,7 +54,7 @@
                     <!-- <label><span tal:replace="langres/langname" /></label> -->
                     <ul id="list_reviews" tal:attributes="id string:list_reviews_${langres/language}"
                         class="easyticker">
-                        <li tal:repeat="res langres/results">
+                        <li tal:repeat="res langres/results" tal:attributes="style python:repeat['res'].start and 'display:block' or ''">
                             <a href="#" tal:attributes="href res/getURL">
                                 <span tal:replace="res/Title" />
                             </a>
@@ -86,20 +86,20 @@
 
 	$(document).ready(function() {
 		$('#list_reviews_de').easyticker({
-		speed: 'fast', 
-		dureeAffichage: 3000
+		speed: 'slow', 
+		dureeAffichage: 10000
 		});
 		}); 
 	$(document).ready(function() {
 		$('#list_reviews_fr').easyticker({
-		speed: 'fast', 
-		dureeAffichage: 3000
+		speed: 'slow', 
+		dureeAffichage: 10000
 		});
 		});
 	$(document).ready(function() {
 		$('#list_reviews_en').easyticker({
-		speed: 'fast', 
-		dureeAffichage: 3000
+		speed: 'slow', 
+		dureeAffichage: 10000
 		})
 		}); 
 
