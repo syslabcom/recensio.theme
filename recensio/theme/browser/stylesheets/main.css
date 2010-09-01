@@ -96,6 +96,20 @@ ul.easyticker li {
     left:0px;
 }
 
+/* formatting for homepage boxes */
+div#latest_reviews_box ul,
+div#latest_reviewparts_box ul,
+div#latest_monographies_box ul, 
+div#latest_internet_resources_box ul {
+    padding-left: 0;
+}
+div#latest_reviews_box ul li,
+div#latest_reviewparts_box ul li,
+div#latest_monographies_box ul li, 
+div#latest_internet_resources_box ul li {
+    list-style:none;
+}
+
 /* ---------------------------- */
 
 .boxrow ul{
@@ -248,7 +262,7 @@ margin-top:10px;
 }
 
 /****************extra styles for metadata******************/
-
+/*
 .template-review_view html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -277,8 +291,9 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
-
+*/
 /* tables still need 'cellspacing="0"' in the markup */
+/*
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -372,8 +387,9 @@ tbody tr {
     padding:0;
     vertical-align:baseline;
 }
-
+*/
 /***************extra styles table*************/
+/*
 table {
 	width:100%;
 	border:1px solid #bbb;
@@ -425,8 +441,9 @@ th.currency,
 td.currency {
 	text-align:right;
 }
-
+*/
 /*****************styles accordion****************/
+/*
 .toggler {
 	color: #222;
 	margin: 0;
@@ -456,16 +473,14 @@ td.currency {
 #accordian-block {
 	padding-bottom:10px;
 }
-
+*/
 /* section menus
 ----------------------------------------------- */
+/*
 ul.section {
 	border-top:0;
 	margin-bottom:0;
 }
-/*ul.section li {
-	text-transform:uppercase;
-}*/
 ul.section li a {
 	background:#bbb;
 }
@@ -520,9 +535,10 @@ ul.section li.current > a.active:hover {
 	background:#666;
 	cursor:default;
 }
-
+*/
 /* menus
 ----------------------------------------------- */
+/*
 ul.menu {
 	list-style:none;
 	border-top:1px solid #bbb;
@@ -542,9 +558,10 @@ ul.menu li a:active {
 	background:#ccc;
 }
 
-
+*/
 /* submenus
 ----------------------------------------------- */
+/*
 ul.menu ul {
 	list-style:none;
 	margin:0;
@@ -552,3 +569,4 @@ ul.menu ul {
 ul.menu ul li a {
 	padding-left:30px;
 }
+*/

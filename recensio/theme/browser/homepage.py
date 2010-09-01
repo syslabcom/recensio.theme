@@ -70,3 +70,9 @@ class HomepageView(BrowserView):
                 ))
         # print "getReviewJournals", len(res)
         return resultset
+        
+    def getPublications(self):
+        portal = self.context.portal_url.getPortalObject()
+        pubs = [x for x in portal.zeitschriften.objectValues() if x.portal_type=="Publication"]
+        return pubs
+        
