@@ -222,6 +222,7 @@ div.submenu {
 }
 
 .submenu_number span {
-    
+    float:left;
+    margin-left:5px;
 }
 
