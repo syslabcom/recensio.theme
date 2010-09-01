@@ -60,4 +60,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="publications-view"
+        class=".publications.PublicationsView"
+        permission="zope2.View"
+        />
+
 </configure>
