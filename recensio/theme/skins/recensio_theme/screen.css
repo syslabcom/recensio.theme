@@ -276,6 +276,17 @@ float:right;
 height:130px;
 }
 
+/* Generic Floating classes */
+img.floatBefore {
+    margin-right: 10px;
+    float: left;
+}
+
+img.floatAfter {
+    margin-left: 10px;
+    float: right;
+}
+
 
 /* SLC Preliminary initial styles to resemble the original */
 
