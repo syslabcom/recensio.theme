@@ -226,6 +226,11 @@ div.submenu {
     margin-left:8px;
 }
 
+.template-browse-topics h1 {
+font-size:1.4em;
+margin-top:10px;
+}
+
 /*************************styles for review******************/
 
 #review-reference {
