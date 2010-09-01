@@ -15,6 +15,8 @@ from reportlab.lib.units import cm
 from reportlab.lib.colors import grey
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
 
 log = logging.getLogger('recensio.theme/pdfgen.py')
 
@@ -68,17 +70,21 @@ class GeneratePdfRecension(BrowserView):
         self.canvas = cover = canvas.Canvas(tmpfile, pagesize=A4)
         pwidth,pheight = A4
 
+        # register the font (unicode-aware)
+        arial =  os.path.abspath(__file__ + '/../../data/arial.ttf')
+        pdfmetrics.registerFont( TTFont('Arial', arial) )
+
         self._drawImage('logo2_fuer-Deckblatt.jpg', 0, pheight - 4.21*cm,
             28.28*cm, 4.21*cm)
         self._drawImage('logo_icon_watermark.jpg', pwidth/2.0 - 5*13.76*cm,
             pheight/2.5 * 13.76*cm, 13.76*cm, 13.76*cm, preserveAspectRatio=True,
             anchor='c')
-        cover.setFont('Helvetica', 10)
+        cover.setFont('Arial', 10)
         cover.setFillColor(grey)
         cover.drawString(2.50*cm, pheight-5.5*cm, u'citation style')
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
-        style = ParagraphStyle('citation style', fontName = 'Helvetica', \
+        style = ParagraphStyle('citation style', fontName = 'Arial', \
             fontSize = 10, textColor = grey)
         P = Paragraph(self.context.get_citation_string(), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
