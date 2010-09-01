@@ -190,6 +190,11 @@ div#menu_headlines p {
     float:left;
 }
 
+div#menu_headlines p:hover {
+    cursor:pointer;
+    font-weight:bold;
+}
+
 div#menu_headlines p.selected_facet {
     font-weight: bold;
 }
