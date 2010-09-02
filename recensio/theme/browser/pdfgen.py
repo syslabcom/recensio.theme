@@ -86,7 +86,8 @@ class GeneratePdfRecension(BrowserView):
 
         style = ParagraphStyle('citation style', fontName = 'Arial', \
             fontSize = 10, textColor = grey)
-        P = Paragraph(self.context.get_citation_string(), style)
+        language = self.request.get('language', '')
+        P = Paragraph(self.context.get_citation_string(language), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
 
