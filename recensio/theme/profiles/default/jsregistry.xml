@@ -12,4 +12,7 @@
  <javascript authenticated="False" cacheable="True" compression="safe"
     conditionalcomment="" cookable="True" enabled="on" expression=""
     id="++resource++recensio.theme.behaviour/jquery.easyticker.js" inline="False"/>
+ <javascript authenticated="False" cacheable="True" compression="safe"
+    conditionalcomment="" cookable="True" enabled="on" expression=""
+    id="++resource++recensio.theme.behaviour/jquery.nestedAccordion.js" inline="False"/>
 </object>
