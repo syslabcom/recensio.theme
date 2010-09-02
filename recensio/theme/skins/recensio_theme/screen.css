@@ -497,12 +497,12 @@ div.errors tr.bad {
 /* Collapsible elements in search_form */
 
 .collapsible .collapser.collapsed {
-    padding-right: 14px;
+/*    padding-right: 14px;*/
     background: url('arrowRight.png') center left no-repeat;
 } 
 
 .collapsible .collapser.expanded {
-    padding-right: 14px;
+/*    padding-right: 14px;*/
     background: url('arrowDown.png') center right no-repeat;
 } 
 /* @end */

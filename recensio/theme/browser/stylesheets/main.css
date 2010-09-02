@@ -234,6 +234,7 @@ div.submenu {
 .submenu_title {
     float:left;
     margin-right:5px;
+    width: 80%;
 }
 
 .submenu_number {
@@ -249,6 +250,15 @@ div.submenu {
 .template-browse-topics h1 {
 font-size:1.4em;
 margin-top:10px;
+}
+
+span.headlinebutton {
+    cursor: pointer;
+}
+.menu_headline {
+    width: 30%;
+    float: left;
+    padding: 10px;
 }
 
 /*************************styles for review******************/

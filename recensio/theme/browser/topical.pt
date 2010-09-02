@@ -10,6 +10,54 @@
                  tal:define="dummy python:request.set('disable_border',1);
                              disable_column_one python:request.set('disable_plone.leftcolumn',1);
                              disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+
+    <metal:javascript_head fill-slot="javascript_head_slot">
+    
+    <script type="text/javascript">
+    //<![CDATA[
+    
+    var currentopen = '';
+    function closeall() {
+        $('div#submenu_ddcPlace').hide('fast').removeClass('selected_facet');
+        $('div#submenu_ddcTime').hide('fast').removeClass('selected_facet');
+        $('div#submenu_ddcSubject').hide('fast').removeClass('selected_facet');
+    };
+    function openone(elem) {
+        elem.show('fast').addClass('selected_facet');
+        currentopen = elem.attr('id');
+    };
+    function toggler(elem) {
+        if (currentopen !=  elem.attr('id')) { 
+            closeall();
+            openone(elem);
+        } else {
+            closeall();            
+            currentopen = '';
+        }
+    };
+jQuery(document).ready(function() { 
+    
+    $('#headline_ddcPlace').click(function() {
+        toggler($('div#submenu_ddcPlace'));
+      }
+    );
+
+    $('#headline_ddcTime').click(function() {
+        toggler($('div#submenu_ddcTime'));
+      }
+    );
+
+    $('#headline_ddcSubject').click(function() {
+        toggler($('div#submenu_ddcSubject'));
+      }
+    );
+})
+
+    
+    //]]>
+
+        </script>
+    </metal:javascript_head>
 </head>
 
 <body>
@@ -23,7 +71,7 @@
                 use_view_action site_properties/typesUseViewActionInListings|python:();
                 portal_url context/portal_url;
                 usedFacets view/getUsedFacets;
-                submenus python:[dict(title='Region',id='ddcPlace'), dict(title='Epoch',id='ddcTime'), dict(title='Topic', id='ddcSubject')];"
+                submenus view/getSubmenus;"
                 >
 
     <div id="content-core">
@@ -31,11 +79,21 @@
         <div id="browsing-menu" tal:define="menu view/getMenu;">
           <div id="menu_headlines">
             <tal:block repeat="submenu submenus">
-                <p i18n:translate="" tal:attributes="id python:'headline_' + submenu['id']; class python:submenu['id'] in usedFacets and 'used_facet' or''" 
-                    tal:content="submenu/title" />
+                <div class="menu_headline"> 
+                     <span tal:attributes="id python:'headline_' + submenu['id']; class python:submenu['id'] in usedFacets and 'used_facet headlinebutton' or 'headlinebutton'"
+                           i18n:translate="" 
+                           tal:content="submenu/title" />
+                     <a tal:condition="submenu/clearquery"
+                        title="Remove this selection" 
+                        i18n:attributes="title"
+                        tal:attributes="href string:${request/ACTUAL_URL}?${submenu/clearquery}">
+                        &otimes;
+                     </a>
+                </div>
             </tal:block>
             <div class="visualClear"></div>
           </div>
+          
            <tal:block repeat="submenu submenus">
             <div class="submenu" tal:attributes="id python:'submenu_' + submenu['id'];">
                 <tal:block tal:repeat="item python:menu[submenu['id']]">
@@ -45,25 +103,26 @@
                             tal:condition="item/query"
                             tal:attributes="href string:${request/ACTUAL_URL}?${item/query}" />
                         <!-- <span tal:condition="not: item/count" tal:content="item/voc" /> -->
+                        
                         <span tal:content="item/voc"
-                            tal:condition="not:item/query" />
+                              tal:condition="not:item/query" />
                         <tal:block tal:condition="exists:item/clearquery">
                             <a title="Remove this selection" i18n:attributes="title"
                                 tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
                                 &otimes;
                             </a>
+                            
                         </tal:block>
                     </div>
                     <div tal:attributes="class python:'submenu_number collapser' if view.showSubmenu(item['submenu']) else 'submenu_number'">
-                        <span tal:condition="python:item['count'] > 0" tal:content="item/count" />
+                        <span tal:condition="python:item['count'] > 0" tal:content="string:(${item/count})" />
                     </div>
+
                     
                       <div tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapse' or ''">
                         <tal:block tal:repeat="subitem item/submenu">
                           <tal:block tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
-                            <div>
-                              <dt>
-                                <a href="#" tal:content="subitem/voc"
+                            <a href="#" tal:content="subitem/voc"
                                     tal:condition="subitem/query"
                                     tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query}" />
                                 <span tal:content="subitem/voc"
@@ -74,9 +133,7 @@
                                         &otimes;
                                     </a>
                                 </tal:block>
-                              </dt>
-                              <dd tal:condition="python:subitem['count'] > 0" tal:content="subitem/count" />
-                            </div>
+                              <span tal:condition="python:subitem['count'] > 0" tal:replace="string:(${subitem/count})" />
                           </tal:block>
                         </tal:block>
                       </div>
@@ -199,49 +256,6 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-//<![CDATA[
-    $('p#headline_ddcPlace').toggle(function() {
-        $('div#submenu_ddcPlace').show('slow');
-        $('div#submenu_ddcTime').hide('slow');
-        $('div#submenu_ddcSubject').hide('slow');
-        $('p#headline_ddcPlace').addClass('selected_facet');
-        $('p#headline_ddcTime').removeClass('selected_facet');
-        $('p#headline_ddcSubject').removeClass('selected_facet');
-      }, function(){
-        $('div#submenu_ddcPlace').hide('slow');
-        $('p#headline_ddcPlace').removeClass('selected_facet');
-      }
-    );
-
-    $('p#headline_ddcTime').toggle(function() {
-        $('div#submenu_ddcTime').show('slow');
-        $('div#submenu_ddcPlace').hide('slow');
-        $('div#submenu_ddcSubject').hide('slow');
-        $('p#headline_ddcTime').addClass('selected_facet');
-        $('p#headline_ddcPlace').removeClass('selected_facet');
-        $('p#headline_ddcSubject').removeClass('selected_facet');
-      }, function(){
-        $('div#submenu_ddcTime').hide('slow');
-        $('p#headline_ddcTime').removeClass('selected_facet');
-      }
-    );
-
-    $('p#headline_ddcSubject').toggle(function() {
-        $('div#submenu_ddcSubject').show('slow');
-        $('div#submenu_ddcPlace').hide('slow');
-        $('div#submenu_ddcTime').hide('slow');
-        $('p#headline_ddcSubject').addClass('selected_facet');
-        $('p#headline_ddcTime').removeClass('selected_facet');
-        $('p#headline_ddcPlace').removeClass('selected_facet');
-      }, function(){
-        $('div#submenu_ddcSubject').hide('slow');
-        $('p#headline_ddcSubject').removeClass('selected_facet');
-      }
-    );
-    
-//]]>
-    </script>
 
 </metal:main>
 </body>

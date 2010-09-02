@@ -203,6 +203,25 @@ class BrowseTopicsView(SearchFacetsView):
             menu[attrib] = submenu
         return menu
 
+    def getSubmenus(self):
+        menu = self.getMenu()
+        ids = ['ddcPlace', 'ddcTime', 'ddcSubject']
+        submenus = [dict(title='Region',id='ddcPlace'), 
+                    dict(title='Epoch',id='ddcTime'), 
+                    dict(title='Topic', id='ddcSubject')
+                   ]
+                   
+        for submenu in submenus:
+            mid = submenu['id']
+            cq = [item for item in menu[mid] if item.has_key('clearquery')]
+            if len(cq)==1:
+                clearquery = "%s?%s" % (self.request['ACTUAL_URL'], cq[0]['clearquery'])
+            else: 
+                clearquery = ''
+            submenu['clearquery'] = clearquery
+        
+        return submenus
+        
     def showSubmenu(self, submenu):
         """Returns True if submenu has an entry with query or clearquery set, 
             i.e. should be displayed
