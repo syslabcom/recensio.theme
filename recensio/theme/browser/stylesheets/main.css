@@ -150,6 +150,114 @@ dl.portletSearch dd.portletFooter{
     margin-bottom: 1em;
 }
 
+/* Review images */
+
+#pubSchwusch {
+	float: left;
+	position: relative;
+	margin: 0;
+	margin-left: -60px;
+}
+
+#pubSchwusch .previews {
+	position: absolute;
+	left: 0;
+	top: 22px;
+	width: 548px;
+	height: 274px;
+	-webkit-transition: all 0.6s;
+	background-color: rgba(254,255,254,0);
+}
+
+#pubSchwusch p.previews a {
+	width: 588px;
+	height: 273px;
+	z-index: 2;
+	position: absolute;
+	left: -40px;
+}
+
+#pubSchwusch p.previews img {
+	-webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+	width: 180px;
+	float: left;
+	position: absolute;
+	-webkit-transition: all 0.5s;
+}
+
+#pubSchwusch .page-1 {
+	-webkit-transform: rotate(-4deg);
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+#pubSchwusch .page-2 {
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+#pubSchwusch .page-3 {
+	-webkit-transform: rotate(4deg);
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+#pubSchwusch .previews:hover {
+	background-color: rgba(255,254,255,0.85);
+}
+
+#pubSchwusch .previews:hover img {
+	-webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+	-webkit-transform: rotate(0deg);
+}
+
+#pubSchwusch .previews:hover .page-1 {
+	left: 0;
+}
+
+#pubSchwusch .previews:hover .page-2 {
+	
+	left: 194px;
+}
+
+#pubSchwusch .previews:hover .page-3 {
+	
+	left: 387px;
+}
+
+#pubSchwusch li {
+	padding: 20px 90px 20px 220px;
+	font-size: 11px;
+	line-height: 18px;
+	list-style-type: none;
+	color: #515151;
+	width: 370px;
+	position: relative;
+	float: left;
+	left: 0 !important;
+}
+
+#pubSchwusch li:before {
+	display: none;
+}
+
+#pubSchwusch h2 {
+	color: #515151;
+	font: italic 15px/22px Georgia, "Times New Roman", Times, serif;
+	margin-bottom: 10px;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+#pubSchwusch h2 a {
+	display: block;
+}
+
+/* end review images */
+
 /* @group Messages */
 
 .message {

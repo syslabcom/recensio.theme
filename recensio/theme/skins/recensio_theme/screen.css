@@ -1523,6 +1523,7 @@ fieldset,
     margin:1em 0;
     padding:0 1em 1em;
     width:auto;
+    border: 1px solid #ccc;
 }
 
 /* Emulates the styling from the h1 tag */
