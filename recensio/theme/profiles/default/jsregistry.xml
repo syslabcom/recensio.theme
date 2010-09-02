@@ -6,4 +6,10 @@
  <javascript authenticated="False" cacheable="True" compression="safe"
     conditionalcomment="" cookable="True" enabled="on" expression=""
     id="javascript.js" inline="False"/>
+ <javascript authenticated="False" cacheable="True" compression="safe"
+    conditionalcomment="" cookable="True" enabled="on" expression=""
+    id="++resource++recensio.theme.behaviour/jquery.timers.js" inline="False"/>
+ <javascript authenticated="False" cacheable="True" compression="safe"
+    conditionalcomment="" cookable="True" enabled="on" expression=""
+    id="++resource++recensio.theme.behaviour/jquery.easyticker.js" inline="False"/>
 </object>

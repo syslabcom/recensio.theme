@@ -7,16 +7,6 @@
       i18n:domain="recensio.theme">
 
 
-  <metal:javascript_head fill-slot="javascript_head_slot">
-        <script src="/++resource++recensio.theme.behaviour/jquery.timers.js"
-        tal:attributes="src string:${context/absolute_url}/++resource++recensio.theme.behaviour/jquery.timers.js
-        " type="text/javascript" charset="utf-8"> </script>
-
-        <script src="/++resource++recensio.theme.behaviour/jquery.easyticker.js"
-        tal:attributes="src string:${context/absolute_url}/++resource++recensio.theme.behaviour/jquery.easyticker.js
-        " type="text/javascript" charset="utf-8"> </script>
-    </metal:javascript_head>
-
 <body>
 <metal:main fill-slot="main"
     tal:define="ploneview python:context.restrictedTraverse('@@plone')">
@@ -89,36 +79,25 @@
     <script type="text/javascript">
 //<![CDATA[
 
-	$(document).ready(function() {
-		$('#list_reviews_de').easyticker({
-		speed: 'slow', 
-		dureeAffichage: 10000
-		});
-		}); 
-	$(document).ready(function() {
-		$('#list_reviews_fr').easyticker({
-		speed: 'slow', 
-		dureeAffichage: 10000
-		});
-		});
-	$(document).ready(function() {
-		$('#list_reviews_en').easyticker({
-		speed: 'slow', 
-		dureeAffichage: 10000
-		})
-		}); 
+    $(document).ready(function() {
+        $('#list_reviews_de').easyticker({
+        speed: 'slow', 
+        dureeAffichage: 7000
+        });
+        }); 
+    $(document).ready(function() {
+        $('#list_reviews_fr').easyticker({
+        speed: 'slow', 
+        dureeAffichage: 7000
+        });
+        });
+    $(document).ready(function() {
+        $('#list_reviews_en').easyticker({
+        speed: 'slow', 
+        dureeAffichage: 7000
+        })
+        });
 
-      // $(function(){
-      //   $("ul#list_reviews_de").liScroll({travelocity: 0.1});
-      // });
-      // 
-      // $(function(){
-      //   $("ul#list_reviews_en").liScroll({travelocity: 0.1});
-      // });
-      // 
-      // $(function(){
-      //   $("ul#list_reviews_fr").liScroll({travelocity: 0.1});
-      // });
     //]]>
     </script>
 
