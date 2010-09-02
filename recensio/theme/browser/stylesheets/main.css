@@ -325,6 +325,6 @@ ul.accordion table {
     border-collapse:collapse;
     }
     
-ul.accordion table th, th {
+ul.accordion table th, td {
     border:1px solid #EFEFEF;
 }
