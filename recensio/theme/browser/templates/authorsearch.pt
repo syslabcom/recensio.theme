@@ -30,25 +30,22 @@
                 <input type="text" name="authors" tal:attributes="value request/authors|nothing"/>
                 <input type="submit" i18n:attributes="value" value="Search" />
             </form>
-            <ul class="all">
-                <li>
+            <ul id="authors-select-all">
+                <li id="all-presentations">
                     <a i18n:attributes="title label_all_presentations" title="All presentations" href="search"
                     tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection">
-                        <img i18n:attributes="alt label_all_presentations" src="++resource++recensio.theme.images/InternetResource.png" alt="All presentations" />
                         <span i18n:translate="label_all_presentations">All presentations</span>
                     </a>
                 </li>
-                <li>
+                <li id="all-reviews">
                     <a i18n:attributes="title label_all_reviews" title="All reviews" href="search" 
                     tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&portal_type:list=Review+Monograph">
-                        <img i18n:attributes="alt label_all_reviews" src="++resource++recensio.theme.images/Aufsaetze.png" alt="All reviews" />
                         <span i18n:translate="label_all_reviews">All reviews</span>
                     </a>
                 </li>
-                <li>
+                <li id="all-comments">
                     <a i18n:attributes="title label_all_comments" title="All comments" href="search"
                     tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item">
-                        <img i18n:attributes="alt label_all_comments" src="++resource++recensio.theme.images/Monograph.png" alt="All comments" />
                         <span i18n:translate="label_all_comments">All comments</span>
                     </a>
                 </li>

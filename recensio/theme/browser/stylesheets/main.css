@@ -154,16 +154,31 @@ li.inline_listing {
 }
 
 /*****styles for authorsearch*****/
-ul.all {
+ul#authors-select-all {
     background:#EFEFEF none repeat scroll 0 0;
     border:1px solid #CDCDCD;
 }
 
-.all li {
-clear:right;
-float:left;
-margin:10px 0;
-width:33%;
+#authors-select-all li {
+    clear:right;
+    float:left;
+    margin:5px 0;
+    width:33%;
+}
+
+#authors-select-all  a {
+    padding-left:20px;
+}
+
+#authors-select-all #all-presentations {
+    background: transparent url(++resource++recensio.theme.images/InternetResource.png) no-repeat scroll 3px 46%;
+}
+
+#authors-select-all #all-reviews {
+    background: transparent url(++resource++recensio.theme.images/Aufsaetze.png) no-repeat scroll 3px 46%;
+}
+#authors-select-all #all-comments {
+    background: transparent url(++resource++recensio.theme.images/Monograph.png) no-repeat scroll 3px 46%;
 }
 
 .authors {
