@@ -216,9 +216,12 @@ class BrowseTopicsView(SearchFacetsView):
             cq = [item for item in menu[mid] if item.has_key('clearquery')]
             if len(cq)==1:
                 clearquery = "%s?%s" % (self.request['ACTUAL_URL'], cq[0]['clearquery'])
+                voc = cq[0]['voc']
             else: 
                 clearquery = ''
+                voc = ''
             submenu['clearquery'] = clearquery
+            submenu['voc'] = voc
         
         return submenus
         

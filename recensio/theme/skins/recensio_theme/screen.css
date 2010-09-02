@@ -1721,20 +1721,23 @@ width:100%;
 }
 .template-browse-topics #submenu_ddcPlace .collapsible {
     float:left;
+    margin-left:10px;
     font-size:11px;
-    width:25%;
+    width:200px;
 }
 
 .template-browse-topics #submenu_ddcTime .collapsible {
     float:left;
     font-size:11px;
-    width:20%;
+    margin-left:10px;
+    width:160px;
 }
 
 .template-browse-topics #submenu_ddcSubject .collapsible {
     float:left;
-    margin-right:5px;
-    width:49%;
+    font-size:11px;
+    margin-left:10px;
+    width:420px;
 }
 
 .template-browse-topics #submenu_ddcSubject dd {
