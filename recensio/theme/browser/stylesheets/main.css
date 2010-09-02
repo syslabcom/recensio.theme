@@ -320,3 +320,11 @@ ul.accordion {
     text-align:left;
 }
 
+ul.accordion table {
+    border:1px solid #EFEFEF;
+    border-collapse:collapse;
+    }
+    
+ul.accordion table th, th {
+    border:1px solid #EFEFEF;
+}
