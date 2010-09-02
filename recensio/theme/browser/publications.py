@@ -18,4 +18,4 @@ class PublicationsView(BrowserView):
     def getimage(self, p):
         if 'logo' in p.objectIds():
             return p.absolute_url()+'/logo'
-        return self.context.portal_url()+'/default_publication_logo.png'
+        return self.context.portal_url()+'/empty_publication.jpg'

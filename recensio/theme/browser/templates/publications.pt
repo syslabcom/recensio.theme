@@ -19,9 +19,9 @@
     <div id="content_left">
       <tal:rep repeat="publication view/publications">
         <h2 tal:content="publication/Title">Publication Title</h2>
-        <img src="#" 
+        <img src="#"
              tal:attributes="src python:view.getimage(publication); alt string:${publication/Title} logo" 
-             class="floatBefore"
+             class="floatBefore publication-image"
              >
 
         <p tal:content="structure publication/Description">The Description</p>
