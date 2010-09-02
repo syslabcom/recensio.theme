@@ -17,6 +17,8 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
+from zope.i18n import translate
+from recensio.contenttypes import contenttypesMessageFactory as _
 
 log = logging.getLogger('recensio.theme/pdfgen.py')
 
@@ -70,6 +72,7 @@ class GeneratePdfRecension(BrowserView):
         self.canvas = cover = canvas.Canvas(tmpfile, pagesize=A4)
         pwidth,pheight = A4
 
+        language = self.request.get('language', '')
         # register the font (unicode-aware)
         arial =  os.path.abspath(__file__ + '/../../data/arial.ttf')
         pdfmetrics.registerFont( TTFont('Arial', arial) )
@@ -81,12 +84,13 @@ class GeneratePdfRecension(BrowserView):
             anchor='c')
         cover.setFont('Arial', 10)
         cover.setFillColor(grey)
-        cover.drawString(2.50*cm, pheight-5.5*cm, u'citation style')
+        citation = translate(_(u'label_citation_style', default=u'citation style'), target_language='language')
+        cover.drawString(2.50*cm, pheight-5.5*cm, citation)
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
         style = ParagraphStyle('citation style', fontName = 'Arial', \
             fontSize = 10, textColor = grey)
-        language = self.request.get('language', '')
+        
         P = Paragraph(self.context.get_citation_string(language), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
