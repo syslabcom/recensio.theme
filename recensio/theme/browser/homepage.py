@@ -73,8 +73,10 @@ class HomepageView(BrowserView):
         
     def getPublications(self):
         portal = self.context.portal_url.getPortalObject()
-        if hasattr(portal, 'zeitschriften'):
-            pubs = [x for x in portal.zeitschriften.objectValues() if x.portal_type=="Publication"]
+        rezensionen = getattr(portal, 'rezensionen', None)
+        zeitschriften = getattr(rezensionen, 'zeitschriften', None)
+        if zeitschriften:
+            pubs = [x for x in zeitschriften.objectValues() if x.portal_type=="Publication"]
             return pubs
         else:
             # This can only happen, when there is no initial content yet
