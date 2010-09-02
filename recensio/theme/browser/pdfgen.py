@@ -55,7 +55,7 @@ class GeneratePdfRecension(BrowserView):
         self._prepareHeader(len(pdfdata))
         return pdfdata
 
-    def _prepareHeader(self, contentlength, filename='recension.pdf'):
+    def _prepareHeader(self, contentlength, filename='review.pdf'):
         R = self.request.RESPONSE
         R.setHeader('content-type', 'application/pdf')
         R.setHeader('content-disposition', 'inline; filename="%s"' % filename)
