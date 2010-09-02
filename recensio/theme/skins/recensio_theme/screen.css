@@ -271,7 +271,7 @@ ul {
     height: 0;
 }
 /*Had to add a specific height, so the logo will stay consistent when the languageselector only has three languages in it*/
-.float_right {
+.header_rightside {
 float:right;
 height:130px;
 }
