@@ -296,14 +296,14 @@ a.trigger {
     color:black;
     display:block; 
     padding-left:20px; 
-    background-image: url(img/plus.gif); 
+    background-image: url(++resource++recensio.theme.images/plus.gif); 
     background-repeat: no-repeat; 
     background-position: 1px 50%;
     font-weight:normal;
     }
 
 a.trigger.open {
-background:transparent url(img/plus.gif) no-repeat scroll 3px 46%;
+background:transparent url(++resource++recensio.theme.images/minus.gif) no-repeat scroll 3px 46%;
 color:black;
 display:block;
 padding:5px 5px 5px 21px;
