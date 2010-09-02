@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="recensio.theme">
+      i18n:domain="recensio">
 
 <body>
     <metal:main fill-slot="main"
@@ -15,11 +15,16 @@
                          batch python:Batch(view.authors, b_size, int(b_start), orphan=1);
                          portal_url context/portal_url;"
              class="authorsearch">
-            <p class="description" i18n:translate="">
-Sie finden hier die Autorinnen und Autoren von auf recensio.net publizierten Rezensionen, Präsentationen (Aufsätze, Monographien, Internetressourcen) und Kommentaren sowie die Autoren von hier rezensierten Werken. Jedem der drei Genres ist ein Icon zugeordnet, das vor dem Namen des jeweiligen Autors deutlich macht, welche Textart(en) dieser verfasst hat.
+            <p class="description" i18n:translate="description_authorsearch_1">
+            Sie finden hier die Autorinnen und Autoren von auf recensio.net publizierten Rezensionen, Präsentationen
+            (Aufsätze, Monographien, Internetressourcen) und Kommentaren sowie die Autoren von hier rezensierten Werken.
+             Jedem der drei Genres ist ein Icon zugeordnet, das vor dem Namen des jeweiligen Autors deutlich macht, welche
+             Textart(en) dieser verfasst hat.
             </p>
-            <p class="description" i18n:translate="">
-Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierten Texte. Der Klick auf ein spezielles Icon zeigt Ihnen gezielt die Treffer eines Genres an.
+            <p class="description" i18n:translate="description_authorsearch_2">
+            Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierten Texte. Der Klick auf ein
+             spezielles Icon zeigt Ihnen gezielt die Treffer eines Genres an.
+
             </p>
             <form class="authorsearchform">
                 <input type="text" name="authors" tal:attributes="value request/authors|nothing"/>
@@ -27,24 +32,24 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
             </form>
             <ul class="all">
                 <li>
-                    <a i18n:attributes="title" title="Alle Präsentationen" href="search"
+                    <a i18n:attributes="title label_all_presentations" title="All presentations" href="search"
                     tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection">
-                        <img i18n:attributes="alt" src="++resource++recensio.theme.images/InternetResource.png" alt="Alle Präsentationen" />
-                        <span i18n:translate="">Alle Präsentationen</span>
+                        <img i18n:attributes="alt label_all_presentations" src="++resource++recensio.theme.images/InternetResource.png" alt="All presentations" />
+                        <span i18n:translate="label_all_presentations">All presentations</span>
                     </a>
                 </li>
                 <li>
-                    <a i18n:attributes="title" title="Alle Rezensionen" href="search" 
+                    <a i18n:attributes="title label_all_reviews" title="All reviews" href="search" 
                     tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&portal_type:list=Review+Monograph">
-                        <img i18n:attributes="alt" src="++resource++recensio.theme.images/Aufsaetze.png" alt="Alle Rezensionen" />
-                        <span i18n:translate="">Alle Rezensionen</span>
+                        <img i18n:attributes="alt label_all_reviews" src="++resource++recensio.theme.images/Aufsaetze.png" alt="All reviews" />
+                        <span i18n:translate="label_all_reviews">All reviews</span>
                     </a>
                 </li>
                 <li>
-                    <a i18n:attributes="title" title="Alle Kommentare" href="search"
+                    <a i18n:attributes="title label_all_comments" title="All comments" href="search"
                     tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item">
-                        <img i18n:attributes="alt" src="++resource++recensio.theme.images/Monograph.png" alt="Alle Kommentare" />
-                        <span i18n:translate="">Alle Kommentare</span>
+                        <img i18n:attributes="alt label_all_comments" src="++resource++recensio.theme.images/Monograph.png" alt="All comments" />
+                        <span i18n:translate="label_all_comments">All comments</span>
                     </a>
                 </li>
 				<div class="visualClear"></div>
@@ -52,7 +57,7 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
 
 			
 			
-            <div id="no_authors" tal:condition="not: view/authors" i18n:translate="">
+            <div id="no_authors" tal:condition="not: view/authors" i18n:translate="label_no_authors_found">
                 Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
             </div>
 
@@ -62,22 +67,22 @@ Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierte
                 <li class="author" tal:repeat="author batch">
                     <ul tal:condition="author">
                         <li class="inline_listing">
-                            <a href="." i18n:attributes="title" title="Alle Präsentationen des Autors" tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection&authors:list=${author}">
-                                <img i18n:attributes="alt" alt="Alle Präsentationen des Autors" src="++resource++recensio.theme.images/InternetResource.png" alt="Presentations" />
+                            <a href="." i18n:attributes="title label_all_presentations_author" title="All presentations of this author" tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Online+Resource&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection&authors:list=${author}">
+                                <img i18n:attributes="alt label_all_presentations_author" alt="All presentations of this author" src="++resource++recensio.theme.images/InternetResource.png" alt="Presentations" />
                             </a>
                         </li>
                         <li class="inline_listing">
-                            <a href="." i18n:attributes="title" title="Alle Rezensionen des Autors" tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&portal_type:list=Review+Monograph&authors:list=${author}">
-                                <img i18n:attributes="alt" alt="Alle Rezensionen des Autors" src="++resource++recensio.theme.images/Aufsaetze.png" />
+                            <a href="." i18n:attributes="title label_all_reviews_author" title="All reviews of this author" tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&portal_type:list=Review+Monograph&authors:list=${author}">
+                                <img i18n:attributes="alt label_all_reviews_author" alt="All reviews of this author" src="++resource++recensio.theme.images/Aufsaetze.png" />
                             </a>
                         </li>
                         <li class="inline_listing">
-                            <a href="." i18n:attributes="title" title="Alle Kommentare des Autors" tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item&authors:list=${author}">
-                                <img i18n:attributes="alt" alt="Alle Kommentare des Autors" src="++resource++recensio.theme.images/Monograph.png" />
+                            <a href="." i18n:attributes="title label_all_comments_author" title="All comments of this author" tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item&authors:list=${author}">
+                                <img i18n:attributes="alt label_all_comments_author" alt="All comments of this author" src="++resource++recensio.theme.images/Monograph.png" />
                             </a>
                         </li>
                         <li class="inline_listing">
-                            <a href="." i18n:attributes="title" title="Alle Artikel des Autors" tal:attributes="href string:$portal_url/search?authors:list=${author}" tal:content="author">Author</a>
+                            <a href="." i18n:attributes="title label_all_items_author" title="All items of this author" tal:attributes="href string:$portal_url/search?authors:list=${author}" tal:content="author">Author</a>
                         </li>
                     </ul>
                 </li>
