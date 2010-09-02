@@ -265,8 +265,6 @@ margin-top:10px;
 #container {
 
 }
-
-
 #side{
   display:inline;
   overflow:hidden
@@ -280,9 +278,9 @@ margin-top:10px;
 
 .accordion li {list-style-type:none}
 
-.accordion li.last-child {list-style-type:disc}
+.accordion li.last-child {list-style-type:none}
 
-#side ul.accordion ul {margin:0; padding:0 0 0 20px;}
+#side ul.accordion ul {margin:0; padding:0 0 0 20px; text-align:left;}
 
 
 .accordion .inner {margin-bottom:0; padding:10px 20px; position:relative}
@@ -294,11 +292,31 @@ margin-top:10px;
 .accordion a {...}
 */    
 
-a.trigger {display:block; padding-left:20px; background-image: url(img/plus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
+a.trigger {
+    color:black;
+    display:block; 
+    padding-left:20px; 
+    background-image: url(img/plus.gif); 
+    background-repeat: no-repeat; 
+    background-position: 1px 50%;
+    font-weight:normal;
+    }
 
-a.trigger.open {background-image: url(img/minus.gif)}
+a.trigger.open {
+background:transparent url(img/plus.gif) no-repeat scroll 3px 46%;
+color:black;
+display:block;
+padding:5px 5px 5px 21px;
+}
 
 
 #main .switch a.open {background:transparent none}
 
 .active{font-weight:700; text-decoration:none}
+
+/*********Styles for table metadata****************/
+
+#side ul {
+    
+}
+
