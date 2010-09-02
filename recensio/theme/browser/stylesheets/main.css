@@ -168,7 +168,7 @@ dl.portletSearch dd.portletFooter{
 	padding: 19px 20px 17px 124px;
 	background: url(../../iconPDF-large.png) no-repeat 12px 12px;
 	min-height: 86px;
-	font: italic 17px/21px Georgia, "Times New Roman", Times, serif;
+	font: italic 13px/17px Georgia, "Times New Roman", Times, serif;
 	text-shadow: white 0 1px 0;
 	-webkit-transition: all 0.2s;
 }
