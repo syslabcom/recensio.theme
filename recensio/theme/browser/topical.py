@@ -205,7 +205,6 @@ class BrowseTopicsView(SearchFacetsView):
 
     def getSubmenus(self):
         menu = self.getMenu()
-        ids = ['ddcPlace', 'ddcTime', 'ddcSubject']
         submenus = [dict(title='Region',id='ddcPlace'), 
                     dict(title='Epoch',id='ddcTime'), 
                     dict(title='Topic', id='ddcSubject')
