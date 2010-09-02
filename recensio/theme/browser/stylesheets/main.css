@@ -261,3 +261,44 @@ margin-top:10px;
     margin-bottom:10px;
 }
 
+/******************Styles for Metadata*****************/
+#container {
+
+}
+
+
+#side{
+  display:inline;
+  overflow:hidden
+}
+
+/* --- Accordion --- */
+
+.js #side .accordion {display:none}
+
+.accordion {margin:0; padding:0 10px}
+
+.accordion li {list-style-type:none}
+
+.accordion li.last-child {list-style-type:disc}
+
+#side ul.accordion ul {margin:0; padding:0 0 0 20px;}
+
+
+.accordion .inner {margin-bottom:0; padding:10px 20px; position:relative}
+
+.switch {margin-bottom:.5em}
+
+/*  
+  Add styles for all links in the 'accordion':
+.accordion a {...}
+*/    
+
+a.trigger {display:block; padding-left:20px; background-image: url(img/plus.gif); background-repeat: no-repeat; background-position: 1px 50%;  font-weight:700}
+
+a.trigger.open {background-image: url(img/minus.gif)}
+
+
+#main .switch a.open {background:transparent none}
+
+.active{font-weight:700; text-decoration:none}
