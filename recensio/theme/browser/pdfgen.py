@@ -84,7 +84,7 @@ class GeneratePdfRecension(BrowserView):
             anchor='c')
         cover.setFont('Arial', 10)
         cover.setFillColor(grey)
-        citation = translate(_(u'label_citation_style', default=u'citation style'), target_language='language')
+        citation = translate(_(u'label_citation_style', default=u'citation style'), target_language=language)
         cover.drawString(2.50*cm, pheight-5.5*cm, citation)
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
