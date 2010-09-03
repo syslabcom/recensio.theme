@@ -450,7 +450,7 @@ div#menu_headlines p:hover {
     font-weight:bold;
 }
 
-div#menu_headlines p.selected_facet {
+div#menu_headlines span.selected_facet {
     font-weight: bold;
 }
 
