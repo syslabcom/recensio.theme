@@ -231,6 +231,10 @@ ul {
 #footer li {
     margin-left:-16px;
 }
+
+#footer ul.easyticker li {
+    margin-left: 0;
+}
 #footer .top {
     margin-top:-6px;
 }

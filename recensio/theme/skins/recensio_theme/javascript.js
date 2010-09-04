@@ -5,3 +5,10 @@ jq(function(){
         jq(this).next().toggle();
     });
 });
+
+jq(function(){
+    jq('.easyticker').easyticker({
+        speed: 'slow',
+        dureeAffichage: 7000
+        });
+});

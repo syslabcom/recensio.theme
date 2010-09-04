@@ -57,6 +57,10 @@
     <replace content="//*[@id='portal-siteactions']" 
              theme="//*[@id='portal-siteactions']" />
 
+    <!-- footer -->
+    <replace content="//*[@id='footer']"
+             theme="//*[@id='footer']" />
+
     <!-- personaltools -->
     <replace content="//*[@id='portal-personaltools-wrapper']" 
              theme="//*[@id='portal-personaltools-wrapper']" />
