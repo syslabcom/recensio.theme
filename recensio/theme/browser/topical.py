@@ -91,7 +91,7 @@ class BrowseTopicsView(SearchFacetsView):
                 params['facet.field'] = facets + [field]
             if value.startswith('"') and value.endswith('"'):
                 info.append(dict(title=field, value=value[1:-1],
-                    query=make_query(params, doseq=True)))
+                    query=make_query(params), doseq=True))
         return info
 
 
