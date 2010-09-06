@@ -84,12 +84,12 @@
                      <span tal:attributes="id python:'headline_' + submenu['id']; class python:submenu['id'] in usedFacets and 'used_facet headlinebutton' or 'headlinebutton'"
                            i18n:translate="" 
                            tal:content="submenu/title" />
-                     <tal:c condition="submenu/clearquery">
-                         [<span tal:content="submenu/voc" />
-                         <a tal:condition="submenu/clearquery"
+                     <tal:c repeat="sel submenu/selected">
+                         [<span tal:content="sel/voc" />
+                         <a tal:condition="sel/clearquery"
                             title="Remove this selection" 
                             i18n:attributes="title"
-                            tal:attributes="href string:${request/ACTUAL_URL}?${submenu/clearquery}">&otimes;</a>]
+                            tal:attributes="href string:${request/ACTUAL_URL}?${sel/clearquery}">&otimes;</a>]
                      </tal:c>
                 </div>
             </tal:block>
