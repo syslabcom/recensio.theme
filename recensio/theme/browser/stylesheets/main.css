@@ -578,3 +578,9 @@ ul.accordion table {
 ul.accordion table th, td {
     border:1px solid #EFEFEF;
 }
+
+/**************************Icons for bold text links****************************/
+
+#content-core #parent-fieldname-text h4.hide_title {
+    background:transparent url(http://recensio.syslab.com/++resource++recensio.theme.images/pfeil_icon_r.gif) no-repeat scroll 0 0;
+    }
