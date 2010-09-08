@@ -394,14 +394,14 @@ ul#authors-select-all {
 }
 
 #authors-select-all #all-presentations {
-    background: transparent url(++resource++recensio.theme.images/InternetResource.png) no-repeat scroll 3px 46%;
+    background: transparent url(++resource++recensio.theme.images/InternetResource_g.png) no-repeat scroll 3px 46%;
 }
 
 #authors-select-all #all-reviews {
-    background: transparent url(++resource++recensio.theme.images/Aufsaetze.png) no-repeat scroll 3px 46%;
+    background: transparent url(++resource++recensio.theme.images/Aufsaetze_g.png) no-repeat scroll 3px 46%;
 }
 #authors-select-all #all-comments {
-    background: transparent url(++resource++recensio.theme.images/Monograph.png) no-repeat scroll 3px 46%;
+    background: transparent url(++resource++recensio.theme.images/Monograph_g.png) no-repeat scroll 3px 46%;
 }
 
 .authors {
