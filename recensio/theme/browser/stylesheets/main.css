@@ -612,3 +612,6 @@ ul.accordion table th, td {
     position:relative;
     top:2px;
 }
+.used_facet {
+    font-weight:bold;
+}
