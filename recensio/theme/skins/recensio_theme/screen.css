@@ -1388,7 +1388,8 @@ body.template-new-user #content input {
     margin-right:0.5em;
     padding-top:0.2em;
     text-align:right;    
-    width: 7em;
+    /******changed the width from 7 to 8 so the text would stuck to the field anymore******/
+    width: 8em;
     display: inline-block;
 }
 
