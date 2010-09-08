@@ -32,7 +32,7 @@
             headline.addClass('selected_facet');
             currentopen = elem.attr('id');
         } else {
-            closeall();            
+            closeall();
             currentopen = '';
         }
     };
@@ -80,8 +80,9 @@
         <div id="browsing-menu" tal:define="menu view/getMenu;">
           <div id="menu_headlines">
             <tal:block repeat="submenu submenus">
-                <div class="menu_headline"> 
-                     <span tal:attributes="id python:'headline_' + submenu['id']; class python:submenu['id'] in usedFacets and 'used_facet headlinebutton' or 'headlinebutton'"
+                <div class="menu_headline" tal:attributes="id python:'headline_' + submenu['id']; 
+class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu_headline'"> 
+                     <span class="headlinebutton"
                            i18n:translate="" 
                            tal:content="submenu/title" />
                      <tal:c repeat="sel submenu/selected">
