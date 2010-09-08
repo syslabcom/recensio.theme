@@ -604,6 +604,10 @@ ul.accordion table th, td {
     background:transparent url(++resource++recensio.theme.images/pfeil_icon_r.gif) no-repeat scroll 0 0;
     padding:0 0 5px 24px;
 }
+.menu_headline:active {
+    background:transparent url(++resource++recensio.theme.images/pfeil_icon_u.gif) no-repeat scroll 0 0;
+    padding:0 0 5px 24px;
+}
 .menu_headline span {
     position:relative;
     top:2px;
