@@ -605,5 +605,6 @@ ul.accordion table th, td {
     padding:0 0 5px 24px;
 }
 .menu_headline span {
-    padding-top:3px;
+    position:relative;
+    top:2px;
 }
