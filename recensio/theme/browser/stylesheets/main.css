@@ -598,3 +598,6 @@ ul.accordion table th, td {
         background:transparent url(++resource++recensio.theme.images/pfeil_icon_u.gif) no-repeat scroll 0 0;
         padding:5px 3px 5px 26px;
         }
+#content-core #parent-fieldname-text td h4.hide_title img {
+    padding:0 0 0 3px;
+}
