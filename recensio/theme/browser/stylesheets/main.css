@@ -369,6 +369,18 @@ dl.portletSearch dd.portletFooter{
 	text-decoration: underline;
 }
 
+.livesearchContainer {
+    text-align:left;
+}
+
+.livesearchContainer li img {
+    position:relative;
+    top:3px;
+}
+
+.livesearchContainer ul {
+    padding-left:0px !important;
+}
 
 /* ---------------------------- */
 
