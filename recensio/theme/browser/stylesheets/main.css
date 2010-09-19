@@ -401,19 +401,22 @@ ul#authors-select-all {
     width:33%;
 }
 
-#authors-select-all  a {
-    padding-left:20px;
+#authors-select-all  span {
+    padding-left:22px;
 }
 
 #authors-select-all #all-presentations {
-    background: transparent url(++resource++recensio.theme.images/InternetResource_g.png) no-repeat scroll -2px 46%;
+    background: transparent url(++resource++recensio.theme.images/InternetResource_g.png) no-repeat scroll;
+    height: 20px;
 }
 
 #authors-select-all #all-reviews {
-    background: transparent url(++resource++recensio.theme.images/Aufsaetze_g.png) no-repeat scroll -2px 46%;
+    background: transparent url(++resource++recensio.theme.images/Aufsaetze_g.png) no-repeat scroll;
+    height: 20px;
 }
 #authors-select-all #all-comments {
-    background: transparent url(++resource++recensio.theme.images/Monograph_g.png) no-repeat scroll -2px 46%;
+    background: transparent url(++resource++recensio.theme.images/Monograph_g.png) no-repeat scroll;
+    height: 20px;
 }
 
 .authors {
