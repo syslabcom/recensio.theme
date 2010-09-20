@@ -306,7 +306,7 @@ defined for the footer */
 body.template-atct_edit #content {
     width: 860px;
 }
-body#ploneimage #content {
+body#ploneimage #content, body#plonelink #content {
     width: 98%;
 }
 /* The design treats the first item differently to avoid a white line (relic of the 3d separator) by
