@@ -306,6 +306,9 @@ defined for the footer */
 body.template-atct_edit #content {
     width: 860px;
 }
+body#ploneimage #content {
+    width: 98%;
+}
 /* The design treats the first item differently to avoid a white line (relic of the 3d separator) by
 adding a special class. We cannot do that without changing plone so we should use a pseudo selector */
 div#navigation ul li:first-child {
@@ -1798,4 +1801,7 @@ position:relative;
 top:3px;
 }
 
-
+/* Workaround for a bug in screen.css */
+.plonepopup div.mceTop {
+    background-color: white;
+}
