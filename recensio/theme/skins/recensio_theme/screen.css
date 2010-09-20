@@ -1796,8 +1796,12 @@ margin-top:10px;
 }
 
 /* Trick to only hide content in view mode. Not in Edit mode */
-.kssattr-templateId-widgets\/rich .hide_content {
-    display: None;
+.mceContentBody .hide_content {
+    display: block;
+}
+
+.hide_content {
+    display: None
 }
 
 
