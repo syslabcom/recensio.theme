@@ -1089,31 +1089,38 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 /* @group Core content type sprites */
 
 .contenttype-document {
-    background: no-repeat transparent 3px 4px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px 4px url(contenttypes-sprite.png);
 }
 .contenttype-event {
-    background: no-repeat transparent 3px -62px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -212px url(contenttypes-sprite.png);
 }
 .contenttype-file {
-    background: no-repeat transparent 3px -128px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -428px url(contenttypes-sprite.png);
 }
 .contenttype-folder {
-    background: no-repeat transparent 3px -194px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -644px url(contenttypes-sprite.png);
 }
 .contenttype-image {
-    background: no-repeat transparent 3px -260px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -860px url(contenttypes-sprite.png);
 }
 .contenttype-link {
-    background: no-repeat transparent 3px -326px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -1076px url(contenttypes-sprite.png);
 }
 .contenttype-news-item {
-    background: no-repeat transparent 3px -392px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -1292px url(contenttypes-sprite.png);
 }
 .contenttype-plone-site {   
-    background: no-repeat transparent 3px -456px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -1508px url(contenttypes-sprite.png);
 }
 .contenttype-topic {
-    background: no-repeat transparent 3px -524px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -1724px url(contenttypes-sprite.png);
+}
+
+/* Now that we always show icons with that css class above,
+ * we must hide the icons that get added in the ploneimage iframe */
+
+body#ploneimage fieldset#internal_panel img {
+    display: None;
 }
 
 .contenttype-document,
