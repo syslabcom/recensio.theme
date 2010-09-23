@@ -15,6 +15,7 @@
                          batch python:Batch(view.authors, b_size, int(b_start), orphan=1);
                          portal_url context/portal_url;"
              class="authorsearch">
+            <h1 i18n:translate="">Autorensuche</h1>
             <p class="description" i18n:translate="description_authorsearch_1">
             Sie finden hier die Autorinnen und Autoren von auf recensio.net publizierten Rezensionen, Präsentationen
             (Aufsätze, Monographien, Internetressourcen) und Kommentaren sowie die Autoren von hier rezensierten Werken.
@@ -30,19 +31,6 @@
                 <input type="text" name="authors" tal:attributes="value request/authors|nothing"/>
                 <input type="submit" i18n:attributes="value" value="Search" />
             </form>
-            <ul id="authors-select-all">
-                <li id="all-presentations">
-                    <span i18n:translate="label_all_presentations">All presentations of an author</span>
-                </li>
-                <li id="all-reviews">
-                    <span i18n:translate="label_all_reviews">All reviews of an author</span>
-                </li>
-                <li id="all-comments">
-                    <span i18n:translate="label_all_comments">All comments of an author</span>
-                </li>
-				<div class="visualClear"></div>
-            </ul>
-
 			
 			
             <div id="no_authors" tal:condition="not: view/authors" i18n:translate="label_no_authors_found">
@@ -84,5 +72,22 @@
         </div>
 
     </metal:main>
+
+    <metal:rightcolumn fill-slot="column_two_slot">
+        <div id="portal-column-two" class="cell width-1:4 position-3:4 portlet">
+            <ul id="authors-select-all">
+                <li id="all-presentations">
+                    <span i18n:translate="label_all_presentations">All presentations of an author</span>
+                </li>
+                <li id="all-reviews">
+                    <span i18n:translate="label_all_reviews">All reviews of an author</span>
+                </li>
+                <li id="all-comments">
+                    <span i18n:translate="label_all_comments">All comments of an author</span>
+                </li>
+                <div class="visualClear"></div>
+            </ul>
+        </div>
+    </metal:rightcolumn>
 </body>
 </html>
