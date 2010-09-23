@@ -9,6 +9,7 @@ class AuthorSearchView(BrowserView):
     template = ViewPageTemplateFile('templates/authorsearch.pt')
 
     def __call__(self):
+        self.request.set('disable_border', True)
         return self.template(self)
 
     @property
