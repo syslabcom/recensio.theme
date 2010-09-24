@@ -15,4 +15,15 @@
  <javascript authenticated="False" cacheable="True" compression="safe"
     conditionalcomment="" cookable="True" enabled="on" expression=""
     id="++resource++recensio.theme.behaviour/jquery.nestedAccordion.js" inline="False"/>
+
+ <javascript authenticated="False" cacheable="True" compression="safe"
+    conditionalcomment="" cookable="True" enabled="on" expression=""
+    id="++resource++recensio.theme.behaviour/jquery.easing-1.3-pack.js" inline="False"/>
+ <javascript authenticated="False" cacheable="True" compression="safe"
+    conditionalcomment="" cookable="True" enabled="on" expression=""
+    id="++resource++recensio.theme.behaviour/jquery.fancybox-1.3.1.js" inline="False"/>
+ <javascript authenticated="False" cacheable="True" compression="safe"
+    conditionalcomment="" cookable="True" enabled="on" expression=""
+    id="++resource++recensio.theme.behaviour/jquery.mousewheel-3.0.2.pack.js" inline="False"/>
+
 </object>
