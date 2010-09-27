@@ -630,3 +630,15 @@ ul.accordion table th, td {
 .used_facet {
     font-weight:bold;
 }
+
+/**************************************Styles for "like" button**********************/
+.connect_widget td.connect_widget_vertical_center {
+border-spacing:0;
+float:left;
+padding:0;
+}
+.connect_widget .like_button_no_like .piece, .connect_widget .like_button_no_like {
+background-color:#ECEEF5;
+border-color:#CAD4E7;
+float:left;
+}
