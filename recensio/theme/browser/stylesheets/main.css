@@ -161,7 +161,7 @@ dl.portletSearch dd.portletFooter{
 
 #pubSchwusch .previews {
 	position: absolute;
-	left: 0;
+	left:25px;
 	top: 22px;
 	width: 548px;
 	height: 274px;
@@ -170,11 +170,12 @@ dl.portletSearch dd.portletFooter{
 }
 
 #pubSchwusch p.previews a {
+    bottom:14px;
 	width: 588px;
 	height: 273px;
 	z-index: 2;
 	position: absolute;
-	left: -40px;
+    left:35px;
 }
 
 #pubSchwusch p.previews img {
