@@ -635,10 +635,26 @@ ul.accordion table th, td {
 .connect_widget td.connect_widget_vertical_center {
 border-spacing:0;
 float:left;
+font-size:10px;
 padding:0;
 }
 .connect_widget .like_button_no_like .piece, .connect_widget .like_button_no_like {
 background-color:#ECEEF5;
 border-color:#CAD4E7;
 float:left;
+margin-bottom:2px;
+}
+.connect_widget .connect_widget_interactive_area {
+border-collapse:collapse;
+width:230px;
+}
+#facebook-like {
+    margin-top:10px;
+}
+.connect_widget .connect_text_wrapper {
+position:static;
+}
+.connect_widget .connect_widget_text {
+display:block;
+padding-left:7px;
 }
