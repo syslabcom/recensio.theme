@@ -655,10 +655,10 @@ ul.accordion table th, td {
 
 /**************************************Styles for "like" button**********************/
 .connect_widget td.connect_widget_vertical_center {
-border-spacing:0 !important;
-float:left !important;
-font-size:10px !important;
-padding:0 !important;
+border-spacing:0;
+float:left;
+padding:0;
+width:300px;
 }
 .connect_widget .like_button_no_like .piece, .connect_widget .like_button_no_like {
 background-color:#ECEEF5 !important;
@@ -681,4 +681,8 @@ position:static !important;
 .connect_widget .connect_widget_text {
 display:block !important;
 padding-left:7px !important;
+}
+.connect_widget div.connect_confirmation_cell_no_like {
+margin-top:3px;
+padding-left:0px;
 }
