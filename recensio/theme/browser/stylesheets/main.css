@@ -562,10 +562,10 @@ a.trigger {
     color:black;
     display:block; 
     padding-left:20px; 
-    background-image:url(++resource++recensio.theme.images/pfeil_icon_r.gif) no-repeat scroll 0 0;
+    background-image:url(++resource++recensio.theme.images/pfeil_icon_r.gif);
     /*background-image: url(++resource++recensio.theme.images/plus.gif); */
     background-repeat: no-repeat; 
-    background-position: 1px 50%;
+    background-position: 0 0;
     font-weight:normal;
     }
 
