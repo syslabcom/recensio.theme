@@ -685,3 +685,7 @@ border-color:#CAD4E7;
 float:left;
 width:206px;
 }
+
+.template-review_view #column3 {
+min-height:470px;
+}
