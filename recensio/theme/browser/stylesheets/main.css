@@ -576,10 +576,16 @@ padding-top:5px;
 }
 
 a.trigger.open {
-background:transparent url(++resource++recensio.theme.images/minus.gif) no-repeat scroll 3px 46%;
+/*background:transparent url(++resource++recensio.theme.images/minus.gif) no-repeat scroll 3px 46%;*/
+background-image:url(++resource++recensio.theme.images/pfeil_icon_u.gif);
+background-position:0 2px;
+background-repeat:no-repeat;
 color:black;
 display:block;
-padding:5px 5px 5px 21px;
+/*padding:5px 5px 5px 21px;*/
+padding-bottom:5px;
+padding-left:23px;
+padding-top:5px;
 }
 
 
