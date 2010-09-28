@@ -654,22 +654,7 @@ ul.accordion table th, td {
 }
 
 /**************************************Styles for "like" button**********************/
-.connect_widget td.connect_widget_vertical_center {
-border-spacing:0;
-float:left;
-padding:0;
-width:300px;
-}
-.connect_widget .like_button_no_like .piece, .connect_widget .like_button_no_like {
-background-color:#ECEEF5 !important;
-border-color:#CAD4E7 !important;
-float:left !important;
-margin-bottom:2px !important;
-}
-.connect_widget .connect_widget_interactive_area {
-border-collapse:collapse !important;
-width:230px !important;
-}
+
 #facebook-like {
 height:60px;
 margin-left:-20px;
@@ -678,14 +663,24 @@ margin-top:10px !important;
 #facebook {
     
 }
-.connect_widget .connect_text_wrapper {
-position:static !important;
-}
-.connect_widget .connect_widget_text {
-display:block !important;
-padding-left:7px !important;
-}
 .connect_widget div.connect_confirmation_cell_no_like {
 margin-top:3px;
 padding-left:0px;
+}
+
+.connect_widget td.connect_widget_vertical_center {
+border-spacing:0;
+float:left;
+margin-top:3px;
+padding:0;
+width:225px;
+}
+.connect_widget div.connect_confirmation_cell_no_like {
+padding-left:0;
+}
+.connect_widget .like_button_no_like .piece, .connect_widget .like_button_no_like {
+background-color:#ECEEF5;
+border-color:#CAD4E7;
+float:left;
+width:206px;
 }
