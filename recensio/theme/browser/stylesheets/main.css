@@ -634,28 +634,28 @@ ul.accordion table th, td {
 
 /**************************************Styles for "like" button**********************/
 .connect_widget td.connect_widget_vertical_center {
-border-spacing:0;
-float:left;
-font-size:10px;
-padding:0;
+border-spacing:0 !important;
+float:left !important;
+font-size:10px !important;
+padding:0 !important;
 }
 .connect_widget .like_button_no_like .piece, .connect_widget .like_button_no_like {
-background-color:#ECEEF5;
-border-color:#CAD4E7;
-float:left;
-margin-bottom:2px;
+background-color:#ECEEF5 !important;
+border-color:#CAD4E7 !important;
+float:left !important;
+margin-bottom:2px !important;
 }
 .connect_widget .connect_widget_interactive_area {
-border-collapse:collapse;
-width:230px;
+border-collapse:collapse !important;
+width:230px !important;
 }
 #facebook-like {
-    margin-top:10px;
+    margin-top:10px !important;
 }
 .connect_widget .connect_text_wrapper {
-position:static;
+position:static !important;
 }
 .connect_widget .connect_widget_text {
-display:block;
-padding-left:7px;
+display:block !important;
+padding-left:7px !important;
 }
