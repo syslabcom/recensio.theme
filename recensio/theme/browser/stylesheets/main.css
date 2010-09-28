@@ -671,7 +671,8 @@ border-collapse:collapse !important;
 width:230px !important;
 }
 #facebook-like {
-    margin-top:10px !important;
+height:50px;
+margin-top:10px !important;
 }
 .connect_widget .connect_text_wrapper {
 position:static !important;
