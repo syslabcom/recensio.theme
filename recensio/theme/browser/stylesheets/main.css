@@ -672,6 +672,7 @@ width:230px !important;
 }
 #facebook-like {
 height:50px;
+margin-left:-20px;
 margin-top:10px !important;
 }
 .connect_widget .connect_text_wrapper {
