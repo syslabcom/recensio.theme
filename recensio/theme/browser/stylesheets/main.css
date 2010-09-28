@@ -147,7 +147,8 @@ dl.portletSearch dd.portletFooter{
 }
 
 #review-metadata {
-    margin-bottom: 1em;
+margin-bottom:1em;
+margin-left:-30px;
 }
 
 /* Review images */
