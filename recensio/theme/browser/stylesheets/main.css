@@ -406,6 +406,7 @@ li.inline_listing {
 ul#authors-select-all {
     background:#fff none repeat scroll 0 0;
     padding:0px;
+    margin-left:-20px;
     /*border:1px solid #CDCDCD;*/
 }
 
