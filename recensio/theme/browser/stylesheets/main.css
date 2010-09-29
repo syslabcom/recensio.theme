@@ -693,5 +693,7 @@ width:206px;
 min-height:470px;
 }
 
-/******************Styles for auhtorsearch right portlet******************/
-
+/******************Styles for RSS Feed Main Site******************/
+body.template-document_view ol {
+    margin-top:0px;
+}
