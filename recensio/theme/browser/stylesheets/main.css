@@ -701,3 +701,6 @@ body.template-document_view ol {
 body.template-document_view #content-core li {
     margin-top:3px;
 }
+body.template-document_view #content-core li p {
+    margin:3px 0px;
+}
