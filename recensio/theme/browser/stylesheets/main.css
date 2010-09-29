@@ -405,14 +405,15 @@ li.inline_listing {
 /*****styles for authorsearch*****/
 ul#authors-select-all {
     background:#fff none repeat scroll 0 0;
-    border:1px solid #CDCDCD;
+    padding:0px;
+    /*border:1px solid #CDCDCD;*/
 }
 
 #authors-select-all li {
     clear:right;
     float:left;
     margin:5px 0;
-    width:33%;
+    width:130%;
 }
 
 #authors-select-all  span {
@@ -689,3 +690,6 @@ width:206px;
 .template-review_view #column3 {
 min-height:470px;
 }
+
+/******************Styles for auhtorsearch right portlet******************/
+
