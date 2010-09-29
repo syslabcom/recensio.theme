@@ -697,3 +697,7 @@ min-height:470px;
 body.template-document_view ol {
     margin-top:0px;
 }
+
+body.template-document_view #content-core li {
+    margin-top:3px;
+}
