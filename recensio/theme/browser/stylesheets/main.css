@@ -709,8 +709,9 @@ body.template-document_view #content-core li p {
 /*************************IE7 Fixes************************/
 
 *+html ul#portal-languageselector {
+    border:1px solid red !important;
 position:relative !important;
-bottom:35px !important;
+top:-45px !important;
 }
 *+html #latest_reviewparts_box ul {
     position:relative !important;
