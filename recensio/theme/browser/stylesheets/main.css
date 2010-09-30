@@ -726,19 +726,17 @@ top:-90px !important;
     width:230px !important;
 }
 *+html #latest_monographies_box {
-    border:1px solid red !important;
+
 }
 *+html #latest_internet_resources_box {
-    border:1px solid red !important;
+
 }
 *+html #latest_monographies_box ul {
-    border:1px solid red !important;
     left:-40px !important;
     width:230px !important;
     min-height:100px;
 }
 *+html #latest_internet_resources_box ul {
-    border:1px solid red !important;
     left:-40px !important;
     width:230px !important;
     min-height:100px;
