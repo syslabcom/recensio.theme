@@ -714,5 +714,5 @@ top:-25px !important;
 }
 *+html #latest_reviewparts_box ul {
     position:relative !important;
-    right:25px !important;
+    left:-25px !important;
 }
