@@ -704,3 +704,11 @@ body.template-document_view #content-core li {
 body.template-document_view #content-core li p {
     margin:3px 0px;
 }
+
+
+/*************************IE7 Fixes************************/
+
+*+html ul#portal-languageselector {
+position:relative;
+bottom:35px;
+}
