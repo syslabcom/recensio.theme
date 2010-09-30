@@ -720,5 +720,14 @@ top:-10px !important;
 *+html #portal-siteactions {
 position:relative !important;
 right:-270px !important;
-top:-80px !important;
+top:-90px !important;
+}
+*+html #latest_reviews_box ul {
+    width:230px !important;
+}
+*+html #latest_monographies_box {
+    border:1px solid red !important;
+}
+*+html #latest_internet_resources_box {
+    border:1px solid red !important;
 }
