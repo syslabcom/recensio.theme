@@ -716,3 +716,8 @@ top:-10px !important;
     position:relative !important;
     left:-40px !important;
 }
+*+html #portal-siteactions {
+position:relative !important;
+right:-100px !important;
+top:-80px !important;
+}
