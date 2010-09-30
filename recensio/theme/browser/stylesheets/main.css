@@ -731,11 +731,11 @@ top:-90px !important;
 *+html #latest_internet_resources_box {
 
 }
-*+html #latest_monographies_box ul {
-    right:40px !important;
+*+html .box #latest_monographies_box ul {
+    left:-40px !important;
     width:230px !important;
 }
-*+html #latest_internet_resources_box ul {
-    right:40px !important;
+*+html .box #latest_internet_resources_box ul {
+    left:-40px !important;
     width:230px !important;
 }
