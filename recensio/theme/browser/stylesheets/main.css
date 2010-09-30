@@ -715,9 +715,10 @@ top:-10px !important;
 *+html #latest_reviewparts_box ul {
     position:relative !important;
     left:-40px !important;
+    width:200px !important;
 }
 *+html #portal-siteactions {
 position:relative !important;
-right:-250px !important;
+right:-265px !important;
 top:-80px !important;
 }
