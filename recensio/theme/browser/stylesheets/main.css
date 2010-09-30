@@ -733,11 +733,11 @@ top:-90px !important;
 }
 *+html .box #latest_monographies_box ul {
     border:1px solid red;
-margin-left:-40px !important;
+    margin-left:-20px !important;
     width:230px !important;
 }
 *+html .box #latest_internet_resources_box ul {
     border:1px solid red;
-margin-left:-40px !important;
+    margin-left:-20px !important;
     width:230px !important;
 }
