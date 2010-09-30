@@ -739,3 +739,7 @@ top:-90px !important;
     margin-left:0px !important;
     width:230px !important;
 }
+*+html ul.easyticker {
+min-width:100px !important;
+border:1px solid red;
+}
