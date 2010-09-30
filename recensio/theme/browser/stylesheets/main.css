@@ -732,10 +732,10 @@ top:-90px !important;
 
 }
 *+html #latest_monographies_box ul {
-    left:-80px !important;
+    right:40px !important;
     width:230px !important;
 }
 *+html #latest_internet_resources_box ul {
-    left:-80px !important;
+    right:40px !important;
     width:230px !important;
 }
