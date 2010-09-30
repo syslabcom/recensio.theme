@@ -710,9 +710,9 @@ body.template-document_view #content-core li p {
 
 *+html ul#portal-languageselector {
 position:relative !important;
-top:-15px !important;
+top:-10px !important;
 }
 *+html #latest_reviewparts_box ul {
     position:relative !important;
-    left:-35px !important;
+    left:-40px !important;
 }
