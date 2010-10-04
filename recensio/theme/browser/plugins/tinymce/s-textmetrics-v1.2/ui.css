@@ -1,3 +1,3 @@
-.scriptitoSkin span.mce_toggle_metrics {background:url(++resource++recensio.theme.plugins/tinymce/s-textmetrics-v1.2/sum.png) no-repeat center center;}
-.scriptitoSkin div.metrics {float:right;}
-.scriptitoSkin div.metrics > span {margin-left:0.5em;}
+.ploneSkin span.mce_toggle_metrics {background:url(++resource++recensio.theme.plugins/tinymce/s-textmetrics-v1.2/sum.png) no-repeat center center;}
+.ploneSkin div.metrics {float:right;}
+.ploneSkin div.metrics > span {margin-left:0.5em;}

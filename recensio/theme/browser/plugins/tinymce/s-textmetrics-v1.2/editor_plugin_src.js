@@ -23,8 +23,9 @@
       t.wcid = ed.id + '-word-count';
       t.scid = ed.id + '-sentence-count';
       t.pcid = ed.id + '-paragraph-count';
-  
-      t.state = ed.getParam('s_textmetrics_on');
+
+/* Cillian: enabling this plugin by default */
+      t.state = true; //ed.getParam('s_textmetrics_on');
       
       ed.addCommand("s_toggleMetrics", t._toggleMetrics, t);
       
