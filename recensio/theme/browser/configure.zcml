@@ -22,6 +22,12 @@
         layer="recensio.theme.interfaces.IRecensioLayer"
         />
 
+    <browser:resourceDirectory
+        name="recensio.theme.plugins"
+        directory="plugins"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+
     <browser:page
         for="recensio.contenttypes.interfaces.IReview"
         name="generate-pdf-recension"
