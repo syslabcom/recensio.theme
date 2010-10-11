@@ -31,4 +31,8 @@
   <javascript authenticated="False" cacheable="True" compression="safe"
               conditionalcomment="" cookable="True" enabled="on" expression=""
               id="++resource++recensio.theme.plugins/tinymce/s-textmetrics-v1.2/text-utils.js" inline="False"/>
+  <javascript authenticated="True" cacheable="True" compression="safe"
+              conditionalcomment="" cookable="True" enabled="True"
+              expression=""
+              id="sarissa.js" inline="False"/>
 </object>
