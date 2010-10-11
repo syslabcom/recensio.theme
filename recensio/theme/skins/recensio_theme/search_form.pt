@@ -14,14 +14,11 @@
   <metal:main fill-slot="main">
 
     <h1 class="documentFirstHeading"
-        i18n:translate="heading_advanced_search">Advanced search for content</h1>
+        i18n:translate="heading_advanced_search">Erweiterte Suche</h1>
     
     <div class="documentDescription" i18n:translate="description_advanced_search">
-      This search form enables you to find content on the site by
-      specifying one or more search terms.
-      <br />
-      Remember that you can use the quick search anytime, it's normally
-      good enough, this search form is just if you want to be more specific.
+    Mithilfe folgender Kategorien durchsuchen und filtern Sie die gesamte Plattform
+    (inklusive des Volltexts der als PDF bereitgestellten Rezensionen).
     </div>        
 
     <div id="content-core">
@@ -50,11 +47,9 @@
             <label for="SearchableText" i18n:translate="label_search_text">Search text</label>
 
             <div class="formHelp" i18n:translate="help_search_text">
-              For a simple text search, enter your search term
+              For a full text search, enter your search term
               here. Multiple words may be found by combining
               them with <strong>AND</strong> and <strong>OR</strong>.
-              The text in this field will be matched with
-              items' contents, title and description.
             </div>
 
             <input type="text"
@@ -116,8 +111,6 @@
             </label>
           </div>
           
-
-          <h2 i18n:translate="">More search options</h2>
 
 
           <div class="field collapsible"
@@ -479,10 +472,18 @@
             </div>
           </div>
 
+          <div class="formControls">
+            <input class="context"
+                   type="submit"
+                   name="submit"
+                   value="Search"
+                   i18n:attributes="value label_search;"
+                   />
+          </div>
+          
+
 
           <h2 i18n:translate="book_essay_magazine">Buch/Aufsatz/Zeitschrift</h2>
-
-
 
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
@@ -598,6 +599,15 @@
             </div>
           </div>
 
+          <div class="formControls">
+            <input class="context"
+                   type="submit"
+                   name="submit"
+                   value="Search"
+                   i18n:attributes="value label_search;"
+                   />
+          </div>
+
 
           <h2 i18n:translate="thematic_search">Thematische Suche</h2>
 
@@ -688,6 +698,18 @@
 
             </div>
           </div>
+
+          <div class="formControls">
+            <input class="context"
+                   type="submit"
+                   name="submit"
+                   value="Search"
+                   i18n:attributes="value label_search;"
+                   />
+          </div>
+
+
+          <h2 i18n:translate="recensio_id">recensio-ID</h2>
 
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
