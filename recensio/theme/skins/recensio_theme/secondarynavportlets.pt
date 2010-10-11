@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="recensio.theme">
+
+  <ul metal:define-macro="ueberuns">
+    <li class="first" id="firstcurrent">
+      <a href="benutzerrichtlinien" class="active">Benutzerrichtlinien</a>
+    </li>
+    <li>
+      <a href="copyright">Copyright</a>
+    </li>
+    <li>
+      <a href="index_html">Über uns</a>
+    </li>
+    <li>
+      <a href="kontakt">Kontakt</a>
+    </li>
+    <li>
+      <a href="konzept">Konzept</a>
+    </li>
+    <li>
+      <a href="mitmachen-bei-recensio.net">Mitmachen bei recensio.net</a>
+    </li>
+    <li class="last">
+      <a href="zitierhinweise">Zitierhinweise</a>
+    </li>
+  </ul>
+
+</html>
