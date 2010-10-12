@@ -5,28 +5,22 @@
       lang="en"
       i18n:domain="recensio.theme">
 
-  <ul metal:define-macro="ueberuns">
-    <li class="first" id="firstcurrent">
-      <a href="benutzerrichtlinien" class="active">Benutzerrichtlinien</a>
-    </li>
-    <li>
-      <a href="copyright">Copyright</a>
-    </li>
-    <li>
-      <a href="index_html">Über uns</a>
-    </li>
-    <li>
-      <a href="kontakt">Kontakt</a>
-    </li>
-    <li>
-      <a href="konzept">Konzept</a>
-    </li>
-    <li>
-      <a href="mitmachen-bei-recensio.net">Mitmachen bei recensio.net</a>
-    </li>
-    <li class="last">
-      <a href="zitierhinweise">Zitierhinweise</a>
-    </li>
-  </ul>
+  <div metal:define-macro="ueberuns"
+        id="secondary-nav-portlet" class="firstmenu">
+    <ul>
+      <li>
+        <a href="kontakt">Kontakt</a>
+      </li>
+      <li>
+        <a href="konzept">Konzept</a>
+      </li>
+      <li class="first" id="firstcurrent">
+        <a href="benutzerrichtlinien" class="active">Benutzerrichtlinien</a>
+      </li>
+      <li>
+        <a href="copyright">Copyright</a>
+      </li>
+    </ul>
+  </div>
 
 </html>
