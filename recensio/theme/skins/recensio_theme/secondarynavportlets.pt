@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      i18n:domain="recensio.theme">
+      i18n:domain="recensio">
 
   <div metal:define-macro="ueberuns"
         id="secondary-nav-portlet" class="firstmenu">
