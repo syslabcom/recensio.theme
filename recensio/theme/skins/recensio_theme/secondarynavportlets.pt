@@ -8,17 +8,36 @@
   <div metal:define-macro="ueberuns"
         id="secondary-nav-portlet" class="firstmenu">
     <ul>
-      <li>
-        <a href="kontakt">Kontakt</a>
+      <li 
+         tal:define="is_current python:context.getId().startswith('kontakt')"
+         tal:attributes="class python:is_current and 'first active' or 'first';
+                         id python:is_current and 'firstcurrent' or ''"
+         >
+        <a href="kontakt"
+           >Kontakt</a>
       </li>
-      <li>
-        <a href="konzept">Konzept</a>
+      <li 
+         tal:define="is_current python:context.getId().startswith('konzept')"
+         tal:attributes="id python:is_current and 'current' or ''">
+        <a href="konzept" 
+           tal:attributes="class python:is_current and 'active' or ''"
+           >Konzept</a>
       </li>
-      <li class="first" id="firstcurrent">
-        <a href="benutzerrichtlinien" class="active">Benutzerrichtlinien</a>
+      <li
+         tal:define="is_current python:context.getId().startswith('benutzerrichtlinien')"
+         tal:attributes="id python:is_current and 'current' or ''"
+         >
+        <a href="benutzerrichtlinien" 
+           tal:attributes="class python:is_current and 'active' or ''"
+           >Benutzerrichtlinien</a>
       </li>
-      <li>
-        <a href="copyright">Copyright</a>
+      <li class="last"
+         tal:define="is_current python:context.getId().startswith('copyright')"
+         tal:attributes="id python:is_current and 'lastcurrent' or ''"
+         >
+        <a 
+           tal:attributes="class python:is_current and 'active' or ''"
+           href="copyright">Copyright</a>
       </li>
     </ul>
   </div>
