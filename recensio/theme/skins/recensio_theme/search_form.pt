@@ -709,7 +709,7 @@
           </div>
 
 
-          <h2 i18n:translate="recensio_id">recensio-ID</h2>
+          <h2 i18n:translate="label_recensio_id">recensio-ID</h2>
 
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
