@@ -21,6 +21,14 @@
     <replace css:content="ul#portal-globalnav "
              css:theme="div#navigation > ul " />
 
+    <!-- Secondary navigation -->
+    <prepend content="//div[@id='secondary-nav-portlet']" 
+             theme="//div[@id='content']" />
+
+    <!-- The original design does not have page headings or a byline -->
+    <drop css:content="h1.documentFirstHeading" css:if-content="body.portaltype-document" /> 
+    <drop css:content="div#plone-document-byline" css:if-content="body.portaltype-document" /> 
+
     <!-- portal languageselector -->
     <replace css:content="ul#portal-languageselector "
              css:theme="p#language " />
