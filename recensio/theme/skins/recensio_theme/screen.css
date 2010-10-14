@@ -401,7 +401,6 @@ body.section-portal_registry div#column3 {
 
 /*********************have to add specific styles for the commenting box to fix the position**************/
 .discussion, #commenting {
-bottom:20px;
 position:relative;
 }
 
