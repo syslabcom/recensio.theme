@@ -79,9 +79,6 @@
             </span>
             to refine your search.
             </p>
-          <div tal:define="view nocall: context/@@search-facets | nothing"
-               tal:condition="python: view"
-               tal:replace="structure view/hiddenfields" />
         </form>
 
 
@@ -151,10 +148,6 @@
         <div tal:condition="not: results">
             <p><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
         </div>
-
-        <div tal:define="view nocall: context/@@search-facets | nothing"
-         tal:condition="python: view"
-         tal:replace="structure python: view(results=results)" />
 
 
         <div tal:condition="results"
