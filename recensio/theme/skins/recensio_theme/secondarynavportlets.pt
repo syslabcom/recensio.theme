@@ -43,4 +43,26 @@
     </ul>
   </div>
 
+  <div metal:define-macro="rezensionen"
+        id="secondary-nav-portlet" class="firstmenu">
+    <ul>
+      <li 
+         tal:define="is_current python:context.getId().startswith('zeitschriften')"
+         tal:attributes="class python:is_current and 'first active' or 'first';
+                         id python:is_current and 'firstcurrent' or ''"
+         >
+        <a href="zeitschriften"
+           i18n:translate="label_secondary_nav_journals">Zeitschriften</a>
+      </li>
+      <li class="last"
+         tal:define="is_current python:context.getId().startswith('search')"
+         tal:attributes="id python:is_current and 'lastcurrent' or ''"
+         >
+        <a 
+           tal:attributes="class python:is_current and 'active' or ''"
+           href="search?portal_type:list=Review+Monograph&portal_type:list=Review+Journal"
+           i18n:translate="label_secondary_nav_latest_reviews">Neueste Rezensionen</a>
+      </li>
+    </ul>
+  </div>
 </html>
