@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="recensio.theme">
+      i18n:domain="recensio">
 
 
 <body>
@@ -25,7 +25,7 @@
 
 
             <div class="box">
-              <h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätze</h2>
+              <h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätzen</h2>
               <div id="latest_monographies_box" tal:define="results view/getPrintedPresentations">
                 <ul>
                     <li tal:repeat="res results"><a href="#" tal:attributes="href res/getURL" tal:content="res/Title">title</a></li>
