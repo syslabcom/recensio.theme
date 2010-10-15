@@ -47,15 +47,16 @@
         id="secondary-nav-portlet" class="firstmenu">
     <ul>
       <li 
-         tal:define="is_current python:context.getId().startswith('zeitschriften')"
+         tal:define="is_current python:context.getId().startswith('zeitschriften') and not 'search' in context.REQUEST.getURL()"
          tal:attributes="class python:is_current and 'first active' or 'first';
                          id python:is_current and 'firstcurrent' or ''"
          >
-        <a href="zeitschriften"
+        <a href=""
+           tal:attributes="href context/absolute_url"
            i18n:translate="label_secondary_nav_journals">Zeitschriften</a>
       </li>
       <li class="last"
-         tal:define="is_current python:context.getId().startswith('search')"
+         tal:define="is_current python:'search' in context.REQUEST.getURL()"
          tal:attributes="id python:is_current and 'lastcurrent' or ''"
          >
         <a 
