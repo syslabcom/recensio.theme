@@ -41,17 +41,31 @@ class GeneratePdfRecension(BrowserView):
     def __call__(self):
         try:
             cover = self.genPdfRecension()
-            pdf = self.context.get_review_pdf()
-            original = pdf.open().name
-            new = tempfile.mkstemp(prefix = 'final', suffix = '.pdf')[1]
-            error_code = os.system('ulimit -t 5;pdftk %s %s cat output %s' % (cover, original, new))
-            if error_code:
-                IStatusMessage(self.request).add('Creating the pdf has failed! Please try again or ask for support', 'error')
+            pdf = self.context.get_review_pdf()["blob"]
+            error_code = None
+            new = None
+            if pdf:
+                pdf_blob = pdf["blob"]
+                original = pdf_blob.open().name
+                new = tempfile.mkstemp(prefix = 'final', suffix = '.pdf')[1]
+                error_code = os.system(
+                    'ulimit -t 5;pdftk %s %s cat output %s' % (
+                    cover, original, new
+                    )
+                    )
+            if error_code or not pdf:
+                IStatusMessage(self.request).add(
+                    _(u'Creating the pdf has failed! Please try again '
+                      'or ask for support'),
+                    'error')
                 return
-            pdfdata = file(new).read()
+            else:
+                pdfdata = file(new).read()
         finally:
-            os.remove(cover)
-            os.remove(new)
+            if cover:
+                os.remove(cover)
+            if new:
+                os.remove(new)
         self._prepareHeader(len(pdfdata))
         return pdfdata
 
