@@ -45,8 +45,7 @@ def setupXDVTheme(context):
         u'^.*/plugins/table/(table|row|cell|merge_cells)\.htm$',
         u'^.*/plugins/searchreplace/searchreplace.htm$',
         u'^.*/.+/advanced/(source_editor|anchor)\.htm$',
-        u'^.*/@@babblechat.*$',       # Don't interfere with Babble
-        u'^.*/@@render_chat_box',     # Don't interfere with Babble
+        u'^.*/@@pageviewer', # Shows PDF images in an overlay
         u'^.*/manage_addProduct/.*$', # Necesary for ZMI access.
         ]
 
