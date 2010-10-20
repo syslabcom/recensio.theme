@@ -1816,3 +1816,8 @@ top:3px;
 .plonepopup div.mceTop {
     background-color: white;
 }
+
+.state-deleted {
+    color: Red;
+    text-decoration: line-through;
+}
