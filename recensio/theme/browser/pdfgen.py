@@ -41,7 +41,7 @@ class GeneratePdfRecension(BrowserView):
     def __call__(self):
         try:
             cover = self.genPdfRecension()
-            pdf = self.context.get_review_pdf()["blob"]
+            pdf = self.context.get_review_pdf()
             error_code = None
             new = None
             if pdf:
