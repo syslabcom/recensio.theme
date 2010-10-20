@@ -8,11 +8,15 @@ from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.browser.facets import param
 from copy import deepcopy
 from ZTUtils import make_query
-from recensio.contenttypes.config import PORTAL_TYPES
+#from recensio.contenttypes.config import PORTAL_TYPES
 from recensio.policy.utility import getSelectedQuery, \
     convertFacets, browsing_facets as facet_fields
 
 log = logging.getLogger('recensio.theme/topical.py')
+PORTAL_TYPES = ['Presentation Online Resource', 'Presentation Article Review',
+    'Presentation Collection', 'Presentation Monograph',
+        'Review Journal', 'Review Monograph' ]
+
 
 class BrowseTopicsView(SearchFacetsView):
     """View for topical browsing (ddcPlace etc.)
