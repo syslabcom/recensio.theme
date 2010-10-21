@@ -52,7 +52,7 @@
                          id python:is_current and 'firstcurrent' or ''"
          >
         <a href=""
-           tal:attributes="href context/absolute_url"
+           tal:attributes="href python:context.rezensionen.zeitschriften.absolute_url()"
            i18n:translate="label_secondary_nav_journals">Zeitschriften</a>
       </li>
       <li class="last"
@@ -61,7 +61,7 @@
          >
         <a 
            tal:attributes="class python:is_current and 'active' or ''"
-           href="search?portal_type:list=Review+Monograph&portal_type:list=Review+Journal"
+           href="/rezensionen/zeitschriften/search?portal_type:list=Review+Monograph&portal_type:list=Review+Journal"
            i18n:translate="label_secondary_nav_latest_reviews">Neueste Rezensionen</a>
       </li>
     </ul>
