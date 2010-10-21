@@ -451,9 +451,6 @@ ul.authors li.author {
     float:left;
     width:49%;
 }
-img.publication-image {
-    width: 120px;
-}
 /********************Styles for ul Zeitschriften***************/
 
 .template-folder_listing #content-core dt {

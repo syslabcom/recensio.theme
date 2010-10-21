@@ -12,10 +12,23 @@ class PublicationsView(BrowserView):
         return self.template(self)
 
     def publications(self):
-        pubs = [x for x in self.context.objectValues() if x.portal_type=="Publication"]
-        return pubs
+        pc = self.context.portal_catalog
+        publist = []
+        currlang = self.context.portal_languages.getPreferredLanguage()
+        pubs = pc(portal_type="Publication", 
+                  path='/'+self.context.absolute_url(1), 
+                  review_state='published')
+        for pub in pubs:
+            pubob = pub.getObject()
+            if 'logo' in pubob.objectIds():
+                logourl = pub.getURL()+'/logo/image_thumb'
+            else:
+                logourl = self.context.portal_url()+'/empty_publication.jpg'    
+            defob = getattr(pubob, pubob.getDefaultPage()).getTranslation(currlang)
+            title = defob.Title() != '' and defob.Title() \
+                    or pubob.Title()
+            desc = defob.Description()
+            morelink = pubob.absolute_url()
+            publist.append(dict(ob=pubob, title=title, desc=desc, logo=logourl, link=morelink))
+        return publist
         
-    def getimage(self, p):
-        if 'logo' in p.objectIds():
-            return p.absolute_url()+'/logo'
-        return self.context.portal_url()+'/empty_publication.jpg'

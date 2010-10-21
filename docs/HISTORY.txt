@@ -5,3 +5,6 @@ Changelog
 -------------------
 
 - Initial release
+
+- Added publication view
+  [pilz]

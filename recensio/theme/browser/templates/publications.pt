@@ -18,13 +18,20 @@
     <p i18n:translate="description_publications"></p>
     <div id="content_left">
       <tal:rep repeat="publication view/publications">
-        <h2 tal:content="publication/Title">Publication Title</h2>
-        <img src="#"
-             tal:attributes="src python:view.getimage(publication); alt string:${publication/Title} logo" 
+        <h2> 
+            <a tal:attributes="href publication/link" >
+                <span tal:replace="publication/title">
+                    Publication Title
+                </span>
+            </a>
+        </h2>
+        <a tal:attributes="href publication/link" >
+            <img src="#"
+             tal:attributes="src publication/logo; alt string:${publication/title} logo" 
              class="floatBefore publication-image"
-             >
+             ></a>
 
-        <p tal:content="structure publication/Description">The Description</p>
+        <p tal:content="structure publication/desc">The Description</p>
         <div class="visualClear"></div>
       </tal:rep>
     </div>
