@@ -2,10 +2,10 @@
 * jQuery easyTicker plugin
 * Update on 24 september 2009
 * Version 1.0
-* Autor : Stéphane Litou (www.mushtitude.com)
+* Autor : StÃ©phane Litou (www.mushtitude.com)
 *
 * Licensed under GPL <http://en.wikipedia.org/wiki/GNU_General_Public_License>
-* Copyright (c) 2008, Stéphane Litou <contact@mushtitude.com>
+* Copyright (c) 2008, StÃ©phane Litou <contact@mushtitude.com>
 * All rights reserved.
 *
 This program is free software: you can redistribute it and/or modify
