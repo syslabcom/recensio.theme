@@ -506,6 +506,7 @@ div.errors tr.bad {
 .collapsible .collapser.collapsed {
 /*    padding-right: 14px;*/
     background: url('arrowRight.png') center left no-repeat;
+    padding-left: 10px;
 } 
 
 .collapsible .collapser.expanded {
