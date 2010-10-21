@@ -5,6 +5,7 @@ Changelog
 -------------------
 
 - Initial release
-
 - Added publication view
+  [pilz]
+- Homepage now only shows published entries
   [pilz]

@@ -16,6 +16,7 @@ class HomepageView(BrowserView):
         plt = getToolByName(self.context, 'portal_languages')
         langinfo = plt.getAvailableLanguageInformation()
         query = dict(portal_type=["Review Monograph"],
+            review_state="published",
             sort_on='effective',
             sort_order='reverse')
         resultset = list()
@@ -33,6 +34,7 @@ class HomepageView(BrowserView):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type=['Presentation Article Review',
                 'Presentation Monograph', 'Presentation Collection'],
+                review_state="published",
             sort_on='effective',
             sort_order='reverse')
         res = pc(query)
@@ -42,6 +44,7 @@ class HomepageView(BrowserView):
     def getOnlinePresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type=['Presentation Online Resource'],
+            review_state="published",
             sort_on='effective',
             sort_order='reverse')
         res = pc(query)
@@ -51,6 +54,7 @@ class HomepageView(BrowserView):
     def getReviewJournals(self):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type=['Review Journal'],
+            review_state="published",
             sort_on='effective',
             sort_order='reverse')
         res = pc(query)
@@ -75,8 +79,14 @@ class HomepageView(BrowserView):
         portal = self.context.portal_url.getPortalObject()
         rezensionen = getattr(portal, 'rezensionen', None)
         zeitschriften = getattr(rezensionen, 'zeitschriften', None)
+        pc = getToolByName(self.context, 'portal_catalog')
         if zeitschriften:
-            pubs = [x for x in zeitschriften.objectValues() if x.portal_type=="Publication"]
+            query = dict(portal_type=['Publication'],
+                review_state="published",
+                path='/'.join(zeitschriften.getPhysicalPath()),
+                sort_on='effective',
+                sort_order='reverse')
+            pubs = pc(query)
             return pubs
         else:
             # This can only happen, when there is no initial content yet

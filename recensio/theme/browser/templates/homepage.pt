@@ -69,7 +69,7 @@
         <div id="column_wide">
             <h3 i18n:translate="heading_participating_publications">Teilnehmende Zeitschriften</h3>
             <tal:rep repeat="publication view/getPublications">
-                <a tal:attributes="href publication/absolute_url" tal:content="publication/Title">
+                <a tal:attributes="href publication/getURL" tal:content="publication/Title">
                     Publication
                 </a> <span tal:condition="not:repeat/publication/end">|</span>
             </tal:rep>
