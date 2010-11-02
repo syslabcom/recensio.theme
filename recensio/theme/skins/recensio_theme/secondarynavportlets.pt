@@ -43,7 +43,7 @@
     </ul>
   </div>
 
-  <div metal:define-macro="rezensionen"
+  <div metal:define-macro="rezensionen" tal:condition="python:context.id == 'rezensionen' or context.id == 'zeitschriften'"
         id="secondary-nav-portlet" class="firstmenu">
     <ul>
       <li 
