@@ -60,8 +60,8 @@
          tal:attributes="id python:is_current and 'lastcurrent' or ''"
          >
         <a 
-           tal:attributes="class python:is_current and 'active' or ''"
-           href="/rezensionen/zeitschriften/search?portal_type:list=Review+Monograph&portal_type:list=Review+Journal"
+           tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/search?portal_type:list=Review+Monograph&portal_type:list=Review+Journal'"
+           href="search?portal_type:list=Review+Monograph&portal_type:list=Review+Journal"
            i18n:translate="label_secondary_nav_latest_reviews">Neueste Rezensionen</a>
       </li>
     </ul>
