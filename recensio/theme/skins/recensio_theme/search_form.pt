@@ -712,7 +712,7 @@
 
           <div class="field collapsible"
                tal:attributes="class field_collapsible_class">
-            <label for="recensio_id" 
+            <label for="recensioID" 
                    class="collapser"
                    i18n:translate="label_recensio_id">recensio-ID</label>
             <div class="collapse">
@@ -721,10 +721,10 @@
               </div>
 
               <input type="text"
-                     id="recensio_id"
-                     name="recensio_id"
+                     id="recensioID"
+                     name="recensioID"
                      size="16"
-                     tal:attributes="value request/recensio_id|nothing"
+                     tal:attributes="value request/recensioID|nothing"
                      />
             </div>
           </div>
