@@ -120,12 +120,12 @@
                            used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
                            all_checked python:(len(used_types) == len(request.get('portal_type', [])));
                            toggle_select_state python:all_checked and 'true' or 'false';">
-            <label i18n:translate="label_item_type"
+            <label i18n:translate="label_item_type" i18n:domain="plone"
                    class="collapser">Item type</label>
             <input class="collapse_trick" type="text" tal:attributes="value python:request.get('portal_type', '')"/>
 
             <div class="collapse">
-              <div class="formHelp" i18n:translate="help_search_item_type">
+              <div class="formHelp" i18n:translate="help_search_item_type" i18n:domain="plone">
                 Return items of a specific type.
               </div>
               
@@ -168,10 +168,10 @@
                tal:attributes="class field_collapsible_class">
             <label for="created" 
                    class="collapser"
-                   i18n:translate="label_new_items_since">New items since</label>
+                   i18n:translate="label_new_items_since" i18n:domain="plone">New items since</label>
 
             <div class="collapse">
-              <div class="formHelp" i18n:translate="help_search_new_items_since">
+              <div class="formHelp" i18n:translate="help_search_new_items_since" i18n:domain="plone">
                 Return items added since you were last logged on, the last week, etc.
               </div>
               
@@ -184,29 +184,29 @@
                           tal:define="value python:member is not None and member.getProperty('last_login_time') or today"
                           tal:attributes="value value;
                                           selected python:selected==value and 'selected' or '';" 
-                          i18n:translate="last_login">Last log-in</option>
+                          i18n:translate="last_login" i18n:domain="plone">Last log-in</option>
                   <option value="#" 
                           tal:attributes="value yesterday;
                                           selected python:selected==yesterday and 'selected' or '';" 
-                          i18n:translate="time_yesterday"> Yesterday </option>
+                          i18n:translate="time_yesterday" i18n:domain="plone"> Yesterday </option>
                   <option value="#" 
                           tal:attributes="value lastweek;
                                           selected python:selected==lastweek and 'selected' or '';" 
-                          i18n:translate="time_last_week"> Last week </option>
+                          i18n:translate="time_last_week" i18n:domain="plone"> Last week </option>
                   <option value="#" tal:attributes="value lastmonth;
                                                     selected python:selected==lastmonth and 'selected' or '';" 
-                          i18n:translate="time_last_month"> Last month </option>
+                          i18n:translate="time_last_month" i18n:domain="plone"> Last month </option>
                   <option value="#" tal:attributes="value threemonths;
                                                     selected python:selected==threemonths and 'selected' or '';" 
-                          i18n:translate="time_three_months"> 3 months ago </option>
+                          i18n:translate="time_three_months" i18n:domain="plone"> 3 months ago </option>
                   <option value="#" tal:attributes="value sixmonths;
                                                     selected python:selected==sixmonths and 'selected' or '';" 
-                          i18n:translate="time_six_months"> 6 months ago </option>
+                          i18n:translate="time_six_months" i18n:domain="plone"> 6 months ago </option>
                   <option value="#"
                           class="default_option"
                           tal:attributes="value ever;
                                           selected python:selected==ever and 'selected' or '';" 
-                          i18n:translate="time_ever"> Ever </option>
+                          i18n:translate="time_ever" i18n:domain="plone"> Ever </option>
                 </select>
             </div>
             
@@ -234,29 +234,29 @@
                           tal:define="value python:member is not None and member.getProperty('last_login_time') or today"
                           tal:attributes="value value;
                                           selected python:selected==value and 'selected' or '';" 
-                          i18n:translate="last_login">Last log-in</option>
+                          i18n:translate="last_login" i18n:domain="plone">Last log-in</option>
                   <option value="#" 
                           tal:attributes="value yesterday;
                                           selected python:selected==yesterday and 'selected' or '';" 
-                          i18n:translate="time_yesterday"> Yesterday </option>
+                          i18n:translate="time_yesterday" i18n:domain="plone"> Yesterday </option>
                   <option value="#" 
                           tal:attributes="value lastweek;
                                           selected python:selected==lastweek and 'selected' or '';" 
-                          i18n:translate="time_last_week"> Last week </option>
+                          i18n:translate="time_last_week" i18n:domain="plone"> Last week </option>
                   <option value="#" tal:attributes="value lastmonth;
                                                     selected python:selected==lastmonth and 'selected' or '';" 
-                          i18n:translate="time_last_month"> Last month </option>
+                          i18n:translate="time_last_month" i18n:domain="plone"> Last month </option>
                   <option value="#" tal:attributes="value threemonths;
                                                     selected python:selected==threemonths and 'selected' or '';" 
-                          i18n:translate="time_three_months"> 3 months ago </option>
+                          i18n:translate="time_three_months" i18n:domain="plone"> 3 months ago </option>
                   <option value="#" tal:attributes="value sixmonths;
                                                     selected python:selected==sixmonths and 'selected' or '';" 
-                          i18n:translate="time_six_months"> 6 months ago </option>
+                          i18n:translate="time_six_months" i18n:domain="plone"> 6 months ago </option>
                   <option value="#"
                           class="default_option"
                           tal:attributes="value ever;
                                           selected python:selected==ever and 'selected' or '';" 
-                          i18n:translate="time_ever"> Ever </option>
+                          i18n:translate="time_ever" i18n:domain="plone"> Ever </option>
                 </select>
             </div>
             
@@ -368,10 +368,10 @@
                tal:attributes="class field_collapsible_class">
             <label for="authorsFulltext" 
                    class="collapser"
-                   i18n:translate="label_review_autor">Autor/Editor</label>
+                   i18n:translate="label_review_autor">Autor/Herausgeber</label>
             <div class="collapse">
               <div class="formHelp" i18n:translate="help_review_autor">
-                Autor von Monographie/Aufsatz/Kommentar oder Editor des Sammelbandes
+                Autor von Monographie/Aufsatz/Kommentar oder Herausgeber des Sammelbandes
               </div>
 
               <input type="text"
@@ -462,7 +462,7 @@
                   <label for=""
                          i18n:translate=""
                          tal:attributes="for string:magazines_${repeat/sublist/number}_${repeat/mag/number}"
-                         tal:content="python: mag.Title"
+                         tal:content="python: mag.Title or mag.getId"
                          />
                   <br />
                 </tal:items>
@@ -510,7 +510,7 @@
                    i18n:translate="label_year">Jahr</label>
             <div class="collapse">
               <div class="formHelp" i18n:translate="help_year">
-                Erscheinungsyear oder gezähltes Jahr
+                Erscheinungsjahr oder gezähltes Jahr
               </div>
 
               <input type="text"
@@ -586,7 +586,7 @@
                    i18n:translate="label_isbn">ISBN</label>
             <div class="collapse">
               <div class="formHelp" i18n:translate="help_isbn">
-                Internationale Standardbuchvolume 
+                Internationale Standardbuchnummer
               </div>
 
               <input type="text"
@@ -809,9 +809,9 @@
 
           <div class="field"
                tal:condition="options/show_batch_size">
-            <label for="b_size" i18n:translate="">Results per page</label>
+            <label for="b_size" i18n:translate="label_results_per_page">Results per page</label>
             
-            <div class="formHelp" i18n:translate="">
+            <div class="formHelp" i18n:translate="description_results_per_page">
               The number of results that is displayed on one page.
             </div>
             

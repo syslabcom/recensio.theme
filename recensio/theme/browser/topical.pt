@@ -161,7 +161,7 @@ class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu
             <span i18n:translate="batch_x_items_matching_your_criteria"
             ><span i18n:name="number" 
             tal:omit-tag="" 
-            tal:content="python:len(results)">234</span> items matching</span>
+            tal:content="python:len(results)">0</span> items matching</span>
           </span>
         </h1>
 
