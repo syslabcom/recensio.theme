@@ -165,7 +165,10 @@ class BrowseTopicsView(SearchFacetsView):
         return menu
 
     def getSubmenus(self):
+        voc = getToolByName(self.context, 'portal_vocabularies', None)
         menu = self.getMenu()
+        # this would work if ATVocabularyManager.utils were consistent:
+        # submenus = [dict(title=voc.getVocabularyByName('region_values').Title(),id='ddcPlace'),
         submenus = [dict(title='Region',id='ddcPlace'), 
                     dict(title='Epoch',id='ddcTime'), 
                     dict(title='Topic', id='ddcSubject')
