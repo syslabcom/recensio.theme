@@ -127,9 +127,11 @@ class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu
                           <tal:block tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
                             <a href="#" tal:content="subitem/voc"
                                     tal:condition="subitem/query"
-                                    tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query}" />
+                                    tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query}"
+                                    i18n:translate="" />
                                 <span tal:content="subitem/voc"
-                                    tal:condition="not:subitem/query" />
+                                    tal:condition="not:subitem/query"
+                                    i18n:translate="" />
                                 <tal:block tal:condition="exists:subitem/clearquery">
                                     <a title="Remove this selection" i18n:attributes="title"
                                         tal:attributes="href string:${request/ACTUAL_URL}?${subitem/clearquery}">
