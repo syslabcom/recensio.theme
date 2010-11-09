@@ -66,4 +66,35 @@
       </li>
     </ul>
   </div>
+
+  <div metal:define-macro="praesentationen"
+        id="secondary-nav-portlet" class="firstmenu" tal:define="portal context/portal_url">
+    <ul>
+      <li 
+         tal:define="is_current python:context.getId().startswith('monographien')"
+         tal:attributes="class python:is_current and 'first active' or 'first';
+                         id python:is_current and 'firstcurrent' or ''"
+         >
+        <a tal:attributes="href string:${portal}/praesentationen/monographien/search"
+           i18n:translate="label_secondary_nav_monographien">Monographien</a>
+      </li>
+      <li 
+         tal:define="is_current python:context.getId().startswith('aufsaetze')"
+         tal:attributes="id python:is_current and 'current' or ''">
+        <a tal:attributes="href string:${portal}/praesentationen/aufsaetze/search;
+                           class python:is_current and 'active' or ''"
+           i18n:translate="label_secondary_nav_aufsaetze">Aufsätze</a>
+      </li>
+      <li class="last"
+         tal:define="is_current python:context.getId().startswith('internetressourcen')"
+         tal:attributes="id python:is_current and 'lastcurrent' or ''"
+         >
+        <a 
+           tal:attributes="class python:is_current and 'active' or '';
+                           href string:${portal}/praesentationen/internetressourcen/search"
+           i18n:translate="label_secondary_nav_internetressourcen">Internetressourcen </a>
+      </li>
+    </ul>
+  </div>
+
 </html>
