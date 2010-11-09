@@ -29,7 +29,7 @@
             <img src="#"
              tal:attributes="src publication/logo; alt string:${publication/title} logo" 
              class="floatBefore publication-image"
-             ></a>
+             /></a>
 
         <p tal:content="structure publication/desc">The Description</p>
         <div class="visualClear"></div>

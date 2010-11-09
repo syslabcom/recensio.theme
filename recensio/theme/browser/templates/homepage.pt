@@ -25,7 +25,7 @@
 
 
             <div class="box">
-              <a tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Monograph&portal_type:list=Presentation+Article+Review&portal_type:list=Presentation+Collection"><h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätzen</h2></a>
+              <a tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection"><h2 i18n:translate="label_latest_monographies">Neueste Präsentationen von Monographien und Aufsätzen</h2></a>
               <div id="latest_monographies_box" tal:define="results view/getPrintedPresentations">
                 <ul>
                     <li tal:repeat="res results"><a href="#" tal:attributes="href res/getURL" tal:content="res/Title">title</a></li>
