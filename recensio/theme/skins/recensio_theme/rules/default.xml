@@ -48,7 +48,10 @@
     <!-- transfer the link on the logo -->
     <prepend content="//*[@id='portal-logo']/attribute::href" 
             theme="//*[@id='logo']" />
-            
+
+    <replace content="//div[@id='logo-slogan']/*" 
+             theme="//div[@id='logo']/span[@class='logo-text']/*" />
+
     <!-- transfer the content views for editing -->
     <prepend css:content="div#edit-bar"
              css:theme="div#mainContent"  />
