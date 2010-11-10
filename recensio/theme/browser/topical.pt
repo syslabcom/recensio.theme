@@ -189,7 +189,7 @@ class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu
                                        alt result_type;
                                        title result_type;" 
                        i18n:attributes="alt; title;" />
-                  <tal:block condition="result/listAuthors"><span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><a href="seach" tal:attributes="href string:$portal_url/search?authors:list=$author"><tal:block replace="author" /></a><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span></tal:block>: 
+                  <tal:block condition="result/listAuthors"><span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><a href="seach" tal:attributes="href string:$portal_url/search?authors:list=$author"><tal:block replace="author" /></a><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:</tal:block> 
                    <a
                      href="#" 
                      tal:attributes="href url;
