@@ -65,7 +65,7 @@
 <metal:main fill-slot="main"
     tal:define="results view/getResults;
                 Batch python:modules['Products.CMFPlone'].Batch;
-                b_size python:30; b_size request/b_size | b_size;
+                b_size python:10; b_size request/b_size | b_size;
                 b_start python:0;b_start request/b_start | b_start;
                 desc_length site_properties/search_results_description_length;
                 desc_ellipsis site_properties/ellipsis;
@@ -177,13 +177,19 @@ class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu
             <tal:results repeat="result batch">
             <tal:entry define="result_url result/getURL;
                                result_type result/portal_type;
-                               is_recension python:'Review' in result_type;
+                               is_recension python:result_type.startswith('Review');
+                               is_presentation python:result_type.startswith('Presentation');
                                item_icon python:plone_view.getIcon(result);
                                url python:result_url+'/view' if result_type in use_view_action else result_url+'/';">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
-                  <img tal:replace="structure item_icon/html_tag" />
-                  <span class="result-type" tal:attributes="class string:result-type" tal:content="result_type" i18n:translate="" /><tal:block condition="result/listAuthors"> - <span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><a href="seach" tal:attributes="href string:$portal_url/search?authors:list=$author"><tal:block replace="author" /></a><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span></tal:block>: 
+                  <img tal:attributes="src item_icon/url;
+                                       width item_icon/width;
+                                       height item_icon/height;
+                                       alt result_type;
+                                       title result_type;" 
+                       i18n:attributes="alt; title;" />
+                  <tal:block condition="result/listAuthors"><span class="authors" tal:attributes="class string:authors"><span class="author" tal:attributes="class string:author" tal:repeat="author result/listAuthors"><a href="seach" tal:attributes="href string:$portal_url/search?authors:list=$author"><tal:block replace="author" /></a><tal:c condition="not: repeat/author/end">, </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span></tal:block>: 
                    <a
                      href="#" 
                      tal:attributes="href url;
@@ -191,29 +197,15 @@ class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu
                      tal:content="result/pretty_title_or_id" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
                   <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
                   <span class="review-author" tal:attributes="class string:review-author" tal:condition="is_recension" i18n:translate="reviewed_by">(reviewed by <tal:block tal:content="result/getReviewAuthorFirstname" i18n:name="review_author_firstname" /> <tal:block tal:content="result/getReviewAuthorLastname" i18n:name="review_author_lastname" />)</span>
+                  <span class="review-author" tal:attributes="class string:review-author" tal:condition="is_presentation" i18n:translate="presented_by">(presented by <tal:block tal:content="result/getReviewAuthorFirstname" i18n:name="review_author_firstname" /> <tal:block tal:content="result/getReviewAuthorLastname" i18n:name="review_author_lastname" />)</span>
                 </dt>
             
                 <dd>
 
                 <span class="documentByLine"
                       >
-                    <span class="documentAuthor"
-                        i18n:translate="label_by_author">
-                    by
-                        <tal:block tal:condition="result/Creator"
-                            tal:define="author python:context.portal_membership.getMemberInfo(result.Creator)">
-                          <a href="#"
-                             tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${result/Creator}"
-                             tal:content="python:author and author['fullname'] or result.Creator"
-                             tal:omit-tag="not:result/Creator"
-                             i18n:name="author">
-                            Bob Dobalina
-                          </a>
-                        </tal:block>  
-                    </span>
 
                     <span class="documentModified">
-                      &mdash;
                         <span i18n:translate="box_last_modified">
                         last modified
                         </span>
