@@ -73,6 +73,14 @@ ul {
     margin-top:31px;
     
 }
+
+#logo {
+    font-family:georgia; 
+    font-size:13.2px; 
+    color:#919292; 
+    padding-left:3px; 
+    float:left;
+}
 #language {
     margin-top:60px;
     font-size:inherit;

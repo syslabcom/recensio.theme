@@ -819,3 +819,9 @@ top /*\**/:-11px\9
    background: url(++resource++recensio.theme.images/navtab_current_left.png) no-repeat;
    color: #000;
 }
+
+/**************styles to hide the profile pic*****************/
+
+.portraitPhoto {
+    display:none;
+}
