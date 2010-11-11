@@ -25,9 +25,9 @@ class PublicationsView(BrowserView):
             else:
                 logourl = self.context.portal_url()+'/empty_publication.jpg'    
             defob = getattr(pubob, pubob.getDefaultPage()).getTranslation(currlang)
-            title = defob.Title() != '' and defob.Title() \
+            title = defob and defob.Title() != '' and defob.Title() \
                     or pubob.Title()
-            desc = defob.Description()
+            desc = defob and defob.Description() or pubob.Description()
             morelink = pubob.absolute_url()
             publist.append(dict(ob=pubob, title=title, desc=desc, logo=logourl, link=morelink))
         return publist
