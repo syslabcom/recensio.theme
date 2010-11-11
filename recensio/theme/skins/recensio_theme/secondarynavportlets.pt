@@ -32,6 +32,15 @@
            i18n:translate="label_secondary_nav_user_guidelines">Benutzerrichtlinien</a>
       </li>
       <li
+         tal:define="is_current python:context.getId().startswith('zitierhinweise')"
+         tal:attributes="id python:is_current and 'current' or ''"
+         >
+        <a 
+           tal:attributes="class python:is_current and 'active' or ''"
+           href="zitierhinweise"
+           i18n:translate="label_secondary_nav_zitierhinweise">Zitierhinweise</a>
+      </li>
+      <li
          tal:define="is_current python:context.getId().startswith('copyright')"
          tal:attributes="id python:is_current and 'current' or ''"
          >
