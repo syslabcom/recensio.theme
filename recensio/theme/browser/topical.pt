@@ -183,9 +183,8 @@ class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu
                                url python:result_url+'/view' if result_type in use_view_action else result_url+'/';">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
-                  <img tal:attributes="src item_icon/url;
-                                       width item_icon/width;
-                                       height item_icon/height;
+                  <img width="32" height="32"
+                       tal:attributes="src item_icon/url;
                                        alt result_type;
                                        title result_type;" 
                        i18n:attributes="alt; title;" />

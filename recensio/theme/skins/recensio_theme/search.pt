@@ -166,9 +166,8 @@
                                url python:url if searchterm is None else '%s?searchterm=%s' % (url, searchterm);">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
-                  <img tal:attributes="src item_icon/url;
-                                       width item_icon/width;
-                                       height item_icon/height;
+                  <img width="32" height="32"
+                       tal:attributes="src item_icon/url;
                                        alt result_type;
                                        title result_type;" 
                        i18n:attributes="alt; title;" />
