@@ -23,8 +23,11 @@ class PublicationsView(BrowserView):
             if 'logo' in pubob.objectIds():
                 logourl = pub.getURL()+'/logo/image_thumb'
             else:
-                logourl = self.context.portal_url()+'/empty_publication.jpg'    
-            defob = getattr(pubob, pubob.getDefaultPage()).getTranslation(currlang)
+                logourl = self.context.portal_url()+'/empty_publication.jpg'
+            if pubob.getDefaultPage():
+                defob = getattr(pubob, pubob.getDefaultPage()).getTranslation(currlang)
+            else:
+                defob = pubob
             title = defob and defob.Title() != '' and defob.Title() \
                     or pubob.Title()
             desc = defob and defob.Description() or pubob.Description()
