@@ -39,6 +39,7 @@ class GeneratePdfRecension(BrowserView):
         BrowserView.__init__(self, context, request)
 
     def __call__(self):
+        cover = new = None
         try:
             cover = self.genPdfRecension()
             pdf = self.context.get_review_pdf()
@@ -87,6 +88,10 @@ class GeneratePdfRecension(BrowserView):
         pwidth,pheight = A4
 
         language = self.request.get('language', '')
+        # I want the syntax for translation look as similar as the real thing
+        # But not similar enough for freaking out the translation string
+        # extractors
+        _X = lambda x: translate(x, target_language = language)
         # register the font (unicode-aware)
         arial =  os.path.abspath(__file__ + '/../../data/arial.ttf')
         pdfmetrics.registerFont( TTFont('Arial', arial) )
@@ -105,13 +110,22 @@ class GeneratePdfRecension(BrowserView):
         style = ParagraphStyle('citation style', fontName = 'Arial', \
             fontSize = 10, textColor = grey)
         
-        P = Paragraph(self.context.get_citation_string(language), style)
+        P = Paragraph(_(self.context.get_citation_string()), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
 
-        copyright_txt = cover.beginText(6.20*cm, pheight-22.5*cm)
-        copyright_txt.textLines(COPYRIGHT)
-        cover.drawText(copyright_txt)
+        if hasattr(self.context, 'getFirstPublicationData'):
+            msgs = ['First published: ' + x for x in self.context.getFirstPublicationData()]
+            offset = 0
+            for msg in msgs:
+                P2 = Paragraph(msg, style)
+                realwidth, realheight = P2.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
+                P2.drawOn(cover, 6.20*cm, pheight-8.5*cm-realheight - offset)
+                offset = realheight
+
+        P3 = Paragraph(_X(self.context.getLicense()), style)
+        realwidth, realheight = P3.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
+        P3.drawOn(cover, 6.20*cm, pheight-22.5*cm-realheight)
 
         cover.showPage()
         cover.save()
