@@ -15,7 +15,6 @@
   <javascript authenticated="False" cacheable="True" compression="safe"
               conditionalcomment="" cookable="True" enabled="on" expression=""
               id="++resource++recensio.theme.behaviour/jquery.nestedAccordion.js" inline="False"/>
-
   <javascript authenticated="False" cacheable="True" compression="safe"
               conditionalcomment="" cookable="True" enabled="on" expression=""
               id="++resource++recensio.theme.behaviour/jquery.easing-1.3.pack.js" inline="False"/>
@@ -35,4 +34,7 @@
               conditionalcomment="" cookable="True" enabled="True"
               expression=""
               id="sarissa.js" inline="False"/>
+  <javascript authenticated="False" cacheable="True" compression="safe"
+              conditionalcomment="" cookable="True" enabled="False" expression=""
+              id="popupforms.js" inline="False"/>
 </object>
