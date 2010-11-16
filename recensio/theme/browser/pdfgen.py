@@ -93,21 +93,21 @@ class GeneratePdfRecension(BrowserView):
         # extractors
         _X = lambda x: translate(x, target_language = language)
         # register the font (unicode-aware)
-        arial =  os.path.abspath(__file__ + '/../../data/arial.ttf')
-        pdfmetrics.registerFont( TTFont('Arial', arial) )
+        font =  os.path.abspath(__file__ + '/../../data/bitstreamcyberbit-roman.ttf')
+        pdfmetrics.registerFont( TTFont('BitstreamCyberbit-Roman', font) )
 
         self._drawImage('logo2_fuer-Deckblatt.jpg', 0, pheight - 4.21*cm,
             28.28*cm, 4.21*cm)
         self._drawImage('logo_icon_watermark.jpg', pwidth/2.0 - 5*13.76*cm,
             pheight/2.5 * 13.76*cm, 13.76*cm, 13.76*cm, preserveAspectRatio=True,
             anchor='c')
-        cover.setFont('Arial', 10)
+        cover.setFont('BitstreamCyberbit-Roman', 10)
         cover.setFillColor(grey)
         citation = translate(_(u'label_citation_style', default=u'citation style'), target_language=language)
         cover.drawString(2.50*cm, pheight-5.5*cm, citation)
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
-        style = ParagraphStyle('citation style', fontName = 'Arial', \
+        style = ParagraphStyle('citation style', fontName = 'BitstreamCyberbit-Roman', \
             fontSize = 10, textColor = grey)
         
         P = Paragraph(_(self.context.get_citation_string()), style)
