@@ -265,6 +265,17 @@ margin-left:10px;
 
 /* end review images */
 
+/* review coverpicture */
+img#coverpicture {
+   float: left;
+   margin: 0em 1.5em 1.5em 0em;
+}
+
+/* review html */
+div#reviewhtml {
+   margin-bottom: 2em;
+}
+
 /* @group Messages */
 
 .message {
