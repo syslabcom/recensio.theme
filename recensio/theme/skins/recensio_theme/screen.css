@@ -1830,3 +1830,20 @@ top:3px;
     color: Red;
     text-decoration: line-through;
 }
+
+#oaisuggestions {
+    background-color: white;
+}
+
+.oaisuggestion {
+    background-color: white;
+    float:left;
+}
+
+.oaisuggestion table {
+    width: 300px;
+}
+
+.oaisuggestion .missing {
+    color: red;
+}
