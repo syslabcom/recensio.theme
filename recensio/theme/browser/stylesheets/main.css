@@ -1,3 +1,24 @@
+/* required sections from public.css */
+.hiddenStructure {
+   background:none repeat scroll 0 0 transparent;
+   border:medium none;
+   display:block;
+   height:0.1em;
+   margin:-0.1em 0 0 -0.1em;
+   overflow:hidden;
+   padding:0;
+   width:1px;
+}
+
+/* global nav */
+ul#portal-globalnav li:first-child {
+   border-left: none !important;
+}
+
+ul#portal-globalnav li:last-child {
+   border-right: none !important;
+}
+
 /* gerken: styles for the newsletter input fields */
 body.template-newsletter-settings textarea {
     width: 570px;
@@ -410,42 +431,52 @@ width:175px;
 
 /* ---------------------------- */
 
-li.inline_listing {
-    display: inline;
+ul.authors li, li.inline_listing {
+   display: inline;
+}
+
+ul.authors ul {
+   padding: 0;
+   margin: 0;
 }
 
 /*****styles for authorsearch*****/
-ul#authors-select-all {
-    background:#fff none repeat scroll 0 0;
-    padding:0px;
-    margin-left:-20px;
-    /*border:1px solid #CDCDCD;*/
+div.authorsearch {
+   border-bottom: 1px dashed #777;
 }
 
-#authors-select-all li {
-    clear:right;
-    float:left;
-    margin:5px 0;
-    padding:5px 0 0;
-    width:130%;
+div#authorsearch-query {
+   float:right;
+   margin: 0 1em;
 }
 
-#authors-select-all  span {
-    padding-left:22px;
+div#authorsearch-query input.submit {
+   font-size: 1em;
+}
+
+div#authorsearch-query input.text {
+   background-color:#FFFFFF;
+   border:1px solid #AAAAAA;
+   font-size:1.0em;
+   vertical-align:bottom;
+   line-height:normal;
+   width:160px;
+   color:#777;
 }
 
 #authors-select-all #all-presentations {
-    background: transparent url(++resource++recensio.theme.images/InternetResource_g.png) no-repeat scroll 0 3px;
-    height: 20px;
+   list-style-image: url(++resource++recensio.theme.images/InternetResource_g.png);
+   line-height: 2em;
 }
 
 #authors-select-all #all-reviews {
-    background: transparent url(++resource++recensio.theme.images/Aufsaetze_g.png) no-repeat scroll 0 3px;
-    height: 20px;
+   list-style-image: url(++resource++recensio.theme.images/Aufsaetze_g.png);
+   line-height: 2em;
 }
+
 #authors-select-all #all-comments {
-    background: transparent url(++resource++recensio.theme.images/Monograph_g.png) no-repeat scroll 0 3px;
-    height: 20px;
+   list-style-image: url(++resource++recensio.theme.images/Monograph_g.png);
+   line-height: 2em;
 }
 
 .authors {
@@ -460,8 +491,9 @@ ul#authors-select-all {
 
 ul.authors li.author {
     float:left;
-    width:49%;
+    width:32%;
 }
+
 /********************Styles for ul Zeitschriften***************/
 
 .template-folder_listing #content-core dt {
@@ -565,7 +597,7 @@ span.headlinebutton {
 
 .js #side .accordion {display:none}
 
-.accordion {margin:0; padding:0 10px}
+.accordion {margin:0; padding:0 0 0 10px}
 
 .accordion li {list-style-type:none}
 
@@ -613,19 +645,28 @@ padding-top:5px;
 
 .active{font-weight:700; text-decoration:none}
 
-/*********Styles for table metadata****************/
+/*********Styles for metadata****************/
 
-ul.accordion {
-    text-align:left;
+
+ul#metadata_accordion ul {
+   padding-left: 0;
 }
 
-ul.accordion table {
-    border:1px solid #EFEFEF;
-    border-collapse:collapse;
-    }
-    
-ul.accordion table th, td {
-    border:1px solid #EFEFEF;
+ul#metadata_accordion dl {
+   margin-top: 1em;
+   border:1px solid #EFEFEF;
+   padding: 9px;
+   font:12px/18px Georgia,"Times New Roman",Times,serif;
+}
+
+dl#metadata dt {
+   font-size:1.2em;
+   font-weight:bold;
+}
+
+
+dl#metadata dd {
+    margin-left: 1em;
 }
 
 /**************************Icons for bold text links****************************/

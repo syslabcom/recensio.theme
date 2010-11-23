@@ -1,147 +1,130 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>recensio.net</title>
     <base></base>
+  </head>
+  <body>
+    
+	<!-- <div style="float:left;"> -->
+	<!--   <img src="imgs/social_facebook.png" />&nbsp;<img src="imgs/social_twitter.png" /> -->
+    <!-- </div>            -->
 
-</head>
-<body>
-    <div id="portal-personaltools-wrapper"></div>
     <div id="container">
-        
-    <div id="header">
-        <div class="header_rightside">
-        <p id="log_info">
-            
-        <br /><br /><br />
-        
-        </p>
-        <p>
-            <span id="searchbox" />
-        </p>
-        <p id="language">
-            <span>
-            Please choose your language:&nbsp;&nbsp;
-            <a href="index.php"><img src="german.gif" alt="deutsche Flagge" /></a>&nbsp;
-            <a href="index_fr.php"><img src="french.gif" alt="französische Flagge" /></a>&nbsp;
-            <a href="index_en.php"><img src="english.gif" alt="englische Flagge" /></a>&nbsp;
-            </span>
-        </p>
-        </div>
-		<div id="logo">
-        	<a href="index.php" id="logo"><img src="logo_recensio.png" alt="Recensio Logo"/></a>
-			<span class="logo-text">Rezensionsplattform für die europäische Geschichtswissenschaft</span>
+      
+	  <div id="header">
+	    <div class="float_right">
+		  
+		  
+		  <script type="text/javascript">
+		    <!--
+		       var currentTime = new Date();
+		       var month = currentTime.getMonth();
+		       var day = currentTime.getDate();
+		       var weekday = currentTime.getDay();
+		       var year = currentTime.getFullYear();
+		       var dayname= new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
+		       var monthname= new Array("Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","December");
+		       document.write(dayname[weekday] +", " + day + ". " + monthname[month] + " " + year);
+		       //-->
+		  </script>
+		  <br /><br />
+		  <!-- TODO: eingeloggt als  -->
+          <a href="#" id="user-name">Lilian Landes</a>
+          | 
+          <a href="#" class="einstellungen">Einstellungen <img src="imgs/arrow.png" alt="" /></a>
+          | 
+          <a href="#" id="logout">ausloggen</a>
+		  <div id="suche"><h2><label for="search"></label></h2><input type="text" id="search" value="recensio.net durchsuchen" /> <input type="button" value="suchen" /><br /><br /></div>
+		  <p id="language">
+		    Please choose your language:&nbsp;&nbsp;
+		    <a href="#" class="language-de">Deutsch</a>&nbsp;|&nbsp;
+		    <a href="#" class="language-fr">Français</a>&nbsp;|&nbsp;
+		    <a href="#" class="language-en">English</a>&nbsp;
+		  </p>
+	    </div>
+	    <a href="index.html"><img src="imgs/logo_recensio.png" alt="Recensio Logo" id="logo"/></a>
+	  </div>
+	  
+	  <div id="navigation">
+	    <img src="imgs/navigation/navi_bg_left.png" alt="Navigationshintergrund Start" />
+	    <ul>
+		  <li class="navFirst_element"><a href="#">Rezensionen</a></li>
+		  <li><a href="#">Präsentationen</a></li>
+		  <li><a href="#">Themenbrwosing</a></li>
+		  <li><a href="#">Autoren</a></li>
+		  <li><a href="#">mitmachen</a></li>
+		  <li class="navLast_element"><a href="#">Presse</a></li>
+	    </ul>
+	    <img src="imgs/navigation/navi_bg_right.png" alt="Navigationshintergrund Ende" />
+	  </div>
+	  
+	  <div class="clear"></div>
 
-		</div>
-    </div>
-    <div class="clear"></div>
-    <div id="navigation">
-        <img src="navi_bg_left.png" alt="Navigationshintergrund Start" />
-        <ul>
-        <li class="navFirst_element"><a href="#">Rezensionen</a></li>
-        <li><a href="#">Präsentationen</a></li>
-        <li><a href="#">Themen &bull; Epochen</a></li>
-        <li><a href="#">Autoren</a></li>
-        <li class="navLast_element"><a href="#">mitmachen bei recensio.net</a></li>
-        </ul>
-        <img src="navi_bg_right.png" alt="Navigationshintergrund Ende" />
-    </div>
-    
-    <div class="clear"></div>
+	  <div id="loc">
+	    Sie sind hier: Startseite > Willkommen
+	  </div>
+	  
+	  <object width="900" height="150" id="page_image">
+        <param name="movie" value="main.swf" />
+        <embed src="main.swf" width="900" height="150">
+        </embed>
+      </object>
 
-    <div id="loc">
-        <span id='portal-breadcrumbs'> Sie sind hier: Startseite > Willkommen</span>
-    </div>
-    
-    <img src="main_image.png" alt="kommentieren, recherchieren, rezensieren, präsentieren" id="page_image" /> 
-    
-    <div id="mainContent">
+      <div id="mainContent">
         <dl class="portalMessage info">
-            <dt>Information</dt>
-            <dd>Example Notification</dd>
+          <dt>Information</dt>
+          <dd>Example Notification</dd>
         </dl>
         <div id="column3">
-            <span><!-- portlets go here --></span>
-            <div class="box">
-                <!--p><i>recensio.net steht unter der Leitung von Prof. Dr. Gudrun Gersmann, Direktorin des Deutschen Historischen Instituts Paris</i></p-->	
-            </div>
+          <span><!-- portlets go here --></span>
+          <div class="box">
+            <!--p><i>recensio.net steht unter der Leitung von Prof. Dr. Gudrun Gersmann, Direktorin des Deutschen Historischen Instituts Paris</i></p-->	
+          </div>
         </div>      
         
         <div id="content">
-            <!-- start content here -->
+          <!-- start content here -->
         </div>
 
         <!--div id="viewlet-below-content">
         </div-->
         
         <div class="clear"></div>
-    </div>
-    
-    <div id="footer">
-       <img src="footer_bg_top.png" alt="grafisches Element" class='top'/>
-       <div class="column_footer">
-            <h2><a href="#">Rezensionen</a></h2>
-            <ul>
-            <li><a href="#">Zeitschrift 1</a></li>
-            <li><a href="#">Zeitschrift 2</a></li>
-            <li><a href="#">Zeitschrift 3</a></li>
-            </ul>   
-        </div>
-        <div class="column_footer">
-            <h2><a href="#">Präsentationen</a></h2>
-            <ul>
-            <li><a href="#">Monographien</li>
-            <li><a href="#">Aufsätze</li>
-            <li><a href="#">Internetressourcen</li>
-            </ul>   
-        </div>
-        <div class="column_footer">
-            <h2><a href="/themen-epochen-regionen">Themenbrowsing</a></h2>
-            <ul>
-            <li><a href="/themen-epochen-regionen?fq:list=ddcTime%3A%220e24ed42bf9f792b38ea9370de206d15%22&facet.field:list=ddcPlace&facet.field:list=ddcTime&facet.field:list=ddcSubject&doseq:boolean=True">Alte Geschichte</a></li>
-            <li><a href="/themen-epochen-regionen?fq:list=ddcTime%3A%2252e0cac224c4233f181d8e11002f9e8e%22&facet.field:list=ddcPlace&facet.field:list=ddcTime&facet.field:list=ddcSubject&doseq:boolean=True">Mittelalter</a></li>
-            <li><a href="/themen-epochen-regionen?fq:list=ddcTime%3A%22228d07b98f105c1526a5a8d0bf469fc3%22&facet.field:list=ddcPlace&facet.field:list=ddcTime&facet.field:list=ddcSubject&doseq:boolean=True">Neuzeit bis 1900</a></li>
-            <li><a href="/themen-epochen-regionen?fq:list=ddcTime%3A%223bd69464c24b14f191b4f2f46ec5c6c3%22&facet.field:list=ddcPlace&facet.field:list=ddcTime&facet.field:list=ddcSubject&doseq:boolean=True">20. Jahrhundert</a></li>
-            <li><a href="/themen-epochen-regionen?fq:list=ddcTime%3A%226df99d99b114e36bb060448348da6f22%22&facet.field:list=ddcPlace&facet.field:list=ddcTime&facet.field:list=ddcSubject&doseq:boolean=True">21. Jahrhundert (2000-2019)</a></li>
-            </ul>
-        </div>
-        <div class="column_footer">
-            <h2><a href="/konzept/mitmachen-bei-recensio.net">mitmachen bei recensio.net</a></h2>
-            <!--ul>
-            <li><a href="#">als Redaktion</a></li>
-            <li><a href="#">als Autor</a></li>
-            <li><a href="#">als Nutzer</a></li>
-            </ul-->   
-        </div>
-
-        <div class="column_footer">
-            <h2><a href="/RSS-feeds">RSS feeds</a></h2>
-            <ul>
-            <li><a href="/RSS-feeds/new_reviews/RSS"><img src="/++resource++recensio.theme.images/icon_rss_feed.gif" alt="RSS icon" /></a>
-              <a href="/RSS-feeds/new_reviews/RSS">Neue Rezensionen</a></li>
-            <li><a href="/RSS-feeds/new_presentations/RSS"><img src="/++resource++recensio.theme.images/icon_rss_feed.gif" alt="RSS icon" /></a>
-              <a href="/RSS-feeds/new_presentations/RSS">Neue Präsentationen</a></li>
-            <li><a href="/RSS-feeds/new_discussions/RSS"><img src="/++resource++recensio.theme.images/icon_rss_feed.gif" alt="RSS icon" /></a>
-              <a href="/RSS-feeds/new_discussions/RSS">Neue Diskussionen</a></li>
-            </ul>   
-        </div>
-
-        <div class="clear"></div>
-        
-        <img src="footer_bg_bottom.png" alt="grafisches Element" class='bottom' /> 
-    </div>
-    <div id="notes">
-		<div id="column_wide">
-				    <span>recensio.net ist ein von der Deutschen Forschungsgemeinschaft gefördertes Gemeinschaftsprojekt folgender Instututionen:</span><br>
-				    <a href="http://www.bsb-muenchen.de/"><img alt="Logo der Bayerischen Staatsbibliothek" src="bsb_logo.png" style="width: 175px; height: 55px;"></a>
-				    <a href="http://www.dhi-paris.fr/"><img alt="Logo des deutschen historischen Instituts Paris" src="dhip_logo.png" style="width: 85px; height: 50px;"></a>
-				    <a href="http://www.ieg-mainz.de/likecms/index.php"><img alt="Logo des Institus für europäische Geschichte" src="ieg_logo.png" style="width: 175px; height: 65px;"></a>
-			    </div>
-        gefördert durch die <a href="http://www.dfg.de"><img src="dfg_logo.png" alt="Logo der deutschen Forschungsgemeinschaft" class="logo" /></a> <a href="konzept/ansprechpartner">Impressum</a> 
-    </div>
-    </div>
-    
-    <div id="portal-siteactions"> Siteactions </div>            
+      </div>
+      
+      <!-- <div id="postit"> -->
+      <!--   <img src="imgs/postit_sm.png" width="148" height="102" border="0" alt="Newsletter / RSS-Feed" usemap="#postit" /> -->
+      <!--   <map name="postit"> -->
+      <!--     <area shape="poly" coords="13,23,114,11,117,37,16,55" -->
+      <!--           href="#" alt="Newsletter" title="Newsletter" /> -->
+      <!--     <area shape="poly" coords="20,91,122,70,113,39,11,58" -->
+      <!--           href="#" alt="RSS-Feed" title="RSS-Feed" /> -->
+      <!--   </map> -->
+      <!-- </div> -->
+	  
+	  
+	  <div id="footer">
+	    
+	    <div class="column_footer">
+	      
+		  <div>
+		    <span><a href="http://www.dfg.de"><img src="imgs/logos/dfg_logo.png" alt="Logo der deutschen Forschungsgemeinschaft" class="logo" /></a>&nbsp; recensio.net ist ein von der Deutschen Forschungsgemeinschaft gefördertes Gemeinschaftsprojekt folgender Instututionen</span><br />
+		    <a href="http://www.bsb-muenchen.de/"><img src="imgs/logos/bsb_logo.gif" alt="Logo der Bayerischen Staatsbibliothek" /></a>
+		    <a href="http://www.dhi-paris.fr/"><img src="imgs/logos/dhip_logo.png" alt="Logo des deutschen historischen Instituts Paris" /></a>
+		    <a href="http://www.ieg-mainz.de/likecms/index.php"><img src="imgs/logos/ieg_logo.gif" alt="Logo des Institus für europäische Geschichte" /></a>
+	      </div>
+	      
+	      <div id="notes">
+		    <a href="#">Impressum</a>
+	      </div>
+	      
+	    </div>
+		
+	  </div>
+	</div>
+  </div>
+  
 </body>
 </html>

@@ -6,9 +6,43 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="recensio">
 
+  <head>    
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+  </head>
   <body>
+
     <metal:main fill-slot="main"
                 tal:define="ploneview python:context.restrictedTraverse('@@plone')">
+      <div id="authorsearch-query">
+        <form class="authorsearchform">
+          <input type="text" name="authors"
+                 class="text"
+                 tal:attributes="value request/authors|nothing"/>
+          <input type="submit" value="Search" 
+                 class="submit"
+                 i18n:attributes="value" />
+        </form>
+
+        <ul id="authors-select-all">
+          <li id="all-presentations">
+            <span i18n:translate="label_all_presentations"
+                  >All presentations of an author</span>
+          </li>
+          <li id="all-reviews">
+            <span i18n:translate="label_all_reviews"
+                  >All reviews of an author</span>
+          </li>
+          <li id="all-comments">
+            <span i18n:translate="label_all_comments"
+                  >All comments of an author</span>
+          </li>
+          <div class="visualClear"></div>
+        </ul>
+      </div>
+
       <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
                        b_size python:30; b_size request/b_size | b_size;
                        b_start python:0; b_start request/b_start | b_start;
@@ -30,19 +64,13 @@
           einem Autor publizierten Texte. Der Klick auf ein spezielles
           Icon zeigt Ihnen gezielt die Treffer eines Genres an.
         </p>
-        <form class="authorsearchform">
-          <input type="text" name="authors" 
-                 tal:attributes="value request/authors|nothing"/>
-          <input type="submit" i18n:attributes="value" value="Search" />
-        </form>
+        
 		
-		
+
         <div id="no_authors" tal:condition="not: view/authors" 
              i18n:translate="label_no_authors_found">
           Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
         </div>
-
-		
 
         <ul class="authors" tal:condition="view/authors">
           <li class="author" tal:repeat="author batch">
@@ -97,24 +125,5 @@
 
     </metal:main>
 
-    <metal:rightcolumn fill-slot="column_two_slot">
-      <div id="portal-column-two" class="cell width-1:4 position-3:4 portlet">
-        <ul id="authors-select-all">
-          <li id="all-presentations">
-            <span i18n:translate="label_all_presentations"
-                  >All presentations of an author</span>
-          </li>
-          <li id="all-reviews">
-            <span i18n:translate="label_all_reviews"
-                  >All reviews of an author</span>
-          </li>
-          <li id="all-comments">
-            <span i18n:translate="label_all_comments"
-                  >All comments of an author</span>
-          </li>
-          <div class="visualClear"></div>
-        </ul>
-      </div>
-    </metal:rightcolumn>
   </body>
 </html>
