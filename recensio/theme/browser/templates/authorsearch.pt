@@ -6,88 +6,115 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="recensio">
 
-<body>
+  <body>
     <metal:main fill-slot="main"
-        tal:define="ploneview python:context.restrictedTraverse('@@plone')">
-        <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
-                         b_size python:30; b_size request/b_size | b_size;
-                         b_start python:0; b_start request/b_start | b_start;
-                         batch python:Batch(view.authors, b_size, int(b_start), orphan=1);
-                         portal_url context/portal_url;"
-             class="authorsearch">
-            <h1 i18n:translate="">Autorensuche</h1>
-            <p class="description" i18n:translate="description_authorsearch_1">
-            Sie finden hier die Autorinnen und Autoren von auf recensio.net publizierten Rezensionen, Präsentationen
-            (Aufsätze, Monographien, Internetressourcen) und Kommentaren sowie die Autoren von hier rezensierten Werken.
-             Jedem der drei Genres ist ein Icon zugeordnet, das vor dem Namen des jeweiligen Autors deutlich macht, welche
-             Textart(en) dieser verfasst hat.
-            </p>
-            <p class="description" i18n:translate="description_authorsearch_2">
-            Mit einem Klick auf den Autornamen erhalten Sie alle von einem Autor publizierten Texte. Der Klick auf ein
-             spezielles Icon zeigt Ihnen gezielt die Treffer eines Genres an.
-
-            </p>
-            <form class="authorsearchform">
-                <input type="text" name="authors" tal:attributes="value request/authors|nothing"/>
-                <input type="submit" i18n:attributes="value" value="Search" />
-            </form>
-			
-			
-            <div id="no_authors" tal:condition="not: view/authors" i18n:translate="label_no_authors_found">
-                Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
-            </div>
-
-			
-
-            <ul class="authors" tal:condition="view/authors">
-                <li class="author" tal:repeat="author batch">
-                    <ul tal:condition="author">
-                        <li class="inline_listing">
-                            <a href="." i18n:attributes="title label_all_presentations_author" title="All presentations of this author" tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authors:list=${author}">
-                                <img i18n:attributes="alt label_all_presentations_author" alt="All presentations of this author" src="++resource++recensio.theme.images/InternetResource.png"/>
-                            </a>
-                        </li>
-                        <li class="inline_listing">
-                            <a href="." i18n:attributes="title label_all_reviews_author" title="All reviews of this author" tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authors:list=${author}">
-                                <img i18n:attributes="alt label_all_reviews_author" alt="All reviews of this author" src="++resource++recensio.theme.images/Aufsaetze.png" />
-                            </a>
-                        </li>
-                        <li class="inline_listing">
-                            <a href="." i18n:attributes="title label_all_comments_author" title="All comments of this author" tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item&amp;authors:list=${author}">
-                                <img i18n:attributes="alt label_all_comments_author" alt="All comments of this author" src="++resource++recensio.theme.images/Monograph.png" />
-                            </a>
-                        </li>
-                        <li class="inline_listing">
-                            <a href="." i18n:attributes="title label_all_items_author" title="All items of this author" tal:attributes="href string:$portal_url/search?authors:list=${author}" tal:content="author">Author</a>
-                        </li>
-                    </ul>
-                </li>
-				<div class="visualClear"></div>
-            </ul>
-
-			
-			
-            <div metal:use-macro="context/batch_macros/macros/navigation" />
-
+                tal:define="ploneview python:context.restrictedTraverse('@@plone')">
+      <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                       b_size python:30; b_size request/b_size | b_size;
+                       b_start python:0; b_start request/b_start | b_start;
+                       batch python:Batch(view.authors, b_size, int(b_start), orphan=1);
+                       portal_url context/portal_url;"
+           class="authorsearch">
+        <h1 i18n:translate="">Autorensuche</h1>
+        <p class="description" i18n:translate="description_authorsearch_1">
+          Sie finden hier die Autorinnen und Autoren von auf
+          recensio.net publizierten Rezensionen, Präsentationen
+          (Aufsätze, Monographien, Internetressourcen) und Kommentaren
+          sowie die Autoren von hier rezensierten Werken.  Jedem der
+          drei Genres ist ein Icon zugeordnet, das vor dem Namen des
+          jeweiligen Autors deutlich macht, welche Textart(en) dieser
+          verfasst hat.
+        </p>
+        <p class="description" i18n:translate="description_authorsearch_2">
+          Mit einem Klick auf den Autornamen erhalten Sie alle von
+          einem Autor publizierten Texte. Der Klick auf ein spezielles
+          Icon zeigt Ihnen gezielt die Treffer eines Genres an.
+        </p>
+        <form class="authorsearchform">
+          <input type="text" name="authors" 
+                 tal:attributes="value request/authors|nothing"/>
+          <input type="submit" i18n:attributes="value" value="Search" />
+        </form>
+		
+		
+        <div id="no_authors" tal:condition="not: view/authors" 
+             i18n:translate="label_no_authors_found">
+          Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
         </div>
+
+		
+
+        <ul class="authors" tal:condition="view/authors">
+          <li class="author" tal:repeat="author batch">
+            <ul tal:condition="author">
+              <li class="inline_listing">
+                <a href="." 
+                   i18n:attributes="title label_all_presentations_author" 
+                   title="All presentations of this author" 
+                   tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authors:list=${author}">
+                  <img i18n:attributes="alt label_all_presentations_author" 
+                       alt="All presentations of this author" 
+                       src="++resource++recensio.theme.images/InternetResource.png"/>
+                </a>
+              </li>
+              <li class="inline_listing">
+                <ahref="." 
+                   i18n:attributes="title label_all_reviews_author" 
+                   title="All reviews of this author" 
+                   tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authors:list=${author}">
+                  <img i18n:attributes="alt label_all_reviews_author" 
+                       alt="All reviews of this author" 
+                       src="++resource++recensio.theme.images/Aufsaetze.png" />
+                </a>
+              </li>
+              <li class="inline_listing">
+                <a href="." 
+                   i18n:attributes="title label_all_comments_author"
+                   title="All comments of this author"
+                   tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item&amp;authors:list=${author}">
+                  <img i18n:attributes="alt label_all_comments_author"
+                       alt="All comments of this author"
+                       src="++resource++recensio.theme.images/Monograph.png" />
+                </a>
+              </li>
+              <li class="inline_listing">
+                <a href="."
+                   i18n:attributes="title label_all_items_author"
+                   title="All items of this author"
+                   tal:attributes="href string:$portal_url/search?authors:list=${author}"
+                   tal:content="author">Author</a>
+              </li>
+            </ul>
+          </li>
+		  <div class="visualClear"></div>
+        </ul>
+
+		
+		
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+      </div>
 
     </metal:main>
 
     <metal:rightcolumn fill-slot="column_two_slot">
-        <div id="portal-column-two" class="cell width-1:4 position-3:4 portlet">
-            <ul id="authors-select-all">
-                <li id="all-presentations">
-                    <span i18n:translate="label_all_presentations">All presentations of an author</span>
-                </li>
-                <li id="all-reviews">
-                    <span i18n:translate="label_all_reviews">All reviews of an author</span>
-                </li>
-                <li id="all-comments">
-                    <span i18n:translate="label_all_comments">All comments of an author</span>
-                </li>
-                <div class="visualClear"></div>
-            </ul>
-        </div>
+      <div id="portal-column-two" class="cell width-1:4 position-3:4 portlet">
+        <ul id="authors-select-all">
+          <li id="all-presentations">
+            <span i18n:translate="label_all_presentations"
+                  >All presentations of an author</span>
+          </li>
+          <li id="all-reviews">
+            <span i18n:translate="label_all_reviews"
+                  >All reviews of an author</span>
+          </li>
+          <li id="all-comments">
+            <span i18n:translate="label_all_comments"
+                  >All comments of an author</span>
+          </li>
+          <div class="visualClear"></div>
+        </ul>
+      </div>
     </metal:rightcolumn>
-</body>
+  </body>
 </html>
