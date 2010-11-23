@@ -58,7 +58,7 @@
                 </a>
               </li>
               <li class="inline_listing">
-                <ahref="." 
+                <a href="." 
                    i18n:attributes="title label_all_reviews_author" 
                    title="All reviews of this author" 
                    tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authors:list=${author}">
