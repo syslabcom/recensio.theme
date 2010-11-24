@@ -14,7 +14,7 @@
   <prepend theme="/html/body" content="/html/body/@id" />
 
   <!-- portal-personaltools -->
-  <drop css:theme="span#logged_in" 
+  <drop css:theme="p#logged_in"
         if-content="//dt[@id='anon-personalbar']" />
   <replace css:content="a#user-name"
            css:theme="a#user-name" />
@@ -23,10 +23,10 @@
   <replace css:content="li#personaltools-logout a"
            css:theme="a#logout" />
 
-  <drop css:theme="p.login_links"
-        if-content="not(//dt[@id='anon-personalbar'])" />
+  <drop theme="//p[@class='login_links']"
+        if-content="//dl[@id='portal-personaltools']/dt/a[@id='user-name']" />
 
-  <!-- The links in the anon-personalbar don't have ids so we are
+  <!-- the links in the anon-personalbar don't have ids so we are
        using the index of the elements instead -->
   <replace content="//dt[@id='anon-personalbar']/a[1]"
            css:theme="a#login" />
