@@ -442,7 +442,9 @@ ul.authors ul {
 
 /*****styles for authorsearch*****/
 div.authorsearch {
-   border-bottom: 1px dashed #777;
+   border-top: 1px dashed #777;
+   margin-top: 2em;
+   padding: 2em 1em;
 }
 
 div#authorsearch-query {
@@ -480,7 +482,8 @@ div#authorsearch-query input.text {
 }
 
 .authors {
-    padding:0px;
+   padding:0;
+   margin-top:0;
 }
 
 .authors li {

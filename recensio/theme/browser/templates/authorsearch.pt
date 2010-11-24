@@ -43,12 +43,7 @@
         </ul>
       </div>
 
-      <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
-                       b_size python:30; b_size request/b_size | b_size;
-                       b_start python:0; b_start request/b_start | b_start;
-                       batch python:Batch(view.authors, b_size, int(b_start), orphan=1);
-                       portal_url context/portal_url;"
-           class="authorsearch">
+      <div id="authorsearch-description">
         <h1 i18n:translate="">Autorensuche</h1>
         <p class="description" i18n:translate="description_authorsearch_1">
           Sie finden hier die Autorinnen und Autoren von auf
@@ -64,9 +59,14 @@
           einem Autor publizierten Texte. Der Klick auf ein spezielles
           Icon zeigt Ihnen gezielt die Treffer eines Genres an.
         </p>
-        
-		
+      </div>
 
+      <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                       b_size python:30; b_size request/b_size | b_size;
+                       b_start python:0; b_start request/b_start | b_start;
+                       batch python:Batch(view.authors, b_size, int(b_start), orphan=1);
+                       portal_url context/portal_url;"
+           class="authorsearch">
         <div id="no_authors" tal:condition="not: view/authors" 
              i18n:translate="label_no_authors_found">
           Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
