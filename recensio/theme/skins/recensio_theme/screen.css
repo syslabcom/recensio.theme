@@ -217,6 +217,7 @@ color: #000;
 #mainContent { 
    background-color:#fff; 
    padding:25px 10px 20px 20px;
+   margin:170px 0 0 0;
 }
 
 #content, #commenting {
@@ -228,7 +229,6 @@ body.template-authorsearch #content {
 }
 
 #content, #content_impressum,#content_tagung, #content_textseite {
-   margin:170px 0 0 0;
    -moz-border-radius: 9px;
    border-radius: 9px;
 }
