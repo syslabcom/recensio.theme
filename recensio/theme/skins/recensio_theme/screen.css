@@ -224,6 +224,7 @@ color: #000;
    width: 605px;
 }
 
+body.template-browse-topics #content,
 body.template-authorsearch #content {
    width: 860px;
 }

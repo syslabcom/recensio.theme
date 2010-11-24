@@ -511,9 +511,8 @@ ul.authors li.author {
 
 /**************styles for themen-epochen-regionen****************/
 #menu_headlines {
-    border:1px solid #CDCDCD;
-    margin:0 0 10px;
-    padding:0 0 0 10px;
+    /* margin:0 0 10px; */
+    /* padding:0 0 0 10px; */
 }
 
 div#menu_headlines p {
@@ -536,11 +535,23 @@ div#menu_headlines p.used_facet {
 
 div.submenu {
     display:none;
-    position:relative;
+}
+
+.template-browse-topics .searchResults {
+   clear: both;
+   padding-top: 1em;
 }
 
 .template-browse-topics .searchResults dd {
     margin-bottom:0.5em;
+}
+
+.template-browse-topics .searchResults dt {
+   clear:both;
+}
+
+.template-browse-topics .searchResults div.documentByLine {
+   padding-top: 1.5em;
 }
 
 #submenu_ddcPlace {
@@ -879,4 +890,1376 @@ top /*\**/:-11px\9
 
 .portraitPhoto {
     display:none;
+}
+
+
+/* 
+ * Copies from public.css
+ *
+ */
+
+
+
+/* group personaltools */
+
+
+#portal-personaltools {
+    float: right;
+    background: #e3e3e3;
+    position: relative;
+    z-index: 3; /* personaltools should be above #portal-header (with z-index: 2) */
+    top: 0;
+    right: 0;
+    padding: 0.25em 0.5em;
+    font-size: 80%;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    -webkit-border-bottom-right-radius: 0.5em;
+    -webkit-border-bottom-left-radius: 0.5em;
+    -moz-border-radius-bottomleft: 0.5em;
+    -moz-border-radius-bottomright: 0.5em;
+}
+#portal-personaltools #anon-personalbar a {
+    float: left;
+}
+/* @end */
+
+
+/* Collapsible elements in search_form */
+
+.collapsible .collapser.collapsed {
+/*    padding-right: 14px;*/
+    background: url('arrowRight.png') center left no-repeat;
+    padding-left: 10px;
+} 
+
+.collapsible .collapser.expanded {
+/*    padding-right: 14px;*/
+    background: url('arrowDown.png') center right no-repeat;
+} 
+/* @end */
+
+/* @group Site actions */
+
+#portal-siteactions {
+    font-size: 85%;
+    padding-bottom: 2em;
+    text-align: center;
+}
+#portal-siteactions li {
+    margin-right: 0.5em;
+    display:inline;
+}
+#portal-siteactions li a:focus,
+#portal-siteactions li a:hover {
+    color: #75ad0a
+}
+
+/* @end */
+/* @group Status messages */
+
+dl.portalMessage {
+    margin: 1em 0;
+/*changed the font size from 80 to 100%*/
+    font-size: 100%;
+    border: 1px solid #996;
+    background-color: #ffffe3;
+    clear:both;
+}
+dl.portalMessage a,
+#content dl.portalMessage a {
+    color: black;
+    border-bottom: 1px solid black;
+}
+dl.portalMessage dt {
+    background-color: #996; 
+    font-weight: bold;
+    float: left;
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 0.75em;
+    color: White;
+    line-height: 1.25em;
+}
+dl.portalMessage dd {
+    padding: 0.5em 0.5em; 
+    margin: 0;
+    line-height: 1.25em;
+}
+dl.warning {
+    border-color: #d80;
+}
+dl.warning dt {
+    background-color: #d80;
+}
+dl.error {
+    border-color: #d00;    
+}
+dl.error dt {
+    background-color: #d00; 
+}
+dl.warning {
+    border-color: #d80;    
+}
+dl.warning dd {
+    background-color: #fd7; 
+}
+dl.error {
+    border-color: red;    
+}
+dl.error dd {
+    background-color: #fdc; 
+}
+
+/* Additional specificity for when status is shown inside #content */
+#content dl.portalMessage {
+    font-size: 100%;
+}
+#content dl.portalMessage dt {
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 0.75em;
+}
+#content dl.portalMessage dd {
+    margin: 0;
+}
+
+/* @end */
+
+
+/* Color differences between the two tab types */
+#content ul.formTabs {
+    background-color: #ddd;
+    border: 0.3em solid #ddd;
+}
+#edit-bar {
+    background-color: #75ad0a;
+    border: 0.25em solid #75ad0a;
+    font-size: 9.5px;
+    min-height: 2.5em;
+    margin-bottom: 1em;
+}
+
+#content-views {
+    float: left;
+    background-color: #75ad0a;
+    margin:0.5em 0 0 0 ;
+}
+#content-views li {
+    display:inline;
+}
+#content-views a {
+    color: White;
+}
+
+/* Shared CSS between the two tab types */
+#edit-bar,
+#content ul.formTabs {
+    display: block;
+    border-style: solid solid none solid; 
+    margin-left: 0;
+    border-top-right-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    -webkit-border-top-right-radius: 0.5em;
+    -webkit-border-top-left-radius: 0.5em;
+    -moz-border-radius-topleft: 0.5em;
+    -moz-border-radius-topright: 0.5em;
+}
+#content li.formTab {
+    display: inline;
+    margin-right:0.25em;
+}
+#content-views a,
+#content li.formTab a {
+    /* this isn't supported by all browsers, so we keep it in a separate rule */
+    display: inline-block;
+}
+#content-views a,
+#content li.formTab a {
+    line-height: 2em;
+    padding: 0 0.75em;
+    text-decoration: none;
+    border: none;
+    margin: 0 ;
+}
+#content-views li.selected a, 
+#content-views li a:focus, 
+#content-views li a:hover, 
+#content li.formTab a.selected,
+#content li.formTab a:focus,
+#content li.formTab a:hover {
+    background: White;
+    color: Black;
+}
+#content-views li.selected a,
+#content-views li a:focus,
+#content-views li a:hover,
+#content li.formTab a.selected,
+#content li.formTab a:focus,
+#content li.formTab a:hover {
+    border-top-right-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    -webkit-border-top-right-radius: 0.5em;
+    -webkit-border-top-left-radius: 0.5em;
+    -moz-border-radius-topleft: 0.5em;
+    -moz-border-radius-topright: 0.5em;
+}
+#content li.formTab a.notify {
+    background-color: red;
+    color: White;
+}
+#content li.formTab a.required span {
+    background-image: url(required.png);
+    background-position: center right;
+    background-repeat: no-repeat;
+    padding-right: 1em;
+}
+#content fieldset.formPanel {
+    border: none;
+}
+#content fieldset.formPanel.hidden {
+    display: none;
+}
+#content div.formControls input.hidden {
+    display: none;
+}
+
+/* @end */
+/* @group Pulldown menus */
+
+/* @group Personal tools pulldown */
+#portal-personaltools dl {
+}
+#portal-personaltools dt {
+    font-weight: normal;
+}
+#portal-personaltools dt.actionMenuHeader a:focus,
+#portal-personaltools dt.actionMenuHeader a:hover {
+    color: #000000;
+}
+#portal-personaltools dt.actionMenuHeader a:after {
+    content: " ▼";
+}
+#portal-personaltools dd {
+    right: 0;
+    padding-top: 0.5em;
+}
+#portal-personaltools dd {
+    background: #e3e3e3;
+    padding-bottom: 0.5em;
+}
+#portal-personaltools dd a {
+    line-height: 2em;
+    padding: 0 0.75em;
+}
+#portal-personaltools dd a:focus,
+#portal-personaltools dd a:hover {
+    background: #205c90;
+    color: White;
+}
+
+/* @end */
+
+/* @group Content pulldowns */
+
+#contentActionMenus dl.actionMenu a,
+#contentActionMenus dl.actionMenu.activated dd {
+    background-color: #75ad0a;
+    color: White;
+    z-index: 5;
+}
+#contentActionMenus dl.actionMenu a:focus,
+#contentActionMenus dl.actionMenu a:hover {
+    color: #000000;
+}
+#contentActionMenus dl.actionMenu.activated dd {
+    border-bottom: 0.5em solid #75ad0a;
+        right: -3px;
+}
+#contentActionMenus dl.actionMenu.activated dd a:focus,
+#contentActionMenus dl.actionMenu.activated dd a:hover,
+#contentActionMenus dl.actionMenu.activated dd .actionMenuSelected {
+    background-color: White !important;
+    color: #666;
+}
+#contentActionMenus dl.actionMenu a,
+#contentActionMenus dl.actionMenu div {
+    line-height: 2em;
+    text-decoration:none;
+}
+
+#folderHeader, #contextHeader {
+        border-bottom: 2px solid white;
+}
+
+#contextHeader { margin-top: 5px; }
+
+
+/* @end */
+
+#contentActionMenus {
+    float: right;
+    background: #75ad0a;
+    margin: 0;
+    position: relative;
+    /***changed the position top from 0.23em to -2px***/
+    top: -2px;
+    right:-0.24em;
+    padding: 0.1em 0.24em 0 0;
+    border-radius: 0.5em;
+    border-top-left-radius: 0;    
+    -webkit-border-radius: 0.5em;   
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius: 0.5em;  
+    -moz-border-radius-topleft: 0;
+}
+#contentActionMenus li {
+    display:inline;
+}
+dl.actionMenu {
+    float: right;
+    white-space: nowrap;
+    position: relative;
+    margin:0.5em 0 0 0;
+}
+dl.actionMenu a,
+dl.actionMenu div {
+    display: block;
+    white-space: nowrap;
+    padding: 0 0.25em;
+}
+dl.actionMenu dt {
+    font-weight: normal;    
+}
+span.arrowDownAlternative {
+    font-size: 80%;
+}
+dl.actionMenu.deactivated dt {
+    margin: 0 0.25em;
+}
+dl.actionMenu.deactivated dd {
+    display: none;
+}
+dl.actionMenu.activated dd {
+    position: absolute;
+    width: auto;
+    min-width: 100%;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    -webkit-border-bottom-right-radius: 0.5em;
+    -webkit-border-bottom-left-radius: 0.5em;
+    -moz-border-radius-bottomleft: 0.5em;
+    -moz-border-radius-bottomright: 0.5em;
+}
+dl.actionMenu.activated dt a,
+dl.actionMenu.activated dd a,
+dl.actionMenu.activated dd div {
+    margin: 0 0.25em;
+}
+
+/* @end */
+
+/* @group Control panel */
+
+#setup-link {
+    font-size: 90%;
+}
+
+#content ul.configlets {
+    margin: 1em 0;
+    list-style-image: none;
+    list-style: none;
+}
+#content ul.configlets li {
+    margin-bottom: 1em;
+    list-style: none;
+    display: block;
+}
+#content ul.configlets li a {
+    text-decoration: none;
+    border: none;
+}
+#content ul.configlets li a:visited {
+    color: #436976;
+    background-color: transparent;
+}
+#content ul.configlets li a:active {
+    color: #436976;
+    background-color: transparent;
+}
+#content ul.configlets li label {
+    font-weight: bold;
+}
+#content ul.configletDetails {
+    margin: 0em 1em 1em 4em;
+    list-style-image: none;
+    list-style: none;
+}
+#content ul.configletDetails li {
+    margin-bottom: 1em;
+    display: inline;
+}
+#content ul.configletDetails li a {
+    text-decoration: none;
+}
+#content ul.configletDetails li label {
+    font-weight: bold;
+}
+#content ul.configletDetails li.configletDescription {
+    display: block;
+    color: #76797c;
+    margin: 0;
+}
+.inlineDisplay {
+    display:inline
+}
+table.controlpanel-listing {
+    width:100%;
+}
+table.controlpanel-listing td, table.controlpanel-listing th {
+    font-size:120%;
+}
+table.controlpanel-listing dl {
+    margin-top:0;
+}
+table.controlpanel-listing dd {
+    margin-left: 1em;
+}
+table.controlpanel-listing dl dt a .trigger{
+    font-weight:normal;
+}
+table .controlpanel-listing td {
+    vertical-align:top;
+}
+table.controlpanel-listing td.checker{
+    text-align:center;
+}
+table.controlpanel-listing th.smallcolumn {
+    width:1.5em;
+}
+.chooser-right {
+    float:right;
+    margin-right:0;
+    margin-bottom:0;
+}
+.rule-element {
+    background-color:#EEF3F5;
+    margin:0.5em 0pt 0.5em;
+    padding:0.3em 1em 0.3em 1em;
+    width:auto;
+}
+.rule-element dl {
+}
+.rule-element dl dd {
+    margin-left:1em;
+}
+.rule-updown, .rule-operations {
+    float:right;
+    padding-top:0.8em;
+}
+/* @end */
+
+/* @group Collapsible */
+dl.collapsible {
+    border: 0.1em solid #8cacbb;
+    margin: 1em 0;
+    padding: 0;
+}
+dl.collapsible dt.collapsibleHeader {
+    display: block;
+    float: left;
+    background: White;
+    line-height: 1.2em;
+    vertical-align: middle;
+    font-size: 90%;
+    position: relative;
+    top: -0.6em;
+    width: auto;
+    margin: 0 0 -0.6em 1em;
+    padding: 0 0.5em;
+}
+dl.collapsible dd.collapsibleContent {
+    margin: 0;
+    padding: 0 1em 0.4em;
+    clear: left;
+}
+
+/* for IE the following isn't needed, that's why the css2 selector is used */
+dl.collapsible dd.collapsibleContent > dl {
+    margin: 0;
+    padding: 0;
+}
+
+dl.expandedInlineCollapsible dt.collapsibleHeader,
+dl.expandedBlockCollapsible dt.collapsibleHeader {
+    padding: 0 0.5em 0 2em;
+    background: White url(treeExpanded.png) no-repeat 0.5em 50%;
+    cursor: pointer;
+}
+
+dl.collapsedBlockCollapsible {
+    border: none;
+    height: 1em;
+    width: auto;
+}
+dl.collapsedInlineCollapsible dt.collapsibleHeader,
+dl.collapsedBlockCollapsible dt.collapsibleHeader {
+    float: none;
+    position: relative;
+    margin: 0 0 0 1em;
+    padding: 0 0.5em 0 2em;
+    line-height: 1.2em;
+    cursor: pointer;
+    background: White url(treeCollapsed.png) no-repeat 0.5em 50%;    
+}
+dl.collapsedInlineCollapsible dd.collapsibleContent,
+dl.collapsedBlockCollapsible dd.collapsibleContent {
+    display: none;
+}
+dl.collapsedInlineCollapsible {
+    border: none;
+    height: 1em;
+    width: auto;
+    display: inline;
+}
+dl.collapsedInlineCollapsible dt.collapsibleHeader {
+    position: static;
+    float: none;
+    margin: 0;
+    padding: 0 0 0 2em;
+    line-height: 1em;
+    cursor: pointer;
+    display: inline;
+}
+
+/* @end */
+
+
+/* @group Content History */
+
+#content-history #history dd {
+}
+
+#content-history div.historyRecord {
+    margin-bottom: 1em;
+}
+
+
+#content-history div.historyTools ul {
+    float: right;
+    margin: 0.5em 1em;  
+}
+
+#content-history div.historyTools ul li {
+    display: inline;
+    padding: 0 0.015em;
+}
+
+#content-history div.historyTools ul li a{
+    border-bottom: none;
+}
+
+#content-history div.historyTools form {
+    display: inline;
+}
+
+#content-history .historyAction {
+
+}
+
+#content-history .historyByLine {
+    background: #ddd;
+    padding: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    -webkit-border-top-right-radius: 0.5em;
+    -webkit-border-top-left-radius: 0.5em;
+    -moz-border-radius-topleft: 0.5em;
+    -moz-border-radius-topright: 0.5em;
+}
+
+#content-history div.historyLinks {
+    float: right;
+    clear: right;
+    margin: 0.5em 1em 0 0;
+}
+
+
+#content-history div.historyComment {
+    padding: 0.5em 1em;
+    border: 1px solid #ddd;
+}
+
+#content-history div.historyComment p {
+    margin: 0;
+    padding-top: 1px;   
+}
+
+#content-history a.historyComparePrevious {
+    border-top: 1px dotted #ccc;
+    display: block;
+    margin-top: 3em;
+    text-align: center;
+}
+
+#content-history a.historyComparePrevious span {
+    background-color: white;
+    position: relative;
+    top: -0.75em;
+    padding: 0 0.5em;
+}
+
+/* @end */
+
+
+
+/* @group Core content type sprites */
+
+.contenttype-document {
+    background: no-repeat transparent 0px 4px url(contenttypes-sprite.png);
+}
+.contenttype-event {
+    background: no-repeat transparent 0px -212px url(contenttypes-sprite.png);
+}
+.contenttype-file {
+    background: no-repeat transparent 0px -428px url(contenttypes-sprite.png);
+}
+.contenttype-folder {
+    background: no-repeat transparent 0px -644px url(contenttypes-sprite.png);
+}
+.contenttype-image {
+    background: no-repeat transparent 0px -860px url(contenttypes-sprite.png);
+}
+.contenttype-link {
+    background: no-repeat transparent 0px -1076px url(contenttypes-sprite.png);
+}
+.contenttype-news-item {
+    background: no-repeat transparent 0px -1292px url(contenttypes-sprite.png);
+}
+.contenttype-plone-site {   
+    background: no-repeat transparent 0px -1508px url(contenttypes-sprite.png);
+}
+.contenttype-topic {
+    background: no-repeat transparent 0px -1724px url(contenttypes-sprite.png);
+}
+
+/* Now that we always show icons with that css class above,
+ * we must hide the icons that get added in the ploneimage iframe */
+
+body#ploneimage fieldset#internal_panel img {
+    display: None;
+}
+
+.contenttype-document,
+.contenttype-event,
+.contenttype-file,
+.contenttype-folder,
+.contenttype-image,
+.contenttype-link,
+.contenttype-news-item,
+.contenttype-plone-site,
+.contenttype-topic {
+    line-height: 2em;
+    display: inline-block;
+    padding-left: 23px !important;
+}
+/* @end */
+
+
+/* @group Invisibles */
+
+.hiddenStructure {
+    display: none;
+    background: transparent;
+    background-image: none; /* safari bug */
+    border: none;
+    height: 0.1em;
+    overflow: hidden;
+    padding: 0;
+    margin: -0.1em 0 0 -0.1em;
+    width: 1px;
+}
+
+#content .visualNoMarker {
+    list-style:none;
+    margin-left: 0;
+}
+
+.visualClear {
+    clear: both;
+}
+
+/* @end */
+/* @group Accessibility elements, applied by JS */
+/***changed the font size of large and small, so that this messurements fit the normal font size which is 11px. ***/
+
+body.largeText { font-size: 85%; }
+body.smallText { font-size: 60%; }
+
+/* @end */
+
+/* @group Overlay windows */
+
+/* styling for overlays (popups) */
+
+div.overlay {
+    width: auto;
+    height: auto;
+    /* initially overlay is hidden */
+    display: none;
+    /* some padding to layout nested elements nicely  */
+    margin: 1em;
+    /*it was necessary to change the font size to 100% from 80 so the the picture fits in nicely with the changed accessibility font sizes*/
+    font-size: 100%;
+}
+
+div.overlay-iframe,
+div.overlay-ajax {
+    width: 60%;
+    min-height: 100px;
+    z-index: 99; /* overlays should be above everything */
+}
+
+div.overlay-iframe {
+    height: 60%;
+}
+
+/* default close button positioned on upper-left corner */
+div.overlaybg div.close,
+div.overlay div.close {
+    background-image: url(pb_close.png);
+    position: absolute;
+    left: -14px;
+    top: -14px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+
+.pb-ajax {
+    overflow-y: auto;
+}
+
+.pb-ajax, .pb-image {
+    background-color: #fff;
+    white-space: normal;
+    box-shadow: 0 0 3em 0.5em #666;
+    -moz-box-shadow: 0 0 3em 0.5em #666;
+    -webkit-box-shadow: 0 0 3em #666;
+}
+
+.pb-ajax > div {
+    width: 92%;
+    padding: 1em;
+}
+
+.pb-ajax .documentActions {display:none}
+
+div.overlay div.close span {
+    display: block;
+    height: 1px;
+    margin: -1px 0 0 -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+}
+
+div.overlay textarea { width: 100%; }
+
+/* Hide form elements that don't make sense within an overlay. */
+div.overlay .link-parent { display: none; }
+div.overlay #createGroup legend { display: none; }
+div.overlay #createGroup fieldset { border: none; }
+
+/* lets play nice with paragraphs, links, tabbed pages in overlay e.g. when plone.openid is installed */
+div.overlay p {
+    margin-bottom: 1em;
+}
+div.overlay label {
+    margin-bottom: 0.25em;
+}
+div.overlay a:focus,
+div.overlay a:hover {
+    color: #75ad0a;
+}
+div.overlay a.selected {
+    color: #000000;
+}
+div.overlay .formTab {
+    margin-right:1em;
+    font-weight: bold;
+}
+div.overlay .formTab.lastFormTab {
+    margin-right:0em;
+}
+div.overlay .formControls a { 
+    display: block;
+    margin: 0.75em;
+}
+
+/* @end */
+
+/* @group Data tables */
+
+table.listing,
+table.plain {
+    border-spacing: 0;
+    border-collapse: collapse; 
+}
+
+table.invisible td, 
+table.invisible th,
+table.plain td, 
+table.plain th,
+table.listing td, 
+table.listing th {
+    padding: 0.5em 1em;
+    vertical-align: top;
+}
+table.plain th,
+table.plain td {
+    border: 1px solid #ddd;
+}
+
+table.listing td.listingCheckbox, 
+table.listing th.listingCheckbox {
+    text-align: center;
+}
+
+table.listing th {
+    text-align: left;
+    color: #666;
+    border: 0.1em solid #e7e7e7;
+    border-style: solid none none;
+}
+table.listing tr.odd th {
+    border: 0.1em solid #fff;
+    border-style: solid solid none none;
+}
+table.listing tbody th {
+    font-weight: bold;
+}
+table.listing tbody tr {
+    text-align:left;
+}
+table.listing tbody tr.odd {
+    background: #eee;
+}
+table.listing tbody tr td { 
+    background: transparent;
+}
+table.listing tbody tr.odd td { 
+    background: #eee;
+}
+table.listing a { 
+    line-height: 2em;
+    border: none;
+    display: inline-block;
+    border-bottom: none !important;
+}
+
+table.listing td.draggable {
+    text-shadow: White 1px 1px 1px;
+    background: #ddd !important;
+    border-bottom: 1px solid white;
+    padding: 0.4em 0.4em 0 0.5em;
+}
+.dragindicator {
+    outline: 2px solid #FFD700;
+}
+
+#foldercontents-order-column {
+    padding: 0;
+}
+
+div.listingBar {
+    font-size: 80%; 
+    margin: 1em 0;
+}
+
+div.listingBar .next {
+    display: inline-block;
+    float: right;
+}
+
+div.listingBar .previous {
+    display: inline-block;
+}
+
+div.listingBar a {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    border: 0.1em solid #ccc;
+}
+
+div.listingBar a:focus,
+div.listingBar a:hover {
+    color: White;
+    background-color: #329fd7;
+    border-color: #329fd7;
+}
+
+/* @end */
+
+/* @group Login form */
+
+body.template-logged_out #content,
+body.template-login_form #content,
+.pb-ajax #login-form {
+    text-align: center;
+}
+
+#fieldset-openid-login input, #login-form input {
+    font-size: 100%;
+}
+
+
+body.template-register #content input,
+body.template-new-user #content input {
+    font-size: 100%;
+    width: inherit;
+
+}
+
+#fieldset-openid-login label, #login-form label {
+    margin-right:0.5em;
+    padding-top:0.2em;
+    text-align:right;    
+    /******changed the width from 7 to 8 so the text would stuck to the field anymore******/
+    width: 8em;
+    display: inline-block;
+}
+
+#fieldset-openid-login .formControls input, #login-form .formControls input {
+margin-left: 0.25em;
+}
+
+/* @end */
+
+/* @portlet.css styles for calendar */
+/***to fix the calendar I added these styles out of the portlet.css***/
+
+.portletCalendar {
+    width: 100%;
+    margin: 1em 0 1em 0;
+}
+
+.portletCalendar dt {
+    background-color: #eee;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6em;
+    border-bottom: none;
+}
+
+.portletCalendar dd {
+    margin: 0;
+    padding: 0;
+}
+
+.portletCalendar dt a#calendar-previous {
+    float: left;
+    padding: 0 1em;
+    margin: 0 -.5em;
+}
+
+.portletCalendar dt a#calendar-next {
+    float: right;
+    padding: 0 1em;
+    margin: 0 -.5em;
+}
+
+.portletCalendar a, .portletCalendar a:focus,
+.portletCalendar a, .portletCalendar a:hover {
+    text-decoration: none;
+}
+
+.ploneCalendar {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.ploneCalendar a {
+    text-decoration: none;
+    border-bottom: none !important;
+}
+
+.ploneCalendar td {
+    background-color: transparent;
+    width: 14%;
+    text-align: center;
+    padding: 2px;
+}
+
+.ploneCalendar .weekdays th {
+    background-color: #eee;
+    text-align: center;
+    padding: 2px;
+    font-weight: normal;
+}
+
+.ploneCalendar .event {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+.ploneCalendar .todayevent {
+    background-color: #eee;
+    border: 2px solid #205C90;
+    font-weight: bold;
+}
+
+.ploneCalendar .todaynoevent {
+    border: 2px solid #205C90;
+}
+/*end*/
+
+/******to fix the display of the displayed tabs in the edit area I have to add some styles out of the public.css plone****/
+
+ul.formTabs {
+-moz-border-radius-topleft:0.5em;
+-moz-border-radius-topright:0.5em;
+border-style:solid solid none;
+display:block;
+margin-left:0;
+background-color:#DDDDDD;
+border-color:#DDDDDD #DDDDDD -moz-use-text-color;
+border-width:0.3em 0.3em 0;
+padding-left:0;
+}
+li.formTab {
+display:inline;
+margin-right:0.25em;
+}
+li.formTab a.selected, li.formTab a:focus, li.formTab a:hover {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:White none repeat scroll 0 0;
+color:Black;
+}
+
+li.formTab a {
+border:medium none;
+display:inline-block;
+line-height:2em;
+margin:0;
+padding:0 0.75em;
+text-decoration:none;
+}
+
+#content-views li.selected a, #content-views li a:focus, #content-views li a:hover, li.formTab a.selected, li.formTab a:focus, li.formTab a:hover {
+-moz-border-radius-topleft:0.5em;
+-moz-border-radius-topright:0.5em;
+}
+
+/* @end */
+
+
+/*****This is needed to fix the display of the TinyMCE Editor*******/
+/* @group Forms */
+
+fieldset,
+.editionComment {
+    line-height:1.5em;
+    margin:1em 0;
+    padding:0 1em 1em;
+    width:auto;
+    border: 1px solid #ccc;
+}
+
+/* Emulates the styling from the h1 tag */
+#archetypes-fieldname-title input {
+    font-family:Verdana,Arial,Helvetica; 
+    line-height: 125%;
+    color: Black;
+    letter-spacing: -0.02em;
+    font-size: 2.66em; /* 26px equiv */
+}
+
+/* Emulates styling from the description's view */
+#archetypes-fieldname-description textarea#description {
+color:#666666;
+font-family:Verdana,Arial,Helvetica;
+font-size:11px;
+}
+
+
+div.formControls {
+    margin: 1em 0;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    background-color: #ffffe0;
+}
+
+#content textarea {
+    font: 100% Monaco, "Courier New", Courier, monospace;
+    /*had to change the width from 100 to 76% so that the fields stay where they supposed to**/
+    width: 76%;
+}
+#content textarea#form-widgets-available_content_languages{
+    width: 60px;
+}
+#content select {
+    vertical-align: top;
+}
+#content fieldset {
+    border: 0.1em solid #329fd7;
+    border-style: solid none none none;
+}
+#content legend {
+    padding: 0.5em;
+    font-size: 85%;
+}
+label {
+    font-weight:bold;
+}
+
+#content label {
+}
+
+#content optgroup {
+    font-style: normal;
+    font-weight: bold;
+    color: #999;
+    padding-left: 0.25em;
+}
+#content option {
+    color: black;
+}
+#content optgroup > option {
+    padding: 0 0.25em 0 1em;
+}
+dl.enableFormTabbing dd {
+    margin-left: 0;
+    padding-top: 2em;
+}
+.searchSection {
+    color: #76797c;
+    margin-top: 0.25em;
+}
+.searchSection label:hover {
+    color: Black;
+}
+.field {
+    clear: both;
+    margin-bottom: 1em;
+}
+.field input[type="text"] {
+    /*width: 100%;*/
+}
+input#title {
+    /*changed the width to 75%**/
+    width: 75%;
+}
+.error input#title {
+    width:99%;
+}
+
+.fieldRequired {
+    background: url(required.png) center left no-repeat;
+    padding: 0 0 0 1em;
+    color: White;
+}
+.fieldUploadFile {
+    text-align: right;
+    margin-right: 0.75em;
+    display: none;
+}
+.fieldTextFormat {
+    text-align: right;
+    margin-right: 0.75em
+}
+.formHelp {
+    color: #555;
+    margin: 0 0 0.2em 0;
+}
+div.error {
+    background-color: #fdc;
+    border:  1px solid red;
+    padding: 0.5em;
+    margin:  1em 0;
+}
+.error .fieldRequired {
+    color: #d00;
+}
+div.error.warning {
+    background-color: transparent;
+    border: none;
+    margin-top: 0;
+    padding: 0;
+}
+
+div.error.warning input {
+    border: 2px solid red;
+}
+
+input.inputLabelActive {
+    color: #76797c;
+}
+textarea#form\.description {
+    height: 6em;
+    width: 99%;
+}
+table.listing tbody tr.odd.selected td,
+tr.selected {
+    background-color: #ffa;
+}
+
+/*******styles for the history tag******/
+.reviewHistory, .contentHistory {
+font-size:85% !important;
+}
+
+.collapse_trick{
+    display:None;
+}
+
+/******style for searchfacts********/
+
+#portal-searchfacets {
+background-color:#EFEFEF !important;
+margin:0 0 0 10px !important;
+min-width:25% !important;
+max-width:30%;
+overflow:hidden;
+padding:0.5em !important;
+}
+
+/*****styles for width of content only regarding the search template******/
+.template-search #content {
+width:100%;
+}
+
+/*************styles for margin .card************/
+
+.card a {
+    margin-top:5px;
+}
+
+/*************styles for the dd tag for the #review-metadata***********/
+
+#review-metadata dd {
+    margin-left:0px;
+}
+
+.summary img {
+    margin-right:3px;
+    position:relative;
+    top:3px;
+}
+
+/****************** styles for browse topics*******************/
+
+.template-browse-topics #browsing-menu {
+    width:860px;
+}
+
+.template-browse-topics #browsing-menu dd {
+    float:right;
+    margin:0;
+    width:90%;
+}
+.template-browse-topics #submenu_ddcPlace .collapsible {
+    float:left;
+    margin-left:10px;
+    font-size:11px;
+    width:200px;
+}
+
+.template-browse-topics #submenu_ddcTime .collapsible {
+    float:left;
+    font-size:11px;
+    margin-left:10px;
+    width:160px;
+}
+
+.template-browse-topics #submenu_ddcSubject .collapsible {
+    float:left;
+    font-size:11px;
+    margin-left:10px;
+    width:420px;
+}
+
+.template-browse-topics #submenu_ddcSubject dd {
+    float:right;
+       margin:0;
+       width:100%;
+}
+.template-browse-topics #submenu_ddcPlace h5 {
+    clear:both;
+}
+
+.template-browse-topics #submenu_ddcTime h5 {
+    clear:both;
+}
+
+.template-browse-topics #submenu_ddcSubject h5 {
+    clear:both;
+}
+
+
+.template-browse-topics .searchResults {
+    width:860px;
+}
+
+/***************styles for footer pictures and links************/
+#column_wide {
+/*margin-bottom:35px;*/
+margin-top:0;
+text-align:left;
+width:570px;
+}
+
+#column_wide span {
+font-size:0.75em;
+}
+
+#column_wide img {
+margin-right:15px;
+margin-top:10px;
+}
+
+/* Trick to only hide content in view mode. Not in Edit mode */
+.mceContentBody .hide_content {
+    display: block;
+}
+
+.hide_content {
+    display: None
+}
+
+
+/*** ***/
+.authorsearch img, .searchResults img {
+padding-right:5px;
+position:relative;
+top:3px;
+}
+
+/* Workaround for a bug in screen.css */
+.plonepopup div.mceTop {
+    background-color: white;
+}
+
+.state-deleted {
+    color: Red;
+    text-decoration: line-through;
+}
+
+#oaisuggestions {
+    background-color: white;
+}
+
+.oaisuggestion {
+    background-color: white;
+    float:left;
+}
+
+.oaisuggestion table {
+    width: 300px;
+}
+
+.oaisuggestion .missing {
+    color: red;
 }
