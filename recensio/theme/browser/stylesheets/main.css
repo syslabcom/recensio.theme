@@ -169,7 +169,6 @@ dl.portletSearch dd.portletFooter{
 
 #review-metadata {
 margin-bottom:1em;
-margin-left:-30px;
 }
 
 #review-metadata h2 {
@@ -302,9 +301,6 @@ div#reviewhtml {
 .message {
 	padding: 8px;
 	margin-bottom: 20px;
-	-webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.20);
-	-moz-box-shadow: 0 2px 10px rgba(0,0,0,0.20);
-	box-shadow: 0 2px 10px rgba(0,0,0,0.20);
 	font: 12px/18px Georgia, "Times New Roman", Times, serif;
 }
 
@@ -370,21 +366,10 @@ div#reviewhtml {
 
 /* @group Download */
 
-/*#portletDownload {
-	padding: 20px;
-	font-style: italic;
-	-webkit-box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
-	border: 1px solid #d1d1d1;
-	background: #ece6d4 no-repeat fixed 75% 0;
-	width: 160px;
-}*/
 #portletDownload {
 background:#ECE6D4 none no-repeat fixed 75% 0;
 border:1px solid #D1D1D1;
 font-style:italic;
-margin-left:-20px;
-padding:20px;
-width:175px;
 }
 
 #portletDownload p {
@@ -394,10 +379,9 @@ width:175px;
 
 #portletDownload p a {
 	display: block;
-	margin: -20px;
-	padding: 19px 20px 17px 124px;
-	background: url(../../iconPDF-large.png) no-repeat 12px 12px;
-	min-height: 86px;
+	padding: 8px 10px 8px 103px;
+	background: url(++resource++recensio.theme.images/pdf_download.png) no-repeat 8px 10px;
+	min-height: 50px;
 	font: italic 13px/17px Georgia, "Times New Roman", Times, serif;
 	text-shadow: white 0 1px 0;
 	-webkit-transition: all 0.2s;
@@ -611,7 +595,7 @@ span.headlinebutton {
 
 .js #side .accordion {display:none}
 
-.accordion {margin:0; padding:0 0 0 10px}
+.accordion {margin:0; padding:0;}
 
 .accordion li {list-style-type:none}
 
@@ -630,7 +614,7 @@ span.headlinebutton {
 */    
 
 a.trigger {
-background-image:url(++resource++recensio.theme.images/pfeil_icon_r.gif);
+background-image:url(++resource++recensio.theme.images/more_bg.gif);
 background-position:0 2px;
 background-repeat:no-repeat;
 color:black;
@@ -642,13 +626,11 @@ padding-top:5px;
 }
 
 a.trigger.open {
-/*background:transparent url(++resource++recensio.theme.images/minus.gif) no-repeat scroll 3px 46%;*/
-background-image:url(++resource++recensio.theme.images/pfeil_icon_u.gif);
+background-image:url(++resource++recensio.theme.images/more_open_bg.gif);
 background-position:0 2px;
 background-repeat:no-repeat;
 color:black;
 display:block;
-/*padding:5px 5px 5px 21px;*/
 padding-bottom:5px;
 padding-left:23px;
 padding-top:5px;
@@ -724,12 +706,11 @@ dl#metadata dd {
 
 #facebook-like {
 height:40px;
-margin-left:-20px;
 margin-top:10px !important;
 }
 #facebook-like iframe {
 margin-top:5px;
-width:225px;
+width:204px;
 }
 .connect_widget div.connect_confirmation_cell_no_like {
 margin-top:3px;
@@ -741,7 +722,7 @@ border-spacing:0;
 float:left;
 margin-top:3px;
 padding:0;
-width:225px;
+width:204px;
 }
 .connect_widget div.connect_confirmation_cell_no_like {
 padding-left:0;

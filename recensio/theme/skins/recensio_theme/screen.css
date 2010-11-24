@@ -252,11 +252,11 @@ body.template-authorsearch #content {
 }
 
 #column3 {
-	width: 175px;
+	width: 204px;
 	float:right;
 	background-image:url(imgs/shadow.png);
 	padding-left: 40px;
-	margin: 5px 25px 0 0;
+	margin: 5px 5px 0 0;
 	background-repeat:no-repeat;
 	padding-bottom:25px;
 	min-height:600px;
