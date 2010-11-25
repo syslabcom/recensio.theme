@@ -80,6 +80,11 @@
   <prepend css:content="div#edit-bar"
            css:theme="div#mainContent"  />
 
+  <!-- explicitly appending this so that the opac search appears -->
+  <append css:content="div#viewlet-below-content"
+           css:theme="div#mainContent"  />
+
+
   <!-- comments -->
   <append css:content="div#commenting"
           css:theme="div#mainContent" />
