@@ -579,7 +579,7 @@ span.headlinebutton {
 }
 
 .oaisuggestion form input {
-    margin-bottom:10px;
+    margin:5px 5px 10px;
 }
 
 /******************Styles for Metadata*****************/
@@ -2234,10 +2234,12 @@ top:3px;
 
 .oaisuggestion {
     background-color: white;
+    border:1px solid #CDCDCD;
     float:left;
 }
 
 .oaisuggestion table {
+    padding:5px;
     width: 300px;
 }
 
@@ -2246,39 +2248,6 @@ top:3px;
 }
 
 /*******styles for Opac search popup**********/
-.oaisuggestion {
-    
-}
-.oaisuggestion table {
-    
-}
-.oai_title {
-    
-}
-.oai_subtitle {
-    
-}
-.oai_authors {
-    
-}
-.oai_language {
-    
-}
-.oai_isbn {
-    
-}
-.oai_ddc {
-    
-}
-.oai_location {
-    
-}
-.oai_publisher {
-    
-}
-.oai_pages {
-    
-}
-.oai_year {
-    
+.oaisuggestion tr {
+   border-bottom:1px solid #CDCDCD;
 }
