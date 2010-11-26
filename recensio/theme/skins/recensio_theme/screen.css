@@ -216,6 +216,11 @@ color: #000;
    background-color:#fff; 
    padding:25px 10px 20px 20px;
    margin:170px 0 0 0;
+
+}
+
+#content {
+   float: left;
 }
 
 #content, #commenting {
@@ -230,6 +235,7 @@ body.template-authorsearch #content {
 #content, #content_impressum,#content_tagung, #content_textseite {
    -moz-border-radius: 9px;
    border-radius: 9px;
+
 }
 
 #content_textseite {
