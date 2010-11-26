@@ -61,7 +61,7 @@ padding: 0;
 
 .firstmenu ul li{
 float: left;
-background: url(++resource++recensio.theme.images/imgs/navtab.png) no-repeat right top;
+background: url(++resource++recensio.theme.images/navtab.png) no-repeat right top;
 }
 
 .firstmenu ul li a{
@@ -79,11 +79,11 @@ text-decoration: underline;
 
 .firstmenu ul li.first a{
 padding: 6px 35px 4px 25px;
-background: url(++resource++recensio.theme.images/imgs/navtab_first.png) no-repeat;
+background: url(++resource++recensio.theme.images/navtab_first.png) no-repeat;
 }
 
 .firstmenu ul li.last{
-background: url(++resource++recensio.theme.images/imgs/navtab_last.png) no-repeat right top;
+background: url(++resource++recensio.theme.images/navtab_last.png) no-repeat right top;
 }
 
 .firstmenu ul li.last a{
@@ -91,33 +91,33 @@ padding: 6px 25px 4px 12px;
 }
 
 .firstmenu ul li#firstcurrent{
-background: #fff url(++resource++recensio.theme.images/imgs/navtab_current.png) no-repeat right top;
+background: #fff url(++resource++recensio.theme.images/navtab_current.png) no-repeat right top;
 }
 
 .firstmenu ul li#firstcurrent a{
-background: url(++resource++recensio.theme.images/imgs/navtab_current_first.png) no-repeat;
+background: url(++resource++recensio.theme.images/navtab_current_first.png) no-repeat;
 color: #000;
 }
 
 .firstmenu ul li#current{
 margin-left: -30px;
-background: #fff url(++resource++recensio.theme.images/imgs/navtab_current.png) no-repeat right top;
+background: #fff url(++resource++recensio.theme.images/navtab_current.png) no-repeat right top;
 }
 
 .firstmenu ul li#current a{
 padding: 6px 35px 4px 32px;
-background: url(++resource++recensio.theme.images/imgs/navtab_current_left.png) no-repeat;
+background: url(++resource++recensio.theme.images/navtab_current_left.png) no-repeat;
 color: #000;
 }
 
 .firstmenu ul li#lastcurrent{
 margin-left: -30px;
-background: #fff url(++resource++recensio.theme.images/imgs/navtab_current_last.png) no-repeat right top;
+background: #fff url(++resource++recensio.theme.images/navtab_current_last.png) no-repeat right top;
 }
 
 .firstmenu ul li#lastcurrent a{
 padding: 6px 28px 4px 30px;
-background: url(++resource++recensio.theme.images/imgs/navtab_current_left.png) no-repeat;
+background: url(++resource++recensio.theme.images/navtab_current_left.png) no-repeat;
 color: #000;
 }
 
