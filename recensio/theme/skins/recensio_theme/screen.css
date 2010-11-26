@@ -47,8 +47,6 @@ a:hover {
   --------------------------------------------------------------------------------------------------*/
 
 .firstmenu{
-margin-top: 170px;
-margin-left:43px;
 background: url(imgs/bg_firstmenu.png) no-repeat;
 height: 24px;
 }
