@@ -504,7 +504,8 @@ ul.authors li.author {
 /********************Styles for ul Suche Authorsearch***************/
 
 .template-search #content-core dt {
-    margin-bottom:0.5em;
+   margin-bottom:0.5em;
+   clear:both;
 }
 
 /**************styles for themen-epochen-regionen****************/
