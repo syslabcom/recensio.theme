@@ -643,7 +643,7 @@ ul#metadata_accordion ul {
    margin-bottom: 1em;
 }
 
-ul#metadata_accordion dl {
+ul#metadata_accordion .accordion_item {
    border:1px solid #EFEFEF;
    padding: 9px;
    font: 1em Georgia,"Times New Roman",Times,serif;
