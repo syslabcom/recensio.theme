@@ -2229,6 +2229,8 @@ top:3px;
     background-color: white;
     border:1px solid #CDCDCD;
     float:left;
+    min-width:300px;
+    min-height:200px;
 }
 
 .oaisuggestion table {
