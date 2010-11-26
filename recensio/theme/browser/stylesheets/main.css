@@ -167,6 +167,7 @@ dl.portletSearch dd.portletFooter{
     display: none;
 }
 
+/* start review_view */
 #review-metadata {
 margin-bottom:1em;
 }
@@ -291,10 +292,23 @@ img#coverpicture {
    margin: 0em 1.5em 1.5em 0em;
 }
 
+body.template-review_view div#category {
+   margin-bottom: 1em;
+}
+
+/* end review_view */
+
+/* start review edit view */
+
 /* review html */
 div#reviewhtml {
    margin-bottom: 2em;
 }
+
+
+
+
+
 
 /* @group Messages */
 
