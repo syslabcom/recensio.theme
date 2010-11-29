@@ -339,62 +339,62 @@ body.template-authorsearch #content {
 ----------------------------------------------------------------------------------------------------*/
 
 
-#postit {
+body.template-homepage-view #postit {
 	margin:30px 0 0 20px;
 }
 
-#teiln_zeit {
+body.template-homepage-view #teiln_zeit {
 	border-top:1px solid #CCC;
 	padding-top:20px;
 }
 
-#teiln_zeit a {
+body.template-homepage-view #teiln_zeit a {
 	color:#999;
 }
 
-#teiln_zeit a:hover {
+body.template-homepage-view #teiln_zeit a:hover {
 	color:#916145;
 }
 
-.column1 a {
+body.template-homepage-view .column1 a {
 	display:block;
 	border-bottom:1px dashed #CCC;
 	padding:5px;
 	height:28px;
 }
 
-.column1 img {
+body.template-homepage-view .column1 img {
 	float:left;
 	margin-top:6px;
 	margin-right:10px;
 }
 
-.column1 h2 a{
+body.template-homepage-view .column1 a {
 	border-bottom:none;
 	color:#58595B;
 }
 
-.column1 h2 a:hover{
+body.template-homepage-view .column1 a:hover h2 {
 	border-bottom:none;
 	color:#919191;
 }
 
-.column1 h2{
-	background-image:url(imgs/h2_bg_sm.png);
+body.template-homepage-view .column1 h2{
+	background-image:url(++resource++recensio.theme.images/h2_bg_sm.png);
 	width:254px;
 	height:13px;
 	padding:  0 10px 10px 25px;
 	font-size:1em;
 }
 
-.column1 h2.large{
-	background-image:url(imgs/h2_bg_lg.png);
+body.template-homepage-view .column1 h2.large{
+	background-image:url(++resource++recensio.theme.images/h2_bg_lg.png);
 	width:254px;
 	height:26px;
 	padding:  0 10px 10px 25px;
 }
 
-.column1 p{
+body.template-homepage-view .column1 p{
 	padding: 0 10px;
 }
 
