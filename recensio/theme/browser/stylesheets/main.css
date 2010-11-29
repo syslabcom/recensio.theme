@@ -2262,3 +2262,6 @@ top:3px;
    border-bottom:1px solid #CDCDCD;
 }
 
+.oaisuggestion td.key {
+   font-weight:bold;
+}
