@@ -2263,5 +2263,11 @@ top:3px;
 }
 
 .oaisuggestion td.key {
+   border-bottom:1px solid #CDCDCD;
    font-weight:bold;
+}
+
+.oaisuggestion td.value {
+   border-bottom:1px solid #CDCDCD;
+   font-style:italic;
 }
