@@ -128,7 +128,7 @@ div#latest_reviews_box ul li,
 div#latest_reviewparts_box ul li,
 div#latest_monographies_box ul li, 
 div#latest_internet_resources_box ul li {
-    list-style:none;
+   list-style-image: url(++resource++recensio.theme.images/blank_icon.png);
 }
 
 /* ---------------------------- */
