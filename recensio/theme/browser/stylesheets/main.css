@@ -2250,7 +2250,7 @@ top:3px;
 
 .oaisuggestion table {
     padding:5px;
-    width: 300px;
+    min-width: 360px;
 }
 
 .oaisuggestion .missing {
