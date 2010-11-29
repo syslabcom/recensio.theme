@@ -224,7 +224,7 @@ color: #000;
 }
 
 #content, #commenting {
-   width: 605px;
+   width: 605px; 
 }
 
 body.template-browse-topics #content,
@@ -256,11 +256,11 @@ body.template-authorsearch #content {
 }
 
 #column3 {
-	width: 204px;
+	width: 200px;
 	float:right;
 	background-image:url(imgs/shadow.png);
 	padding-left: 40px;
-	margin: 5px 5px 0 0;
+	margin: 0;
 	background-repeat:no-repeat;
 	padding-bottom:25px;
 	min-height:600px;
@@ -287,7 +287,7 @@ body.template-authorsearch #content {
  }
  
  .right_box {
-	margin-left:47px;
+	margin-left:27px;
  }
  
 #portal-searchbox {
@@ -356,43 +356,48 @@ body.template-homepage-view #teiln_zeit a:hover {
 	color:#916145;
 }
 
-body.template-homepage-view .column1 a {
-	display:block;
-	border-bottom:1px dashed #CCC;
-	padding:5px;
+body.template-homepage-view .box {
+   width: 289px;
+}
+
+body.template-homepage-view .box a.one-line,
+body.template-homepage-view .box a.two-lines {
+   color:#58595B;
+   display:block;
+   width:289px;
+   padding: 5px;
+}
+
+body.template-homepage-view .box a.one-line {
+	background: transparent url(++resource++recensio.theme.images/h2_bg_sm.png) no-repeat;
 	height:28px;
 }
 
-body.template-homepage-view .column1 img {
+body.template-homepage-view .box a.two-lines{
+	background: transparent url(++resource++recensio.theme.images/h2_bg_lg.png) no-repeat;
+	height:38px;
+}
+
+body.template-homepage-view .box img {
 	float:left;
 	margin-top:6px;
 	margin-right:10px;
 }
 
-body.template-homepage-view .column1 a {
-	border-bottom:none;
-	color:#58595B;
-}
-
-body.template-homepage-view .column1 a:hover h2 {
+body.template-homepage-view .box a:hover h2 {
 	border-bottom:none;
 	color:#919191;
 }
 
-body.template-homepage-view .column1 h2{
-	background-image:url(++resource++recensio.theme.images/h2_bg_sm.png);
+
+
+body.template-homepage-view .box h2{
 	width:254px;
 	height:13px;
 	padding:  0 10px 10px 25px;
 	font-size:1em;
 }
 
-body.template-homepage-view .column1 h2.large{
-	background-image:url(++resource++recensio.theme.images/h2_bg_lg.png);
-	width:254px;
-	height:26px;
-	padding:  0 10px 10px 25px;
-}
 
 body.template-homepage-view .column1 p{
 	padding: 0 10px;
