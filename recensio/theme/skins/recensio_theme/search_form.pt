@@ -112,8 +112,8 @@
           
 
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class" 
+          <div class="field"
+               
                tal:define="portal_types portal/portal_types;
                            all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
                            all_used_types python:[x for x in all_used_types if x not in ('Topic', 'Folder', 'Document')];
@@ -121,10 +121,10 @@
                            all_checked python:(len(used_types) == len(request.get('portal_type', [])));
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label i18n:translate="label_item_type" i18n:domain="plone"
-                   class="collapser">Item type</label>
+                   class="">Item type</label>
             <input class="collapse_trick" type="text" tal:attributes="value python:request.get('portal_type', '')"/>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_item_type" i18n:domain="plone">
                 Return items of a specific type.
               </div>
@@ -164,13 +164,13 @@
                                     threemonths python:(today-90).Date();
                                     sixmonths python:(today-180).Date();
                                     ever string:1970/02/01;">
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+               
             <label for="created" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_new_items_since" i18n:domain="plone">New items since</label>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_new_items_since" i18n:domain="plone">
                 Return items added since you were last logged on, the last week, etc.
               </div>
@@ -214,13 +214,13 @@
           </div>
 
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+               
             <label for="created" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_modified_items_since">Modified items since</label>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_modified_items_since">
                 Return items modified since you were last logged on, the last week, etc.
               </div>
@@ -264,14 +264,14 @@
           </div>
         </tal:datetime>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+               
 
             <label i18n:translate="label_recension_language"
-                   class="collapser">Language of the Review or Presentation</label>
+                   class="">Language of the Review or Presentation</label>
 
             <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languageReview', '')"/>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_recension_language">
                 Return items in selected languages.
               </div>
@@ -291,13 +291,13 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+               
             <label i18n:translate="label_works_language"
-                   class="collapser">Language of the Reviewed Works</label>
+                   class="">Language of the Reviewed Works</label>
             <input class="collapse_trick" type="text" tal:attributes="value python:request.get('languageReviewedText', '')"/>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_works_language">
                 Return items that review works in selected the languages.
               </div>
@@ -318,16 +318,16 @@
           </div>
 
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class"
+          <div class="field"
+               
                tal:condition="options/show_review_state">
             
             <label for="review_state" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_review_status">Review status</label>
             <input class="collapse_trick" type="text" tal:attributes="value python:request.get('review_state', '')"/>
             
-            <div class="collapse"
+            <div class=""
                  tal:define="navtree_props portal/portal_properties/navtree_properties;
                              states python:portal.portal_workflow.listWFStatesByTitle(filter_similar=1);
                              used_states python:portal.portal_catalog.uniqueValuesFor('review_state');
@@ -364,12 +364,12 @@
           </div>
 
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+              
             <label for="authorsFulltext" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_review_autor">Autor/Herausgeber</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_review_autor">
                 Autor von Monographie/Aufsatz/Kommentar oder Herausgeber des Sammelbandes
               </div>
@@ -383,13 +383,13 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+               
             <label for="Creator" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_author">Creator</label>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_author">
                 Return items created by a particular person.
               </div>
@@ -417,15 +417,15 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class" 
+          <div class="field"
+              
                tal:define="avail_magazines python:portal_catalog(portal_type='Publication');
                            all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label i18n:translate="label_magazines"
-                   class="collapser">Zeitschriften</label>
+                   class="">Zeitschriften</label>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_magazines">
                 Findet Artikel, die in einer der ausgewählten Zeitschrift erschienen sind.
               </div>
@@ -484,12 +484,12 @@
 
           <h2 i18n:translate="book_essay_magazine">Buch/Aufsatz/Zeitschrift</h2>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+              
             <label for="titleOrShortname" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_titleOrShortname">Titel (Buch, Aufsatz, Zeitschrift)</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_titleOrShortname">
                 Titel des rezensierten Buches, des Aufsatzes oder der Zeitschrift, in der die Review erschienen ist
               </div>
@@ -503,12 +503,12 @@
             </div>
           </div>
 
-          <div class="field collapsible"
+          <div class="field"
                tal:attributes="class field_collapsible_class">
             <label for="year" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_year">Jahr</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_year">
                 Erscheinungsjahr oder gezähltes Jahr
               </div>
@@ -522,12 +522,12 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+              
             <label for="place" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_place">Ort</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_place">
                 Erscheinungsort
               </div>
@@ -541,12 +541,12 @@
             </div>
           </div>
 
-          <div class="field collapsible"
+          <div class="field"
                tal:attributes="class field_collapsible_class">
             <label for="publisher" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_publisher">Verlag</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_publisher">
                 Verlag, in dem das Buch/die Zeitschrift erschienen ist
               </div>
@@ -560,12 +560,12 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+            
             <label for="series" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_series">Reihe</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_series">
                 
               </div>
@@ -579,12 +579,12 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+            
             <label for="isbn" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_isbn">ISBN</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_isbn">
                 Internationale Standardbuchnummer
               </div>
@@ -610,16 +610,16 @@
 
           <h2 i18n:translate="thematic_search">Thematische Suche</h2>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class"
+          <div class="field"
+              
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
                            avail_regions python:voc.getDisplayList(voc).items();
                            all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label for="region" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_region">Region</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_region">
                 
               </div>
@@ -639,16 +639,16 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class"
+          <div class="field"
+              
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('epoch_values');
                            avail_epochs python:voc.getDisplayList(voc).items();
                            all_checked python:(len(avail_epochs) == len(request.get('ddcTime', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label for="epoch" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_epoch">Epoche</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_epoch">
                 
               </div>
@@ -668,16 +668,16 @@
             </div>
           </div>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class"
+          <div class="field"
+              
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('topic_values');
                            avail_topics python:voc.getDisplayList(voc).items();
                            all_checked python:(len(avail_topics) == len(request.get('ddcSubject', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
             <label for="topic" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_topic">Thema</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_topic">
                 
               </div>
@@ -710,12 +710,12 @@
 
           <h2 i18n:translate="label_recensio_id">recensio-ID</h2>
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class">
+          <div class="field"
+              
             <label for="recensioID" 
-                   class="collapser"
+                   class=""
                    i18n:translate="label_recensio_id">recensio-ID</label>
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_recensio_id">
                 
               </div>
@@ -731,14 +731,14 @@
 
 
 
-          <div class="field collapsible"
-               tal:attributes="class field_collapsible_class"
+          <div class="field"
+              
                tal:condition="options/show_title">
             <label for="Title" 
-                   class="collapser" 
+                   class="" 
                    i18n:translate="label_title">Title</label>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_title">
                 Return items matching this title.
               </div>
@@ -753,15 +753,15 @@
             </div>
           </div>
 
-          <div class="field collapsible"               
-               tal:attributes="class field_collapsible_class"
+          <div class="field"               
+              
                tal:condition="options/show_description">
 
             <label for="Description"
-                   class="collapser"
+                   class=""
                    i18n:translate="label_description">Description</label>
 
-            <div class="collapse">
+            <div class="">
               <div class="formHelp" i18n:translate="help_search_description">
                 Return items matching this description.
                 Multiple words may be found
