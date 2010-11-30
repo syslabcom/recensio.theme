@@ -1066,17 +1066,17 @@ dl.error dd {
     border: 0.3em solid #ddd;
 }
 #edit-bar {
-    background-color: #75ad0a;
-    border: 0.25em solid #75ad0a;
-    font-size: 9.5px;
-    min-height: 2.5em;
-    margin-bottom: 1em;
+background-color:#BC5C10;
+border:0.25em solid #BC5C10;
+font-size:9.5px;
+margin-bottom:1em;
+min-height:2.5em;
 }
 
 #content-views {
-    float: left;
-    background-color: #75ad0a;
-    margin:0.5em 0 0 0 ;
+background-color:#BC5C10;
+float:left;
+margin:0.5em 0 0;
 }
 #content-views li {
     display:inline;
@@ -1197,7 +1197,7 @@ dl.error dd {
 
 #contentActionMenus dl.actionMenu a,
 #contentActionMenus dl.actionMenu.activated dd {
-    background-color: #75ad0a;
+    background-color: #BC5C10;
     color: White;
     z-index: 5;
 }
@@ -1206,7 +1206,7 @@ dl.error dd {
     color: #000000;
 }
 #contentActionMenus dl.actionMenu.activated dd {
-    border-bottom: 0.5em solid #75ad0a;
+    border-bottom: 0.5em solid #BC5C10;
         right: -3px;
 }
 #contentActionMenus dl.actionMenu.activated dd a:focus,
@@ -1232,7 +1232,7 @@ dl.error dd {
 
 #contentActionMenus {
     float: right;
-    background: #75ad0a;
+    background: #BC5C10;
     margin: 0;
     position: relative;
     /***changed the position top from 0.23em to -2px***/
