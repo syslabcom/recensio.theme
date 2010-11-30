@@ -40,6 +40,7 @@
                           "
             >
 			<fieldset>
+			
           <input type="hidden" name="advanced_search" value="True" />
                                    
           <div class="field">
@@ -481,13 +482,14 @@
          </fieldset> 
 
 		<fieldset>
-          <h2 i18n:translate="book_essay_magazine">Buch/Aufsatz/Zeitschrift</h2>
-
+			
+         
           <div class="field">
-              
-            <label for="titleOrShortname" 
-                   class=""
-                   i18n:translate="label_titleOrShortname">Titel (Buch, Aufsatz, Zeitschrift)</label>
+              <label for="titleOrShortname" 
+			                  class=""
+			                  i18n:translate="label_titleOrShortname">Titel (Buch, Aufsatz, Zeitschrift)</label>
+			
+            
             <div class="">
               <div class="formHelp" i18n:translate="help_titleOrShortname">
                 Titel des rezensierten Buches, des Aufsatzes oder der Zeitschrift, in der die Review erschienen ist
@@ -608,7 +610,8 @@
 		</fieldset>
 
 		<fieldset>
-          <h2 i18n:translate="thematic_search">Thematische Suche</h2>
+			<legend i18n:translate="thematic_search">Thematische Suche</legend>
+          
 
           <div class="field"
               
@@ -821,13 +824,12 @@
 		</fieldset>
 
 		<fieldset>
-          <h2 i18n:translate="label_recensio_id">recensio-ID</h2>
+		
+          
 
           <div class="field">
 
-            <label for="recensioID" 
-                   class=""
-                   i18n:translate="label_recensio_id">recensio-ID</label>
+            
             <div class="">
               <div class="formHelp" i18n:translate="help_recensio_id">
 
@@ -840,8 +842,11 @@
                      tal:attributes="value request/recensioID|nothing"
                      />
             </div>
+			<label for="recensioID" 
+                   class=""
+                   i18n:translate="label_recensio_id">recensio-ID</label>
           </div>
-		<div class="visualClear" id="clear-space-before-submit"><!-- --></div>
+		<div class="visualClear" id="clear-space-before-submit"></div>
 
           <div class="formControls">
             <input class="context"
