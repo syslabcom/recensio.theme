@@ -37,9 +37,9 @@
                           supp_languages recensioview/getSupportedLanguages;
                           authors request/authors|string:;
                           authors python:getattr(authors, 'append', None) and ' '.join(authors) or authors;
-                          field_collapsible_class  python:'field'+(options.collapse() and ' collapsible' or '');"
+                          "
             >
-
+			<fieldset>
           <input type="hidden" name="advanced_search" value="True" />
                                    
           <div class="field">
@@ -164,10 +164,9 @@
                                     threemonths python:(today-90).Date();
                                     sixmonths python:(today-180).Date();
                                     ever string:1970/02/01;">
-          <div class="field"
+          <div class="field">
                
             <label for="created" 
-                   class=""
                    i18n:translate="label_new_items_since" i18n:domain="plone">New items since</label>
 
             <div class="">
@@ -214,7 +213,7 @@
           </div>
 
 
-          <div class="field"
+          <div class="field">
                
             <label for="created" 
                    class=""
@@ -264,7 +263,7 @@
           </div>
         </tal:datetime>
 
-          <div class="field"
+          <div class="field">
                
 
             <label i18n:translate="label_recension_language"
@@ -291,7 +290,7 @@
             </div>
           </div>
 
-          <div class="field"
+          <div class="field">
                
             <label i18n:translate="label_works_language"
                    class="">Language of the Reviewed Works</label>
@@ -364,7 +363,7 @@
           </div>
 
 
-          <div class="field"
+          <div class="field">
               
             <label for="authorsFulltext" 
                    class=""
@@ -383,7 +382,7 @@
             </div>
           </div>
 
-          <div class="field"
+          <div class="field">
                
             <label for="Creator" 
                    class=""
@@ -479,12 +478,12 @@
                    i18n:attributes="value label_search;"
                    />
           </div>
-          
+         </fieldset> 
 
-
+		<fieldset>
           <h2 i18n:translate="book_essay_magazine">Buch/Aufsatz/Zeitschrift</h2>
 
-          <div class="field"
+          <div class="field">
               
             <label for="titleOrShortname" 
                    class=""
@@ -504,7 +503,7 @@
           </div>
 
           <div class="field"
-               tal:attributes="class field_collapsible_class">
+               >
             <label for="year" 
                    class=""
                    i18n:translate="label_year">Jahr</label>
@@ -522,7 +521,7 @@
             </div>
           </div>
 
-          <div class="field"
+          <div class="field">
               
             <label for="place" 
                    class=""
@@ -542,7 +541,7 @@
           </div>
 
           <div class="field"
-               tal:attributes="class field_collapsible_class">
+               >
             <label for="publisher" 
                    class=""
                    i18n:translate="label_publisher">Verlag</label>
@@ -560,7 +559,7 @@
             </div>
           </div>
 
-          <div class="field"
+          <div class="field">
             
             <label for="series" 
                    class=""
@@ -579,7 +578,7 @@
             </div>
           </div>
 
-          <div class="field"
+          <div class="field">
             
             <label for="isbn" 
                    class=""
@@ -606,8 +605,9 @@
                    i18n:attributes="value label_search;"
                    />
           </div>
+		</fieldset>
 
-
+		<fieldset>
           <h2 i18n:translate="thematic_search">Thematische Suche</h2>
 
           <div class="field"
@@ -706,29 +706,6 @@
                    i18n:attributes="value label_search;"
                    />
           </div>
-
-
-          <h2 i18n:translate="label_recensio_id">recensio-ID</h2>
-
-          <div class="field"
-              
-            <label for="recensioID" 
-                   class=""
-                   i18n:translate="label_recensio_id">recensio-ID</label>
-            <div class="">
-              <div class="formHelp" i18n:translate="help_recensio_id">
-                
-              </div>
-
-              <input type="text"
-                     id="recensioID"
-                     name="recensioID"
-                     size="16"
-                     tal:attributes="value request/recensioID|nothing"
-                     />
-            </div>
-          </div>
-
 
 
           <div class="field"
@@ -841,13 +818,40 @@
                    i18n:attributes="value label_search;"
                    />
           </div>
+		</fieldset>
 
-          <script type="text/javascript">
+		<fieldset>
+          <h2 i18n:translate="label_recensio_id">recensio-ID</h2>
 
-            jq('.collapsible').do_search_collapse()
+          <div class="field">
 
-          </script>
+            <label for="recensioID" 
+                   class=""
+                   i18n:translate="label_recensio_id">recensio-ID</label>
+            <div class="">
+              <div class="formHelp" i18n:translate="help_recensio_id">
 
+              </div>
+
+              <input type="text"
+                     id="recensioID"
+                     name="recensioID"
+                     size="16"
+                     tal:attributes="value request/recensioID|nothing"
+                     />
+            </div>
+          </div>
+		<div class="visualClear" id="clear-space-before-submit"><!-- --></div>
+
+          <div class="formControls">
+            <input class="context"
+                   type="submit"
+                   name="submit"
+                   value="Search"
+                   i18n:attributes="value label_search;"
+                   />
+          </div>
+		</fieldset>
 
           
         </form>
