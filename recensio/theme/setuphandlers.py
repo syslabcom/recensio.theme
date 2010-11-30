@@ -22,6 +22,7 @@ def setupXDVTheme(context):
                             u'recensio.syslab.com',
                             u'recensio:8010',
                             u'kielschwein:8010',
+                            u'beta.recensio.net',
                             u'recensio00.fe.rzob.gocept.net'])
     settings.theme = (u'python://recensio.theme/'
                       'skins/recensio_theme/theme.html')
