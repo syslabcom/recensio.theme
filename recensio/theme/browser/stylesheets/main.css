@@ -2001,6 +2001,16 @@ fieldset,
     border: 1px solid #ccc;
 }
 
+/* commenting */
+div#commenting textarea {
+   height: 150px;
+   width: 99%;
+}
+
+div#commenting input.submit-widget {
+   float: right;
+}
+
 /* Emulates the styling from the h1 tag */
 #archetypes-fieldname-title input {
     font-family:Verdana,Arial,Helvetica; 
