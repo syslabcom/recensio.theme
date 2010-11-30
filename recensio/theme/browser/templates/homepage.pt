@@ -51,7 +51,7 @@
               <span tal:repeat="langres results">
                 <!-- <label><span tal:replace="langres/langname" /></label> -->
                 <ul id="list_reviews"
-                    class="easyticker"
+                    class="easyticker-disabled"
                     tal:attributes="id string:list_reviews_${langres/language}">
                   <li tal:repeat="res langres/results"
                       tal:attributes="style python:repeat['res'].start and 'display:block' or ''">
