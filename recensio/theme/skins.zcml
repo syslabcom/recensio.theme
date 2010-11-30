@@ -3,6 +3,6 @@
     xmlns:cmf="http://namespaces.zope.org/cmf"
     i18n_domain="recensio.theme">
 
-    <cmf:registerDirectory name="recensio_theme"/>
+    <cmf:registerDirectory name="recensio_theme" recursive="True"/>
 
 </configure>
