@@ -109,19 +109,26 @@ class GeneratePdfRecension(BrowserView):
 
         style = ParagraphStyle('citation style', fontName = 'BitstreamCyberbit-Roman', \
             fontSize = 10, textColor = grey)
-        
-        P = Paragraph(_(self.context.get_citation_string()), style)
+        try:
+            P = Paragraph(_(self.context.get_citation_string()), style)
+        except UnicodeDecodeError:#ATF
+            P = Paragraph(self.context.get_citation_string(), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
+        # A small calculation, how much this paragaph would overlap
+        # into the next paragraph. If the number is positive, we have
+        # an overlap, and apply it to the initial offset
+        overlap  = (pheight - 8.5 * cm) - (pheight - 6.5 * cm - realheight)
+        overlap += 15 # padding
 
         if hasattr(self.context, 'getFirstPublicationData'):
             msgs = ['First published: ' + x for x in self.context.getFirstPublicationData()]
-            offset = 0
+            offset = max(overlap, 0)
             for msg in msgs:
                 P2 = Paragraph(msg, style)
                 realwidth, realheight = P2.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
                 P2.drawOn(cover, 6.20*cm, pheight-8.5*cm-realheight - offset)
-                offset = realheight
+                offset += realheight
 
         P3 = Paragraph(_X(self.context.getLicense()), style)
         realwidth, realheight = P3.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
