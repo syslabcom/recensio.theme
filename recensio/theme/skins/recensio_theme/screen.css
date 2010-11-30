@@ -223,13 +223,11 @@ color: #000;
    float: left;
 }
 
-#content, #commenting {
+body.template-homepage-view #content, 
+body.template-review_view #content,
+body.template-homepage-view #viewlet-below-content,
+body.template-review_view  #viewlet-below-content {
    width: 605px; 
-}
-
-body.template-browse-topics #content,
-body.template-authorsearch #content {
-   width: 860px;
 }
 
 #content, #content_impressum,#content_tagung, #content_textseite {
