@@ -2329,4 +2329,5 @@ top:3px;
 /*************styles for searchform fieldsets************/
 .template-search_form fieldset {
     border: 1px solid #ccc !important;
+    min-width:835px !important;
 }
