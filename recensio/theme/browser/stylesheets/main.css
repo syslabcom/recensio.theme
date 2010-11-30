@@ -1227,6 +1227,9 @@ margin:0.5em 0 0;
 
 #contextHeader { margin-top: 5px; }
 
+.actionMenuContent ul {
+    padding-left:5px;
+}
 
 /* @end */
 
