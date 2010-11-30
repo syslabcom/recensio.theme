@@ -202,13 +202,6 @@ dl.portletSearch div.LSResult{
    padding:1em 0 0;
 }
 
-fieldset, .editionComment {
-   line-height:1.5em;
-   margin:1em 0;
-   padding:0 1em 1em;
-   width:auto;
-}
-
 .LSRow, #LSNothingFound {
 display:block;
 padding:0.5em 1em;
