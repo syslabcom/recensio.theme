@@ -2336,3 +2336,8 @@ top:3px;
     background:#F6F6F6 none repeat scroll 0 0 !important;
     padding-top:5px !important;
 }
+.template-search_form fieldset legend {
+    font-weight:bold !important;
+    color:#58595B !important;
+    font-size:100% !important;
+}
