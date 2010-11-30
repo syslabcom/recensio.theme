@@ -180,9 +180,41 @@ dl.portletSearch input.searchButton{
     width: 80px;
     float: right;
 }
+
 dl.portletSearch div.LSResult{
     clear: both;
 }
+
+.LSBox {
+   position: relative;
+}
+
+#LSResult {
+   background:none repeat scroll 0 0 White;
+   margin:-1.5em 0 0 -7em;
+   position:absolute;
+   right:0;
+}
+
+#LSResult fieldset {
+   border:0.1em solid #CCCCCC;
+   padding:1em 0 0;
+}
+
+fieldset, .editionComment {
+   line-height:1.5em;
+   margin:1em 0;
+   padding:0 1em 1em;
+   width:auto;
+}
+
+.LSRow, #LSNothingFound {
+display:block;
+padding:0.5em 1em;
+white-space:normal;
+width:28em;
+}
+
 dl.portletSearch dd.portletFooter{
     display: none;
 }
