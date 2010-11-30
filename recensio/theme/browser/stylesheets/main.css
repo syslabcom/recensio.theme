@@ -2330,4 +2330,6 @@ top:3px;
 .template-search_form fieldset {
     border: 1px solid #ccc !important;
     min-width:835px !important;
+    background:#F6F6F6 none repeat scroll 0 0 !important;
+    padding-top:5px !important;
 }
