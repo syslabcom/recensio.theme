@@ -104,21 +104,20 @@ ul.newsticker span {
 /* ---------------------------- */
 /* easyticker*/
 
-ul.easyticker {
+div.column_footer ul.easyticker {
    overflow: hidden;
    position: relative;
    height: 40px;
  }
 
-ul.easyticker li {
+div.column_footer ul.easyticker li {
    display:none;
    position:absolute;
    top:0px;
    left:0px;
-   width: 249px;
 }
 
-ul.easyticker li a{
+div.column_footer ul.easyticker li a{
    display: block;
 }
 
