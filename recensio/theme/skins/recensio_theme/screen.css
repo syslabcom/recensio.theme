@@ -156,6 +156,20 @@ color: #000;
 
 /*Navigation
 -----------------------------------------------------------------------------------------------------*/
+#navigation div.bar-end {
+   float: left;
+   width: 11px;
+   height: 39px
+}
+
+#navigation #navi-left {
+   background: transparent url(++resource++recensio.theme.images/navi_bg_left.png) no-repeat;
+}
+
+#navigation #navi-right {
+   background: transparent url(++resource++recensio.theme.images/navi_bg_right.png) no-repeat;
+}
+
 #navigation ul {
 	height:39px;
 	list-style: none;
