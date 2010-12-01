@@ -59,8 +59,19 @@
                    tal:attributes="value request/SearchableText|nothing"
                    />
           </div>
+		<div class="visualClear" id="clear-space-before-submit"></div>
 
-          
+          <div class="formControls">
+            <input class="context"
+                   type="submit"
+                   name="submit"
+                   value="Search"
+                   i18n:attributes="value label_search;"
+                   />
+          </div>
+
+          </fieldset>
+		  <fieldset>
           <div class="field"
                tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
                tal:condition="usedSubjects">
@@ -811,7 +822,7 @@
             
           </div>
 
-          <div class="visualClear" id="clear-space-before-submit"><!-- --></div>
+          <div class="visualClear" id="clear-space-before-submit"></div>
 
           <div class="formControls">
             <input class="context"
