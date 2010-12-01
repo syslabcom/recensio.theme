@@ -73,4 +73,18 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="*"
+        name="manage-my-presentations"
+        class=".views.ManageMyPresentationsView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="create-new-presentation"
+        class=".views.CreateNewPresentationView"
+        permission="zope2.View"
+        />
+
 </configure>
