@@ -1522,7 +1522,7 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 /* @group Core content type sprites */
 
 .contenttype-document {
-    background: no-repeat transparent 0px 4px url(contenttypes-sprite.png);
+    background: no-repeat transparent 0px -1px url(contenttypes-sprite.png);
 }
 .contenttype-event {
     background: no-repeat transparent 0px -212px url(contenttypes-sprite.png);
