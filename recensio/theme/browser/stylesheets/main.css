@@ -180,11 +180,12 @@ dl.portletSearch div.LSResult{
 }
 
 #LSResult {
-   background:none repeat scroll 0 0 White;
-   margin:-1.5em 0 0 -7em;
-   position:absolute;
-   right:0;
-   z-index: 10;
+background:White none repeat scroll 0 0;
+/*margin:-1.5em 0 0 -7em;*/
+position:absolute;
+right:0;
+top:30px;
+z-index:10;
 }
 
 #LSResult fieldset {
@@ -430,6 +431,7 @@ font-style:italic;
 
 .livesearchContainer ul {
     padding-left:0px !important;
+    margin:0 !important;
 }
 
 div#portal-advanced-search {
