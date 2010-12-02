@@ -1,15 +1,4 @@
 /* required sections from public.css */
-.hiddenStructure {
-   background:none repeat scroll 0 0 transparent;
-   border:medium none;
-   display:block;
-   height:0.1em;
-   margin:-0.1em 0 0 -0.1em;
-   overflow:hidden;
-   padding:0;
-   width:1px;
-}
-
 /* global nav */
 ul#portal-globalnav li:first-child {
    border-left: none !important;
@@ -441,6 +430,14 @@ font-style:italic;
 
 .livesearchContainer ul {
     padding-left:0px !important;
+}
+
+div#portal-advanced-search {
+   display: block;
+   overflow: visible;
+   height: auto;
+   width: auto;
+   margin: 1em 0;
 }
 
 /* ---------------------------- */
