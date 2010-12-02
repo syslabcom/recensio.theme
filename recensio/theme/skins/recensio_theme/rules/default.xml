@@ -105,6 +105,7 @@
   <!-- search -->
   <replace css:content="div#portal-searchbox"
            css:theme="div#suche" />
+  <drop css:content="div.searchSection" />
 
   <!-- FIXES -->
   <!-- Clear space before navigation inflicts a large offset of the content from the header. We drop it -->
