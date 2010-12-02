@@ -152,7 +152,7 @@
                                          id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
                                          checked python:((type in request.get('portal_type', []))) and 'checked' or ''"/>
                   <label for=""
-                         i18n:translate=""
+                         i18n:translate="" i18n:domain="recensio"
                          tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
                          tal:content="python: portal_types.getTypeInfo(type).Title()"
                          />
@@ -833,9 +833,9 @@
 
               <input type="text"
                      id="recensioID"
-                     name="recensioID"
+                     name="UID"
                      size="16"
-                     tal:attributes="value request/recensioID|nothing"
+                     tal:attributes="value request/UID|nothing"
                      />
             </div>
 			
