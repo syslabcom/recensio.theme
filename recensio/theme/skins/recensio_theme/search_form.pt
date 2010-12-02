@@ -40,12 +40,10 @@
                           "
             >
 			<fieldset>
-			
+			<legend i18n:translate="label_search_text">Volltextsuche</legend>	
           <input type="hidden" name="advanced_search" value="True" />
                                    
           <div class="field">
-            <label for="SearchableText" i18n:translate="label_search_text">Search text</label>
-
             <div class="formHelp" i18n:translate="help_search_text">
               For a full text search, enter your search term
               here. Multiple words may be found by combining
@@ -72,11 +70,10 @@
 
           </fieldset>
 		  <fieldset>
+			<legend i18n:translate="label_general">Generelles</legend>	
           <div class="field"
                tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
                tal:condition="usedSubjects">
-
-            <label for="Subject" i18n:translate="label_tags">Tags</label>
 
             <div class="formHelp" i18n:translate="help_search_tags">
               Return items matching some or all of these tags.
@@ -493,14 +490,9 @@
          </fieldset> 
 
 		<fieldset>
-			
+		<legend i18n:translate="label_titleOrShortname">Buch, Aufsatz, Zeitschrift</legend>	
          
-          <div class="field">
-              <label for="titleOrShortname" 
-			                  class=""
-			                  i18n:translate="label_titleOrShortname">Titel (Buch, Aufsatz, Zeitschrift)</label>
-			
-            
+          <div class="field">            
             <div class="">
               <div class="formHelp" i18n:translate="help_titleOrShortname">
                 Titel des rezensierten Buches, des Aufsatzes oder der Zeitschrift, in der die Review erschienen ist
@@ -835,16 +827,9 @@
 		</fieldset>
 
 		<fieldset>
-		
-          
+          <legend i18n:translate="help_recensio_id">recensio-ID</legend>
 
           <div class="field">
-
-            
-            <div class="">
-              <div class="formHelp" i18n:translate="help_recensio_id">
-
-              </div>
 
               <input type="text"
                      id="recensioID"
@@ -853,10 +838,7 @@
                      tal:attributes="value request/recensioID|nothing"
                      />
             </div>
-			<label for="recensioID" 
-                   class=""
-                   i18n:translate="label_recensio_id">recensio-ID</label>
-          </div>
+			
 		<div class="visualClear" id="clear-space-before-submit"></div>
 
           <div class="formControls">

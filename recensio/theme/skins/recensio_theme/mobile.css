@@ -81,6 +81,10 @@ body {
     display:none;
 }
 
+#content_impressum, #content_tagung, #content_textseite, #mainContent {
+margin: 0;
+}
+
 #mainContent, #content_impressum {
 margin:0;
 padding:0 10px 0 0;
