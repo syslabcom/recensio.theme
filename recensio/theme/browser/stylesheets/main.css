@@ -2314,7 +2314,3 @@ top:3px;
     color:#58595B !important;
     font-size:101% !important;
 }
-
-/* hide #extra-design-elements in the footer which are used by xdv
-only and should not appear in the normal sunburst theme */
-div#extra-design-elements { display: none; }
