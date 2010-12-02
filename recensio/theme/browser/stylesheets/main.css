@@ -207,6 +207,7 @@ dl.portletSearch dd.portletFooter{
 /* start review_view */
 #review-metadata {
 margin-bottom:1em;
+margin-top:1em;
 }
 
 #review-metadata h2 {
