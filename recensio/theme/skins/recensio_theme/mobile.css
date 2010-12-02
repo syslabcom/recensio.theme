@@ -82,7 +82,7 @@ body {
 }
 
 #content_impressum, #content_tagung, #content_textseite, #mainContent {
-margin: 0;
+margin:0 !important;
 }
 
 #mainContent, #content_impressum {
