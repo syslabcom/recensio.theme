@@ -1,4 +1,56 @@
-/* required sections from public.css */
+/* start required sections from public.css */
+
+/* @group CSS Reset */
+
+/* Remove implicit browser styles to have a neutral starting point:
+   - No elements should have implicit margin/padding
+   - No underline by default on links (we add it explicitly in the body text)
+   - When we want markers on lists, we will be explicit about it, and they render inline by default
+   - Browsers are inconsistent about hX/pre/code, reset
+   - Linked images should not have borders
+   */
+
+* { margin: 0; padding: 0; }
+* :link,:visited { text-decoration:none }
+* ul,ol { list-style:none; }
+* li { display: inline; }
+* h1,h2,h3,h4,h5,h6,pre,code { font-size:1em; }
+* a img,:link img,:visited img { border:none }
+a { outline: none; }
+table { border-spacing: 0; }
+img { vertical-align: text-bottom; }
+
+
+/* @end */
+
+#content ul {
+    list-style-type: disc;
+    margin-left: 2em;
+}
+
+#content li,
+dl.portlet li {
+    margin-bottom: 0.25em;
+    line-height: 1.5em;
+    display: list-item;
+}
+
+/* end required sections from public.css */
+
+/******styles to fix the side effects of the style above********/
+/* from the CSS Reset */ 
+#logged_in {
+    margin:8px 0;
+}
+
+input {
+   margin: 4px;
+}
+
+#content-core {
+   margin-top: 1em;
+}
+
 /* global nav */
 ul#portal-globalnav li:first-child {
    border-left: none !important;
@@ -217,10 +269,9 @@ margin-left:10px;
 /* Review images */
 
 #pubSchwusch {
-	float: left;
-	margin: 0;
-	margin-left: -60px;
-    min-height: 300px;
+   float: left;
+   margin: 0 !important;
+   min-height: 300px;
 }
 
 #pubSchwusch .previews {
@@ -501,20 +552,20 @@ div#authorsearch-query input.text {
 }
 
 .authors li {
-    float: left;
-    margin: 0;
-    padding: 5px 5px 0 0;
+   float: left;
+   margin: 0;
+   padding: 5px 5px 0 0;
 }
 
 ul.authors li.author {
-    float:left;
-    width:32%;
+   float:left;
+   width:32%;
 }
 
 /********************Styles for ul Zeitschriften***************/
 
 .template-folder_listing #content-core dt {
-    margin-bottom:0.5em;
+   margin-bottom:0.5em;
 }
 
 /********************Styles for ul Suche Authorsearch***************/
@@ -2320,18 +2371,3 @@ top:3px;
 only and should not appear in the normal sunburst theme */
 div#extra-design-elements { display: none; }
 
-/*********styles for default setting plone margin and padding*********/
-
-* {
-margin:0;
-padding:0;
-}
-
-/******styles to fix the side effects of the style above********/
-#logged_in {
-    margin:8px 0;
-}
-
-input {
-    margin: 4px;
-}
