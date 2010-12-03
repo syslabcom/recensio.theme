@@ -724,25 +724,20 @@ a.trigger.open {
 
 /*********Styles for metadata****************/
 
-
-ul#metadata_accordion ul {
+li.accordion-item {
    padding-left: 0;
    background-color: #ECE6D4;
    margin-bottom: 1em;
+   display: block;
+   padding: 1em;
+   word-wrap: break-word;
 }
 
-ul#metadata_accordion .accordion_item {
-   border:1px solid #EFEFEF;
-   padding: 9px;
-   font: 1em Georgia,"Times New Roman",Times,serif;
-}
-
-dl#metadata dt {
+li.accordion-item dt {
    font-weight:bold;
 }
 
-
-dl#metadata dd {
+li.accordion-item dd {
     margin-left: 1em;
 }
 
