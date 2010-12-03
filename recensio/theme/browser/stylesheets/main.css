@@ -2326,3 +2326,12 @@ div#extra-design-elements { display: none; }
 margin:0;
 padding:0;
 }
+
+/******styles to fix the side effects of the style above********/
+#logged_in {
+    margin:8px 0;
+}
+
+input {
+    margin: 4px;
+}
