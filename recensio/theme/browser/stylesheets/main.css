@@ -2361,13 +2361,13 @@ top:3px;
    padding-left:5px;
 }
 /*************styles for searchform fieldsets************/
-.template-search_form fieldset {
+.template-search_form #content fieldset {
     border: 1px solid #ccc !important;
     width:835px !important;
     background:#F6F6F6 none repeat scroll 0 0 !important;
     padding-top:5px !important;
 }
-.template-search_form fieldset legend {
+.template-search_form #content fieldset legend {
     font-weight:bold !important;
     color:#58595B !important;
     font-size:101% !important;
