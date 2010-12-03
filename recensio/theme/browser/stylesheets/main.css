@@ -711,6 +711,7 @@ a.trigger {
    width: 204px;
    line-height: 23px;
    height: 23px;
+   position: relative;
 }
 
 a.trigger.open {
