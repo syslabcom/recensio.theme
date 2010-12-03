@@ -83,6 +83,8 @@ body {
 
 #content_impressum, #content_tagung, #content_textseite, #mainContent {
 margin:0 !important;
+bottom:170px;
+position:relative;
 }
 
 #mainContent, #content_impressum {
