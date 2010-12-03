@@ -706,11 +706,9 @@ a.trigger {
    color:black;
    display:block;
    background-image:url(++resource++recensio.theme.images/more_bg.gif);
-   background-position:0 2px;
    background-repeat:no-repeat;
-   padding-bottom:5px;
    padding-left:5px;
-   padding-top:5px;
+   line-height: 23px;
 }
 
 a.trigger.open {
@@ -722,14 +720,13 @@ a.trigger.open {
 
 .active{font-weight:700; text-decoration:none}
 
-/*********Styles for metadata****************/
+/* jquery Accordion boxes used in the right hand column on the
+review-view */
 
 li.accordion-item {
-   padding-left: 0;
    background-color: #ECE6D4;
    margin-bottom: 1em;
    display: block;
-   padding: 1em;
    word-wrap: break-word;
 }
 
@@ -740,6 +737,15 @@ li.accordion-item dt {
 li.accordion-item dd {
     margin-left: 1em;
 }
+
+div#accordion-container h2 {
+   height: 23px;
+}
+
+li.accordion-item .accordion-content {
+   padding: 1em;
+}
+
 
 /**************************Icons for bold text links****************************/
 
