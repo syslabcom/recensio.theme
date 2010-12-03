@@ -708,13 +708,14 @@ a.trigger {
    background-image:url(++resource++recensio.theme.images/more_bg.gif);
    background-repeat:no-repeat;
    padding-left:5px;
+   width: 204px;
    line-height: 23px;
+   height: 23px;
 }
 
 a.trigger.open {
    background-image:url(++resource++recensio.theme.images/more_open_bg.gif);
 }
-
 
 #main .switch a.open {background:transparent none}
 
