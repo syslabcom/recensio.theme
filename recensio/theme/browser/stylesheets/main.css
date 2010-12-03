@@ -48,7 +48,7 @@ input {
 }
 
 #content-core {
-   margin-top: 1em;
+   margin: 1em 0;
 }
 
 /* global nav */
@@ -497,12 +497,13 @@ div#portal-advanced-search {
 /* ---------------------------- */
 
 ul.authors li, li.inline_listing {
-   display: inline;
+   display: inline !important;
 }
 
+ul.authors,
 ul.authors ul {
-   padding: 0;
-   margin: 0;
+   padding: 0 !important;
+   margin: 0 !important;
 }
 
 /*****styles for authorsearch*****/
@@ -510,6 +511,7 @@ div.authorsearch {
    border-top: 1px dashed #777;
    margin-top: 2em;
    padding: 2em 1em;
+   clear: both;
 }
 
 div#authorsearch-query {
@@ -529,6 +531,11 @@ div#authorsearch-query input.text {
    line-height:normal;
    width:160px;
    color:#777;
+}
+
+#authors-select-all {
+   float: right;
+   margin: 1em 0;
 }
 
 #authors-select-all #all-presentations {
