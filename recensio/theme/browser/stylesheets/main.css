@@ -183,7 +183,7 @@ div.box ul a.review-title {
    display: block;
 }
 
-.box ul{
+#content div.box ul{
    list-style: none;
    margin: 0 1em;
    padding:0;
