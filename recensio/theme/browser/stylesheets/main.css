@@ -2383,6 +2383,11 @@ p.discreet {
 p{
     margin:2px;
 }
+
+/***************styles for commenting***********/
+.state-pending {
+color:#6F5A44 !important;
+}
 /* hide #extra-design-elements in the footer which are used by xdv
 only and should not appear in the normal sunburst theme */
 div#extra-design-elements { display: none; }
