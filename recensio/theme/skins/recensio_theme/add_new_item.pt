@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="recensio">
+
+  <head>
+    <metal:javascript_head fill-slot="javascript_head_slot">
+    </metal:javascript_head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="
+dummy python:request.set('disable_border',1);
+disable_column_one python:request.set('disable_plone.leftcolumn',1);
+disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+  </head>
+
+  <body>
+    <metal:main fill-slot="main"
+                tal:define="
+ploneview python:context.restrictedTraverse('@@plone')">
+      <h1 i18n:translate="heading_create_presentation">
+        Neue Präsentation erstellen</h1>
+      <div id="content_left">
+        <span i18n:translate="text_create_presentation">
+          Text
+        </span>
+
+        <form name="quickAdd" method="post"
+              tal:define="
+folderurl python:here.portal_membership.getHomeFolder().absolute_url()"
+              tal:attributes="action string:${folderurl}/@@folder_factories">
+
+          <dl>
+            <dt>
+              <input type="radio" name="url"
+                     tal:attributes="
+value string:${folderurl}/createObject?type_name=Presentation+Monograph;
+id string:form-field-presentation-monograph" />
+              <label class="contenttype-presentation-monograph"
+                     for="form-field-presentation-monograph">
+                <img  alt=""
+                      tal:attributes="
+src string:${context/portal_url}/++resource++recensio.theme.images/InternetResource.png " />
+                <span i18n:translate="Presentation Monograph">
+                  Presentation Monograph</span>
+              </label>
+            </dt>
+            <dd i18n:translate="description_add_presentation_monograph">
+              Hier gelangen Sie zu einem Formular, mit dem Sie Ihren
+              Aufsatz in einem Sammelband auf recensio.net
+              präsentieren können.
+           </dd>
+            <dt>
+              <input type="radio" name="url"
+                     tal:attributes="
+value string:${folderurl}/createObject?type_name=Presentation+Collection;
+id string:form-field-presentation-collection" />
+              <label class="contenttype-presentation-collection"
+                     for="form-field-presentation-collection">
+                <img  alt=""
+                      tal:attributes="
+src string:${context/portal_url}/++resource++recensio.theme.images/InternetResource.png"/>
+                <span i18n:translate="Presentation Collection">
+                  Presentation Collection</span>
+              </label>
+            </dt>
+            <dd i18n:translate="description_add_presentation_collection">
+              Hier gelangen Sie zu einem Formular, mit dem Sie Ihren
+              Aufsatz in einem Sammelband auf recensio.net
+              präsentieren können.
+            </dd>
+            <dt>
+              <input type="radio" name="url"
+                     tal:attributes="
+value string:${folderurl}/createObject?type_name=Presentation+Article+Review;
+id string:form-field-presentation-article-review"
+                     />
+              <label class="contenttype-presentation-article-review"
+                     for="form-field-presentation-article-review">
+                <img alt=""
+                     tal:attributes="
+src string:${context/portal_url}/++resource++recensio.theme.images/InternetResource.png" />
+                <span i18n:translate="Presentation Article Review">
+                  Presentation Article Review</span>
+              </label>
+            </dt>
+            <dd i18n:translate="description_add_presentation_article_review">
+              Hier gelangen Sie zu einem Formular, mit dem Sie Ihren
+              Aufsatz in einem Sammelband auf recensio.net
+              präsentieren können.
+           </dd>
+            <dt>
+              <input type="radio" name="url"
+                     tal:attributes="
+value string:${folderurl}/createObject?type_name=Presentation+Online+Resource;
+id string:form-field-presentation-online-resource" />
+              <label class="contenttype-presentation-online-resource"
+                     for="form-field-presentation-online-resource">
+                <img alt=""
+                     tal:attributes="
+src string:${context/portal_url}/++resource++recensio.theme.images/InternetResource.png" />
+                <span i18n:translate="Presentation Online Resource">
+                  Presentation Online Resource</span>
+              </label>
+            </dt>
+            <dd i18n:translate="description_add_presentation_online_resource">
+              Hier gelangen Sie zu einem Formular, mit dem Sie Ihren
+              Aufsatz in einem Sammelband auf recensio.net
+              präsentieren können.
+            </dd>
+          </dl>
+
+          <div class="formControls">
+            <input class="standalone"
+                   type="submit"
+                   value="Add"
+                   name="form.button.Add"
+                   i18n:attributes="value label_add"
+                   />
+          </div>
+        </form>
+      </div>
+
+    </metal:main>
+  </body>
+</html>
