@@ -2376,6 +2376,11 @@ top:3px;
     font-size:101% !important;
 }
 
+/*********styles to fix sideeffects of margin, padding 0********/
+p.discreet {
+    margin-bottom:5px;
+}
+
 /* hide #extra-design-elements in the footer which are used by xdv
 only and should not appear in the normal sunburst theme */
 div#extra-design-elements { display: none; }
