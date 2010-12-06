@@ -2387,9 +2387,29 @@ p{
 /***************styles for commenting***********/
 .state-pending {
 color:#6F5A44 !important;
-border:1px solid #D3D4A7;
-padding:9px 9px 20px;
-margin:5px 0;
+}
+
+.documentByLine a {
+    font-size:1.6em;
+    font-weight:bold;
+    color:#7F4B2B;
+    text-decoration:none;
+}
+
+.commentBody {
+border-bottom:1px dashed #CCCCCC;
+margin-bottom:35px;
+padding-left:15px;
+}
+
+button.reply-to-comment-button {
+background-color:#E8E1D0;
+float:right;
+padding:5px 15px;
+}
+
+button.reply-to-comment-button:hover {
+background-color:#f2efe8;
 }
 /* hide #extra-design-elements in the footer which are used by xdv
 only and should not appear in the normal sunburst theme */
