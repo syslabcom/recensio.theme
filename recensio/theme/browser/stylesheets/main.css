@@ -2380,9 +2380,9 @@ top:3px;
 p.discreet {
     margin-bottom:5px;
 }
-/*p {
-    margin:2px;
-}*/
+p {
+    margin: 1em 0;
+}
 dl {
     margin:11px 0;
 }
