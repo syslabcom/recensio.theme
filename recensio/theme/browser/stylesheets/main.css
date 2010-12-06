@@ -2327,7 +2327,8 @@ top:3px;
 }
 
 #oaisuggestions {
-    background-color: white;
+   background-color: white;
+   display: none;
 }
 
 .oaisuggestion {
