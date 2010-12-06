@@ -2380,7 +2380,9 @@ top:3px;
 p.discreet {
     margin-bottom:5px;
 }
-
+p{
+    margin:2px;
+}
 /* hide #extra-design-elements in the footer which are used by xdv
 only and should not appear in the normal sunburst theme */
 div#extra-design-elements { display: none; }
