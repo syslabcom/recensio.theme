@@ -8,7 +8,10 @@ class publicationlisting(ViewletBase):
 
     def visible(self):
         """ should we display at all? """
-        parents = self.request.PARENTS
+        try:
+            parents = self.request.PARENTS
+        except AttributeError:
+            return False
         if len(parents)<2:
             return False
         parent = self.request.PARENTS[1]
@@ -18,7 +21,10 @@ class publicationlisting(ViewletBase):
         
     def volumes(self):
         """ return a mapping of all volumes including contained issues and reviews """
-        parent = self.request.PARENTS[1]
+        try:
+            parent = self.request.PARENTS[1]
+        except AttributeError:
+            parent = None
         if not hasattr(parent, 'objectValues'):
             return []
         volumes = []
