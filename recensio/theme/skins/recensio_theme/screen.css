@@ -242,7 +242,8 @@ body.template-homepage-view #content,
 body.template-review_view #content,
 body.template-publications-view #content,
 body.template-homepage-view #viewlet-below-content,
-body.template-review_view  #viewlet-below-content {
+body.template-review_view  #viewlet-below-content,
+body.template-publications-view #viewlet-below-content {
    width: 605px; 
 }
 
