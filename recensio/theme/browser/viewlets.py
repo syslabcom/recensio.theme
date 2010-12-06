@@ -8,6 +8,9 @@ class publicationlisting(ViewletBase):
 
     def visible(self):
         """ should we display at all? """
+        parents = self.request.PARENTS
+        if len(parents)<2:
+            return False
         parent = self.request.PARENTS[1]
         if self.context.portal_type=='Document' and parent.portal_type=='Publication':
             return True
