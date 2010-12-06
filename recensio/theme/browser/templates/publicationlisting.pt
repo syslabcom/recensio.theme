@@ -1,0 +1,34 @@
+<div id="publicationlisting"
+     tal:define="language context/@@plone_portal_state/language;
+                 portal_url context/portal_url;
+                 volumes view/volumes"
+     i18n:domain="recensio"
+     tal:condition="view/visible">
+
+
+<tal:volumes repeat="volume volumes">
+
+    <h2 tal:content="volume/title" />
+
+    <tal:issue define="children volume/children" repeat="issue children/issues">
+
+        <h3 tal:content="issue/title" />
+
+        <tal:review repeat="review issue/children">
+
+            <ul>
+            <li><a href="" tal:attributes="href review/absolute_url"><span tal:replace="review/Title"/></a></li>
+            </ul>
+    
+        </tal:review>
+
+    </tal:issue>
+
+    <tal:reviews repeat="review volume/children/reviews">
+        <ul>
+        <li><a href="" tal:attributes="href review/absolute_url"><span tal:replace="review/Title"/></a></li>
+        </ul>
+    </tal:reviews>
+
+</tal:volumes>
+</div>

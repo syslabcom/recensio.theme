@@ -86,5 +86,14 @@
         class=".views.CreateNewPresentationView"
         permission="zope2.View"
         />
+        
+    <browser:viewlet
+        name="publicationlisting"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        class=".viewlets.publicationlisting"
+        template="templates/publicationlisting.pt"
+        permission="zope2.View"
+        />
+        
 
 </configure>

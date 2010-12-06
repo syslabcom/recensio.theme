@@ -2427,3 +2427,18 @@ background-color:#f2efe8;
 only and should not appear in the normal sunburst theme */
 div#extra-design-elements { display: none; }
 
+#publicationlisting {
+    border-top: 1px dashed #CCC;
+}
+#publicationlisting ul {
+    list-style-type: disc;
+}
+#publicationlisting ul li {
+    list-style-type: disc;
+}
+#publicationlisting h2 {
+    margin-top:1em;
+}
+#publicationlisting h3 {
+    margin-top:0.5em;
+}
