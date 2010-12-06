@@ -2387,6 +2387,9 @@ p{
 /***************styles for commenting***********/
 .state-pending {
 color:#6F5A44 !important;
+border:1px solid #D3D4A7;
+padding:9px 9px 20px;
+margin:5px 0;
 }
 /* hide #extra-design-elements in the footer which are used by xdv
 only and should not appear in the normal sunburst theme */
