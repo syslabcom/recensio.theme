@@ -2411,6 +2411,7 @@ color:#BC5C10 !important;
 .comment .commentBody {
 border-bottom:1px dashed #CCCCCC;
 margin-bottom:0;
+padding-bottom:10px;
 padding-left:15px;
 }
 
@@ -2428,7 +2429,8 @@ background-color:#f2efe8;
 }
 
 .comment {
-    border-top:1px dashed #CCCCCC;
+border-top:1px dashed #CCCCCC;
+padding-top:10px;
 }
 
 .comment .documentByLine {
