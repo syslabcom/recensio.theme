@@ -2397,30 +2397,30 @@ padding-left:40px;
 }
 
 /***************styles for commenting***********/
-.state-pending {
-color:#6F5A44 !important;
+.comment .state-pending {
+color:#BC5C10 !important;
 }
 
-.documentByLine a {
+.comment .documentByLine a {
     font-size:1.6em;
     font-weight:bold;
     color:#7F4B2B;
     text-decoration:none;
 }
 
-.commentBody {
+.comment .commentBody {
 border-bottom:1px dashed #CCCCCC;
 margin-bottom:35px;
 padding-left:15px;
 }
 
-button.reply-to-comment-button {
+.comment button.reply-to-comment-button {
 background-color:#E8E1D0;
 float:right;
 padding:5px 15px;
 }
 
-button.reply-to-comment-button:hover {
+.comment button.reply-to-comment-button:hover {
 background-color:#f2efe8;
 }
 /* hide #extra-design-elements in the footer which are used by xdv
