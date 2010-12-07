@@ -1861,7 +1861,7 @@ div.listingBar a {
 
 div.listingBar a:focus,
 div.listingBar a:hover {
-    color: White;
+    color: Black;
     background-color: #E8E1D0;
     border-color: #d8ccae;
 }
