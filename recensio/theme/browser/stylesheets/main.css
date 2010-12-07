@@ -2410,13 +2410,14 @@ color:#BC5C10 !important;
 
 .comment .commentBody {
 border-bottom:1px dashed #CCCCCC;
-margin-bottom:35px;
+margin-bottom:0;
 padding-left:15px;
 }
 
 .comment button.reply-to-comment-button {
 background-color:#E8E1D0;
 float:right;
+margin-bottom:15px;
 padding:5px 15px;
 }
 
