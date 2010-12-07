@@ -734,7 +734,9 @@ li.accordion-item {
 }
 
 li.accordion-item dt {
-   font-weight:bold;
+    font-weight:bold;
+    margin-bottom:2px;
+    margin-top:2px;
 }
 
 li.accordion-item dd {
