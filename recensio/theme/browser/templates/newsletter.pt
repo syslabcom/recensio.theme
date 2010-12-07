@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="recensio">
+
+<body>
+
+<div metal:fill-slot="main" 
+     tal:define="templateId template/getId; currlang here/portal_languages/getPreferredLanguage">
+
+    <div class="message warning" 
+             tal:condition="request/portal_status_message | nothing"
+             tal:content="request/portal_status_message | nothing" />
+        <h1 tal:content="here/Title">
+          Newsletter
+        </h1>
+        <p tal:content="here/Description">
+        </p>
+
+        <p tal:replace="structure here/getText" />
+
+        <form action="#" tal:attributes="action string:./newsletter-view/subscribe" method="post" id="subscribe">
+
+            <label><span i18n:translate="portlet_newsletter_email" tal:omit-tag="">E-mail address</span>* <input type="text" name="emailaddress" /></label>
+            <label><span i18n:translate="label_name" tal:omit-tag="">Name</span> <input type="text" name="name"   /></label>
+
+            <p>
+            <button type="submit" name="subscribe" i18n:translate="Subscribe">Subscribe</button> 
+            <button type="submit" name="unsubscribe" i18n:translate="Unsubscribe">Unsubscribe</button>
+            </p>
+        </form>
+        <hr class="clear" />
+
+
+
+</div>
+
+</body>
+</html>

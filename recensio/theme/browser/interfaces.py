@@ -20,3 +20,10 @@ class IBrowseTopics(Interface):
     def __call__(self):
         """render the view
         """
+
+class INewsletterView(Interface):
+    """ newsletter overview including subscription """
+
+    def subscribe():
+        """ subscribe to newsletter """
+        

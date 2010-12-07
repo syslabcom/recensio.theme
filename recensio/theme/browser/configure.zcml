@@ -95,5 +95,12 @@
         permission="zope2.View"
         />
         
+    <browser:page
+        for="*"
+        name="newsletter-view"
+        class=".newsletter.NewsletterView"
+        allowed_interface=".interfaces.INewsletterView"
+        permission="zope2.View"
+        />
 
 </configure>
