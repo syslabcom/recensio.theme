@@ -2471,3 +2471,6 @@ div#extra-design-elements { display: none; }
 
 /***********Styles for highlighting the batch 1,2,3....********/
 
+div.dialog-wrapper { 
+    width: 95%; 
+}
