@@ -2087,6 +2087,7 @@ textarea:focus {
 }
 #content select {
     vertical-align: top;
+    width:840px;
 }
 #content fieldset {
     border: 0.1em solid #329fd7;
@@ -2473,4 +2474,9 @@ div#extra-design-elements { display: none; }
 
 div.dialog-wrapper { 
     width: 95%; 
+}
+
+/*****************bugfixes***********/
+#content, #content_impressum, #content_tagung, #content_textseite {
+width:860px;
 }
