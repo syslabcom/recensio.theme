@@ -1845,7 +1845,7 @@ div.listingBar {
     margin: 1em 0;
 }
 
-div.listingBar span.current {
+span.current {
    background-color: #E8E1D0;
    padding: 0.25em 0.5em;  
 }
