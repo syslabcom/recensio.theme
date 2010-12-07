@@ -1862,8 +1862,8 @@ div.listingBar a {
 div.listingBar a:focus,
 div.listingBar a:hover {
     color: White;
-    background-color: #329fd7;
-    border-color: #329fd7;
+    background-color: #E8E1D0;
+    border-color: #d8ccae;
 }
 
 /* @end */
@@ -2443,3 +2443,6 @@ div#extra-design-elements { display: none; }
 #publicationlisting h3 {
     margin-top:0.5em;
 }
+
+/***********Styles for highlighting the batch 1,2,3....********/
+
