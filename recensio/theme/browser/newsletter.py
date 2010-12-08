@@ -1,5 +1,6 @@
 import Acquisition
 from DateTime import DateTime
+import urllib2
 
 from zope.component import getMultiAdapter
 from plone.memoize import instance
@@ -9,6 +10,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from recensio.translations import RecensioMessageFactory as _
 
 class NewsletterView(BrowserView):
     """View for handling the newsletter subscriptions
@@ -30,6 +32,7 @@ class NewsletterView(BrowserView):
         REQUEST = self.request
         if not emailaddress:
             emailaddress = REQUEST.get('emailaddress', '')
+        fullname = REQUEST.get('name', '')
         refererstem = REQUEST.get('HTTP_REFERER').split('?')[0]
         referer = refererstem+'?'
         qs =REQUEST.get('QUERY_STRING', '')
@@ -47,23 +50,24 @@ class NewsletterView(BrowserView):
             return REQUEST.RESPONSE.redirect(referer+"portal_status_message="+msg)
 
         if REQUEST.has_key('unsubscribe'):
-            mesg = "UNSUBSCRIBE newsletter\n"
-            mssg = "Your unsubscription request has been sent."
+            try:
+                url = "http://lists.recensio.net/mailman/options/newsletter/%s?unsubconfirm=1&unsub=Unsubscribe" % emailaddress
+                req = urllib2.Request(url=url)
+                f = urllib2.urlopen(req)
+                retval = f.read()
+                mssg = _(u"Your unsubscription request has been sent.")
+            except Exception, e:
+                mssg = _(u"Your subscription could not be sent. Please try again.") +' ' +str(e)
         else:
-            mesg = "SUBSCRIBE newsletter anonymous\n"
-            mssg = "Your subscription request has been sent."
+            try:
+                req = urllib2.Request(url='http://lists.recensio.net/mailman/subscribe/newsletter',
+                                      data='email=%s&fullname=%s&email-button=Subscribe' % (emailaddress, fullname))
+                f = urllib2.urlopen(req)
+                retval = f.read()
+                mssg = _(u"Your subscription request has been sent. Please check your e-mail.")
+            except Exception, e:
+                mssg = _(u"Your subscription could not be sent. Please try again.") +' ' + str(e)
 
 
-        recipient = sp.getProperty('listserv_email', siteadmin)
-
-        sender = emailaddress
-        if name:
-            sender = "%s <%s>" % (name, sender)
-            
-        subject = ''
-        try:
-            self.context.MailHost.secureSend(message=mesg , mto=recipient, mfrom=sender, subject=subject)
-        except Exception, e:
-            mssg = "Your subscription could not be sent. Please try again. " +str(e)
 
         return REQUEST.RESPONSE.redirect(refererstem+"?portal_status_message=%s" % (mssg))
