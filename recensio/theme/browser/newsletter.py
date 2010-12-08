@@ -51,8 +51,8 @@ class NewsletterView(BrowserView):
 
         if REQUEST.has_key('unsubscribe'):
             try:
-                url = "http://lists.recensio.net/mailman/options/newsletter/%s?unsubconfirm=1&unsub=Unsubscribe" % emailaddress
-                req = urllib2.Request(url=url)
+                url = "http://lists.recensio.net/mailman/options/newsletter"
+                req = urllib2.Request(url=url, data="email=%s&unsubconfirm=1&login-unsub=Unsubscribe"%emailaddress)
                 f = urllib2.urlopen(req)
                 retval = f.read()
                 mssg = _(u"Your unsubscription request has been sent.")
