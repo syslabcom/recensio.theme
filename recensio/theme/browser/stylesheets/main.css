@@ -2495,6 +2495,10 @@ table.invisible td, table.invisible th, table.plain td, table.plain th, table.li
 vertical-align: middle;
 }
 
+form#review_monograph-base-edit select, form#review_journal-base-edit select, form#presentation_article_review-base-edit select, form#presentation_online_resource-base-edit select, form#presentation_monograph-base-edit select, form#presentation_collection-base-edit select {
+    width:840px;
+}
+
 /* Use these classes to set the width of a column. */
 .span-1  { width: 30px; }
 .span-2  { width: 70px; }
