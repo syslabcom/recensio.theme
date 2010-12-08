@@ -689,8 +689,10 @@ span.headlinebutton {
 
 .accordion {margin:0; padding:0;}
 
-.accordion li {list-style-type:none;
-    display:list-item;}
+.accordion li {
+    list-style-type:none;
+    display:list-item;
+    }
 
 .accordion li.last-child {list-style-type:none}
 
