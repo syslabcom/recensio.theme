@@ -2488,6 +2488,10 @@ div.dialog-wrapper {
 width:860px;
 }
 
+table.listing, table.plain {
+margin-bottom:10px !important;
+}
+
 
 /* Use these classes to set the width of a column. */
 .span-1  { width: 30px; }
