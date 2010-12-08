@@ -2491,6 +2491,9 @@ table.listing, table.plain {
 margin-bottom:10px !important;
 }
 
+table.invisible td, table.invisible th, table.plain td, table.plain th, table.listing td, table.listing th {
+vertical-align:center;
+}
 
 /* Use these classes to set the width of a column. */
 .span-1  { width: 30px; }
