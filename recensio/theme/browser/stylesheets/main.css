@@ -689,7 +689,8 @@ span.headlinebutton {
 
 .accordion {margin:0; padding:0;}
 
-.accordion li {list-style-type:none}
+.accordion li {list-style-type:none;
+    display:list-item;}
 
 .accordion li.last-child {list-style-type:none}
 
@@ -2503,7 +2504,7 @@ form#review_monograph-base-edit select, form#review_journal-base-edit select, fo
     display:list-item;
 }
 
-body.template-newsletter-view input {
+body.template-newsletter-view button {
     margin: 0px 3px 0px 0px;
 }
 
