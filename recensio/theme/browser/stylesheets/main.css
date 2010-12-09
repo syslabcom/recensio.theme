@@ -1342,10 +1342,13 @@ dl.actionMenu.activated dd div {
 }
 
 #content ul.configlets {
-    margin: 1em 0;
-    list-style-image: none;
-    list-style: none;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:1em 0;
+padding-left:0;
 }
+
 #content ul.configlets li {
     margin-bottom: 1em;
     list-style: none;
@@ -2482,7 +2485,7 @@ div#extra-design-elements { display: none; }
 /***********Styles for highlighting the batch 1,2,3....********/
 
 div.dialog-wrapper { 
-    width: 95%; 
+    width:95% !important;
 }
 
 /*****************bugfixes***********/
