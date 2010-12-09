@@ -2548,5 +2548,7 @@ width:85% !important;
 }
 
 #missing-required-fields {
-    
+color:red;
+font-weight:bold;
+margin:0 0 0.5em 0.5em;
 }
