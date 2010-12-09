@@ -2514,8 +2514,8 @@ body.template-newsletter-view button {
 }
 
 .plonepopup .mceMiddle {
-height:85%;
-width:85%;
+height:85% !important;
+width:85% !important;
 }
 
 /* Use these classes to set the width of a column. */
