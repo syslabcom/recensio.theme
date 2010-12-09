@@ -15,7 +15,10 @@ class publicationlisting(ViewletBase):
         if len(parents)<2:
             return False
         parent = self.request.PARENTS[1]
-        if self.context.portal_type=='Document' and parent.portal_type=='Publication':
+        if hasattr(self.context, 'portal_type') and \
+           self.context.portal_type=='Document' and \
+           hasattr(parent, 'portal_type') and \
+           parent.portal_type=='Publication':
             return True
         return False
         
