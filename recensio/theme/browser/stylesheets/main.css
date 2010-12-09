@@ -2552,3 +2552,6 @@ color:red;
 font-weight:bold;
 margin:0 0 0.5em 0.5em;
 }
+#edit-bar, #content ul.formTabs {
+padding-left:0 !important;
+}
