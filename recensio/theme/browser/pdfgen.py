@@ -1,5 +1,7 @@
-from Products.statusmessages.interfaces import IStatusMessage
 # vim:fileencoding=utf8
+from cgi import escape
+
+from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
@@ -110,9 +112,9 @@ class GeneratePdfRecension(BrowserView):
         style = ParagraphStyle('citation style', fontName = 'BitstreamCyberbit-Roman', \
             fontSize = 10, textColor = grey)
         try:
-            P = Paragraph(_(self.context.get_citation_string()), style)
+            P = Paragraph(escape(_(self.context.get_citation_string())), style)
         except UnicodeDecodeError:#ATF
-            P = Paragraph(self.context.get_citation_string(), style)
+            P = Paragraph(escape(self.context.get_citation_string()), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
         # A small calculation, how much this paragaph would overlap
@@ -122,10 +124,10 @@ class GeneratePdfRecension(BrowserView):
         overlap += 15 # padding
 
         if hasattr(self.context, 'getFirstPublicationData'):
-            msgs = ['First published: ' + x for x in self.context.getFirstPublicationData()]
+            msgs = ['First published: ' + escape(x) for x in self.context.getFirstPublicationData()]
             offset = max(overlap, 0)
             for msg in msgs:
-                P2 = Paragraph(msg, style)
+                P2 = Paragraph(msg, style) # msg got escaped"
                 realwidth, realheight = P2.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
                 P2.drawOn(cover, 6.20*cm, pheight-8.5*cm-realheight - offset)
                 offset += realheight
