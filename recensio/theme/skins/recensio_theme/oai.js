@@ -69,9 +69,9 @@ function takeOver(elem){
             jq('#ddcSubject option, #ddcTime option, #ddcPlace option').filter(function(){return this.text == "Agrargeschichte";}).each(function(){
                 var new_value = jq(this).val();
                 var parent_ = jq(this).parent();
-                var old_values = parent_.val();
-                old_values.push(new_value);
-                parent_.val(old_values);
+                //var old_values = parent_.val();
+                //old_values.push(new_value);
+                //parent_.val(old_values);
             }); 
         //}
     });
