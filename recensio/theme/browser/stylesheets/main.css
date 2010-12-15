@@ -2522,13 +2522,13 @@ height:100% !important;
 width:100% !important;
 }
 
-#upload_panel {
-    width: 215px !important;
+#mce_47_middle #upload_panel {
+    width: 217px !important;
 }
 
-body.template-atct_edit #uploadfile {
+/*body.template-atct_edit #uploadfile {
    float:left !important; 
-}
+}*/
 
 /* Use these classes to set the width of a column. */
 .span-1  { width: 30px; }
