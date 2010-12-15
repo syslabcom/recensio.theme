@@ -2527,7 +2527,7 @@ width:100% !important;
 }
 
 body.template-atct_edit #uploadfile {
-    
+   float:left !important; 
 }
 
 /* Use these classes to set the width of a column. */
