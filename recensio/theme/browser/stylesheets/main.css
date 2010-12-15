@@ -2518,8 +2518,12 @@ body.template-newsletter-view button {
 }
 
 .plonepopup .mceMiddle {
-height:85% !important;
-width:85% !important;
+height:100% !important;
+width:100% !important;
+}
+
+#upload_panel {
+    width:205px !important;
 }
 
 /* Use these classes to set the width of a column. */
