@@ -738,3 +738,7 @@ font-size:1.2em;
 .dialog-wrapper .subPanel{
     width: 270px;
 }
+
+.relevance {
+    display: None;
+}
