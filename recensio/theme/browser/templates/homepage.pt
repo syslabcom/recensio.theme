@@ -110,7 +110,7 @@
 
         <div style="clear:left;"></div>
 
-        <div id="column_wide">
+        <div id="participating-journals">
           <h3 i18n:translate="heading_participating_publications">
             Teilnehmende Zeitschriften</h3>
           <tal:rep repeat="publication view/getPublications">

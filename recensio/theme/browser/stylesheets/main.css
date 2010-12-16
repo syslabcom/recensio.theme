@@ -192,6 +192,19 @@ div.box ul a.review-title {
    padding:0;
 }
 
+#participating-journals {
+   border-top:1px solid #CCCCCC;
+   padding-top:20px;
+}
+
+#participating-journals a {
+   color: #999999;
+}
+
+#participating-journals a:hover {
+   color:#916145;
+}
+
 .box ul li,
 ul.easyticker ul li {
    padding: 0 0 0.5em 40px;
