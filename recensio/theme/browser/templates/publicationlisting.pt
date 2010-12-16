@@ -17,7 +17,7 @@
         <tal:review repeat="review issue/children">
 
             <ul>
-            <li><a href="" tal:attributes="href review/absolute_url"><span tal:replace="review/Title"/></a></li>
+            <li><a href="" tal:attributes="href review/absolute_url"><span tal:replace="review/getDecoratedTitle"/></a></li>
             </ul>
     
         </tal:review>
