@@ -26,7 +26,7 @@ class HomepageView(BrowserView):
             res = pc(q)
             resultset.append(dict(language=lang,
                 langname=langinfo[lang]['native'],
-                results=res[:5]))
+                results=res[:3]))
             # print "getReviewMonographs", lang, len(res)
         return resultset
 
@@ -39,7 +39,7 @@ class HomepageView(BrowserView):
             sort_order='reverse')
         res = pc(query)
         # print "getPrintedPresentations", len(res)
-        return res[:5]
+        return res[:3]
 
     def getOnlinePresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
@@ -49,7 +49,7 @@ class HomepageView(BrowserView):
             sort_order='reverse')
         res = pc(query)
         # print "getOnlinePresentations", len(res)
-        return res[:5]
+        return res[:3]
 
     def getReviewJournals(self):
         pc = getToolByName(self.context, 'portal_catalog')
@@ -59,7 +59,7 @@ class HomepageView(BrowserView):
             sort_order='reverse')
         res = pc(query)
         resultset = list()
-        for r in res[:5]:
+        for r in res[:3]:
             try:
                 o = r.getObject()
             except:
