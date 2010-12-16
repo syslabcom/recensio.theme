@@ -735,3 +735,6 @@ font-size:1.2em;
   right: 0;
 }
 
+.dialog-wrapper .subPanel{
+    width: 270px;
+}
