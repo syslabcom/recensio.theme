@@ -30,14 +30,19 @@ class publicationlisting(ViewletBase):
             parent = None
         if not hasattr(parent, 'objectValues'):
             return []
+        def sortedObjectValues(container, *constraints):
+            retval = [x for x in container.objectValues(constraints)]
+            retval.sort(lambda a, b: b.effective().__cmp__(a.effective()))
+            return retval
+
         volumes = []
-        for volume in parent.objectValues('Volume'):
+        for volume in sortedObjectValues(parent, 'Volume'):
             issues = []
-            for issue in volume.objectValues('Issue'):
-                issuechildren = issue.objectValues(['ReviewJournal', 'ReviewMonograph'])
+            for issue in sortedObjectValues(volume, 'Issue'):
+                issuechildren = sortedObjectValues(issue, 'ReviewJournal', 'ReviewMonograph')
                 issues.append(dict(title=issue.Title(), children=issuechildren))
             
-            volumechildren = dict(issues=issues, reviews=volume.objectValues(['ReviewJournal', 'ReviewMonograph']))
+            volumechildren = dict(issues=issues, reviews=sortedObjectValues(volume, 'ReviewJournal', 'ReviewMonograph'))
             volumes.append(dict(title=volume.Title(), children=volumechildren))
         return volumes
   
