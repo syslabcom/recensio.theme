@@ -26,7 +26,7 @@ class HomepageView(BrowserView):
             res = pc(q)
             resultset.append(dict(language=lang,
                 langname=langinfo[lang]['native'],
-                results=res[:3]))
+                results=res[:1]))
             # print "getReviewMonographs", lang, len(res)
         return resultset
 
