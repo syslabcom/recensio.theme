@@ -246,6 +246,19 @@ body.template-review_view  #viewlet-below-content,
 body.template-publications-view #viewlet-below-content {
    width: 605px; 
 }
+body.template-publications-view div#content_left img {
+    float:left;
+}
+body.template-publications-view div#content_left p {
+    margin-left: 150px;
+}
+body.template-publications-view div#content_left h2 {
+    border-top: 1px dashed #CCC;
+    padding-top: 1em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
 
 #content, #content_impressum,#content_tagung, #content_textseite {
    -moz-border-radius: 9px;
