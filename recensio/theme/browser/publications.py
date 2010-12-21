@@ -17,6 +17,7 @@ class PublicationsView(BrowserView):
         currlang = self.context.portal_languages.getPreferredLanguage()
         pubs = pc(portal_type="Publication", 
                   path='/'.join(self.context.getPhysicalPath()), 
+		  sort_on="sortable_title",
                   review_state='published')
         for pub in pubs:
             pubob = pub.getObject()
