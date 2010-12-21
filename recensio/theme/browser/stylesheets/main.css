@@ -2594,3 +2594,10 @@ margin:0 0 1.3em;
     padding-left:40px;
     margin:11px 0 11px 0;
 }
+
+/***********styles to fix content option************/
+
+#content option {
+    padding-left:3px;
+    padding-right:5px;
+}
