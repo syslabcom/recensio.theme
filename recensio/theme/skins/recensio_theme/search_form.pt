@@ -571,6 +571,7 @@
                    i18n:translate="label_series">Reihe</label>
             <div class="">
               <div class="formHelp" i18n:translate="help_series">
+                The serie you are looking for.
                 
               </div>
 
@@ -627,7 +628,7 @@
                    i18n:translate="label_region">Region</label>
             <div class="">
               <div class="formHelp" i18n:translate="help_region">
-                
+               The region that you are looking for.
               </div>
 
               <div style="float:left; margin-right: 2em;"
@@ -656,6 +657,7 @@
                    i18n:translate="label_epoch">Epoche</label>
             <div class="">
               <div class="formHelp" i18n:translate="help_epoch">
+                The epoch that you are looking for
                 
               </div>
 
@@ -685,7 +687,7 @@
                    i18n:translate="label_topic">Thema</label>
             <div class="">
               <div class="formHelp" i18n:translate="help_topic">
-                
+               The Topic that you are looking for
               </div>
 
 

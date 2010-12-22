@@ -83,7 +83,7 @@ id string:form-field-presentation-article-review"
                      tal:attributes="
 src string:${context/portal_url}/++resource++recensio.theme.images/InternetResource.png" />
                 <span i18n:translate="Presentation Article Review">
-                  Presentation Article Review</span>
+                  Presentation Article in Journal</span>
               </label>
             </dt>
             <dd i18n:translate="description_add_presentation_article_review">
