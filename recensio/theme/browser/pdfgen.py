@@ -1,37 +1,40 @@
 # vim:fileencoding=utf8
 from cgi import escape
+from pkg_resources import resource_filename
+import logging
+import os
+import tempfile
 
-from Products.statusmessages.interfaces import IStatusMessage
+from reportlab.lib.colors import grey
+from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.units import cm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfgen import canvas
+from reportlab.platypus import Paragraph
+
+from zope.i18n import translate
+
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
+from Products.statusmessages.interfaces import IStatusMessage
 
-import logging
-import tempfile
-import os
-from pkg_resources import resource_filename
-
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter, A4
-from reportlab.lib.units import cm
-from reportlab.lib.colors import grey
-from reportlab.platypus import Paragraph
-from reportlab.lib.styles import ParagraphStyle
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfbase import pdfmetrics
-from zope.i18n import translate
 from recensio.contenttypes import contenttypesMessageFactory as _
 
 log = logging.getLogger('recensio.theme/pdfgen.py')
 
-COPYRIGHT = u"""This article may be downloaded and/or used within the private copying
-exemption. Any further use without permission of the rights shall be subject to
-legal licences (§§ 44a-63a UrhG / German Copyright Act).
+COPYRIGHT = u"""This article may be downloaded and/or used within the
+private copying exemption. Any further use without permission of the
+rights shall be subject to legal licences (§§ 44a-63a UrhG / German
+Copyright Act).
 
 Dieser Beitrag kann vom Nutzer zu eigenen nicht-kommerziellen Zwecken
 heruntergeladen und/oder ausgedruckt werden. Darüber hinaus gehende
-Nutzungen sind ohne weitere Genehmigung der Rechteinhaber nur im Rahmen
-der gesetzlichen Schrankenbestimmungen (§§ 44a-63a UrhG) zulässig."""
+Nutzungen sind ohne weitere Genehmigung der Rechteinhaber nur im
+Rahmen der gesetzlichen Schrankenbestimmungen (§§ 44a-63a UrhG)
+zulässig."""
 
 class GeneratePdfRecension(BrowserView):
     """View to generate PDF cover sheets
@@ -95,22 +98,27 @@ class GeneratePdfRecension(BrowserView):
         # extractors
         _X = lambda x: translate(x, target_language = language)
         # register the font (unicode-aware)
-        font =  os.path.abspath(__file__ + '/../../data/bitstreamcyberbit-roman.ttf')
+        font =  os.path.abspath(__file__ +\
+                                '/../../data/bitstreamcyberbit-roman.ttf')
         pdfmetrics.registerFont( TTFont('BitstreamCyberbit-Roman', font) )
 
         self._drawImage('logo2_fuer-Deckblatt.jpg', 0, pheight - 4.21*cm,
             28.28*cm, 4.21*cm)
         self._drawImage('logo_icon_watermark.jpg', pwidth/2.0 - 5*13.76*cm,
-            pheight/2.5 * 13.76*cm, 13.76*cm, 13.76*cm, preserveAspectRatio=True,
+                        pheight/2.5 * 13.76*cm, 13.76*cm, 13.76*cm,
+                        preserveAspectRatio=True,
             anchor='c')
         cover.setFont('BitstreamCyberbit-Roman', 10)
         cover.setFillColor(grey)
-        citation = translate(_(u'label_citation_style', default=u'citation style'), target_language=language)
+        citation = translate(_(u'label_citation_style',
+                               default=u'citation style'),
+                             target_language=language)
         cover.drawString(2.50*cm, pheight-5.5*cm, citation)
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
-        style = ParagraphStyle('citation style', fontName = 'BitstreamCyberbit-Roman', \
-            fontSize = 10, textColor = grey)
+        style = ParagraphStyle('citation style',
+                               fontName = 'BitstreamCyberbit-Roman',
+                               fontSize = 10, textColor = grey)
         try:
             P = Paragraph(escape(_(self.context.get_citation_string())), style)
         except UnicodeDecodeError:#ATF
@@ -124,7 +132,8 @@ class GeneratePdfRecension(BrowserView):
         overlap += 15 # padding
 
         if hasattr(self.context, 'getFirstPublicationData'):
-            msgs = ['First published: ' + escape(x) for x in self.context.getFirstPublicationData()]
+            msgs = ['First published: ' + escape(x)
+                    for x in self.context.getFirstPublicationData()]
             offset = max(overlap, 0)
             for msg in msgs:
                 P2 = Paragraph(msg, style) # msg got escaped"
