@@ -98,7 +98,7 @@
   <toolbar_advhr value="False"/>
   <toolbar_removeformat value="False"/>
   <toolbar_undo value="False"/>
-  <toolbar_save value="True"/>
+  <toolbar_save value="False"/>
   <toolbar_sub value="False"/>
   <toolbar_numlist value="True"/>
   <toolbar_underline value="False"/>
