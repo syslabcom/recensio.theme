@@ -132,8 +132,7 @@ class GeneratePdfRecension(BrowserView):
         overlap += 15 # padding
 
         if hasattr(self.context, 'getFirstPublicationData'):
-            msgs = ['First published: ' + escape(x)
-                    for x in self.context.getFirstPublicationData()]
+            msgs = ['First published: ' + x for x in self.context.getFirstPublicationData()]
             offset = max(overlap, 0)
             for msg in msgs:
                 P2 = Paragraph(msg, style) # msg got escaped"
