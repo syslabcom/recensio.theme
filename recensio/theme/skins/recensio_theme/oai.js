@@ -28,14 +28,21 @@ function showResults(data){
                 author['firstname'] + '</span> <span class="lastname">' +
                 author['lastname'] + '</span></span>');
         }
-        jq(result['ddc']).each(function(i, data){
-            var css_class = 'missing';
-            if(jq('#ddcSubject option, #ddcTime option, #ddcPlace option').filter(function(){return this.text == data;}).length){
-                css_class = '';
-            }
-            tmpl.find('.oai_ddc ul').append('<li class="' + css_class + '">' + data + '</li>');
-        });
-        jq('#oaisuggestiontemplate').after(tmpl).next().show();
+        var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
+        for(var i in ddcs){
+            var ddc = ddcs[i];
+            jq(result[ddc]).each(function(i, data){
+                var css_class = 'missing';
+                var li_text = data;
+                var matching_elems = jq('#' + ddc + ' option').filter(function(){return this.value == data;});
+                if(matching_elems.length){
+                    css_class = '';
+                    li_text = matching_elems[0].text;
+                }
+                tmpl.find('.oai_' + ddc + ' ul').append('<li ddc_id="' + data + '" class="' + css_class + '">' + li_text + '</li>');
+            });
+            jq('#oaisuggestiontemplate').after(tmpl).next().show();
+        }
     }
     jq('.useit').click(function(){takeOver(this);});
     oai_overlay = jq('#oaisuggestions').overlay();
@@ -57,24 +64,24 @@ function takeOver(elem){
         jq('#archetypes-fieldname-authors #datagridwidget-row:last #firstname_authors_new').val(j.find('.firstname').text());
         jq('#archetypes-fieldname-authors #datagridwidget-row:last #lastname_authors_new').val(j.find('.lastname').text());
     });
-    j.find('.oai_ddc li').each(function(){
-        if(jq(this).attr('class') == 'missing'){
-            if(! missing_flag){
-                jq('#missing_explanation').show();
-                jq('#ddcSubject_help, #ddcTime_help, #ddcPlace_help').append(jq('#missing_explanation_2_template').clone().show());
-                missing_flag = true;
+    var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
+    for(var i in ddcs){
+        var ddc = ddcs[i];
+        j.find('.oai_' + ddc + ' li').each(function(){
+            if(jq(this).attr('class') == 'missing'){
+                if(! missing_flag){
+                    jq('#missing_explanation').show();
+                    jq('#' + ddc + '_help').append(jq('#missing_explanation_2_template').clone().show());
+                    missing_flag = true;
+                }
+                jq('.missing_explanation_2 ul').append(this);
+            }else{
+                var set_elements = jq('#' + ddc).val() || [];
+                set_elements[set_elements.length] = this.attributes['ddc_id'].value
+                jq('#' + ddc).val(set_elements);
             }
-            jq('.missing_explanation_2 ul').append(this);
-        }else{}
-            jq('#ddcSubject option, #ddcTime option, #ddcPlace option').filter(function(){return this.text == "Agrargeschichte";}).each(function(){
-                var new_value = jq(this).val();
-                var parent_ = jq(this).parent();
-                //var old_values = parent_.val();
-                //old_values.push(new_value);
-                //parent_.val(old_values);
-            }); 
-        //}
-    });
+        });
+    }
     jq('#oaisuggestions .close').click();
 }
 
