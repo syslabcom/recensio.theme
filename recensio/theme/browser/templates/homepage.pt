@@ -17,7 +17,7 @@
 
           <div class="box">
             <a class="one-line"
-               tal:attributes="href string:${context/RSS-feeds/new_reviews/absolute_url | nothing}">
+               tal:attributes="href string:${portal}/search?portal_type:list=Review+Journal&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_review_journals">
                 Neueste Rezensionsteile online</h2>
             </a>
@@ -42,7 +42,7 @@
 
           <div class="box right_box">
             <a class="one-line"
-               tal:attributes="href string:${context/RSS-feeds/new_reviews/absolute_url | nothing}">
+               tal:attributes="href string:${portal}/search?portal_type:list=Review+Monograph&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_reviews">
                 Neueste Rezensionen online</h2>
             </a>
@@ -73,7 +73,7 @@
         <div id="rowBottom" class="boxrow">
           <div class="box">
             <a class="two-lines"
-               tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection">
+               tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_monographies">
                 Neueste Präsentationen von Monographien und Aufsätzen</h2>
             </a>
@@ -91,7 +91,7 @@
 
           <div class="box right_box">
             <a class="two-lines"
-               tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Online+Resource">
+               tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Online+Resource&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_internet_resources">
                 Neueste Präsentationen von Internetressourcen</h2>
             </a>
