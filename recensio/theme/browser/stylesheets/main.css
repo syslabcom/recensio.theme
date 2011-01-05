@@ -2602,9 +2602,9 @@ margin:0 0 1.3em;
     padding-right:5px;
 }
 /***********hiding some headlines*******/
-body.portaltype-presentation-monograph #authors_help {
-    display:none !important;
+.portaltype-presentation-monograph #authors_help {
+    display:none;
 }
-body.portaltype-presentation-collection #titleCollectedEdition_help {
-    display:none !important;
+.portaltype-presentation-collection #titleCollectedEdition_help {
+    display:none;
 }
