@@ -99,8 +99,8 @@ class GeneratePdfRecension(BrowserView):
         _X = lambda x: translate(x, target_language = language)
         # register the font (unicode-aware)
         font =  os.path.abspath(__file__ +\
-                                '/../../data/bitstreamcyberbit-roman.ttf')
-        pdfmetrics.registerFont( TTFont('BitstreamCyberbit-Roman', font) )
+                                '/../../data/DejaVuSerif.ttf')
+        pdfmetrics.registerFont( TTFont('DejaVu-Serif', font) )
 
         self._drawImage('logo2_fuer-Deckblatt.jpg', 0, pheight - 4.21*cm,
             28.28*cm, 4.21*cm)
@@ -108,7 +108,7 @@ class GeneratePdfRecension(BrowserView):
                         pheight/2.5 * 13.76*cm, 13.76*cm, 13.76*cm,
                         preserveAspectRatio=True,
             anchor='c')
-        cover.setFont('BitstreamCyberbit-Roman', 10)
+        cover.setFont('DejaVu-Serif', 10)
         cover.setFillColor(grey)
         citation = translate(_(u'label_citation_style',
                                default=u'citation style'),
@@ -117,7 +117,7 @@ class GeneratePdfRecension(BrowserView):
         cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
 
         style = ParagraphStyle('citation style',
-                               fontName = 'BitstreamCyberbit-Roman',
+                               fontName = 'DejaVu-Serif',
                                fontSize = 10, textColor = grey)
         try:
             P = Paragraph(escape(_(self.context.get_citation_string())), style)
