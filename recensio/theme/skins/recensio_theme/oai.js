@@ -66,7 +66,7 @@ function takeOver(elem){
         jq('#archetypes-fieldname-authors #datagridwidget-row:last #lastname_authors_new').val(j.find('.lastname').text());
     });
     var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
-    for(var i in ddcs){
+    for(var i=0;i<ddcs.length;i++){
         var ddc = ddcs[i];
         j.find('.oai_' + ddc + ' li').each(function(){
             if(jq(this).attr('class') == 'missing'){
