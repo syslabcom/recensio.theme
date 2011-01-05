@@ -57,7 +57,8 @@ function takeOver(elem){
     jq('input#publisher').val(j.find('.oai_publisher .value').text().trim());
     jq('input#pages').val(j.find('.oai_pages .value').text().trim());
     jq('input#yearOfPublication').val(j.find('.oai_year .value').text().trim());
-    jq('select#languageReviewedText').val(j.find('.oai_language .value').text().trim());
+    var newLang = j.find('.oai_language .value').text().trim();
+    jq('select#languageReviewedText').val(newLang);
     j.find('.author').each(function(){
         var j = jq(this);
         jq('#archetypes-fieldname-authors #datagridwidget-add-button').click();
