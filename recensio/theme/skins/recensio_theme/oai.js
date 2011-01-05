@@ -15,7 +15,7 @@ function showResults(data){
         jq('#oaisuggestiontemplate').after(tmpl).next().show();
         return
     }
-    for (result_id in data){
+    for (var result_id;i<data.length;result_id++){
         var tmpl = jq('#oaisuggestiontemplate').clone();
         tmpl[0].id = "";
         var result = data[result_id];
@@ -29,8 +29,7 @@ function showResults(data){
                 author['lastname'] + '</span></span>');
         }
         var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
-        var i;
-        for(i=0;i<ddcs.length;i++){
+        for(var i=0;i<ddcs.length;i++){
             var ddc = ddcs[i];
             jq(result[ddc]).each(function(i, data){
                 var css_class = 'missing';
