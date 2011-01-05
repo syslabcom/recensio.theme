@@ -30,7 +30,7 @@ function showResults(data){
         }
         var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
         var i;
-        for(i=0;i<=ddcs.length;i++){
+        for(i=0;i<ddcs.length;i++){
             var ddc = ddcs[i];
             jq(result[ddc]).each(function(i, data){
                 var css_class = 'missing';
