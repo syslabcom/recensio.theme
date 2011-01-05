@@ -15,7 +15,7 @@ function showResults(data){
         jq('#oaisuggestiontemplate').after(tmpl).next().show();
         return
     }
-    for (var result_id;i<data.length;result_id++){
+    for (var result_id=0;i<data.length;result_id++){
         var tmpl = jq('#oaisuggestiontemplate').clone();
         tmpl[0].id = "";
         var result = data[result_id];
