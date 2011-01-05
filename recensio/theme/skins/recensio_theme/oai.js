@@ -69,9 +69,21 @@ function takeOver(elem){
     jq('select#languageReviewedText').val(newLang);
     j.find('.author').each(function(){
         var j = jq(this);
-        jq('#archetypes-fieldname-authors #datagridwidget-add-button').click();
-        jq('#archetypes-fieldname-authors #datagridwidget-row:last #firstname_authors_new').val(j.find('.firstname').text());
-        jq('#archetypes-fieldname-authors #datagridwidget-row:last #lastname_authors_new').val(j.find('.lastname').text());
+        var new_firstname = j.find('.firstname').text();
+        var new_lastname = j.find('.lastname').text();
+        var name_exists = false;
+        jq('#archetypes-fieldname-authors tr#datagridwidget-row').each(function(){
+            var existing_firstname = jq(this).find('input')[1].value
+            var existing_lastname = jq(this).find('input')[0].value
+            if (new_firstname == existing_firstname && new_lastname == existing_lastname){
+                name_exists = true;
+            }
+        });
+        if(!name_exists){
+            jq('#archetypes-fieldname-authors #datagridwidget-add-button').click();
+            jq('#archetypes-fieldname-authors #datagridwidget-row:last #firstname_authors_new').val(new_firstname);
+            jq('#archetypes-fieldname-authors #datagridwidget-row:last #lastname_authors_new').val(new_lastname);
+        }
     });
     var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
     for(var i=0;i<ddcs.length;i++){
