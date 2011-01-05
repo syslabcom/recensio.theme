@@ -1,9 +1,17 @@
 oai_overlay=null;
 function getDataFromOAI(isbn){
     var baseURL = '/recensio/opac?identifier=';
-    jq.getJSON(baseURL + isbn, function(data, textStatus, XMLHttpRequest){
-        showResults(data);
-     });
+    jq.ajax({
+        url: baseURL + isbn,
+        dataType: 'json',
+        success: function(data, textStatus, XMLHttpRequest){
+            showResults(data);
+        },
+        error: function(data, textStatus, errorThrown){
+            jq('#oaisuggestions .spinner').hide();
+            alert("Error: " + textStatus);
+        }
+    })
 
 }
 function showResults(data){
