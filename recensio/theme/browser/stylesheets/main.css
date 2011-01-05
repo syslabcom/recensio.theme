@@ -2601,3 +2601,10 @@ margin:0 0 1.3em;
     padding-left:3px;
     padding-right:5px;
 }
+/***********hiding some headlines*******/
+body.template-atct_edit, body.portaltype-presentation-monograph #authors_help {
+    display:none !important;
+}
+body.template-atct_edit, body.portaltype-presentation-collection #titleCollectedEdition_help {
+    display:none !important;
+}
