@@ -2372,16 +2372,28 @@ top:3px;
     border:1px solid #CDCDCD;
     float:left;
     min-width:300px;
+    width:300px;
     min-height:200px;
 }
 
 .oaisuggestion table {
     padding:5px;
-    min-width: 360px;
+    min-width: 300px;
 }
 
 .oaisuggestion .missing {
     color: red;
+}
+
+.oaisuggestsions div.spinner{
+  background-attachment: scroll;
+  background-color: white;
+  background-image: url("spinner.gif");
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 1px solid #CDCDCD;
+  height: 200px;
+  width: 300px;
 }
 
 /*******styles for Opac search popup**********/
