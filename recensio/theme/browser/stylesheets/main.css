@@ -660,7 +660,8 @@ div.submenu {
 
 .submenu_number {
     float:left;
-    width:8px;
+    width:17%;
+    text-align:right;
 }
 
 .submenu_number span {
