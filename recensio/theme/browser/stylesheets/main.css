@@ -2385,7 +2385,7 @@ top:3px;
     color: red;
 }
 
-.oaisuggestsions div.spinner{
+.oaisuggestions div.spinner{
   background-attachment: scroll;
   background-color: white;
   background-image: url("spinner.gif");
