@@ -1022,7 +1022,6 @@ top /*\**/:-11px\9
 .collapsible .collapser.collapsed {
 /*    padding-right: 14px;*/
     background: url('arrowRight.png') center left no-repeat;
-    padding-left: 10px;
 } 
 
 .collapsible .collapser.expanded {
