@@ -2400,6 +2400,10 @@ top:3px;
    font-style:italic;
    padding-left:5px;
 }
+
+.oaisuggestion li {
+    display: block;
+}
 /*************styles for searchform fieldsets************/
 .template-search_form #content fieldset {
     border: 1px solid #ccc !important;

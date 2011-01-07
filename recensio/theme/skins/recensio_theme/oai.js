@@ -30,6 +30,11 @@ function showResults(data){
         for (key in result){
             tmpl.find('.oai_' + key + ' .value').text(result[key]);
         }
+        for(var i=0;i<result['keywords'].length;i++){
+            tmpl.find('.oai_keywords .value ul').append('<li>'+result['keywords'][i]+'</li>')
+        }
+        var subtitle = tmpl.find('.oai_subtitle td.value');
+        subtitle.text(subtitle.text()[0].toUpperCase() + subtitle.text().substring(1));
         for(var i=0;i<result['authors'].length;i++){
             var author = result['authors'][i];
             tmpl.find('.oai_authors .value').append('<span class="author"><span class="firstname">' +
@@ -59,14 +64,28 @@ function showResults(data){
 function takeOver(elem){
     var j = jq(elem).parent().parent();
     var missing_flag = false;
-    jq('input#title').val(j.find('.oai_title .value').text().trim());
-    jq('input#subtitle').val(j.find('.oai_subtitle .value').text().trim());
-    jq('input#placeOfPublication').val(j.find('.oai_location .value').text().trim());
-    jq('input#publisher').val(j.find('.oai_publisher .value').text().trim());
-    jq('input#pages').val(j.find('.oai_pages .value').text().trim());
-    jq('input#yearOfPublication').val(j.find('.oai_year .value').text().trim());
-    var newLang = j.find('.oai_language .value').text().trim();
-    jq('select#languageReviewedText').val(newLang);
+    function takeSimpleInputOver(source, destination){
+        if (destination === undefined){
+            destination = source;
+        }
+        var new_val = j.find('.oai_' + source + ' .value').text().trim();
+        if (new_val){
+            jq('input#' + destination).val(new_val);
+        }
+    }
+    takeSimpleInputOver('title');
+    takeSimpleInputOver('subtitle')
+    takeSimpleInputOver('location', 'placeOfPublication');
+    takeSimpleInputOver('publisher');
+    takeSimpleInputOver('pages');
+    takeSimpleInputOver('year', 'yearOfPublication');
+    var new_lang = j.find('.oai_language .value').text().trim();
+    new_lang = jq('select#languageReviewedText option:contains(' + new_lang + ')').attr('value');
+    var old_languages = jq('select#languageReviewedText').val();
+    if (new_lang !== undefined){
+        old_languages.push(new_lang)
+        jq('select#languageReviewedText').val(old_languages);
+    }
     j.find('.author').each(function(){
         var j = jq(this);
         var new_firstname = j.find('.firstname').text();
@@ -103,6 +122,17 @@ function takeOver(elem){
             }
         });
     }
+    j.find('.oai_keywords li').each(function(){
+        var new_val = this.textContent;
+        var existing_option = jq('#archetypes-fieldname-subject select[name=subject_existing_keywords:list] option[value=' + new_val + ']');
+        if(existing_option.length){
+            existing_option.attr('selected', 'selected');
+        }else{
+            var old_new_keywords = jq('#archetypes-fieldname-subject textarea#subject_keywords').val()
+            old_new_keywords = old_new_keywords + new_val + '\n';
+            jq('#archetypes-fieldname-subject textarea#subject_keywords').val(old_new_keywords);
+        }
+    });
     jq('#oaisuggestions .close').click();
 }
 
