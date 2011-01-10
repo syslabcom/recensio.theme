@@ -2624,3 +2624,9 @@ margin:0 0 1.3em;
 .portaltype-presentation-collection #titleCollectedEdition_help {
     display:none;
 }
+
+/*************css fix zoom:1 for IE7*************/
+*+html #mainContent {
+    zoom:1 !important;
+    margin-top:10px !important;
+}
