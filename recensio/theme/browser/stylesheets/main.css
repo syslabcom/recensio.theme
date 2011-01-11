@@ -282,88 +282,19 @@ margin-top:1em;
 margin-left:10px;
 }
 
-/* Review images */
-
-#pubSchwusch {
+a#preview-image img {
+   -webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+   -moz-box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+   width: 180px;
    float: left;
-   margin: 0 !important;
-   min-height: 300px;
-   padding-left:0px !important;
-}
-
-#pubSchwusch .previews {
-	background-color: rgba(254,255,254,0);
-}
-
-#pubSchwusch p.previews a {
-	height: 273px;
-}
-
-#pubSchwusch p.previews img {
-	-webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-	width: 180px;
-	float: left;
-}
-
-#pubSchwusch .page {
-    display: none;
-}
-
-#pubSchwusch .page-1 {
-	top: 0;
-	left: 0;
-	z-index: 3;
-}
-
-#pubSchwusch .page-2 {
-	top: 0;
-	left: 0;
-	z-index: 2;
-}
-
-#pubSchwusch .page-3 {
-	top: 0;
-	left: 0;
-	z-index: 1;
-}
-
-#pubSchwusch .previews:hover {
-	background-color: rgba(255,254,255,0.85);
-}
-
-#pubSchwusch .previews:hover img {
-	-webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+   margin: 0 10px 0 0;
 }
 
 /**********styles shadow for webkit browsers, livesearch container************/
 #LSResult fieldset {
     -webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
-/**************Ende*************/
-
-#pubSchwusch li {
-	padding: 20px 20px 20px 20px;
-	font-size: 11px;
-	line-height: 18px;
-	list-style-type: none;
-	color: #515151;
-	float: left;
-	left: 0 !important;
-}
-
-#pubSchwusch h2 {
-	color: #515151;
-	font: italic 15px/22px Georgia, "Times New Roman", Times, serif;
-	margin-bottom: 10px;
-	text-transform: none;
-	letter-spacing: 0;
-}
-
-#pubSchwusch h2 a {
-	display: block;
-}
-
-/* end review images */
 
 /* review coverpicture */
 img#coverpicture {
