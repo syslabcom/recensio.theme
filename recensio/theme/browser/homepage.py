@@ -1,6 +1,7 @@
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from recensio.contenttypes.interfaces import IParentGetter
 
 
 class HomepageView(BrowserView):
@@ -53,7 +54,7 @@ class HomepageView(BrowserView):
 
     def getReviewJournals(self):
         pc = getToolByName(self.context, 'portal_catalog')
-        query = dict(portal_type=['Review Journal'],
+        query = dict(portal_type=['Issue'],
             review_state="published",
             sort_on='effective',
             sort_order='reverse')
@@ -65,12 +66,22 @@ class HomepageView(BrowserView):
             except:
                 # XXX log error here
                 continue
-            publication = o.get_publication_object()
+            pg = IParentGetter(o)
+            publication = pg.get_parent_object_of_type('Publication')
             publication_title = publication and publication.Title() or u''
             publication_url = publication and publication.absolute_url() or u''
+            volume = pg.get_parent_object_of_type('Volume')
+            volume_title = volume and volume.Title() or u''
+            volume_url = volume and volume.absolute_url() or u''
+            # temporary hack until Issues can be added directly to publications
+            # see #2458
+            if volume_title == r.Title:
+                volume_title = u''
             resultset.append(dict(Title=r.Title, review_url=r.getURL(),
                 publication_title=publication_title,
                 publication_url=publication_url,
+                volume_title=volume_title,
+                volume_url=volume_url,
                 ))
         # print "getReviewJournals", len(res)
         return resultset

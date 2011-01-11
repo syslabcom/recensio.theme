@@ -17,7 +17,7 @@
 
           <div class="box">
             <a class="one-line"
-               tal:attributes="href string:${portal}/search?portal_type:list=Review+Journal&amp;sort_on=effective&amp;sort_order=reverse">
+               tal:attributes="href string:${portal}/search?portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_review_journals">
                 Neueste Rezensionsteile online</h2>
             </a>
@@ -26,14 +26,17 @@
               <ul>
                 <li tal:repeat="res results">
                   <div>
-                  &quot;<a href="#"
-                           tal:attributes="href res/review_url" 
-                           tal:content="res/Title">title</a>&quot; 
+                    <span
+                        tal:attributes="href res/publication_url"
+                        tal:content="res/publication_title">title
+                    </span>,
+                    <span tal:condition="res/volume_title">
+                        <span tal:replace="res/volume_title" />,
+                    </span>
+                    <a href="#"
+                        tal:attributes="href res/review_url" 
+                        tal:content="res/Title">title</a>&quot;
                   </div>
-                  <span i18n:translate="in">in</span> 
-                  <a href="#"
-                     tal:attributes="href res/publication_url"
-                     tal:content="res/publication_title">title</a>
                 </li>
               </ul>
             </div>
