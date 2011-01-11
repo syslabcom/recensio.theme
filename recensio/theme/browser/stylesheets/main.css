@@ -2628,5 +2628,10 @@ margin:0 0 1.3em;
 /*************css fix zoom:1 for IE7*************/
 *+html #mainContent {
     zoom:1 !important;
-    margin-top:10px !important;
+    /*margin-top:10px !important;*/
+}
+
+*+html #latest_reviewparts_box {
+    position:relative;
+    left:25px;
 }
