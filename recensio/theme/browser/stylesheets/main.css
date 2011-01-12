@@ -2564,6 +2564,10 @@ margin:0 0 1.3em;
     /*margin-top:10px !important;*/
 }
 
+*+html .rounded_STYLE {
+  margin-top:10px;
+}
+
 *+html #latest_reviewparts_box {
     position:relative;
     left:40px;
