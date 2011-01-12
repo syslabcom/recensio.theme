@@ -35,7 +35,7 @@
                     </span>
                     <a href="#"
                         tal:attributes="href res/review_url" 
-                        tal:content="res/Title">title</a>&quot;
+                        tal:content="res/Title">title</a>
                   </div>
                 </li>
               </ul>
