@@ -2568,3 +2568,8 @@ margin:0 0 1.3em;
     position:relative;
     left:30px;
 }
+
+*+html #latest_monographies_box {
+    position:relative;
+    left:6px;
+}
