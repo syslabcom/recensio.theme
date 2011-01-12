@@ -357,6 +357,8 @@ div#reviewhtml {
 	background-color: #fdfdc8;
 	color: #6f5a44;
 	border: 1px solid #d3d4a7;
+	/***had to add a specific height to prevent the accordion to blow up this div***/
+	height:205px;
 	padding: 9px 9px 20px;
 }
 
