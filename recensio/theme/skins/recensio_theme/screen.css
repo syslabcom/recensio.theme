@@ -711,6 +711,8 @@ font-size:1.2em;
 .rounded_STYLE
 {
   position: relative;
+  /*add this style because Pörtner has changed it in the original*/
+  display:block;
 }
 
 .rounded_STYLE > .tl, .rounded_STYLE > .tr, .rounded_STYLE > .bl, .rounded_STYLE > .br
