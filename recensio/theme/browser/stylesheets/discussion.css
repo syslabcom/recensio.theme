@@ -14,7 +14,7 @@
        comment viewlet. This will get fixed in the next Plone 4 
        release. */
        /*had to take it out to fix a bug that we had in recensio - regarding the accordion when opened, the content dropped down*/
-    clear: right;
+    clear: both;
 }
 
 .comment {
