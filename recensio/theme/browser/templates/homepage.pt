@@ -16,11 +16,11 @@
         <div id="rowTop" class="boxrow">
 
           <div class="box">
-            <a class="one-line"
-               tal:attributes="href string:${portal}/search?portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse">
+            <!--a class="one-line"
+               tal:attributes="href string:${portal}/search?portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse"-->
               <h2 i18n:translate="label_latest_review_journals">
                 Neueste Rezensionsteile online</h2>
-            </a>
+            <!--/a-->
             <div id="latest_reviewparts_box"
                  tal:define="results view/getReviewJournals">
               <ul>
