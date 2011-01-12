@@ -11,6 +11,16 @@
               rel="stylesheet" 
               rendering="import"
               expression="portal/@@xdv-check/enabled" />
+			<stylesheet title="" 
+			              cacheable="True" 
+			              compression="safe" 
+			              cookable="True"
+			              enabled="1" 
+			              id="++resource++recensio.theme.stylesheets/discussion.css"
+			              media="screen"
+			              rel="stylesheet" 
+			              rendering="import"
+			              expression="portal/@@xdv-check/enabled" />
   <stylesheet id="member.css" authenticated="True" 
               expression="not: request/HTTP_X_XDV | nothing"/>
   <stylesheet id="base.css" 
