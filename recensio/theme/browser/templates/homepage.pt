@@ -16,11 +16,12 @@
         <div id="rowTop" class="boxrow">
 
           <div class="box">
-            <!--a class="one-line"
-               tal:attributes="href string:${portal}/search?portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse"-->
+            <a class="one-line"
+               href="#"
+               tal:attributes="href-disabled string:${portal}/search?portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_review_journals">
                 Neueste Rezensionsteile online</h2>
-            <!--/a-->
+            </a>
             <div id="latest_reviewparts_box"
                  tal:define="results view/getReviewJournals">
               <ul>
@@ -34,7 +35,7 @@
                         <span tal:replace="res/volume_title" />,
                     </span>
                     <a href="#"
-                        tal:attributes="href res/review_url" 
+                        tal:attributes="href res/review_url"
                         tal:content="res/Title">title</a>
                   </div>
                 </li>
@@ -102,7 +103,7 @@
                  tal:define="results view/getOnlinePresentations">
               <ul>
                 <li tal:repeat="res results">
-                  <a href="#" 
+                  <a href="#"
                      tal:attributes="href res/getURL" tal:content="res/Title">
                     title</a>
                 </li>
@@ -119,7 +120,7 @@
           <tal:rep repeat="publication view/getPublications">
             <a tal:attributes="href publication/getURL"
                tal:content="publication/Title">
-              Publication</a> 
+              Publication</a>
             <span tal:condition="not:repeat/publication/end">|</span>
           </tal:rep>
         </div>
