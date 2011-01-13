@@ -2564,7 +2564,7 @@ margin:0 0 1.3em;
     /*margin-top:10px !important;*/
 }
 
-+html .rounded_STYLE {
+*+html .rounded_STYLE {
   margin-top:10px !important;
 }
 
