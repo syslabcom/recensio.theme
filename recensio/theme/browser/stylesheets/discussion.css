@@ -11,10 +11,10 @@
 .discussion,
 #commenting {
     /* Clear "float: left" from "manage portlets" div above the
-       comment viewlet. This will get fixed in the next Plone 4 
+       comment viewlet. This will get fixed in the next Plone 4
        release. */
        /*had to take it out to fix a bug that we had in recensio - regarding the accordion when opened, the content dropped down*/
-    clear: both;
+    clear: left;
 }
 
 .comment {
@@ -44,7 +44,7 @@
 }
 
 .commentBody {
-    clear: both;
+    /* clear: both; */
     margin: 1em 0;
     overflow: auto;
 }
@@ -66,7 +66,7 @@
 
 .discussion .discreet {
     color: #666666;
-    font-size: 85%;    
+    font-size: 85%;
 }
 
 /* Reply Form
@@ -79,7 +79,7 @@
 
 .reply .text-widget {
     /* Make sure the input fields are always below the label. This sometimes
-     * break when the reply form is copied from the main comment form. 
+     * break when the reply form is copied from the main comment form.
      */
     display: block;
 }
@@ -138,7 +138,7 @@
 /* Plone 4 Styles
    -------------------------------------------------------------------------- */
 
-/* These styles are only applied for Plone 4, since Plone 3.x does 
+/* These styles are only applied for Plone 4, since Plone 3.x does
     not have a .row class for portal-column-content. */
 
 .row #dobulkaction {

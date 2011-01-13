@@ -40,7 +40,7 @@ dl.portlet li {
 /* end required sections from public.css */
 
 /******styles to fix the side effects of the style above********/
-/* from the CSS Reset */ 
+/* from the CSS Reset */
 #logged_in {
     margin:8px 0;
 }
@@ -83,13 +83,13 @@ font-size:11px !important;
 border: 1px solid #dedad4;
 border-right-style: none;
 border-left-style: none;
-background: #fff; 
-width: 250px; 
+background: #fff;
+width: 250px;
 height: 20px;
-line-height: 20px; 
-margin-bottom: 20px; 
+line-height: 20px;
+margin-bottom: 20px;
 padding: 0;
-overflow: hidden; 
+overflow: hidden;
 font-size: 10px;
 }
 .tickercontainer .mask { /* that serves as a mask. so you get a sort of padding both left and right */
@@ -175,7 +175,7 @@ div#latest_monographies_box ul li {
 }
 
 div#latest_reviews_box ul li{
-   background: transparent url(++resource++recensio.theme.images/rez_icon.png) no-repeat; 
+   background: transparent url(++resource++recensio.theme.images/rez_icon.png) no-repeat;
 }
 
 div#latest_internet_resources_box ul li {
@@ -240,7 +240,7 @@ dl.portletSearch input.searchButton{
 
 dl.portletSearch div.LSResult{
    clear: both;
-   
+
 }
 
 .LSBox {
@@ -354,12 +354,13 @@ div#reviewhtml {
 }
 
 .message.notice {
-	background-color: #fdfdc8;
-	color: #6f5a44;
-	border: 1px solid #d3d4a7;
+   background-color: #fdfdc8;
+   color: #6f5a44;
+   border: 1px solid #d3d4a7;
 	/***had to add a specific height to prevent the accordion to blow up this div***/
-	/*height:205px;*/
-	padding: 9px 9px 20px;
+   height:205px;
+   padding: 9px 9px 20px;
+   margin-top: 45px;
 }
 
 .message.success {
@@ -618,7 +619,7 @@ span.headlinebutton {
 /*************************styles for review******************/
 
 #review-reference {
-    
+
 }
 
 .oaisuggestion form input {
@@ -654,10 +655,10 @@ span.headlinebutton {
 
 .switch {margin-bottom:.5em}
 
-/*  
+/*
   Add styles for all links in the 'accordion':
 .accordion a {...}
-*/    
+*/
 
 a.trigger {
    font-weight:bold;
@@ -719,7 +720,7 @@ li.accordion-item .accordion-content {
     background:transparent url(++resource++recensio.theme.images/pfeil_icon_u.gif) no-repeat scroll 0 0;
     padding:5px 0 5px 25px;
     }
-    
+
 #content-core #parent-fieldname-text td h4.hide_title {
         background:transparent url(++resource++recensio.theme.images/pfeil_icon_r.gif) no-repeat scroll 0 0;
         padding:5px 3px 5px 26px;
@@ -918,7 +919,7 @@ top /*\**/:-11px\9
 }
 
 
-/* 
+/*
  * Copies from public.css
  *
  */
@@ -955,12 +956,12 @@ top /*\**/:-11px\9
 .collapsible .collapser.collapsed {
 /*    padding-right: 14px;*/
     background: url('arrowRight.png') center left no-repeat;
-} 
+}
 
 .collapsible .collapser.expanded {
 /*    padding-right: 14px;*/
     background: url('arrowDown.png') center right no-repeat;
-} 
+}
 /* @end */
 
 /* @group Site actions */
@@ -996,7 +997,7 @@ dl.portalMessage a,
     border-bottom: 1px solid black;
 }
 dl.portalMessage dt {
-    background-color: #996; 
+    background-color: #996;
     font-weight: bold;
     float: left;
     margin: 0 0.5em 0 0;
@@ -1005,7 +1006,7 @@ dl.portalMessage dt {
     line-height: 1.25em;
 }
 dl.portalMessage dd {
-    padding: 0.5em 0.5em; 
+    padding: 0.5em 0.5em;
     margin: 0;
     line-height: 1.25em;
 }
@@ -1016,22 +1017,22 @@ dl.warning dt {
     background-color: #d80;
 }
 dl.error {
-    border-color: #d00;    
+    border-color: #d00;
 }
 dl.error dt {
-    background-color: #d00; 
+    background-color: #d00;
 }
 dl.warning {
-    border-color: #d80;    
+    border-color: #d80;
 }
 dl.warning dd {
-    background-color: #fd7; 
+    background-color: #fd7;
 }
 dl.error {
-    border-color: red;    
+    border-color: red;
 }
 dl.error dd {
-    background-color: #fdc; 
+    background-color: #fdc;
 }
 
 /* Additional specificity for when status is shown inside #content */
@@ -1079,7 +1080,7 @@ padding: 0;
 #edit-bar,
 #content ul.formTabs {
     display: block;
-    border-style: solid solid none solid; 
+    border-style: solid solid none solid;
     margin-left: 0;
     border-top-right-radius: 0.5em;
     border-top-left-radius: 0.5em;
@@ -1105,9 +1106,9 @@ padding: 0;
     border: none;
     margin: 0 ;
 }
-#content-views li.selected a, 
-#content-views li a:focus, 
-#content-views li a:hover, 
+#content-views li.selected a,
+#content-views li a:focus,
+#content-views li a:hover,
 #content li.formTab a.selected,
 #content li.formTab a:focus,
 #content li.formTab a:hover {
@@ -1233,10 +1234,10 @@ padding: 0;
     right:-0.24em;
     padding: 0.1em 0.24em 0 0;
     border-radius: 0.5em;
-    border-top-left-radius: 0;    
-    -webkit-border-radius: 0.5em;   
+    border-top-left-radius: 0;
+    -webkit-border-radius: 0.5em;
     -webkit-border-top-left-radius: 0;
-    -moz-border-radius: 0.5em;  
+    -moz-border-radius: 0.5em;
     -moz-border-radius-topleft: 0;
 }
 #contentActionMenus li {
@@ -1255,7 +1256,7 @@ dl.actionMenu div {
     padding: 0 0.25em;
 }
 dl.actionMenu dt {
-    font-weight: normal;    
+    font-weight: normal;
 }
 span.arrowDownAlternative {
     font-size: 80%;
@@ -1439,7 +1440,7 @@ dl.collapsedBlockCollapsible dt.collapsibleHeader {
     padding: 0 0.5em 0 2em;
     line-height: 1.2em;
     cursor: pointer;
-    background: White url(treeCollapsed.png) no-repeat 0.5em 50%;    
+    background: White url(treeCollapsed.png) no-repeat 0.5em 50%;
 }
 dl.collapsedInlineCollapsible dd.collapsibleContent,
 dl.collapsedBlockCollapsible dd.collapsibleContent {
@@ -1476,7 +1477,7 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 
 #content-history div.historyTools ul {
     float: right;
-    margin: 0.5em 1em;  
+    margin: 0.5em 1em;
 }
 
 #content-history div.historyTools ul li {
@@ -1521,7 +1522,7 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 
 #content-history div.historyComment p {
     margin: 0;
-    padding-top: 1px;   
+    padding-top: 1px;
 }
 
 #content-history a.historyComparePrevious {
@@ -1565,7 +1566,7 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 .contenttype-news-item {
     background: no-repeat transparent 0px -1292px url(contenttypes-sprite.png);
 }
-.contenttype-plone-site {   
+.contenttype-plone-site {
     background: no-repeat transparent 0px -1508px url(contenttypes-sprite.png);
 }
 .contenttype-topic {
@@ -1721,7 +1722,7 @@ div.overlay .formTab {
 div.overlay .formTab.lastFormTab {
     margin-right:0em;
 }
-div.overlay .formControls a { 
+div.overlay .formControls a {
     display: block;
     margin: 0.75em;
 }
@@ -1733,14 +1734,14 @@ div.overlay .formControls a {
 table.listing,
 table.plain {
     border-spacing: 0;
-    border-collapse: collapse; 
+    border-collapse: collapse;
 }
 
-table.invisible td, 
+table.invisible td,
 table.invisible th,
-table.plain td, 
+table.plain td,
 table.plain th,
-table.listing td, 
+table.listing td,
 table.listing th {
     padding: 0.5em 1em;
     vertical-align: top;
@@ -1750,7 +1751,7 @@ table.plain td {
     border: 1px solid #ddd;
 }
 
-table.listing td.listingCheckbox, 
+table.listing td.listingCheckbox,
 table.listing th.listingCheckbox {
     text-align: center;
 }
@@ -1774,13 +1775,13 @@ table.listing tbody tr {
 table.listing tbody tr.odd {
     background: #eee;
 }
-table.listing tbody tr td { 
+table.listing tbody tr td {
     background: transparent;
 }
-table.listing tbody tr.odd td { 
+table.listing tbody tr.odd td {
     background: #eee;
 }
-table.listing a { 
+table.listing a {
     line-height: 2em;
     border: none;
     display: inline-block;
@@ -1802,13 +1803,13 @@ table.listing td.draggable {
 }
 
 div.listingBar {
-    font-size: 80%; 
+    font-size: 80%;
     margin: 1em 0;
 }
 
 span.current {
    background-color: #E8E1D0;
-   padding: 0.25em 0.5em;  
+   padding: 0.25em 0.5em;
 }
 
 div.listingBar .next {
@@ -1858,7 +1859,7 @@ body.template-new-user #content input {
 #fieldset-openid-login label, #login-form label {
     margin-right:0.5em;
     padding-top:0.2em;
-    text-align:right;    
+    text-align:right;
     /******changed the width from 7 to 8 so the text would stuck to the field anymore******/
     width: 8em;
     display: inline-block;
@@ -2014,7 +2015,7 @@ div#commenting input.submit-widget {
 
 /* Emulates the styling from the h1 tag */
 #archetypes-fieldname-title input {
-    font-family:Verdana,Arial,Helvetica; 
+    font-family:Verdana,Arial,Helvetica;
     line-height: 125%;
     color: Black;
     letter-spacing: -0.02em;
@@ -2394,10 +2395,11 @@ color:#BC5C10 !important;
 }
 
 .comment .commentBody {
-border-bottom:1px dashed #CCCCCC;
-margin-bottom:0;
-padding-bottom:10px;
-padding-left:15px;
+   border-bottom:1px dashed #CCCCCC;
+   margin-bottom:0;
+   padding-bottom:10px;
+   padding-left:15px;
+   clear: left;
 }
 
 .comment button.reply-to-comment-button {
@@ -2450,7 +2452,7 @@ div#extra-design-elements { display: none; }
 
 /***********Styles for highlighting the batch 1,2,3....********/
 
-div.dialog-wrapper { 
+div.dialog-wrapper {
     width:95% !important;
 }
 
@@ -2493,7 +2495,7 @@ width:100% !important;
 }
 
 /*body.template-atct_edit #uploadfile {
-   float:left !important; 
+   float:left !important;
 }*/
 
 /* Use these classes to set the width of a column. */
