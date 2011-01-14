@@ -2436,12 +2436,21 @@ div#extra-design-elements { display: none; }
 
 #publicationlisting {
     border-top: 1px dashed #CCC;
+    clear:left;
 }
 #publicationlisting ul {
-    list-style-type: disc;
+    display:list-item;
+    list-style-type:disc;  
+    margin:2px 0;
 }
 #publicationlisting ul li {
-    list-style-type: disc;
+    border-top:1px dashed #CCCCCC;
+    display:list-item;
+    list-style-type:disc;
+    padding-top:2px;
+}
+#publicationlisting ul li a:hover {
+    background-color:#efefef;
 }
 #publicationlisting h2 {
     margin-top:1em;
@@ -2584,3 +2593,6 @@ margin:0 0 1.3em;
     position:relative;
     left:12px;
 }
+
+/**********styles for the listing beneath a Zeitschrift***************/
+
