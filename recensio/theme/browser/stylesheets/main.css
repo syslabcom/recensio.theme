@@ -2439,7 +2439,7 @@ div#extra-design-elements { display: none; }
     clear:left;
 }
 #publicationlisting ul {
-    display:list-item;
+    /*display:list-item;*/
     list-style-type:disc;  
     margin:2px 0;
 }
