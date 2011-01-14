@@ -2440,7 +2440,7 @@ div#extra-design-elements { display: none; }
 }
 #publicationlisting ul {
     /*display:list-item;*/
-    list-style-type:disc;  
+    list-style-type:circle; 
     margin:2px 0;
 }
 #publicationlisting ul li {
