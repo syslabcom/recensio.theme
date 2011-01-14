@@ -2441,11 +2441,11 @@ div#extra-design-elements { display: none; }
 #publicationlisting ul {
     /*display:list-item;*/
     margin:2px 0;
+    list-style-type:circle; 
 }
 #publicationlisting ul li {
     border-top:1px dashed #CCCCCC;
     display:list-item;
-    list-style-type:circle; 
     padding-top:2px;
 }
 #publicationlisting ul li a:hover {
