@@ -32,7 +32,7 @@ class PublicationsView(BrowserView):
             title = defob and defob.Title() != '' and defob.Title() \
                     or pubob.Title()
             desc = defob and defob.Description() or pubob.Description()
-            morelink = pubob.absolute_url()
+            morelink = defob and defob.absolute_url() or defob.absolute_url()
             publist.append(dict(ob=pubob, title=title, desc=desc, logo=logourl, link=morelink))
         return publist
         
