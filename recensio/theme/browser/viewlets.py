@@ -28,10 +28,10 @@ class publicationlisting(ViewletBase):
             parent = self.request.PARENTS[1]
         except AttributeError:
             parent = None
-        if not hasattr(parent, 'objectValues'):
+        if not hasattr(parent, 'getFolderContents'):
             return []
-        def sortedObjectValues(container, *constraints):
-            retval = [x for x in container.objectValues(constraints)]
+        def sortedObjectValues(container, *portal_types):
+            retval = [x for x in container.getFolderContents(contentFilter={'portal_type':portal_types}, full_objects=True)]
             retval.sort(lambda a, b: b.effective().__cmp__(a.effective()))
             return retval
 
@@ -39,10 +39,10 @@ class publicationlisting(ViewletBase):
         for volume in sortedObjectValues(parent, 'Volume'):
             issues = []
             for issue in sortedObjectValues(volume, 'Issue'):
-                issuechildren = sortedObjectValues(issue, 'ReviewJournal', 'ReviewMonograph')
+                issuechildren = sortedObjectValues(issue, 'Review Journal', 'Review Monograph')
                 issues.append(dict(title=issue.Title(), children=issuechildren))
             
-            volumechildren = dict(issues=issues, reviews=sortedObjectValues(volume, 'ReviewJournal', 'ReviewMonograph'))
+            volumechildren = dict(issues=issues, reviews=sortedObjectValues(volume, 'Review Journal', 'Review Monograph'))
             volumes.append(dict(title=volume.Title(), children=volumechildren))
         return volumes
   
