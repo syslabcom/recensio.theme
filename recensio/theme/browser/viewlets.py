@@ -1,4 +1,5 @@
 from zope.interface import implements
+from zope.publisher.interfaces import Unauthorized
 from zope.viewlet.interfaces import IViewlet
 from Products.CMFCore.utils import getToolByName
 from plone.app.layout.viewlets import ViewletBase
@@ -31,9 +32,12 @@ class publicationlisting(ViewletBase):
         if not hasattr(parent, 'getFolderContents'):
             return []
         def sortedObjectValues(container, *portal_types):
-            retval = [x for x in container.getFolderContents(contentFilter={'portal_type':portal_types}, full_objects=True)]
-            retval.sort(lambda a, b: b.effective().__cmp__(a.effective()))
-            return retval
+            try:
+                retval = [x for x in container.getFolderContents(contentFilter={'portal_type':portal_types}, full_objects=True)]
+                retval.sort(lambda a, b: b.effective().__cmp__(a.effective()))
+                return retval
+            except Unauthorized:
+                return []
 
         volumes = []
         for volume in sortedObjectValues(parent, 'Volume'):
