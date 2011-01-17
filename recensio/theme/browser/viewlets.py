@@ -1,5 +1,5 @@
+from AccessControl.unauthorized import Unauthorized
 from zope.interface import implements
-from zope.publisher.interfaces import Unauthorized
 from zope.viewlet.interfaces import IViewlet
 from Products.CMFCore.utils import getToolByName
 from plone.app.layout.viewlets import ViewletBase
