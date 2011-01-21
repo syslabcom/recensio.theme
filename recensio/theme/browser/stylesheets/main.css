@@ -2597,5 +2597,7 @@ margin:0 0 1.3em;
     left:12px;
 }
 
-/**********styles for the listing beneath a Zeitschrift***************/
-
+/**********styles for template-decorated_folder_listing**************/
+body.template-decorated_folder_listing #content-core dt {
+    margin:2px 0;
+}
