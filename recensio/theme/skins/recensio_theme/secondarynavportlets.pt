@@ -78,7 +78,7 @@
          tal:attributes="id python:is_current and 'lastcurrent' or ''"
          >
         <a 
-           tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal&amp;sort_order=reverse'"
+           tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal&amp;sort_order=reverse&amp;sort_on=effective'"
            href="search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal"
            i18n:translate="label_secondary_nav_latest_reviews">Neueste Rezensionen</a>
       </li>
