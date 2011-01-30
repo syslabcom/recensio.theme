@@ -44,19 +44,21 @@ class GeneratePdfRecension(BrowserView):
         BrowserView.__init__(self, context, request)
 
     def __call__(self):
-        cover = new = None
+        cover = new_path = None
         try:
             cover = self.genPdfRecension()
             pdf = self.context.get_review_pdf()
             error_code = None
-            new = None
+            new_path = None
             if pdf:
                 pdf_blob = pdf["blob"]
                 original = pdf_blob.open().name
-                new = tempfile.mkstemp(prefix = 'final', suffix = '.pdf')[1]
+                fd, new_path = tempfile.mkstemp(prefix = 'final',
+                                                suffix = '.pdf')
+                os.close(fd) #2463
                 error_code = os.system(
                     'ulimit -t 5;pdftk %s %s cat output %s' % (
-                    cover, original, new
+                    cover, original, new_path
                     )
                     )
             if error_code or not pdf:
@@ -66,12 +68,12 @@ class GeneratePdfRecension(BrowserView):
                     'error')
                 return
             else:
-                pdfdata = file(new).read()
+                pdfdata = file(new_path).read()
         finally:
             if cover:
                 os.remove(cover)
-            if new:
-                os.remove(new)
+            if new_path:
+                os.remove(new_path)
         self._prepareHeader(len(pdfdata))
         return pdfdata
 
@@ -89,6 +91,7 @@ class GeneratePdfRecension(BrowserView):
 
     def _genCoverSheet(self):
         file_handle, tmpfile = tempfile.mkstemp(prefix='cover', suffix='.pdf')
+        os.close(file_handle) #2463
         self.canvas = cover = canvas.Canvas(tmpfile, pagesize=A4)
         pwidth,pheight = A4
 
