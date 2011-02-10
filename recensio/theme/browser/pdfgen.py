@@ -123,9 +123,9 @@ class GeneratePdfRecension(BrowserView):
                                fontName = 'DejaVu-Serif',
                                fontSize = 10, textColor = grey)
         try:
-            P = Paragraph(escape(_(self.context.get_citation_string())), style)
+            P = Paragraph(_(self.context.get_citation_string()), style)
         except UnicodeDecodeError:#ATF
-            P = Paragraph(escape(self.context.get_citation_string()), style)
+            P = Paragraph(self.context.get_citation_string(), style)
         realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
         P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
         # A small calculation, how much this paragaph would overlap
