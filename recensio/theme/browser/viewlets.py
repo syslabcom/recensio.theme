@@ -11,7 +11,7 @@ class publicationlisting(ViewletBase):
         """ should we display at all? """
         try:
             parents = self.request.PARENTS
-        except (IndexError, AttributeError):
+        except AttributeError:
             return False
         if len(parents)<2:
             return False
@@ -27,7 +27,7 @@ class publicationlisting(ViewletBase):
         """ return a mapping of all volumes including contained issues and reviews """
         try:
             parent = self.request.PARENTS[1]
-        except AttributeError:
+        except (IndexError, AttributeError):
             parent = None
         if not hasattr(parent, 'getFolderContents'):
             return []
