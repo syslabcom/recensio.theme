@@ -11,7 +11,7 @@ class publicationlisting(ViewletBase):
         """ should we display at all? """
         try:
             parents = self.request.PARENTS
-        except AttributeError:
+        except (IndexError, AttributeError):
             return False
         if len(parents)<2:
             return False
