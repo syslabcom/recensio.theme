@@ -22,9 +22,10 @@ class publicationlisting(ViewletBase):
            parent.portal_type=='Publication':
             return True
         return False
-        
+
     def volumes(self):
-        """ return a mapping of all volumes including contained issues and reviews """
+        """ return a mapping of all volumes including contained issues
+        and reviews """
         try:
             parent = self.request.PARENTS[1]
         except (IndexError, AttributeError):
@@ -32,21 +33,31 @@ class publicationlisting(ViewletBase):
         if not hasattr(parent, 'getFolderContents'):
             return []
         def sortedObjectValues(container, *portal_types):
-            try:
-                retval = [x for x in container.getFolderContents(contentFilter={'portal_type':portal_types}, full_objects=True)]
-                retval.sort(lambda a, b: b.effective().__cmp__(a.effective()))
-                return retval
-            except Unauthorized:
+            if container == None:
                 return []
+            else:
+                try:
+                    retval = [x.getObject() for x in container.getFolderContents(
+                            contentFilter={'portal_type':portal_types},
+                            full_objects=False)
+                              if x is not None]
+                    retval.sort(lambda a, b: b.effective().__cmp__(a.effective()))
+                    return retval
+                except Unauthorized:
+                    return []
 
         volumes = []
         for volume in sortedObjectValues(parent, 'Volume'):
             issues = []
             for issue in sortedObjectValues(volume, 'Issue'):
-                issuechildren = sortedObjectValues(issue, 'Review Journal', 'Review Monograph')
+                issuechildren = sortedObjectValues(issue, 'Review Journal',
+                                                   'Review Monograph')
                 issues.append(dict(title=issue.Title(), children=issuechildren))
-            
-            volumechildren = dict(issues=issues, reviews=sortedObjectValues(volume, 'Review Journal', 'Review Monograph'))
+
+            volumechildren = dict(issues=issues,
+                                  reviews=sortedObjectValues(volume,
+                                                             'Review Journal',
+                                                             'Review Monograph')
+                                  )
             volumes.append(dict(title=volume.Title(), children=volumechildren))
         return volumes
-  
