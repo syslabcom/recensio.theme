@@ -1,34 +1,35 @@
 <div id="publicationlisting"
      tal:define="language context/@@plone_portal_state/language;
-                 portal_url context/portal_url;
-                 volumes view/volumes"
+                 portal_url context/portal_url;"
      i18n:domain="recensio"
      tal:condition="view/visible">
 
+  <tal:volumes define="volumes view/volumes"
+               repeat="volume_key python:volumes.keys()">
+    <tal:volume define="volume python:volumes[volume_key]">
+      <h2 tal:content="volume/Title" />
 
-<tal:volumes repeat="volume volumes">
+      <tal:reviews repeat="
+review python:volume.has_key('reviews') and volume['reviews'] or []">
+        <h4 tal:content="review/Title" />
+      </tal:reviews>
 
-    <h2 tal:content="volume/title" />
+     <tal:issues repeat="
+issue_key python:volume.has_key('issues') and volume['issues'].keys() or []">
+        <tal:issue define="issue python:volume['issues'][issue_key]">
+          <h3 tal:content="issue/Title" />
 
-    <tal:issue define="children volume/children" repeat="issue children/issues">
+          <ul>
+            <li tal:repeat="review issue/reviews">
+              <a tal:attributes="href review/absolute_url"
+                 tal:content="review/getDecoratedTitle" />
+            </li>
+          </ul>
+        </tal:issue>
+      </tal:issues>
 
-        <h3 tal:content="issue/title" />
 
-        <tal:review repeat="review issue/children">
+    </tal:volume>
+  </tal:volumes>
 
-            <ul>
-            <li><a href="" tal:attributes="href review/absolute_url"><span tal:replace="review/getDecoratedTitle"/></a></li>
-            </ul>
-    
-        </tal:review>
-
-    </tal:issue>
-
-    <tal:reviews repeat="review volume/children/reviews">
-        <ul>
-        <li><a href="" tal:attributes="href review/absolute_url"><span tal:replace="review/Title"/></a></li>
-        </ul>
-    </tal:reviews>
-
-</tal:volumes>
 </div>
