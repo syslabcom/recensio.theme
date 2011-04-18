@@ -49,6 +49,7 @@ class publicationlisting(ViewletBase):
                             ]}
                     }
          }
+
          """
 
         catalog = self.context.portal_catalog
@@ -58,6 +59,7 @@ class publicationlisting(ViewletBase):
         query["portal_type"] = ("Review Journal",
                                 "Review Monograph")
         query["sort_on"] = "effective"
+        query["sort_order"] = "descending"
         reviews = catalog(query)
 
         volumes = {}
@@ -65,16 +67,21 @@ class publicationlisting(ViewletBase):
             review_obj = review.getObject()
             review_parent = review_obj.aq_parent
             if review_parent.portal_type == "Issue":
-                # The parent must be a Volume
+                # The Issue parent must be a Volume
                 volume_obj = review_parent.aq_parent
                 if not volumes.has_key(volume_obj.id):
-                    volumes[volume_obj.id] = { "Title" : volume_obj.title }
+                    volumes[volume_obj.id] = {
+                        "Title": volume_obj.title,
+                        "effective": volume_obj.effective()
+                        }
                 volume = volumes[volume_obj.id]
                 if not volume.has_key("issues"):
                     volume["issues"] = {}
                 issues = volume["issues"]
                 if not issues.has_key(review_parent.id):
-                    issues[review_parent.id] = { "Title" : review_parent.title }
+                    issues[review_parent.id] = {
+                        "Title" : review_parent.title,
+                        "effective": review_parent.effective()}
                 issue = issues[review_parent.id]
                 issue.setdefault("reviews", []).append(review_obj)
 
@@ -85,4 +92,20 @@ class publicationlisting(ViewletBase):
                 volume = volumes[review_parent.id]
                 volume.setdefault("reviews", []).append(review_obj)
 
-        return volumes
+        # Sort the volumes and issues by changing them into lists and
+        # sorting by effective date
+        volumes_list = []
+        for volume in volumes:
+            vol = volumes[volume]
+            issues_list = [vol["issues"][i] for i in vol["issues"]]
+            sorted_issues = sorted(issues_list,
+                                   key=lambda x: x["effective"],
+                                   reverse=True)
+            volumes_list.append({"Title":vol["Title"],
+                                 "effective":vol["effective"],
+                                 "issues":sorted_issues})
+
+        sorted_volumes  = sorted(volumes_list,
+                                 key=lambda x: x["effective"],
+                                 reverse=True)
+        return sorted_volumes

@@ -4,32 +4,23 @@
      i18n:domain="recensio"
      tal:condition="view/visible">
 
-  <tal:volumes define="volumes view/volumes"
-               repeat="volume_key python:volumes.keys()">
-    <tal:volume define="volume python:volumes[volume_key]">
-      <h2 tal:content="volume/Title" />
+  <tal:volumes repeat="volume view/volumes | nothing">
+    <h2 tal:content="volume/Title" />
 
-      <tal:reviews repeat="
-review python:volume.has_key('reviews') and volume['reviews'] or []">
-        <h4 tal:content="review/Title" />
-      </tal:reviews>
+    <tal:reviews repeat="review volume/reviews | nothing">
+      <h4 tal:content="review/Title" />
+    </tal:reviews>
 
-     <tal:issues repeat="
-issue_key python:volume.has_key('issues') and volume['issues'].keys() or []">
-        <tal:issue define="issue python:volume['issues'][issue_key]">
-          <h3 tal:content="issue/Title" />
+    <tal:issues repeat="issue volume/issues | nothing">
+      <h3 tal:content="issue/Title" />
 
-          <ul>
-            <li tal:repeat="review issue/reviews">
-              <a tal:attributes="href review/absolute_url"
-                 tal:content="review/getDecoratedTitle" />
-            </li>
-          </ul>
-        </tal:issue>
-      </tal:issues>
-
-
-    </tal:volume>
+      <ul>
+        <li tal:repeat="review issue/reviews">
+          <a tal:attributes="href review/absolute_url"
+             tal:content="review/getDecoratedTitle" />
+        </li>
+      </ul>
+    </tal:issues>
   </tal:volumes>
 
 </div>
