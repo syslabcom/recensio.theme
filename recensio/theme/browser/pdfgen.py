@@ -110,13 +110,27 @@ class GeneratePdfRecension(BrowserView):
                         pheight - 4.21*cm,
                         28.28*cm,
                         4.21*cm)
-        self._drawImage('logo_icon_watermark.jpg',
-                        (pwidth/2.0) - (0.5 * 13.76 * cm),
-                        (pheight/2.0) - (0.5 * 13.76 * cm),
-                        13.76 * cm,
-                        13.76 * cm,
-                        preserveAspectRatio=True,
-                        anchor='c')
+
+        pdf_watermark_path = resource_filename(
+            __name__,
+            os.path.join('images', 'logo_icon_watermark.jpg'))
+
+        publication = self.context.get_parent_object_of_type("Publication")
+        if publication != None:
+            pdf_watermark_obj = getattr(publication, "pdf_watermark", None)
+            if pdf_watermark_obj:
+                pdf_watermark_path = pdf_watermark_obj.getBlob().open().name
+
+        self.canvas.drawImage(
+            pdf_watermark_path,
+            (pwidth/2.0) - (0.5 * 13.76 * cm),
+            (pheight/2.0) - (0.5 * 13.76 * cm),
+            13.76 * cm,
+            13.76 * cm,
+            preserveAspectRatio=True,
+            anchor='c',
+            mask='auto' # To support transparent PNGs
+            )
         cover.setFont('DejaVu-Serif', 10)
         cover.setFillColor(grey)
         citation = translate(_(u'label_citation_style',
