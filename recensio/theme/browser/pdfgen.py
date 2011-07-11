@@ -105,12 +105,18 @@ class GeneratePdfRecension(BrowserView):
                                 '/../../data/DejaVuSerif.ttf')
         pdfmetrics.registerFont( TTFont('DejaVu-Serif', font) )
 
-        self._drawImage('logo2_fuer-Deckblatt.jpg', 0, pheight - 4.21*cm,
-            28.28*cm, 4.21*cm)
-        self._drawImage('logo_icon_watermark.jpg', pwidth/2.0 - 5*13.76*cm,
-                        pheight/2.5 * 13.76*cm, 13.76*cm, 13.76*cm,
+        self._drawImage('logo2_fuer-Deckblatt.jpg',
+                        0,
+                        pheight - 4.21*cm,
+                        28.28*cm,
+                        4.21*cm)
+        self._drawImage('logo_icon_watermark.jpg',
+                        (pwidth/2.0) - (0.5 * 13.76 * cm),
+                        (pheight/2.0) - (0.5 * 13.76 * cm),
+                        13.76 * cm,
+                        13.76 * cm,
                         preserveAspectRatio=True,
-            anchor='c')
+                        anchor='c')
         cover.setFont('DejaVu-Serif', 10)
         cover.setFillColor(grey)
         citation = translate(_(u'label_citation_style',
@@ -135,7 +141,8 @@ class GeneratePdfRecension(BrowserView):
         overlap += 15 # padding
 
         if hasattr(self.context, 'getFirstPublicationData'):
-            msgs = ['First published: ' + x for x in self.context.getFirstPublicationData()]
+            msgs = ['First published: ' + x
+                    for x in self.context.getFirstPublicationData()]
             offset = max(overlap, 0)
             for msg in msgs:
                 P2 = Paragraph(msg, style) # msg got escaped"
