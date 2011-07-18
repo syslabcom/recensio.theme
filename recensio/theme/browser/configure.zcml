@@ -86,7 +86,7 @@
         class=".views.CreateNewPresentationView"
         permission="zope2.View"
         />
-        
+
     <browser:viewlet
         name="publicationlisting"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
@@ -94,7 +94,7 @@
         template="templates/publicationlisting.pt"
         permission="zope2.View"
         />
-        
+
     <browser:page
         for="*"
         name="newsletter-view"
@@ -102,5 +102,14 @@
         allowed_interface=".interfaces.INewsletterView"
         permission="zope2.View"
         />
+
+    <browser:page
+        name="sitemap.xml.gz"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".sitemap.RecensioSiteMapView"
+        permission="zope2.Public"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+
 
 </configure>

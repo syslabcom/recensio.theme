@@ -1,14 +1,13 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.1'
+version = '1.2dev'
 
 setup(name='recensio.theme',
       version=version,
       description="An installable theme for Plone 3",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
@@ -23,16 +22,16 @@ setup(name='recensio.theme',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
-          'recensio.contenttypes',
           'collective.xdv',
           'logilab-common',
+          'recensio.contenttypes',
           'reportlab',
+          'setuptools',
       ],
+      extras_require={
+        "test" : "plone.app.testing"
+        },
       entry_points="""
-      # -*- Entry points: -*-
-
       [z3c.autoinclude.plugin]
       target = plone
       """,
