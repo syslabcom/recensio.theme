@@ -108,8 +108,6 @@
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".sitemap.RecensioSiteMapView"
         permission="zope2.Public"
-        layer="recensio.theme.interfaces.IRecensioLayer"
         />
-
 
 </configure>

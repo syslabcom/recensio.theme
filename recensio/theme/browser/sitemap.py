@@ -6,7 +6,7 @@ class RecensioSiteMapView(SiteMapView):
     Sehepunkte a low priority #3100 """
 
     def objects(self):
-        """Returns the data to create the sitemap."""
+        """ Overrides the SiteMapView method """
         catalog = getToolByName(self.context, 'portal_catalog')
         for item in catalog.searchResults({'Language': 'all'}):
             location = item.getURL()
@@ -14,8 +14,10 @@ class RecensioSiteMapView(SiteMapView):
                 'loc'      : location,
                 'lastmod'  : item.modified.ISO8601(),
                 }
-            if "rezensionen/zeitschriften/francia-recensio" in location \
-                    or "rezensionen/zeitschriften/sehepunkte" in location:
+            if ("rezensionen/zeitschriften/francia-recensio" in location
+                or "rezensionen/zeitschriften/sehepunkte" in location) \
+                and item.portal_type in ["Review Monograph",
+                                         "Review Journal"]:
                 map_item['priority'] = 0.1
             yield map_item
 
