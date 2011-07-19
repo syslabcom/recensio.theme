@@ -20,4 +20,3 @@ class RecensioSiteMapView(SiteMapView):
                                          "Review Journal"]:
                 map_item['priority'] = 0.1
             yield map_item
-

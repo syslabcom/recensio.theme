@@ -2,15 +2,20 @@
 import unittest2 as unittest
 
 from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
 
 from recensio.policy.tests.layer import RECENSIO_INTEGRATION_TESTING
-
+from recensio.theme.interfaces import IRecensioLayer
 
 class TestSiteMap(unittest.TestCase):
     layer = RECENSIO_INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer["portal"]
+        # Even though the layer is registered we still need to mark
+        # the request with it so that layer specific views can be
+        # accessed
+        alsoProvides(self.portal.REQUEST, IRecensioLayer)
 
     def test_sitemap_priorities(self):
         """ The search engine sitemap has been customised to give a
