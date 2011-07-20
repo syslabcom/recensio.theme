@@ -175,10 +175,15 @@
                      href="#" 
                      tal:attributes="href url;
                                      class string:$item_wf_state_class"
-                     tal:content="result/pretty_title_or_id" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
+                     tal:content="result/pretty_title_or_id" /><tal:block condition="result/subtitle | nothing">, </tal:block><tal:block replace="result/subtitle | nothing" />
+                  <tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
                   <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
+                  <tal:block tal:condition="result/isbn | result/issn | nothing">,</tal:block>
+                  <span class="isbn" tal:condition ="result/isbn | nothing" tal:content="result/isbn" />
+                  <span class="issn" tal:condition ="result/issn | nothing" tal:content="result/issn" />
                   <span class="review-author" tal:attributes="class string:review-author" tal:condition="is_review" i18n:translate="reviewed_by">(reviewed by <tal:block tal:content="result/getReviewAuthorFirstname" i18n:name="review_author_firstname"/> <tal:block tal:content="result/getReviewAuthorLastname" i18n:name="review_author_lastname"/>)</span>
                   <span class="review-author" tal:attributes="class string:review-author" tal:condition="is_presentation" i18n:translate="presented_by">(presented by <tal:block tal:content="result/getReviewAuthorFirstname" i18n:name="review_author_firstname" /> <tal:block tal:content="result/getReviewAuthorLastname" i18n:name="review_author_lastname" />)</span>
+                  <span class="journal" tal:condition="result/titleJournal | nothing"><tal:block replace="result/titleJournal" />, <tal:block replace="result/volumeNumber" />, <tal:block replace="result/issueNumber" /></span>
                 </dt>
             
                 <dd>
