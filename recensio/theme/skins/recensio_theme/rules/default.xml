@@ -41,6 +41,11 @@
   <replace css:content="li.language-fr a"
            css:theme="a.language-fr" />
 
+
+  <!-- page_image: the flash banner -->
+  <replace css:content="object#page_image"
+           css:theme="object#page_image" />
+
   <!-- transfer the breadcrumbs -->
   <replace css:content="div#portal-breadcrumbs"
            css:theme="div#loc" />
