@@ -51,7 +51,7 @@
             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                    item_id item/getId|item/id;
-                                   item_title_or_id python:item.getObject().getDecoratedTitle();
+                                   item_title_or_id python:getattr(item.getObject(), 'getDecoratedTitle', lambda:item.Title)();
                                    item_description item/Description;
                                    item_type item/portal_type;
                                    item_type_title item/Type;
