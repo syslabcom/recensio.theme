@@ -17,7 +17,7 @@
       <ul>
         <li tal:repeat="review issue/reviews">
           <a tal:attributes="href review/absolute_url"
-             tal:content="review/getDecoratedTitle" />
+             tal:content="python:review.getDecoratedTitle(lastName_first=True)" />
         </li>
       </ul>
     </tal:issues>
