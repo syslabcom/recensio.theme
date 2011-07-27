@@ -46,7 +46,8 @@
                  query_string python:mq(batchlinkparams);
                  uq python:modules['ZTUtils'].url_query;
                  here_url context/@@plone_context_state/object_url;
-                 rss_url python:uq(request=dict(QUERY_STRING=query_string, URL=here_url+ '/search_rss'), omit=['advanced_search', 'b_start', 'facet']);">
+                 rss_url python:uq(request=dict(QUERY_STRING=query_string, URL=here_url+ '/search_rss'), omit=['advanced_search', 'b_start', 'facet']);
+                 is_comment_search python:sort_on == 'last_comment_date' and request.has_key('total_comments');">
 
     <div id="content-core">
         <form name="searchform"
@@ -119,7 +120,8 @@
 
         </script>
         <h1 class="documentFirstHeading">
-            <span i18n:translate="heading_search_results">
+            <span tal:condition="is_comment_search" i18n:translate="latest_comments">Latest Comments</span>
+            <span tal:condition="not:is_comment_search" i18n:translate="heading_search_results">
                 Search results
             </span>
             <span class="discreet">
@@ -130,6 +132,10 @@
             tal:content="python:len(results)">234</span> items matching</span>
           </span>
         </h1>
+        
+        <p tal:condition="is_comment_search" i18n:translate="latest_comments_description">
+            Zu folgenden Rezensionen und Präsentationen wurden jüngst Kommentare abgegeben. Beteiligen Sie sich an der Diskussion mit Fachkollegen
+        </p>
 
         <p class="discreet"
            tal:condition="context/portal_syndication/isSiteSyndicationAllowed">
@@ -142,10 +148,18 @@
                  Subscribe to an always-updated feed of these search terms</a>
         </p>
 
+        <div tal:define="view nocall: context/@@search-facets | nothing"
+             tal:condition="python: view"
+             tal:replace="structure view/hiddenfields" />
+
         <div tal:condition="not: results">
             <p><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
         </div>
 
+
+    <div tal:define="view nocall: context/@@search-facets | nothing"
+         tal:condition="python: view"
+         tal:replace="structure python: view(results=results)" />
 
         <div tal:condition="results"
               tal:define="normalizeString nocall: context/plone_utils/normalizeString;
@@ -174,8 +188,17 @@
                   <a
                      href="#" 
                      tal:attributes="href url;
-                                     class string:$item_wf_state_class"
-                     tal:content="result/pretty_title_or_id" /><tal:block condition="result/subtitle | nothing">, </tal:block>
+                                     class string:$item_wf_state_class">
+                      <tal:block condition="python:result_type == 'Issue'">
+                          <tal:block define="volume python:result.getObject().getParentNode();
+                                             volume_title python:volume.Title();
+                                             publication_title python:volume.getParentNode().Title();">
+                            <span class="publication-title" tal:content="publication_title" /><tal:c condition="publication_title">: </tal:c>
+                            <span class="volume-title" tal:content="volume_title" /><tal:c condition="volume_title">, </tal:c>
+                          </tal:block>
+                      </tal:block>
+                      <tal:block tal:content="result/pretty_title_or_id" /><tal:block condition="result/subtitle | nothing">, </tal:block>
+                  </a>
                      
                   <tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
                   <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="result/isbn | result/issn | nothing">,</tal:block>
