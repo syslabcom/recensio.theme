@@ -83,8 +83,9 @@
                    tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authors:list=${author/name}">
                   <img i18n:attributes="alt label_all_presentations_author"
                        alt="All presentations of this author"
-                       src="++resource++recensio.theme.images/InternetResource.png"/><span tal:content="author/presentations" />
+                       src="++resource++recensio.theme.images/InternetResource.png"/>
                 </a>
+                <div class="authorsearch_placeholder" tal:condition="not:author/presentations" />
               </li>
               <li class="inline_listing">
                 <a href="."
@@ -94,8 +95,9 @@
                    tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authors:list=${author/name}">
                   <img i18n:attributes="alt label_all_reviews_author"
                        alt="All reviews of this author"
-                       src="++resource++recensio.theme.images/Aufsaetze.png" /><span tal:content="author/reviews" />
+                       src="++resource++recensio.theme.images/Aufsaetze.png" />
                 </a>
+                <div class="authorsearch_placeholder" tal:condition="not:author/reviews" />
               </li>
               <li class="inline_listing">
                 <a href="."
@@ -105,8 +107,9 @@
                    tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item&amp;authors:list=${author/name}">
                   <img i18n:attributes="alt label_all_comments_author"
                        alt="All comments of this author"
-                       src="++resource++recensio.theme.images/Monograph.png" /><span tal:content="author/comments" />
+                       src="++resource++recensio.theme.images/Monograph.png" />
                 </a>
+                <div class="authorsearch_placeholder" tal:condition="not:author/comments" />
               </li>
               <li class="inline_listing">
                 <a href="."

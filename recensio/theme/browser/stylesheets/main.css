@@ -2280,10 +2280,12 @@ margin-top:10px;
 
 
 /*** ***/
-.authorsearch img, .searchResults img {
+.authorsearch img, .searchResults img, .authorsearch_placeholder {
 padding-right:5px;
 position:relative;
 top:3px;
+width:13px;
+height:13px;
 }
 
 /* Workaround for a bug in screen.css */
