@@ -206,7 +206,7 @@
                   <span class="issn" tal:condition ="result/issn | nothing" tal:content="result/issn" />
                   
                   <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
-                        <br />(<tal:author i18n:translate="reviewed_by">reviewed by <tal:block tal:content="result/getReviewAuthorFirstname" i18n:name="review_author_firstname"/> <tal:block tal:content="result/getReviewAuthorLastname" i18n:name="review_author_lastname"/></tal:author>
+                        <br />(<tal:author i18n:translate="reviewed_by">reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthors"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author>
                   <tal:block tal:condition="result/get_publication_title | nothing">
                   <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in <tal:block i18n:name="get_publication_title" replace="result/get_publication_title" />, <tal:block i18n:name="get_volume_title" replace="result/get_volume_title" />, <tal:block i18n:name="get_issue_title" replace="result/get_issue_title" />
                   </tal:journal>
@@ -215,7 +215,7 @@
 
                   <tal:author tal:condition="is_presentation">
                   <br />(<span class="review-author" tal:attributes="class string:review-author" i18n:translate="presented_by">
-                        presented by <tal:block tal:content="result/getReviewAuthorFirstname" i18n:name="review_author_firstname" /> <tal:block tal:content="result/getReviewAuthorLastname" i18n:name="review_author_lastname" />
+                        presented by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthors"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock>
                   </span>)
                   </tal:author>
                 </dt>

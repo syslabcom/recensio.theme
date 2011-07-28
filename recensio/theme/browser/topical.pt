@@ -213,14 +213,28 @@
                          tal:content="result/pretty_title_or_id" />
                     </div>
                     <span class="review-author" 
-                          tal:condition="is_review"
-                          i18n:translate="reviewed_by">(reviewed by
-                      <tal:block 
-                         tal:content="result/getReviewAuthorFirstname" 
-                         i18n:name="review_author_firstname" /> 
-                      <tal:block tal:content="result/getReviewAuthorLastname"
-                                 i18n:name="review_author_lastname" />)</span>
-                    <span class="review-author" tal:attributes="class string:review-author" tal:condition="is_presentation" i18n:translate="presented_by">(presented by <tal:block tal:content="result/getReviewAuthorFirstname" i18n:name="review_author_firstname" /> <tal:block tal:content="result/getReviewAuthorLastname" i18n:name="review_author_lastname" />)</span>
+                          tal:condition="is_review">
+                      (<tal:author i18n:translate="reviewed_by">reviewed by
+                        <tal:nameblock i18n:name="review_authors">
+                          <tal:repeatblock repeat="reviewAuthor result/listReviewAuthors">
+                            <tal:block tal:content="reviewAuthor"/>
+                            <tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c>
+                          </tal:repeatblock>
+                        </tal:nameblock>
+                      </tal:author>)
+                    </span>
+                    <span class="review-author"
+                          tal:attributes="class string:review-author"
+                          tal:condition="is_presentation">
+                      (<tal:author i18n:translate="presented_by">presented by
+                        <tal:nameblock i18n:name="review_authors">
+                          <tal:repeatblock repeat="reviewAuthor result/listReviewAuthors">
+                            <tal:block tal:content="reviewAuthor"/>
+                            <tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c>
+                          </tal:repeatblock>
+                        </tal:nameblock>
+                      </tal:author>)
+                    </span>
                   </dt>
                   
                   <dd>
