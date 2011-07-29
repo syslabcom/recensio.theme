@@ -34,7 +34,7 @@
                                 mtool python:context.portal_membership;
                                 portrait python: mtool.getPersonalPortrait(author);
                                 portal_types context/portal_types;
-                                authorinfo python: mtool.getMemberInfo(author);
+                                authorinfo python:modules['recensio.policy.utility'].getMemberInfo(author);
                                 portal_url context/@@plone_portal_state/navigation_root_url;
                                 here_url context/@@plone_context_state/object_url;
                                 member context/@@plone_portal_state/member;
@@ -89,7 +89,7 @@
             <div id="content">
                 <!-- Author information -->
                 <h1 class="documentFirstHeading" tal:condition="authorinfo/fullname" >
-                    <tal:block tal:content="authorinfo/fullname" />
+                    <tal:block tal:content="authorinfo/academic_title" /> <tal:block tal:content="authorinfo/fullname" />
                 </h1>
 
                 <h1 class="documentFirstHeading" tal:condition="not: authorinfo/fullname" tal:content="author">
