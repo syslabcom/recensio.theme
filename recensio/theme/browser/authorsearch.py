@@ -1,6 +1,7 @@
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 
 PRESENTATION_TYPES = ['Presentation Monograph', 'Presentation Online Resource', 'Presentation Article Review', 'Presentation Collection']
 REVIEW_TYPES = ['Review Journal', 'Review Monograph']
@@ -37,10 +38,10 @@ class AuthorSearchView(BrowserView):
             authors = self.request.get('authors')
             if authors:
                 items = [x.lower() for x in authors.split(' ')]
-                self._authors = [dict(name=x, reviews=reviews.get(x.decode('utf-8'), 0), presentations=presentations.get(x.decode('utf-8'), 0), comments=comments.get(x.decode('utf-8'), 0)) for x in
+                self._authors = [dict(name=x, reviews=reviews.get(safe_unicode(x), 0), presentations=presentations.get(safe_unicode(x), 0), comments=comments.get(safe_unicode(x), 0)) for x in
                     catalog.uniqueValuesFor('authors') if True in
                     [y in x.lower() for y in items]]
             else:
-                self._authors = [dict(name=x, reviews=reviews.get(x.decode('utf-8'), 0), presentations=presentations.get(x.decode('utf-8'), 0), comments=comments.get(x.decode('utf-8'), 0)) for x in
+                self._authors = [dict(name=x, reviews=reviews.get(safe_unicode(x), 0), presentations=presentations.get(safe_unicode(x), 0), comments=comments.get(safe_unicode(x), 0)) for x in
                     catalog.uniqueValuesFor('authors')]
         return self._authors
