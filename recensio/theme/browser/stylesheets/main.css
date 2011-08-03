@@ -562,7 +562,6 @@ div#menu_headlines p.used_facet {
 }
 
 div.submenu {
-    display:none;
 }
 
 .template-browse-topics .searchResults {
@@ -583,7 +582,6 @@ div.submenu {
 }
 
 #submenu_ddcPlace {
-    display:none;
 }
 
 .submenu_title {
@@ -732,11 +730,9 @@ li.accordion-item .accordion-content {
 /**************************Icons for themes epoche topic****************************/
 
 .menu_headline {
-    background:transparent url(++resource++recensio.theme.images/pfeil_icon_r.gif) no-repeat scroll 0 0;
     padding:0 0 5px 24px;
 }
 .selected_facet {
-    background:transparent url(++resource++recensio.theme.images/pfeil_icon_u.gif) no-repeat scroll 0 0;
     padding:0 0 5px 24px;
 }
 .menu_headline span {

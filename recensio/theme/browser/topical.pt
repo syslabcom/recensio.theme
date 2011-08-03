@@ -11,54 +11,6 @@
                              disable_column_one python:request.set('disable_plone.leftcolumn',1);
                              disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 
-    <metal:javascript_head fill-slot="javascript_head_slot">
-      
-      <script type="text/javascript">
-        //<![CDATA[
-    
-    var currentopen = '';
-    function closeall() {
-        jq('div#submenu_ddcPlace').hide('fast')
-        jq('#headline_ddcPlace').removeClass('selected_facet');
-        jq('div#submenu_ddcTime').hide('fast')
-        jq('#headline_ddcTime').removeClass('selected_facet');
-        jq('div#submenu_ddcSubject').hide('fast')
-        jq('#headline_ddcSubject').removeClass('selected_facet');
-    };
-    function toggler(elem, headline) {
-        if (currentopen !=  elem.attr('id')) { 
-            closeall();
-            elem.show('fast');
-            headline.addClass('selected_facet');
-            currentopen = elem.attr('id');
-        } else {
-            closeall();
-            currentopen = '';
-        }
-    };
-    jQuery(document).ready(function() { 
-    
-        jq('#headline_ddcPlace').click(function() {
-            toggler(jq('div#submenu_ddcPlace'), jq('#headline_ddcPlace'));
-          }
-        );
-
-        jq('#headline_ddcTime').click(function() {
-            toggler(jq('div#submenu_ddcTime'), jq('#headline_ddcTime'));
-          }
-        );
-
-        jq('#headline_ddcSubject').click(function() {
-            toggler(jq('div#submenu_ddcSubject'), jq('#headline_ddcSubject'));
-          }
-        );
-    })
-
-    
-    //]]>
-
-      </script>
-    </metal:javascript_head>
   </head>
 
   <body>
@@ -78,8 +30,9 @@
       <div id="content-core">
 
         <div id="browsing-menu" tal:define="menu view/getMenu;">
-          <div id="menu_headlines">
-            <tal:block repeat="submenu submenus">
+          <tal:submenus repeat="submenu submenus">
+            <div class="submenu"
+                 tal:attributes="id python:'submenu_' + submenu['id'];">
               <div class="menu_headline"
                    tal:attributes="id python:'headline_' + submenu['id']; 
                                    class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu_headline'"> 
@@ -94,16 +47,8 @@
                      tal:attributes="href string:${request/ACTUAL_URL}?${sel/clearquery}">&otimes;</a>]
                 </tal:c>
               </div>
-            </tal:block>
-            <div class="visualClear"></div>
-          </div>
-          
-          <tal:submenus repeat="submenu submenus">
-            <div class="submenu"
-                 tal:attributes="id python:'submenu_' + submenu['id'];">
               <tal:block tal:repeat="item python:menu[submenu['id']]">
-                <div tal:attributes="class python:'collapsible collapsedOnLoad' if view.expandSubmenu(item['submenu']) else 'collapsible'"
-                     tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                <div tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
                   <div class="submenu_title">
                     <a href="#" tal:content="item/voc"
                        tal:condition="item/query"
@@ -120,12 +65,12 @@
                       
                     </tal:block>
                   </div>
-                  <div tal:attributes="class python:'submenu_number collapser' if view.showSubmenu(item['submenu']) else 'submenu_number'">
+                  <div class="submenu_number">
                     <span tal:condition="python:item['count'] > 0" tal:content="string:(${item/count})" />
                   </div>
 
                   
-                  <div tal:attributes="class python:view.showSubmenu(item['submenu']) and 'collapse' or ''">
+                  <div class="submenu_content">
                     <tal:block tal:repeat="subitem item/submenu">
                       <tal:block tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
                         <a href="#" tal:content="subitem/voc"
@@ -152,9 +97,6 @@
             </div>
             <div class="visualClear"></div>
           </tal:submenus>
-          <script type="text/javascript">
-            jq('.collapsible').do_search_collapse()
-          </script>
         </div>
 
         <h1 class="documentFirstHeading">
