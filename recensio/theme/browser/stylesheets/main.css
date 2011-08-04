@@ -559,11 +559,11 @@ div#menu_headlines p:hover {
     font-weight:bold;
 }
 
-div#menu_headlines span.selected_facet {
+div#browsing-menu .selected_facet {
     font-weight: bold;
 }
 
-div#menu_headlines p.used_facet {
+div#browsing-menu .used_facet {
     text-decoration: underline;
 }
 
@@ -613,6 +613,7 @@ margin-top:10px;
 
 span.headlinebutton {
     cursor: pointer;
+    font-weight: bold
 }
 .menu_headline {
     width: 30%;
@@ -736,9 +737,6 @@ li.accordion-item .accordion-content {
 /**************************Icons for themes epoche topic****************************/
 
 .menu_headline {
-    padding:0 0 5px 24px;
-}
-.selected_facet {
     padding:0 0 5px 24px;
 }
 .menu_headline span {

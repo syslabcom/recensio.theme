@@ -142,7 +142,7 @@ class BrowseTopicsView(SearchFacetsView):
 
                 submenu.append(iteminfo)
 
-            return submenu
+            return sorted(submenu, key=lambda x:x['count'], reverse=True)
 
         menu = dict()
 

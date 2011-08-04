@@ -34,18 +34,10 @@
             <div class="submenu"
                  tal:attributes="id python:'submenu_' + submenu['id'];">
               <div class="menu_headline"
-                   tal:attributes="id python:'headline_' + submenu['id']; 
-                                   class python:submenu['id'] in usedFacets and 'used_facet menu_headline' or 'menu_headline'"> 
+                   tal:attributes="id python:'headline_' + submenu['id'];"> 
                 <span class="headlinebutton"
                       i18n:translate="" 
                       tal:content="submenu/title" />
-                <tal:c repeat="sel submenu/selected">
-                  [<span tal:content="sel/voc" />
-                  <a tal:condition="sel/clearquery"
-                     title="Remove this selection" 
-                     i18n:attributes="title"
-                     tal:attributes="href string:${request/ACTUAL_URL}?${sel/clearquery}">&otimes;</a>]
-                </tal:c>
               </div>
 
               <div class="visualClear"><!-- --></div>
@@ -55,7 +47,8 @@
                   <div class="submenu_title">
                     <a href="#" tal:content="item/voc"
                        tal:condition="item/query"
-                       tal:attributes="href string:${request/ACTUAL_URL}?${item/query}" />
+                       tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
+                                       class python:item.has_key('clearquery') and 'selected_facet' or '';" />
                     <!-- <span tal:condition="not: item/count" tal:content="item/voc" /> -->
                     
                     <span tal:content="item/voc"
@@ -78,7 +71,8 @@
                       <tal:block tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
                         <a href="#" tal:content="subitem/voc"
                            tal:condition="subitem/query"
-                           tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query}"
+                           tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query};
+                                           class python:subitem.has_key('clearquery') and 'selected_facet' or '';"
                            i18n:translate="" />
                         <span tal:content="subitem/voc"
                               tal:condition="not:subitem/query"
