@@ -102,8 +102,6 @@
           </tal:submenus>
         </div>
 
-        <div class="visualClear"></div>
-
         <h1 class="documentFirstHeading">
           <span i18n:translate="heading_browsing_results">
             Browsing
