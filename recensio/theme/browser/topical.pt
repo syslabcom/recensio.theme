@@ -47,6 +47,9 @@
                      tal:attributes="href string:${request/ACTUAL_URL}?${sel/clearquery}">&otimes;</a>]
                 </tal:c>
               </div>
+
+              <div class="visualClear"><!-- --></div>
+
               <tal:block tal:repeat="item python:menu[submenu['id']]">
                 <div tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
                   <div class="submenu_title">
@@ -99,6 +102,8 @@
           </tal:submenus>
         </div>
 
+        <div class="visualClear"></div>
+
         <h1 class="documentFirstHeading">
           <span i18n:translate="heading_browsing_results">
             Browsing
@@ -111,6 +116,8 @@
                          tal:content="python:len(results)">0</span> items matching</span>
           </span>
         </h1>
+
+        <div class="visualClear"></div>
 
         <div tal:condition="results"
              tal:define="normalizeString nocall: context/plone_utils/normalizeString;
