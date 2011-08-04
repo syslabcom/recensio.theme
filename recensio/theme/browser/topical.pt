@@ -91,6 +91,7 @@
                         </tal:block>
                         <span tal:condition="python:subitem['count'] > 0"
                               tal:replace="string:(${subitem/count})" />
+                        <br />
                       </tal:block>
                     </tal:block>
                   </div>
