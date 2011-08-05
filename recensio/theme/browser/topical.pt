@@ -10,6 +10,48 @@
                  tal:define="dummy python:request.set('disable_border',1);
                              disable_column_one python:request.set('disable_plone.leftcolumn',1);
                              disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+    <metal:javascript_head fill-slot="javascript_head_slot">
+      
+      <script type="text/javascript">
+        //<![CDATA[
+    
+    var currentopen = '';
+    function closeall() {
+        jq('.submenu_content').hide('fast')
+    }
+    
+    function toggler(elem, headline) {
+        if (currentopen !=  elem.attr('id')) { 
+            closeall();
+            elem.show('fast');
+            headline.addClass('open');
+            currentopen = elem.attr('id');
+        } else {
+            closeall();
+            currentopen = '';
+        }
+    };
+
+    jQuery(document).ready(function() { 
+    
+        jq('.submenu_title').not('.empty').click(function(e) {
+            var targ;
+            if (!e) var e = window.event;
+            if (e.target) targ = e.target;
+            else if (e.srcElement) targ = e.srcElement;
+            if (targ.nodeType == 3) // defeat Safari bug
+                targ = targ.parentNode;
+            toggler(jq('.submenu_content#' + targ.id), jq('.submenu_title#' + targ.id));
+          }
+        );
+        //jq('.collapsible').do_search_collapse()
+        closeall();
+    })
+
+    //]]>
+
+      </script>
+    </metal:javascript_head>
 
   </head>
 
@@ -43,8 +85,10 @@
               <div class="visualClear"><!-- --></div>
 
               <tal:block tal:repeat="item python:menu[submenu['id']]">
-                <div tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
-                  <div class="submenu_title">
+                <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                  <div class="submenu_title empty"
+                       tal:attributes="id python:'sub-' + item['name'].replace(':','-');
+                                       class python:item['submenu'] and 'submenu_title' or 'submenu_title empty';">
                     <a href="#" tal:content="item/voc"
                        tal:condition="item/query"
                        tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
@@ -60,15 +104,12 @@
                       </a>
                       
                     </tal:block>
-                  </div>
-                  <div class="submenu_number">
                     <span tal:condition="python:item['count'] > 0" tal:content="string:(${item/count})" />
                   </div>
-
                   
-                  <div class="submenu_content">
+                  <div class="submenu_content" tal:attributes="id python:'sub-' + item['name'].replace(':','-')">
                     <tal:block tal:repeat="subitem item/submenu">
-                      <tal:block tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
+                      <span class="submenu_item" tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
                         <a href="#" tal:content="subitem/voc"
                            tal:condition="subitem/query"
                            tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query};
@@ -86,7 +127,7 @@
                         <span tal:condition="python:subitem['count'] > 0"
                               tal:replace="string:(${subitem/count})" />
                         <br />
-                      </tal:block>
+                      </span>
                     </tal:block>
                   </div>
                   <div class="visualClear"><!-- --></div>

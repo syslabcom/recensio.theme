@@ -567,9 +567,6 @@ div#browsing-menu .used_facet {
     text-decoration: underline;
 }
 
-div.submenu {
-}
-
 .template-browse-topics .searchResults {
    clear: both;
    padding-top: 1em;
@@ -593,7 +590,16 @@ div.submenu {
 .submenu_title {
     float:left;
     margin-right:5px;
-    width: 80%;
+    width: 100%;
+    background-image: url("++resource++recensio.theme.images/more_bg.gif");
+}
+
+.submenu_title.open {
+    background-image: url("++resource++recensio.theme.images/more_open_bg.gif");
+}
+
+.submenu_title.empty {
+    background-image: none;
 }
 
 .submenu_number {
