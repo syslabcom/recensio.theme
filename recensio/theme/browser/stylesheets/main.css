@@ -587,6 +587,18 @@ div#browsing-menu .used_facet {
 #submenu_ddcPlace {
 }
 
+.submenu_more {
+    cursor: pointer;
+}
+
+.submenu_more.invisible {
+    display: none;
+}
+
+.submenu_title a {
+    font-weight: bold;
+}
+
 .submenu_title {
     float:left;
     margin-right:5px;

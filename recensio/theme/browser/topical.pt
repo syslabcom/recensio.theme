@@ -15,26 +15,27 @@
       <script type="text/javascript">
         //<![CDATA[
     
-    var currentopen = '';
-    function closeall() {
-        jq('.submenu_content').hide('fast')
-        jq('.submenu_title').removeClass('open')
-    }
+    var currentopen = []
     
     function toggler(elem, headline) {
-        if (currentopen !=  elem.attr('id')) { 
-            closeall();
+        i = currentopen.indexOf(elem.attr('id'));
+        if (i < 0) { 
             elem.show('fast');
             headline.addClass('open');
-            currentopen = elem.attr('id');
+            currentopen.push(elem.attr('id'));
         } else {
-            closeall();
-            currentopen = '';
+            elem.hide('fast');
+            headline.removeClass('open');
+            currentopen.splice(i);
         }
     };
 
+    var show_num = 8;
+    var show_step = 8;
+
     jQuery(document).ready(function() { 
     
+        jq('.submenu_content').not('.open').hide('fast');
         jq('.submenu_title').not('.empty').click(function(e) {
             var targ;
             if (!e) var e = window.event;
@@ -42,11 +43,24 @@
             else if (e.srcElement) targ = e.srcElement;
             if (targ.nodeType == 3) // defeat Safari bug
                 targ = targ.parentNode;
+            
+            //if (!(targ.tagName = "DIV") {}
             toggler(jq('.submenu_content#' + targ.id), jq('.submenu_title#' + targ.id));
           }
         );
+        jq('#submenu_ddcSubject .submenu_more').click(function() {
+            jq('#submenu_ddcSubject .submenu_title').slice(show_num, show_num + show_step).show();
+            show_num += show_step;
+            if (jq('#submenu_ddcSubject .submenu_title').length <= show_num) {
+                jq('#submenu_ddcSubject .submenu_more').addClass('invisible');
+            }
+        });
         //jq('.collapsible').do_search_collapse()
-        closeall();
+        if (jq('#submenu_ddcSubject .submenu_title').length >= show_num) {
+            jq('#submenu_ddcSubject .submenu_title').slice(show_num).hide();
+            jq('#submenu_ddcSubject .submenu_more').removeClass('invisible');
+        }
+        jq('.submenu_title.open').each(function() {currentopen.push(this.id)});
     })
 
     //]]>
@@ -221,8 +235,8 @@
               <tal:block tal:repeat="item python:menu[submenu['id']]">
                 <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
                   <div class="submenu_title empty"
-                       tal:attributes="id python:'sub-' + item['name'].replace(':','-');
-                                       class python:item['submenu'] and 'submenu_title' or 'submenu_title empty';">
+                       tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
+                                       class python:'submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
                     <a href="#" tal:content="item/voc"
                        tal:condition="item/query"
                        tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
@@ -238,12 +252,14 @@
                       </a>
                       
                     </tal:block>
-                    <span tal:condition="python:item['count'] > 0" tal:content="string:(${item/count})" />
+                    <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                   </div>
                   
-                  <div class="submenu_content" tal:attributes="id python:'sub-' + item['name'].replace(':','-')">
+                  <div class="submenu_content"
+                       tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
+                                       class python:'submenu_content' + (view.expandSubmenu(item['submenu']) and ' open' or '');">
                     <tal:block tal:repeat="subitem item/submenu">
-                      <span class="submenu_item" tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.showSubmenu(subitem['submenu'])">
+                      <span class="submenu_item" tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.expandSubmenu(subitem['submenu'])">
                         <a href="#" tal:content="subitem/voc"
                            tal:condition="subitem/query"
                            tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query};
@@ -267,6 +283,9 @@
                   <div class="visualClear"><!-- --></div>
                 </div>
               </tal:block>
+              <div class="submenu_more invisible">
+                  <a i18n:translate="brwosing_submenu_more">Mehr anzeigen...</a>
+              </div>
             </div>
             <div class="visualClear"></div>
           </tal:submenus>
