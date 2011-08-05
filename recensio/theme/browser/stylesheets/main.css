@@ -592,6 +592,7 @@ div#browsing-menu .used_facet {
     margin-right:5px;
     width: 100%;
     background-image: url("++resource++recensio.theme.images/more_bg.gif");
+    background-position:0px 17px;
 }
 
 .submenu_title.open {

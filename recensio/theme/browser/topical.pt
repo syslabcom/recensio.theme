@@ -18,6 +18,7 @@
     var currentopen = '';
     function closeall() {
         jq('.submenu_content').hide('fast')
+        jq('.submenu_title').removeClass('open')
     }
     
     function toggler(elem, headline) {
