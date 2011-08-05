@@ -56,7 +56,7 @@
             }
         });
         //jq('.collapsible').do_search_collapse()
-        if (jq('#submenu_ddcSubject .submenu_title').length >= show_num) {
+        if (jq('#submenu_ddcSubject .submenu_title').length > show_num) {
             jq('#submenu_ddcSubject .submenu_title').slice(show_num).hide();
             jq('#submenu_ddcSubject .submenu_more').removeClass('invisible');
         }
