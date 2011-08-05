@@ -2261,7 +2261,6 @@ width:100%;
 .template-browse-topics .searchResults {
     bottom: 1500px;
     float: right;
-    position: relative;
     width: 620px; 
 }
 
