@@ -10,6 +10,7 @@ class AuthorSearchView(BrowserView):
     """ Dynamic elements on the homepage """
 
     template = ViewPageTemplateFile('templates/authorsearch.pt')
+    ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
     def __call__(self):
         self.request.set('disable_border', True)
@@ -44,4 +45,14 @@ class AuthorSearchView(BrowserView):
             else:
                 self._authors = [dict(name=x, reviews=reviews.get(safe_unicode(x), 0), presentations=presentations.get(safe_unicode(x), 0), comments=comments.get(safe_unicode(x), 0)) for x in
                     catalog.uniqueValuesFor('authors')]
+            self._alpha_index = {}
+            for letter in self.ALPHABET:
+                part = filter(lambda a: a['name'].startswith(letter), self._authors)
+                if part:
+                    self._alpha_index[letter] = self._authors.index(part[0])
         return self._authors
+
+    @property
+    def alpha_index(self):
+        authors = self.authors
+        return self._alpha_index

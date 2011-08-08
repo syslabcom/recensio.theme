@@ -2314,6 +2314,10 @@ width:13px;
 height:13px;
 }
 
+.letter_not_available {
+    color:lightgrey;
+}
+
 /* Workaround for a bug in screen.css */
 .plonepopup div.mceTop {
     background-color: white;
