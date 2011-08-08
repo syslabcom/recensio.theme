@@ -600,12 +600,13 @@ div#browsing-menu .used_facet {
 }
 
 .submenu_title {
-    float:left;
-    margin-right:5px;
-    width: 100%;
-    padding-bottom: 3px;
     background-image: url("++resource++recensio.theme.images/more_bg.gif");
-    background-position:0px 19px;
+    background-position: 0 19px;
+    float: left;
+    margin-bottom: 3px;
+    margin-right: 5px;
+    padding: 3px;
+    width: 100%; 
 }
 
 .submenu_title.open {

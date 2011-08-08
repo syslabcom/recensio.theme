@@ -20,11 +20,11 @@
     function toggler(elem, headline) {
         i = currentopen.indexOf(elem.attr('id'));
         if (i < 0) { 
-            elem.show('fast');
+            elem.show();
             headline.addClass('open');
             currentopen.push(elem.attr('id'));
         } else {
-            elem.hide('fast');
+            elem.hide();
             headline.removeClass('open');
             currentopen.splice(i);
         }
