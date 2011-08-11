@@ -637,9 +637,9 @@ span.headlinebutton {
     font-weight: bold
 }
 .menu_headline {
-    width: 30%;
-    float: left;
-    padding: 10px;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    text-transform: uppercase; 
 }
 
 /*************************styles for review******************/
@@ -758,7 +758,7 @@ li.accordion-item .accordion-content {
 /**************************Icons for themes epoche topic****************************/
 
 .menu_headline {
-    padding:0 0 5px 24px;
+/*    padding:0 0 5px 24px;*/
 }
 .menu_headline span {
     position:relative;
