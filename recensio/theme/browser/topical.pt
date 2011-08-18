@@ -11,15 +11,15 @@
                              disable_column_one python:request.set('disable_plone.leftcolumn',1);
                              disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
     <metal:javascript_head fill-slot="javascript_head_slot">
-      
+
       <script type="text/javascript">
         //<![CDATA[
-    
+
     var currentopen = []
-    
+
     function toggler(elem, headline) {
         i = currentopen.indexOf(elem.attr('id'));
-        if (i < 0) { 
+        if (i < 0) {
             elem.show();
             headline.addClass('open');
             currentopen.push(elem.attr('id'));
@@ -33,8 +33,8 @@
     var show_num = 8;
     var show_step = 8;
 
-    jQuery(document).ready(function() { 
-    
+    jQuery(document).ready(function() {
+
         jq('.submenu_content').not('.open').hide('fast');
         jq('.submenu_title').not('.empty').click(function(e) {
             var targ;
@@ -43,7 +43,7 @@
             else if (e.srcElement) targ = e.srcElement;
             if (targ.nodeType == 3) // defeat Safari bug
                 targ = targ.parentNode;
-            
+
             //if (!(targ.tagName = "DIV") {}
             toggler(jq('.submenu_content#' + targ.id), jq('.submenu_title#' + targ.id));
           }
@@ -93,8 +93,8 @@
           <span class="discreet">
             &mdash;
             <span i18n:translate="batch_x_items_matching_your_criteria"
-                  ><span i18n:name="number" 
-                         tal:omit-tag="" 
+                  ><span i18n:name="number"
+                         tal:omit-tag=""
                          tal:content="python:len(results)">0</span> items matching</span>
           </span>
         </h1>
@@ -131,19 +131,19 @@
                           tal:repeat="author result_authors">
                       <a href="seach"
                          tal:attributes="href string:$portal_url/search?authors:list=$author"
-                         tal:content="author">Христо Стоичков</a>, 
+                         tal:content="author">Христо Стоичков</a>,
                     </span>
 
-                    <span class="year" 
+                    <span class="year"
                           tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
-                    
+
                     <div class="title">
                       <a href="#"
                          tal:attributes="href url;
                                          class string:$item_wf_state_class"
                          tal:content="result/pretty_title_or_id" />
                     </div>
-                    <span class="review-author" 
+                    <span class="review-author"
                           tal:condition="is_review">
                       (<tal:author i18n:translate="reviewed_by">reviewed by
                         <tal:nameblock i18n:name="review_authors">
@@ -167,7 +167,7 @@
                       </tal:author>)
                     </span>
                   </dt>
-                  
+
                   <dd>
 
                     <div class="documentByLine">
@@ -214,7 +214,7 @@
             </tal:results>
 
           </dl>
-          
+
           <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </div>
@@ -224,9 +224,9 @@
             <div class="submenu"
                  tal:attributes="id python:'submenu_' + submenu['id'];">
               <div class="menu_headline"
-                   tal:attributes="id python:'headline_' + submenu['id'];"> 
+                   tal:attributes="id python:'headline_' + submenu['id'];">
                 <span class="headlinebutton"
-                      i18n:translate="" 
+                      i18n:translate=""
                       tal:content="submenu/title" />
               </div>
 
@@ -242,7 +242,7 @@
                        tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
                                        class python:item.has_key('clearquery') and 'selected_facet' or '';" />
                     <!-- <span tal:condition="not: item/count" tal:content="item/voc" /> -->
-                    
+
                     <span tal:content="item/voc"
                           tal:condition="not:item/query" />
                     <tal:block tal:condition="exists:item/clearquery">
@@ -250,11 +250,11 @@
                          tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
                         &otimes;
                       </a>
-                      
+
                     </tal:block>
                     <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                   </div>
-                  
+
                   <div class="submenu_content"
                        tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
                                        class python:'submenu_content' + (view.expandSubmenu(item['submenu']) and ' open' or '');">
@@ -284,7 +284,7 @@
                 </div>
               </tal:block>
               <div class="submenu_more invisible">
-                  <a i18n:translate="brwosing_submenu_more">Mehr anzeigen...</a>
+                  <a i18n:translate="browsing_submenu_more">Mehr anzeigen...</a>
               </div>
             </div>
             <div class="visualClear"></div>
