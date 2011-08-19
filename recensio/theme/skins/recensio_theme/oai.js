@@ -74,18 +74,13 @@ function takeOver(elem){
         }
     }
     takeSimpleInputOver('title');
-    takeSimpleInputOver('subtitle')
+    takeSimpleInputOver('subtitle');
     takeSimpleInputOver('location', 'placeOfPublication');
     takeSimpleInputOver('publisher');
     takeSimpleInputOver('pages');
     takeSimpleInputOver('year', 'yearOfPublication');
     var new_lang = j.find('.oai_language .value').text().trim();
-    new_lang = jq('select#languageReviewedText option:contains(' + new_lang + ')').attr('value');
-    var old_languages = jq('select#languageReviewedText').val();
-    if (new_lang !== undefined){
-        old_languages.push(new_lang)
-        jq('select#languageReviewedText').val(old_languages);
-    }
+    jq('select#languageReviewedText').val(new_lang);
     j.find('.author').each(function(){
         var j = jq(this);
         var new_firstname = j.find('.firstname').text();
