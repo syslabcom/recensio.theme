@@ -567,11 +567,6 @@ div#browsing-menu .used_facet {
     text-decoration: underline;
 }
 
-.template-browse-topics .searchResults {
-   clear: both;
-   padding-top: 1em;
-}
-
 .template-browse-topics .searchResults dd {
     margin-bottom:0.5em;
 }
@@ -582,6 +577,10 @@ div#browsing-menu .used_facet {
 
 .template-browse-topics .searchResults div.documentByLine {
    padding-top: 1.5em;
+}
+
+.template-browse-topics .listingBar {
+   clear: both;
 }
 
 #submenu_ddcPlace {
@@ -606,7 +605,7 @@ div#browsing-menu .used_facet {
     margin-bottom: 3px;
     margin-right: 5px;
     padding: 3px;
-    width: 100%; 
+    width: 100%;
 }
 
 .submenu_title.open {
@@ -628,8 +627,7 @@ div#browsing-menu .used_facet {
 }
 
 .template-browse-topics h1 {
-font-size:1.4em;
-margin-top:10px;
+   margin-bottom: 1em;
 }
 
 span.headlinebutton {
@@ -639,7 +637,7 @@ span.headlinebutton {
 .menu_headline {
     letter-spacing: 1px;
     padding: 10px 0;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
 
 /*************************styles for review******************/
@@ -2226,7 +2224,7 @@ width:100%;
     float: left;
     margin: 0 10px 10px 0;
     padding: 10px;
-    width: 200px; 
+    width: 200px;
 }
 
 .template-browse-topics #browsing-menu dd {
@@ -2276,7 +2274,7 @@ width:100%;
 .template-browse-topics .searchResults {
     bottom: 1500px;
     float: right;
-    width: 620px; 
+    width: 620px;
 }
 
 /***************styles for footer pictures and links************/
@@ -2473,7 +2471,7 @@ div#extra-design-elements { display: none; }
 #publicationlisting ul {
     /*display:list-item;*/
     margin:2px 0;
-    list-style-type:circle; 
+    list-style-type:circle;
 }
 #publicationlisting ul li {
     border-top:1px dashed #CCCCCC;
