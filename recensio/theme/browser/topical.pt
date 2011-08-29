@@ -12,60 +12,7 @@
                              disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
     <metal:javascript_head fill-slot="javascript_head_slot">
 
-      <script type="text/javascript">
-        //<![CDATA[
-
-    var currentopen = []
-
-    function toggler(elem, headline) {
-        i = currentopen.indexOf(elem.attr('id'));
-        if (i < 0) {
-            elem.show();
-            headline.addClass('open');
-            currentopen.push(elem.attr('id'));
-        } else {
-            elem.hide();
-            headline.removeClass('open');
-            currentopen.splice(i);
-        }
-    };
-
-    var show_num = 8;
-    var show_step = 8;
-
-    jQuery(document).ready(function() {
-
-        jq('.submenu_content').not('.open').hide('fast');
-        jq('.submenu_title').not('.empty').click(function(e) {
-            var targ;
-            if (!e) var e = window.event;
-            if (e.target) targ = e.target;
-            else if (e.srcElement) targ = e.srcElement;
-            if (targ.nodeType == 3) // defeat Safari bug
-                targ = targ.parentNode;
-
-            //if (!(targ.tagName = "DIV") {}
-            toggler(jq('.submenu_content#' + targ.id), jq('.submenu_title#' + targ.id));
-          }
-        );
-        jq('#submenu_ddcSubject .submenu_more').click(function() {
-            jq('#submenu_ddcSubject .submenu_title').slice(show_num, show_num + show_step).show();
-            show_num += show_step;
-            if (jq('#submenu_ddcSubject .submenu_title').length <= show_num) {
-                jq('#submenu_ddcSubject .submenu_more').addClass('invisible');
-            }
-        });
-        //jq('.collapsible').do_search_collapse()
-        if (jq('#submenu_ddcSubject .submenu_title').length > show_num) {
-            jq('#submenu_ddcSubject .submenu_title').slice(show_num).hide();
-            jq('#submenu_ddcSubject .submenu_more').removeClass('invisible');
-        }
-        jq('.submenu_title.open').each(function() {currentopen.push(this.id)});
-    })
-
-    //]]>
-
-      </script>
+      <script type="text/javascript" src="++resource++recensio.theme.javascript/topical.js"></script>
     </metal:javascript_head>
 
   </head>
@@ -215,77 +162,77 @@
 
           </dl>
 
-          <div id="browsing-menu" tal:define="menu view/getMenu;">
-            <tal:submenus repeat="submenu submenus">
-              <div class="submenu"
-                   tal:attributes="id python:'submenu_' + submenu['id'];">
-                <div class="menu_headline"
-                     tal:attributes="id python:'headline_' + submenu['id'];">
-                  <span class="headlinebutton"
-                        i18n:translate=""
-                        tal:content="submenu/title" />
-                </div>
-
-                <div class="visualClear"><!-- --></div>
-
-                <tal:block tal:repeat="item python:menu[submenu['id']]">
-                  <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
-                    <div class="submenu_title empty"
-                         tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
-                                         class python:'submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
-                      <a href="#" tal:content="item/voc"
-                         tal:condition="item/query"
-                         tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
-                                         class python:item.has_key('clearquery') and 'selected_facet' or '';" />
-                      <!-- <span tal:condition="not: item/count" tal:content="item/voc" /> -->
-
-                      <span tal:content="item/voc"
-                            tal:condition="not:item/query" />
-                      <tal:block tal:condition="exists:item/clearquery">
-                        <a title="Remove this selection" i18n:attributes="title"
-                           tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
-                          &otimes;
-                        </a>
-
-                      </tal:block>
-                      <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
-                    </div>
-
-                    <div class="submenu_content"
-                         tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
-                                         class python:'submenu_content' + (view.expandSubmenu(item['submenu']) and ' open' or '');">
-                      <tal:block tal:repeat="subitem item/submenu">
-                        <span class="submenu_item" tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.expandSubmenu(subitem['submenu'])">
-                          <a href="#" tal:content="subitem/voc"
-                             tal:condition="subitem/query"
-                             tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query};
-                                             class python:subitem.has_key('clearquery') and 'selected_facet' or '';"
-                             i18n:translate="" />
-                          <span tal:content="subitem/voc"
-                                tal:condition="not:subitem/query"
-                                i18n:translate="" />
-                          <tal:block tal:condition="exists:subitem/clearquery">
-                            <a title="Remove this selection" i18n:attributes="title"
-                               tal:attributes="href string:${request/ACTUAL_URL}?${subitem/clearquery}">
-                              &otimes;
-                            </a>
-                          </tal:block>
-                          <span tal:condition="python:subitem['count'] > 0"
-                                tal:replace="string:(${subitem/count})" />
-                          <br />
-                        </span>
-                      </tal:block>
-                    </div>
-                    <div class="visualClear"><!-- --></div>
-                  </div>
-                </tal:block>
-                <div class="submenu_more invisible">
-                  <a i18n:translate="browsing_submenu_more">Mehr anzeigen...</a>
-                </div>
+        <div id="browsing-menu" tal:define="menu view/getMenu;">
+          <tal:submenus repeat="submenu submenus">
+            <div class="submenu"
+                 tal:attributes="id python:'submenu_' + submenu['id'];">
+              <div class="menu_headline"
+                   tal:attributes="id python:'headline_' + submenu['id'];">
+                <span class="headlinebutton"
+                      i18n:translate=""
+                      tal:content="submenu/title" />
               </div>
-              <div class="visualClear"></div>
-            </tal:submenus>
-          </div>
+
+              <div class="visualClear"><!-- --></div>
+
+              <tal:block tal:repeat="item python:menu[submenu['id']]">
+                <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                  <div class="submenu_title empty"
+                       tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
+                                       class python:'submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
+                    <tal:block tal:condition="exists:item/clearquery">
+                      <a title="Remove this selection" i18n:attributes="title"
+                         tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
+                        <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png"/>
+                      </a>
+                    </tal:block>
+
+                    <a href="#"
+                       tal:condition="not:exists:item/clearquery"
+                       tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
+                                       class python:item.has_key('clearquery') and 'selected_facet' or '';" >
+                      <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
+                    </a>
+                    <tal:title tal:replace="item/voc"/>
+
+                    <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
+                  </div>
+
+                  <ul class="submenu_content"
+                      tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
+                                      class python:'submenu_content' + (view.expandSubmenu(item['submenu']) and ' open' or '');">
+                    <tal:submenu repeat="subitem item/submenu">
+                      <li class="submenu_item"
+                          tal:define="selected python:subitem.get('clearquery') and 'selected' or 'unselected'"
+                          tal:attributes="class string:submenu_item ${selected}"
+                          tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.expandSubmenu(subitem['submenu'])">
+
+                        <a href="#" tal:content="subitem/voc"
+                           tal:condition="subitem/query"
+                           tal:attributes="href string:${request/ACTUAL_URL}?${subitem/query};
+                                           class python:subitem.has_key('clearquery') and 'selected_facet' or '';"
+                           i18n:translate="" />
+                        <span tal:content="subitem/voc"
+                              tal:condition="not:subitem/query"
+                              i18n:translate="" />
+                        <span tal:condition="python:subitem['count'] > 0"
+                              tal:replace="string:(${subitem/count})" />
+                        <br />
+                      </li>
+
+                    </tal:submenu>
+                  </ul>
+
+                  <div class="visualClear"><!-- --></div>
+                </div>
+              </tal:block>
+              <div class="submenu_more invisible">
+                  <a i18n:translate="browsing_submenu_more">Mehr anzeigen...</a>
+              </div>
+            </div>
+            <div class="visualClear"></div>
+          </tal:submenus>
+        </div>
 
 
           <div metal:use-macro="context/batch_macros/macros/navigation" />

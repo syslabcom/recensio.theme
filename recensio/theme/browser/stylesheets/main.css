@@ -583,9 +583,6 @@ div#browsing-menu .used_facet {
    clear: both;
 }
 
-#submenu_ddcPlace {
-}
-
 .submenu_more {
     cursor: pointer;
 }
@@ -599,21 +596,27 @@ div#browsing-menu .used_facet {
 }
 
 .submenu_title {
-    background-image: url("++resource++recensio.theme.images/more_bg.gif");
-    background-position: 0 19px;
-    float: left;
-    margin-bottom: 3px;
-    margin-right: 5px;
-    padding: 3px;
-    width: 100%;
+   background-image: url("++resource++recensio.theme.images/more_arrow.png");
+   background-position: 178px 7px;
+   background-repeat: no-repeat;
+   cursor: pointer;
+   padding: 5px;
+   font-weight: bold;
+   color: #7F4B2B;
 }
 
 .submenu_title.open {
-    background-image: url("++resource++recensio.theme.images/more_open_bg.gif");
+  background-image: url("++resource++recensio.theme.images/more_arrow_open.png");
 }
 
 .submenu_title.empty {
-    background-image: none;
+   background-image: none;
+}
+
+.submenu-lvl2 {
+   background-color: #ede6d4;
+   border: 1px solid #d4d0cf;
+   margin-bottom: 3px;
 }
 
 .submenu_number {
@@ -640,13 +643,37 @@ span.headlinebutton {
     text-transform: uppercase;
 }
 
+#content .submenu_content {
+   padding-left: 5px;
+   margin: 8px 0 0 0;
+}
+
+#content li.submenu_item {
+   list-style-type: none;
+   background-position: 7px 0;
+   background-repeat: no-repeat;
+   padding: 0 0 5px 7px;
+}
+
+.submenu_item.selected {
+   background-image: url("++resource++recensio.theme.images/checkbox_selected_brown_bg.png");
+}
+
+.submenu_item.unselected {
+   background-image: url("++resource++recensio.theme.images/checkbox_unselected_brown_bg.png");
+}
+
+li.submenu_item a {
+   padding-left: 22px;
+}
+
 /*************************styles for review******************/
 
 #review-reference {
 
 }
 
-.oaisuggestion form input {
+a.oaisuggestion form input {
     margin:5px 5px 10px;
 }
 
@@ -2220,10 +2247,8 @@ width:100%;
 /****************** styles for browse topics*******************/
 
 .template-browse-topics #browsing-menu {
-    border: 1px solid grey;
     float: left;
     margin: 0 10px 10px 0;
-    padding: 10px;
     width: 200px;
 }
 

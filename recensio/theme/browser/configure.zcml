@@ -17,6 +17,12 @@
         />
 
     <browser:resourceDirectory
+        name="recensio.theme.javascript"
+        directory="javascript"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+
+    <browser:resourceDirectory
         name="recensio.theme.behaviour"
         directory="behaviour"
         layer="recensio.theme.interfaces.IRecensioLayer"
