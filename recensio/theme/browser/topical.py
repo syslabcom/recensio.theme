@@ -198,14 +198,15 @@ class BrowseTopicsView(SearchFacetsView):
         # this would work if ATVocabularyManager.utils were consistent:
         # submenus = [dict(title=voc.getVocabularyByName('region_values').
         #                  Title(),id='ddcPlace'),
-        submenus = [dict(title='Region',id='ddcPlace'),
-                    dict(title='Epoch',id='ddcTime'),
-                    dict(title='Topic', id='ddcSubject')
-                   ]
+        submenus = [
+            dict(title='Epoch',id='ddcTime'),
+            dict(title='Region',id='ddcPlace'),
+            dict(title='Topic', id='ddcSubject')]
 
         for submenu in submenus:
             mid = submenu['id']
-            cq = [item for item in menu[mid] if item.has_key('clearquery')]
+            cq = [item for item in menu[mid]
+                  if item.has_key('clearquery')]
             for item in menu[mid]:
                 cq = cq + [subitem for subitem in item['submenu']
                            if subitem.has_key('clearquery')]
