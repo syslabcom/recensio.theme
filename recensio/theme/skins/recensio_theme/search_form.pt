@@ -242,7 +242,7 @@
                           tal:define="value python:member is not None and member.getProperty('last_login_time') or today"
                           tal:attributes="value value;
                                           selected python:selected==value and 'selected' or '';"
-                          i18n:translate="last_login" i18n:domain="plone">Last log-in</option>
+                          i18n:translate="last_login">Last log-in</option>
                   <option value="#"
                           tal:attributes="value yesterday;
                                           selected python:selected==yesterday and 'selected' or '';"
@@ -256,10 +256,10 @@
                           i18n:translate="time_last_month" i18n:domain="plone"> Last month </option>
                   <option value="#" tal:attributes="value threemonths;
                                                     selected python:selected==threemonths and 'selected' or '';"
-                          i18n:translate="time_three_months" i18n:domain="plone"> 3 months ago </option>
+                          i18n:translate="time_three_months"> 3 months ago </option>
                   <option value="#" tal:attributes="value sixmonths;
                                                     selected python:selected==sixmonths and 'selected' or '';"
-                          i18n:translate="time_six_months" i18n:domain="plone"> 6 months ago </option>
+                          i18n:translate="time_six_months"> 6 months ago </option>
                   <option value="#"
                           class="default_option"
                           tal:attributes="value ever;
