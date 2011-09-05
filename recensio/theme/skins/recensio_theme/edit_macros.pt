@@ -10,7 +10,7 @@
 
     <div metal:define-macro="header">
       <metal:block define-slot="title">
-        <h1 i18n:translate="heading_add_itemX" class="documentFirstHeading"
+        <h1 i18n:translate="heading_add_item" class="documentFirstHeading"
             tal:condition="python:context.checkCreationFlag()"
             tal:define="rhv context/@@recensio-helper-view">
           Add
