@@ -1,5 +1,9 @@
 from zope.interface import Interface
-from plone.theme.interfaces import IDefaultPloneLayer
+
+
+class IRecensioHelperView(Interface):
+    """ Interface for the RecensioHelperView """
+
 
 class IGeneratePdfRecension(Interface):
     """Interface for PDF generation BrowserView
@@ -26,4 +30,4 @@ class INewsletterView(Interface):
 
     def subscribe():
         """ subscribe to newsletter """
-        
+

@@ -35,6 +35,17 @@
         />
 
     <browser:page
+        for="*"
+        allowed_interface=".interfaces.IRecensioHelperView"
+        name="recensio-helper-view"
+        class=".views.RecensioHelperView"
+        permission="zope2.View"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+        <!-- allowed_attributes="add_item_title" -->
+
+
+    <browser:page
         for="recensio.contenttypes.interfaces.IReview"
         name="generate-pdf-recension"
         allowed_interface=".interfaces.IGeneratePdfRecension"

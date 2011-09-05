@@ -1,4 +1,25 @@
 from Products.Five.browser import BrowserView
+from zope.app.component.hooks import getSite
+from zope.interface import implements
+
+from interfaces import IRecensioHelperView
+
+
+class RecensioHelperView(BrowserView):
+    """ General purpose view methods for Recensio """
+    implements(IRecensioHelperView)
+
+    @property
+    def heading_add_item_title(self):
+        """ For French Presentations the add form should display:
+        Ajouter une ... """
+        portal = getSite()
+        fti = portal.portal_types.getTypeInfo(self.context)#
+        lang = portal.portal_languages.getPreferredLanguage()
+        if (fti.content_meta_type.startswith("Presentation")
+            and lang == "fr"):
+            return "heading_add_%s_title" %fti.content_meta_type
+        return fti.Title()
 
 
 class CreateNewPresentationView(BrowserView):
