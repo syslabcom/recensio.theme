@@ -16,7 +16,7 @@
   <!-- portal-personaltools -->
   <drop css:theme="p#logged_in"
         if-content="//dt[@id='anon-personalbar']" />
-  <replace css:content="a#user-name"
+  <replace css:content="a#my_homepage"
            css:theme="a#user-name" />
   <replace css:content="li#personaltools-preferences a"
            css:theme="a.einstellungen" />
