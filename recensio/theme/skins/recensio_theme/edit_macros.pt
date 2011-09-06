@@ -15,7 +15,8 @@
             tal:define="rhv context/@@recensio-helper-view">
           Add
           <span i18n:name="itemtype"
-                tal:content="rhv/heading_add_item_title">
+                tal:content="rhv/heading_add_item_title"
+                i18n:translate="">
           </span>
         </h1>
         <h1 i18n:translate="heading_edit_item" class="documentFirstHeading"

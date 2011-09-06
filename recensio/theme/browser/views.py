@@ -14,12 +14,16 @@ class RecensioHelperView(BrowserView):
         """ For French Presentations the add form should display:
         Ajouter une ... """
         portal = getSite()
+
         fti = portal.portal_types.getTypeInfo(self.context)#
+        itemtype = fti.Title()
+
         lang = portal.portal_languages.getPreferredLanguage()
         if (fti.content_meta_type.startswith("Presentation")
             and lang == "fr"):
-            return "heading_add_%s_title" %fti.content_meta_type
-        return fti.Title()
+            itemtype = "heading_add_%s_title" %fti.content_meta_type
+
+        return itemtype
 
 
 class CreateNewPresentationView(BrowserView):
