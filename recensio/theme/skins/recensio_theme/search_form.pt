@@ -31,10 +31,10 @@
               id="searchform"
               tal:define="DateTime python:modules['DateTime'].DateTime;
                           portal context/@@plone_portal_state/portal;
-                          recensioview python:portal.restrictedTraverse('@@recensioview');
+                          recensiohelperview python:portal.restrictedTraverse('@@recensio-helper-view');
                           portal_catalog nocall:portal/portal_catalog;
                           options context/@@searchform-options;
-                          supp_languages recensioview/getSupportedLanguages;
+                          supp_languages recensiohelperview/listAvailableContentLanguages;
                           authors request/authors|string:;
                           authors python:getattr(authors, 'append', None) and ' '.join(authors) or authors;
                           "
