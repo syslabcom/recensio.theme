@@ -92,26 +92,26 @@
                     </div>
                     <span class="review-author"
                           tal:condition="is_review">
-                      (<tal:author i18n:translate="reviewed_by">reviewed by
+                      <tal:author i18n:translate="reviewed_by">reviewed by
                         <tal:nameblock i18n:name="review_authors">
                           <tal:repeatblock repeat="reviewAuthor result/listReviewAuthors">
                             <tal:block tal:content="reviewAuthor"/>
                             <tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c>
                           </tal:repeatblock>
                         </tal:nameblock>
-                      </tal:author>)
+                      </tal:author>
                     </span>
                     <span class="review-author"
                           tal:attributes="class string:review-author"
                           tal:condition="is_presentation">
-                      (<tal:author i18n:translate="presented_by">presented by
+                      <tal:author i18n:translate="presented_by">presented by
                         <tal:nameblock i18n:name="review_authors">
                           <tal:repeatblock repeat="reviewAuthor result/listReviewAuthors">
                             <tal:block tal:content="reviewAuthor"/>
                             <tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c>
                           </tal:repeatblock>
                         </tal:nameblock>
-                      </tal:author>)
+                      </tal:author>
                     </span>
                   </dt>
 
