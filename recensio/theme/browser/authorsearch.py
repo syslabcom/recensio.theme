@@ -45,6 +45,8 @@ class AuthorSearchView(BrowserView):
             else:
                 self._authors = [dict(name=x, reviews=reviews.get(safe_unicode(x), 0), presentations=presentations.get(safe_unicode(x), 0), comments=comments.get(safe_unicode(x), 0)) for x in
                     catalog.uniqueValuesFor('authors')]
+            self._authors = filter(lambda x: x['presentations'] + x['reviews'] + x['comments'] != 0, self._authors)
+
             self._alpha_index = {}
             for letter in self.ALPHABET:
                 part = filter(lambda a: a['name'].startswith(letter), self._authors)
