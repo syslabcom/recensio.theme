@@ -1,0 +1,39 @@
+from zope.component import queryUtility
+from Products.Five.browser import BrowserView
+from Products.Archetypes.utils import DisplayList
+from plone.registry.interfaces import IRegistry
+from topical import BrowseTopicsView
+from recensio.policy.utility import filter_facets
+from recensio.policy.interfaces import IRecensioSettings
+from recensio.theme.browser.views import listAvailableContentLanguages
+
+PORTAL_TYPES = ['Presentation Online Resource', 'Presentation Article Review',
+    'Presentation Collection', 'Presentation Monograph',
+        'Review Journal', 'Review Monograph' ]
+
+class FilterSearchView(BrowseTopicsView):
+    """Search view with language filter
+    """
+
+    def __init__(self, context, request):
+        self.facet_fields = filter_facets
+        self.default_query = {'portal_type': PORTAL_TYPES,
+                              'facet': 'true',
+                              'facet.field': self.facet_fields, }
+
+        #self.vocDict = {'languageReviewedText': listAvailableContentLanguages()}
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(IRecensioSettings)
+        allowed_langs = getattr(settings, 'available_content_languages', '').replace('\r', '').split('\n')
+        self.vocDict = {'languageReviewedText': DisplayList([(x, x) for x in allowed_langs])}
+
+        self.submenus = [
+            dict(title='Language',id='languageReviewedText'),]
+
+        self.queryparam = 'languageReviewedText'
+
+        BrowserView.__init__(self, context, request)
+
+    def sort(self, submenu):
+        return sorted(submenu, key=lambda x:x['name'])
+
