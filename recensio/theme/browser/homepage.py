@@ -95,10 +95,9 @@ class HomepageView(BrowserView):
             query = dict(portal_type=['Publication'],
                 review_state="published",
                 path='/'.join(zeitschriften.getPhysicalPath()),
-                sort_on='effective',
-                sort_order='reverse')
+                sort_on='Title')
             pubs = pc(query)
-            return pubs
+            return sorted(pubs, key=lambda p: p['Title'])
         else:
             # This can only happen, when there is no initial content yet
             return []
