@@ -71,6 +71,14 @@
 
     <browser:page
         for="*"
+        name="filtered-search"
+        template="filtersearch.pt"
+        class=".filtersearch.FilterSearchView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
         name="authorsearch"
         class=".authorsearch.AuthorSearchView"
         permission="zope2.View"

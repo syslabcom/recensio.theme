@@ -567,19 +567,23 @@ div#browsing-menu .used_facet {
     text-decoration: underline;
 }
 
-.template-browse-topics .searchResults dd {
+.template-browse-topics .searchResults dd,
+.template-filtered-search .searchResults dd {
     margin-bottom:0.5em;
 }
 
-.template-browse-topics .searchResults dt {
+.template-browse-topics .searchResults dt,
+.template-filtered-search .searchResults dt {
    clear:both;
 }
 
-.template-browse-topics .searchResults div.documentByLine {
+.template-browse-topics .searchResults div.documentByLine,
+.template-filtered-search .searchResults div.documentByLine {
    padding-top: 1.5em;
 }
 
-.template-browse-topics .listingBar {
+.template-browse-topics .listingBar,
+.template-filtered-search .listingBar {
    clear: both;
 }
 
@@ -2250,8 +2254,14 @@ width:100%;
     margin: 0 10px 10px 0;
     width: 200px;
 }
+.template-filtered-search #browsing-menu {
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 80px;
+}
 
-.template-browse-topics #browsing-menu dd {
+.template-browse-topics #browsing-menu dd, 
+.template-filtered-search #browsing-menu dd {
     float:right;
     margin:0;
     width:90%;
@@ -2295,10 +2305,15 @@ width:100%;
 }
 
 
-.template-browse-topics .searchResults {
+.template-browse-topics .searchResults { 
     bottom: 1500px;
     float: right;
     width: 620px;
+}
+.template-filtered-search .searchResults {
+    bottom: 1500px;
+    float: right;
+    width: 740px;
 }
 
 /***************styles for footer pictures and links************/

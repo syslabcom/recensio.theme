@@ -13,7 +13,7 @@ from collective.solr.interfaces import ISolrConnectionConfig
 
 #from recensio.contenttypes.config import PORTAL_TYPES
 from recensio.policy.utility import getSelectedQuery, \
-    convertFacets, browsing_facets as facet_fields
+    convertFacets, browsing_facets
 
 log = logging.getLogger('recensio.theme/topical.py')
 PORTAL_TYPES = ['Presentation Online Resource', 'Presentation Article Review',
@@ -26,10 +26,29 @@ class BrowseTopicsView(SearchFacetsView):
     """
 
     def __init__(self, context, request):
-        catalog = getToolByName(context, 'portal_catalog')
+        self.facet_fields = browsing_facets
         self.default_query = {'portal_type': PORTAL_TYPES,
                               'facet': 'true',
-                              'facet.field': facet_fields }
+                              'facet.field': self.facet_fields }
+
+        voc = getToolByName(context, 'portal_vocabularies', None)
+        if not voc:
+            return dict(ddcPlace=[], ddcTime=[], ddcSubject=[])
+        self.vocDict = dict()
+        self.vocDict['ddcPlace'] = voc.getVocabularyByName(
+            'region_values').getVocabularyDict(voc)
+        self.vocDict['ddcTime'] = voc.getVocabularyByName(
+            'epoch_values').getVocabularyDict(voc)
+        self.vocDict['ddcSubject'] = voc.getVocabularyByName(
+            'topic_values').getVocabularyDict(voc)
+
+        self.submenus = [
+            dict(title='Epoch',id='ddcTime'),
+            dict(title='Region',id='ddcPlace'),
+            dict(title='Topic', id='ddcSubject')]
+
+        self.queryparam = 'fq'
+
         BrowserView.__init__(self, context, request)
 
     def __call__(self, *args, **kw):
@@ -37,11 +56,12 @@ class BrowseTopicsView(SearchFacetsView):
         self.kw = kw
         query = self.default_query.copy()
         form = self.request.form
-        if 'fq' in form:
+        if self.queryparam in form:
             # filter out everything but our ddc attributes
-            form['fq'] = [
-                x for x in form['fq']
-                if x.split(':')[0].strip('+') in facet_fields]
+            if self.queryparam == 'fq':
+                form[self.queryparam] = [
+                    x for x in form[self.queryparam]
+                    if x.split(':')[0].strip('+') in self.facet_fields]
         self.form = form
         query.update(self.form)
         catalog = getToolByName(self.context, 'portal_catalog')
@@ -54,11 +74,11 @@ class BrowseTopicsView(SearchFacetsView):
         return self.results or self.kw['results']
 
     def getUsedFacets(self):
-        fq = self.request.get('fq', [])
+        fq = self.request.get(self.queryparam, [])
         if isinstance(fq, basestring):
             fq = [fq]
         used = set([facet.split(':', 1)[0].strip('+') for facet in fq])
-        used = used.intersection(set(facet_fields))
+        used = used.intersection(set(self.facet_fields))
         return tuple(used)
 
     def facets(self):
@@ -67,13 +87,18 @@ class BrowseTopicsView(SearchFacetsView):
         fcs = getattr(results, 'facet_counts', None)
         if results is not None and fcs is not None:
             filt = None # lambda name, count: name and count > 0
-            if 'fq' in self.form:
+            if self.queryparam in self.form:
+                if self.queryparam == 'fq':
+                    container = self.form[self.queryparam]
+                else:
+                    container = self.form
                 # filter out everything but our ddc attributes
-                self.form['fq'] = [
-                    x for x in self.form['fq']
-                    if x.split(':')[0].strip('+') in facet_fields]
+                if self.queryparam == 'fq':
+                    self.form[self.queryparam] = [
+                        x for x in self.form[self.queryparam]
+                        if x.split(':')[0].strip('+') in self.facet_fields]
             return convertFacets(fcs.get('facet_fields', {}),
-                self.context, self.form, filt)
+                self.context, self.form, filt, facet_fields=self.facet_fields, queryparam=self.queryparam)
         else:
             return None
         if results is not None:
@@ -81,7 +106,7 @@ class BrowseTopicsView(SearchFacetsView):
             filt = None
             catalog = getToolByName(self.context, 'portal_catalog')
             indexes = filter(
-                lambda i: i.id in facet_fields, catalog.getIndexObjects())
+                lambda i: i.id in self.facet_fields, catalog.getIndexObjects())
             # I know this is sick, but it shouldn't get used anyway
             ffdict = dict(
                 map(lambda ind: (
@@ -96,21 +121,27 @@ class BrowseTopicsView(SearchFacetsView):
                     indexes)
                 )
             return convertFacets(ffdict,
-                self.context, self.form, filt)
+                self.context, self.form, filt, 
+                facet_fields=self.facet_fields, queryparam=self.queryparam)
 
     def selected(self):
         """ determine selected facets and prepare links to clear them;
             this assumes that facets are selected using filter queries """
         info = []
         facets = param(self, 'facet.field')
-        fq = param(self, 'fq')
+        fq = param(self, self.queryparam)
         fq = [x for x in fq]
-        fq = filter(lambda x: x.split(':')[0].strip('+') in facet_fields, fq)
+        if self.queryparam == 'fq':
+            fq = filter(lambda x: x.split(':')[0].strip('+') in self.facet_fields, fq)
         form = self.form
         for idx, query in enumerate(fq):
-            field, value = query.split(':', 1)
             params = self.form.copy()
-            params['fq'] = fq[:idx] + fq[idx+1:]
+            if self.queryparam == 'fq':
+                field, value = query.split(':', 1)
+            else:
+                field = self.queryparam
+                value = '"%s"' % query
+            params[self.queryparam] = fq[:idx] + fq[idx+1:]
             if field not in facets:
                 params['facet.field'] = facets + [field]
             if value.startswith('"') and value.endswith('"'):
@@ -119,18 +150,10 @@ class BrowseTopicsView(SearchFacetsView):
         return info
 
 
-    def getMenu(self):
-        voc = getToolByName(self.context, 'portal_vocabularies', None)
-        if not voc:
-            return dict(ddcPlace=[], ddcTime=[], ddcSubject=[])
-        vocDict = dict()
-        vocDict['ddcPlace'] = voc.getVocabularyByName(
-            'region_values').getVocabularyDict(voc)
-        vocDict['ddcTime'] = voc.getVocabularyByName(
-            'epoch_values').getVocabularyDict(voc)
-        vocDict['ddcSubject'] = voc.getVocabularyByName(
-            'topic_values').getVocabularyDict(voc)
+    def sort(self, submenu):
+        return sorted(submenu, key=lambda x:x['count'], reverse=True)
 
+    def getMenu(self):
         facets = self.facets()
         selected = self.selected()
 
@@ -171,11 +194,11 @@ class BrowseTopicsView(SearchFacetsView):
 
                 submenu.append(iteminfo)
 
-            return sorted(submenu, key=lambda x:x['count'], reverse=True)
+            return self.sort(submenu)
 
         menu = dict()
 
-        for attrib in facet_fields:
+        for attrib in self.facet_fields:
             submenu = []
             if facets:
                 facets_sub = filter(lambda x: x['title'] == attrib, facets)
@@ -189,7 +212,7 @@ class BrowseTopicsView(SearchFacetsView):
             if facets_sub:
                 facets_sub = facets_sub[0]
             if facets_sub or selected_sub:
-                submenu = getSubmenu(vocDict[attrib], facets_sub, selected_sub)
+                submenu = getSubmenu(self.vocDict[attrib], facets_sub, selected_sub)
             menu[attrib] = submenu
         return menu
 
@@ -198,11 +221,7 @@ class BrowseTopicsView(SearchFacetsView):
         # this would work if ATVocabularyManager.utils were consistent:
         # submenus = [dict(title=voc.getVocabularyByName('region_values').
         #                  Title(),id='ddcPlace'),
-        submenus = [
-            dict(title='Epoch',id='ddcTime'),
-            dict(title='Region',id='ddcPlace'),
-            dict(title='Topic', id='ddcSubject')]
-
+        submenus = self.submenus
         for submenu in submenus:
             mid = submenu['id']
             cq = [item for item in menu[mid]
