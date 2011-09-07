@@ -24,7 +24,7 @@ def listAvailableContentLanguages():
     registry = queryUtility(IRegistry)
     settings = registry.forInterface(IRecensioSettings)
     allowed_langs = getattr(
-        settings, 'available_content_languages', '').split('\n')
+        settings, 'available_content_languages', '').replace('\r', '').split('\n')
     terms = []
     if allowed_langs != [u""]:
         terms = [(x, _languagelist[x][u'native'])
