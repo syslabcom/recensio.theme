@@ -176,6 +176,11 @@ div#latest_monographies_box ul li {
 
 div#latest_reviews_box ul li{
    background: transparent url(++resource++recensio.theme.images/rez_icon.png) no-repeat;
+   display:none;
+   position:absolute;
+   top:0px;
+   left:0px;
+   height:32px;
 }
 
 div#latest_internet_resources_box ul li {
@@ -189,9 +194,13 @@ div.box ul a.review-title {
 #content div.box ul{
    list-style: none;
    margin: 0 1em;
-   padding:0;
+   padding:0px;
+/*   overflow:hidden; */
+   position:relative;
 }
-
+#content div.box div#latest_reviews_box ul{
+   height:40px;
+}
 #participating-journals {
    border-top:1px solid #CCCCCC;
    padding-top:20px;

@@ -7,6 +7,16 @@
       i18n:domain="recensio">
 
 
+  <metal:js fill-slot="javascript_head_slot">
+      <script type="javascript">
+        jq(document).ready(function() {
+            jq('#list_reviews_en').easyticker();
+            jq('#list_reviews_de').easyticker();
+            jq('#list_reviews_int').easyticker();
+        });
+      </script>
+  </metal:js>
+
   <body>
     <metal:main fill-slot="main"
                 tal:define="ploneview python:context.restrictedTraverse('@@plone')">
@@ -55,16 +65,25 @@
               <span tal:repeat="langres results">
                 <!-- <label><span tal:replace="langres/langname" /></label> -->
                 <ul id="list_reviews"
-                    class="easyticker-disabled"
+                    class="easyticker"
                     tal:attributes="id string:list_reviews_${langres/language}">
-                  <li tal:repeat="res langres/results"
-                      tal:attributes="style python:repeat['res'].start and 'display:block' or ''">
-                    <a href="#"
-                       tal:attributes="href res/getURL">
-                      <span tal:replace="res/Title" />
+                  <tal:res repeat="res langres/results">
+                      <li tal:condition="python:repeat['res'].start"
+                          style="display:block">
+                        <a href="#"
+                           tal:attributes="href res/getURL">
+                          <span tal:replace="res/Title" />
 
-                    </a>
-                  </li>
+                        </a>
+                      </li>
+                      <li tal:condition="python:not repeat['res'].start">
+                        <a href="#"
+                           tal:attributes="href res/getURL">
+                          <span tal:replace="res/Title" />
+
+                        </a>
+                      </li>
+                  </tal:res>
                 </ul>
                 <div class="visualClear"></div>
               </span>
