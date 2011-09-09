@@ -120,6 +120,15 @@
         permission="zope2.View"
         />
 
+    <!-- Render additional Dublin Core style metadata for zotero integration -->
+    <browser:viewlet
+        name="additional-metadata"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.AdditionalMetadata"
+        permission="zope2.View"
+        template="templates/additionalmetadata.pt"
+        />
+
     <browser:page
         for="*"
         name="newsletter-view"

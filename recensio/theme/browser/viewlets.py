@@ -112,3 +112,16 @@ class publicationlisting(ViewletBase):
                                  key=lambda x: x.get("effective", ""),
                                  reverse=True)
         return sorted_volumes
+
+ADDITIONAL_METADATA = {
+    'publisher'         : 'DC.publisher'
+    }
+
+class AdditionalMetadata(ViewletBase):
+    """ Expose more metadata in Dublin Core style """
+    def getMetadata(self):
+        result = {}
+        for accessor, key in ADDITIONAL_METADATA.items():
+            if accessor in getattr(self.context, 'schema', {}):
+                result[key] = self.context[accessor]
+        return result.items()
