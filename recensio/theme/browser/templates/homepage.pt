@@ -7,15 +7,12 @@
       i18n:domain="recensio">
 
 
-  <metal:js fill-slot="javascript_head_slot">
-      <script type="javascript">
-        jq(document).ready(function() {
-            jq('#list_reviews_en').easyticker();
-            jq('#list_reviews_de').easyticker();
-            jq('#list_reviews_int').easyticker();
-        });
-      </script>
-  </metal:js>
+    <metal:javascript_head fill-slot="javascript_head_slot">
+      <script type="text/javascript"
+              src="++resource++recensio.theme.javascript/jquery.ThreeDots.min.js"></script>
+      <script type="text/javascript"
+              src="++resource++recensio.theme.javascript/homepage.js"></script>
+    </metal:javascript_head>
 
   <body>
     <metal:main fill-slot="main"
@@ -35,8 +32,9 @@
             <div id="latest_reviewparts_box"
                  tal:define="results view/getReviewJournals">
               <ul>
-                <li tal:repeat="res results">
-                  <div>
+                <li class="ellipsis_container"
+                    tal:repeat="res results">
+                  <div class="ellipsis_text">
                     <span
                         tal:attributes="href res/publication_url"
                         tal:content="res/publication_title">title
@@ -68,12 +66,12 @@
                     class="easyticker"
                     tal:attributes="id string:list_reviews_${langres/language}">
                   <tal:res repeat="res langres/results">
-                      <li tal:condition="python:repeat['res'].start"
+                      <li class="ellipsis_container"
+                          tal:condition="python:repeat['res'].start"
                           style="display:block">
-                        <a href="#"
+                        <a href="#" class="ellipsis_text"
                            tal:attributes="href res/getURL">
                           <span tal:replace="res/Title" />
-
                         </a>
                       </li>
                       <li tal:condition="python:not repeat['res'].start">
@@ -103,8 +101,9 @@
             <div id="latest_monographies_box"
                  tal:define="results view/getPrintedPresentations">
               <ul>
-                <li tal:repeat="res results">
-                  <a href="#"
+                <li class="ellipsis_container"
+                    tal:repeat="res results">
+                  <a href="#" class="ellipsis_text"
                      tal:attributes="href res/getURL"
                      tal:content="res/Title">title</a>
                 </li>
@@ -121,8 +120,9 @@
             <div id="latest_internet_resources_box"
                  tal:define="results view/getOnlinePresentations">
               <ul>
-                <li tal:repeat="res results">
-                  <a href="#"
+                <li class="ellipsis_container"
+                    tal:repeat="res results">
+                  <a href="#" class="ellipsis_text"
                      tal:attributes="href res/getURL" tal:content="res/Title">
                     title</a>
                 </li>
