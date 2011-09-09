@@ -229,6 +229,13 @@
                        i18n:attributes="value label_save;"
                        tal:attributes="disabled python:test(isLocked, 'disabled', None);"
                        />
+                <input class="context"
+                       type="submit"
+                       name="form.button.save_and_submit"
+                       value="Submit for Publication"
+                       i18n:attributes="value label_save_and_submit;"
+                       tal:attributes="disabled python:test(isLocked, 'disabled', None);"
+                       />
                 <input class="standalone"
                        type="submit"
                        name="form.button.cancel"
