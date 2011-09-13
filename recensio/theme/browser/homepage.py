@@ -100,7 +100,7 @@ class HomepageView(BrowserView):
                 path='/'.join(zeitschriften.getPhysicalPath()),
                 sort_on='Title')
             pubs = pc(query)
-            return sorted(pubs, key=lambda p: p['Title'])
+            return sorted(pubs, key=lambda p: p['Title'].lower())
         else:
             # This can only happen, when there is no initial content yet
             return []
