@@ -63,7 +63,6 @@
               <span tal:repeat="langres results">
                 <!-- <label><span tal:replace="langres/langname" /></label> -->
                 <ul id="list_reviews"
-                    class="easyticker"
                     tal:attributes="id string:list_reviews_${langres/language}">
                   <tal:res repeat="res langres/results">
                       <li class="ellipsis_container"
