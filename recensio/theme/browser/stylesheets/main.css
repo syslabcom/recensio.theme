@@ -626,10 +626,15 @@ div#browsing-menu .used_facet {
    background-image: none;
 }
 
+#submenu_languageReviewedText {
+    width: 860px;
+}
+
 .submenu-lvl2 {
-   background-color: #ede6d4;
-   border: 1px solid #d4d0cf;
-   margin-bottom: 3px;
+    background-color: #EDE6D4;
+    float: left;
+    margin: 0 5px;
+    width: 90px; 
 }
 
 .submenu_number {
@@ -2257,6 +2262,13 @@ width:100%;
 }
 
 /****************** styles for browse topics*******************/
+
+.template-filtered-search #browsing-menu-wrapper {
+    background: none repeat scroll 0 0 #EDE6D4;
+    border: 1px solid #D4D0CF;
+    margin: 1em;
+    padding: 0 1em;
+}
 
 .template-browse-topics #browsing-menu {
     float: left;
