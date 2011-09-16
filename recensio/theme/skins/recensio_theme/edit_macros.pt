@@ -225,9 +225,18 @@
                 <input class="context"
                        type="submit"
                        name="form.button.save"
+                       value="Save and edit later"
+                       i18n:attributes="value label_save_and_edit_later;"
+                       tal:attributes="disabled python:test(isLocked, 'disabled', None);"
+                       tal:condition="python:view.context.portal_type in ['Presentation Collection', 'Presentation Monograph', 'Presentation Online Resource', 'Presentation Article Review']"
+                       />
+                <input class="context"
+                       type="submit"
+                       name="form.button.save"
                        value="Save"
                        i18n:attributes="value label_save;"
                        tal:attributes="disabled python:test(isLocked, 'disabled', None);"
+                       tal:condition="python:view.context.portal_type not in ['Presentation Collection', 'Presentation Monograph', 'Presentation Online Resource', 'Presentation Article Review']"
                        />
                 <input class="context"
                        type="submit"
@@ -235,6 +244,7 @@
                        value="Submit for Publication"
                        i18n:attributes="value label_save_and_submit;"
                        tal:attributes="disabled python:test(isLocked, 'disabled', None);"
+                       tal:condition="python:view.context.portal_type in ['Presentation Collection', 'Presentation Monograph', 'Presentation Online Resource', 'Presentation Article Review']"
                        />
                 <input class="standalone"
                        type="submit"
