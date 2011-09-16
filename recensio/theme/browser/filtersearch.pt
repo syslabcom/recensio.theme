@@ -46,7 +46,7 @@
                   <div class="visualClear"><!-- --></div>
 
                   <tal:block tal:repeat="item python:menu[submenu['id']]">
-                    <div class="submenu-lvl2" tal:condition="python:item['count']>=0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                    <div class="submenu-lvl2" tal:condition="python:(item['count']>=0 and item['query']) or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
                       <div class="submenu_title empty"
                            tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
                                            class python:'submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
