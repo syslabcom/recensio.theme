@@ -55,6 +55,7 @@
                              class="selected"
                              tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
                             <tal:title tal:replace="item/voc"/>
+                            <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                           </a>
                         </tal:block>
 
@@ -63,9 +64,9 @@
                            tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
                                            class python:item.has_key('clearquery') and 'selected_facet' or '';" >
                           <tal:title tal:replace="item/voc"/>
+                          <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                         </a>
 
-                        <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                       </div>
 
                       <ul class="submenu_content"

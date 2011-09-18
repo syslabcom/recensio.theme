@@ -607,6 +607,11 @@ div#browsing-menu .used_facet {
 .submenu_title a {
     font-weight: bold;
 }
+.submenu_title a.selected {
+    color: #666666;
+    font-weight: bold !important;
+    text-decoration: underline;
+}
 
 .submenu_title {
     background-position: 178px 7px;
