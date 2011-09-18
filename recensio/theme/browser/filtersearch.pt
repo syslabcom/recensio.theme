@@ -52,8 +52,9 @@
                                            class python:'submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
                         <tal:block tal:condition="exists:item/clearquery">
                           <a title="Remove this selection" i18n:attributes="title"
+                             class="selected"
                              tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
-                            <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png"/>
+                            <tal:title tal:replace="item/voc"/>
                           </a>
                         </tal:block>
 
@@ -61,9 +62,8 @@
                            tal:condition="python:item['query'] and not 'clearquery' in item"
                            tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
                                            class python:item.has_key('clearquery') and 'selected_facet' or '';" >
-                          <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
+                          <tal:title tal:replace="item/voc"/>
                         </a>
-                        <tal:title tal:replace="item/voc"/>
 
                         <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                       </div>
