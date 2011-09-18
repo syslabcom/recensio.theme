@@ -14,8 +14,9 @@ class HomepageView(BrowserView):
 
     def getReviewMonographs(self):
         pc = getToolByName(self.context, 'portal_catalog')
-        langinfo = _languagelist
-        langinfo[''] = {'native': 'int'}
+        langinfo = _languagelist.copy()
+        langinfo[''] = { 'name':   'International',
+                         'native': 'int'}
         query = dict(portal_type=["Review Monograph"],
             review_state="published",
             sort_on='effective',
