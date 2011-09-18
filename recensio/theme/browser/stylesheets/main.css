@@ -2265,7 +2265,7 @@ width:100%;
     border: 1px solid #D4D0CF;
     margin: 1em;
     padding: 0;
-    width: 75px; 
+    width: 80px; 
     float: left;
 }
 .template-browse-topics #browsing-menu {
@@ -2278,7 +2278,9 @@ width:100%;
     margin: 0 10px 10px 0;
     width: 80px;
 }
-
+.template-filtered-search h1.documentFirstHeading {
+    padding-left: 120px;
+}
 .template-browse-topics #browsing-menu dd, 
 .template-filtered-search #browsing-menu dd {
     float:right;
