@@ -2266,6 +2266,7 @@ width:100%;
     margin: 1em;
     padding: 0;
     width: 75px; 
+    float: left;
 }
 .template-browse-topics #browsing-menu {
     float: left;

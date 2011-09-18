@@ -119,7 +119,6 @@
           </span>
         </h1>
 
-        <div class="visualClear"></div>
         <div tal:condition="results"
              tal:define="normalizeString nocall: context/plone_utils/normalizeString;
                          isAnon context/@@plone_portal_state/anonymous;
