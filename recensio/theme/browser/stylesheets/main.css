@@ -45,10 +45,11 @@ dl.portlet li {
     margin:8px 0;
 }
 
-input {
-   margin: 4px;
-   padding: 1px 0;
-}
+input, select { margin: 4px; }
+
+input { padding: 1px 0; }
+
+select { padding: 0;}
 
 #content-core {
    margin: 1em 0;
@@ -630,7 +631,7 @@ div#browsing-menu .used_facet {
     color: #7F4B2B;
     cursor: pointer;
     font-weight: normal;
-    padding: 5px; 
+    padding: 5px;
 }
 
 .submenu_title.open {
@@ -647,7 +648,7 @@ div#browsing-menu .used_facet {
 
 .template-filtered-search .submenu-lvl2 {
     margin: 0 5px;
-    width: 90px; 
+    width: 90px;
 }
 .template-browse-topics .submenu-lvl2 {
     background-color: #EDE6D4;
@@ -825,7 +826,7 @@ li.accordion-item .accordion-content {
 .template-filtered-search .menu_headline span {
     margin: 0 0.5em;
     position: relative;
-    top: 2px; 
+    top: 2px;
 }
 .template-browse-topics .menu_headline span {
     position:relative;
@@ -2294,13 +2295,13 @@ width:100%;
     border-radius: 15px 15px 15px 15px;
     margin: 1em;
     padding: 0;
-    width: 80px; 
+    width: 80px;
     float: left;
 }
 .template-browse-topics #browsing-menu {
     float: left;
     margin: 0 10px 10px 0;
-    width: 200px; 
+    width: 200px;
 }
 .template-filtered-search #browsing-menu {
     float: left;
@@ -2310,7 +2311,7 @@ width:100%;
 .template-filtered-search h1.documentFirstHeading {
     padding-left: 120px;
 }
-.template-browse-topics #browsing-menu dd, 
+.template-browse-topics #browsing-menu dd,
 .template-filtered-search #browsing-menu dd {
     float:right;
     margin:0;
@@ -2355,7 +2356,7 @@ width:100%;
 }
 
 
-.template-browse-topics .searchResults { 
+.template-browse-topics .searchResults {
     bottom: 1500px;
     float: right;
     width: 620px;
