@@ -607,6 +607,9 @@ div#browsing-menu .used_facet {
 .submenu_title a {
     font-weight: bold;
 }
+.template-filtered-search .submenu_title a {
+    font-weight: normal;
+}
 .submenu_title a.selected {
     color: #666666;
     font-weight: bold !important;
@@ -698,7 +701,10 @@ span.headlinebutton {
 li.submenu_item a {
    padding-left: 22px;
 }
-
+#headline_languageReviewedText .headlinebutton {
+    font-weight:normal;
+    font-size:10px;
+}
 /*************************styles for review******************/
 
 #review-reference {
