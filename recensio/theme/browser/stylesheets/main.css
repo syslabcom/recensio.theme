@@ -612,8 +612,16 @@ div#browsing-menu .used_facet {
     font-weight: bold !important;
     text-decoration: underline;
 }
-
-.submenu_title {
+.template-browse-topics .submenu_title {
+    background-image: url("++resource++recensio.theme.images/more_arrow.png");
+    background-position: 178px 7px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: bold;
+    color: #7F4B2B;
+}
+.template-filtered-search .submenu_title {
     background-position: 178px 7px;
     background-repeat: no-repeat;
     color: #7F4B2B;
@@ -634,11 +642,15 @@ div#browsing-menu .used_facet {
     width: 860px;
 }
 
-.submenu-lvl2 {
+.template-filtered-search .submenu-lvl2 {
     margin: 0 5px;
     width: 90px; 
 }
-
+.template-browse-topics .submenu-lvl2 {
+    background-color: #EDE6D4;
+    border: 1px solid #d4d0cf;
+    margin-bottom: 3px;
+}
 .submenu_number {
     float:left;
     width:17%;
@@ -803,10 +815,14 @@ li.accordion-item .accordion-content {
 .menu_headline {
 /*    padding:0 0 5px 24px;*/
 }
-.menu_headline span {
+.template-filtered-search .menu_headline span {
     margin: 0 0.5em;
     position: relative;
     top: 2px; 
+}
+.template-browse-topics .menu_headline span {
+    position:relative;
+    top:2px;
 }
 .used_facet {
     font-weight:bold;
@@ -2277,7 +2293,7 @@ width:100%;
 .template-browse-topics #browsing-menu {
     float: left;
     margin: 0 10px 10px 0;
-    width: 75px; 
+    width: 200px; 
 }
 .template-filtered-search #browsing-menu {
     float: left;
