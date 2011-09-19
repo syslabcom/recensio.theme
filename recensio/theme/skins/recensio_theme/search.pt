@@ -153,10 +153,6 @@
         </div>
 
 
-    <div tal:define="view nocall: context/@@search-facets | nothing"
-         tal:condition="python: view"
-         tal:replace="structure python: view(results=results)" />
-
         <div tal:condition="results"
               tal:define="normalizeString nocall: context/plone_utils/normalizeString;
                           isAnon context/@@plone_portal_state/anonymous;
