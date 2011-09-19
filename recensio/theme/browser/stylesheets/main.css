@@ -704,6 +704,7 @@ li.submenu_item a {
 #headline_languageReviewedText .headlinebutton {
     font-weight:normal;
     font-size:10px;
+    text-transform: none;
 }
 /*************************styles for review******************/
 
