@@ -232,6 +232,8 @@ div #postit_new_comments {
 
 body.template-homepage-view .box .effective_date {
    font-style: italic;
+   font-size: 75%;
+   color: #595b58;
 }
 
 
