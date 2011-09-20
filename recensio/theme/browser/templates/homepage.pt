@@ -34,6 +34,8 @@
               <ul>
                 <li class="ellipsis_container"
                     tal:repeat="res results">
+                  <div class="effective_date"
+                       tal:content="res/effective_date"/>
                   <div class="ellipsis_text">
                     <span
                         tal:attributes="href res/publication_url"
@@ -45,8 +47,6 @@
                     <a href="#"
                         tal:attributes="href res/review_url"
                         tal:content="res/Title">title</a>
-                    <span class="effective_date"
-                          tal:content="res/effective_date"/>
                   </div>
                 </li>
               </ul>
@@ -67,21 +67,14 @@
                 <ul id="list_reviews"
                     tal:attributes="id string:list_reviews_${langres/language}">
                   <tal:res repeat="res langres/results">
-                      <li class="ellipsis_container"
-                          tal:condition="python:repeat['res'].start"
-                          style="display:block">
+                      <li tal:define="is_first python:repeat['res'].start and 'is_first' or 'not_first'"
+                          tal:attributes="class string:ellipsis_container ${is_first}">
+                        <div class="effective_date"
+                             tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                         <a href="#" class="ellipsis_text"
                            tal:attributes="href res/getURL">
                           <span tal:replace="res/Title" />
                         </a>
-                      </li>
-                      <li tal:condition="python:not repeat['res'].start">
-                        <a href="#"
-                           tal:attributes="href res/getURL">
-                          <span tal:replace="res/Title" />
-                        </a>
-                        <span class="effective_date"
-                              tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                       </li>
                   </tal:res>
                 </ul>
@@ -105,11 +98,11 @@
               <ul>
                 <li class="ellipsis_container"
                     tal:repeat="res results">
+                  <div class="effective_date"
+                       tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                   <a href="#" class="ellipsis_text"
                      tal:attributes="href res/getURL"
                      tal:content="res/Title">title</a>
-                  <span class="effective_date"
-                        tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                 </li>
               </ul>
             </div>
@@ -126,11 +119,11 @@
               <ul>
                 <li class="ellipsis_container"
                     tal:repeat="res results">
+                  <div class="effective_date"
+                       tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                   <a href="#" class="ellipsis_text"
                      tal:attributes="href res/getURL" tal:content="res/Title">
                   title</a>
-                  <span class="effective_date"
-                        tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                 </li>
               </ul>
             </div>
