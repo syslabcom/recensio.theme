@@ -147,87 +147,95 @@
                                          title result_type;"
                          i18n:attributes="alt; title;" />
 
-                    <span class="authors"
-                          tal:repeat="author result_authors">
-                      <a href="seach"
-                         tal:attributes="href string:$portal_url/search?authors:list=$author"
-                         tal:content="author">Христо Стоичков</a>,
-                    </span>
+                  <tal:block condition="result/listAuthors">
+                    <span class="authors" tal:attributes="class string:authors">
+                      <span class="author" tal:attributes="class string:author"
+                            tal:repeat="author result/listAuthors">
+                        <a tal:content="author"
+                           tal:attributes="href string:$portal_url/search?authors:list=$author" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
+                  </tal:block> 
 
-                    <span class="year"
-                          tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
-
-                    <div class="title">
-                      <a href="#"
+                  <span class="title">
+                      <a
+                         href="#" 
                          tal:attributes="href url;
-                                         class string:$item_wf_state_class"
-                         tal:content="result/pretty_title_or_id" />
-                    </div>
-                    <span class="review-author"
-                          tal:condition="is_review">
-                      <tal:author i18n:translate="reviewed_by">Reviewed by
-                        <tal:nameblock i18n:name="review_authors">
-                          <tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst">
-                            <tal:block tal:content="reviewAuthor"/>
-                            <tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c>
-                          </tal:repeatblock>
-                        </tal:nameblock>
-                      </tal:author>
-                    </span>
-                    <span class="review-author"
-                          tal:attributes="class string:review-author"
-                          tal:condition="is_presentation">
-                      <tal:author i18n:translate="presented_by">Presented by
-                        <tal:nameblock i18n:name="review_authors">
-                          <tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst">
-                            <tal:block tal:content="reviewAuthor"/>
-                            <tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c>
-                          </tal:repeatblock>
-                        </tal:nameblock>
-                      </tal:author>
-                    </span>
-                  </dt>
+                                         class string:$item_wf_state_class">
+                          <tal:block condition="python:result_type == 'Issue'">
+                              <tal:block define="volume python:result.getObject().getParentNode();
+                                                 volume_title python:volume.Title();
+                                                 publication_title python:volume.getParentNode().Title();">
+                                <span class="publication-title" tal:content="publication_title" /><tal:c condition="publication_title">: </tal:c>
+                                <span class="volume-title" tal:content="volume_title" /><tal:c condition="volume_title">, </tal:c>
+                              </tal:block>
+                          </tal:block>
+                          <tal:block tal:content="result/pretty_title_or_id" /><tal:block condition="result/subtitle | nothing">, </tal:block>
+                      </a>
+                  </span>
+                     
+                  <tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
+                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="result/isbn | nothing">, ISBN </tal:block><tal:block tal:condition="result/issn | nothing">, ISSN </tal:block>
+                  <span class="isbn" tal:condition ="result/isbn | nothing" tal:content="result/isbn" />
+                  <span class="issn" tal:condition ="result/issn | nothing" tal:content="result/issn" />
+                  
+                  <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
+                        <br /><tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
+                  <tal:block tal:condition="result/get_publication_title | nothing">
+                  <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in: <tal:block i18n:name="get_publication_title" replace="result/get_publication_title" />, <tal:block i18n:name="get_volume_title" replace="result/get_volume_title" />, <tal:block i18n:name="get_issue_title" replace="result/get_issue_title" />
+                  </tal:journal>
+                  </tal:block>
+                  </span>
 
-                  <dd>
+                  <tal:author tal:condition="is_presentation">
+                  <br /><span class="review-author" tal:attributes="class string:review-author" i18n:translate="presented_by">
+                        Presented by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock>
+                  </span>
+                  </tal:author>
+                </dt>
+            
+                <dd>
 
-                    <div class="documentByLine">
-                      <span class="documentModified">
+                <span class="documentByLine"
+                      >
+
+                    <span class="documentModified">
                         <span i18n:translate="box_last_modified">
-                          last modified
+                        last modified
                         </span>
                         <span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=1)">
-                          August 16, 2001 at 23:35:59
+                        August 16, 2001 at 23:35:59
                         </span>
-                      </span>
+                    </span>
 
-                      <span tal:define="tags result/Subject|nothing"
-                            tal:condition="tags">
+
+                    <span tal:define="tags result/Subject|nothing"
+                          tal:condition="tags">
                         &mdash;
                         <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
-                        <span tal:repeat="tag tags">
-                          <a href=""
-                             class="link-tag"
-                             rel="tag"
-                             tal:content="tag"
-                             tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
-                            Tag
-                          </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
-                        </span>
-                      </span>
+                            <span tal:repeat="tag tags">
+                                <a href=""
+                                   class="link-tag"
+                                   rel="tag"
+                                   tal:content="tag"
+                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
+                                   Tag
+                                </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
+                            </span>
+                    </span>
 
-                      <span class="relevance"
-                            tal:condition="python: result.data_record_normalized_score_ > 1">
+                    <span class="relevance"
+                          tal:condition="python: result.data_record_normalized_score_ > 1">
                         &mdash;
                         <tal:relevance i18n:translate="label_relevance_percentage">
-                          Relevance:
-                          <span tal:content="result/data_record_normalized_score_"
-                                tal:omit-tag=""
-                                i18n:name="percentage">23</span>%
+                        Relevance:
+                            <span tal:content="result/data_record_normalized_score_"
+                                   tal:omit-tag=""
+                                   i18n:name="percentage">23</span>%
                         </tal:relevance>
-                      </span>
-                    </div>
+                    </span>
+                </span>
 
-                  </dd>
+                </dd>
+
 
                 </tal:entry>
               </tal:has_results>
