@@ -45,6 +45,8 @@
                     <a href="#"
                         tal:attributes="href res/review_url"
                         tal:content="res/Title">title</a>
+                    <span class="effective_date"
+                          tal:content="res/effective_date"/>
                   </div>
                 </li>
               </ul>
@@ -77,8 +79,9 @@
                         <a href="#"
                            tal:attributes="href res/getURL">
                           <span tal:replace="res/Title" />
-
                         </a>
+                        <span class="effective_date"
+                              tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                       </li>
                   </tal:res>
                 </ul>
@@ -105,6 +108,8 @@
                   <a href="#" class="ellipsis_text"
                      tal:attributes="href res/getURL"
                      tal:content="res/Title">title</a>
+                  <span class="effective_date"
+                        tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                 </li>
               </ul>
             </div>
@@ -123,7 +128,9 @@
                     tal:repeat="res results">
                   <a href="#" class="ellipsis_text"
                      tal:attributes="href res/getURL" tal:content="res/Title">
-                    title</a>
+                  title</a>
+                  <span class="effective_date"
+                        tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                 </li>
               </ul>
             </div>

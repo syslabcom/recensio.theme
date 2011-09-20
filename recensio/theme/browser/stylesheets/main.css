@@ -230,6 +230,11 @@ div #postit_new_comments {
     position: relative;
 }
 
+body.template-homepage-view .box .effective_date {
+   font-style: italic;
+}
+
+
 /* ---------------------------- */
 /*Search portlet*/
 dl.portletSearch dt{

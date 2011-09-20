@@ -1,3 +1,5 @@
+from DateTime import DateTime
+
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
@@ -11,6 +13,13 @@ class HomepageView(BrowserView):
 
     def __call__(self):
         return self.template(self)
+
+    def format_effective_date(self, date_string):
+        """Format the publication date as specified in #2627"""
+        if date_string == 'None':
+            return ''
+        date = DateTime(date_string)
+        return "(%s.%s.%s)" % (date.day(), date.month(), date.year())
 
     def getReviewMonographs(self):
         pc = getToolByName(self.context, 'portal_catalog')
@@ -27,11 +36,15 @@ class HomepageView(BrowserView):
             if lang:
                 q['languageReview'] = [lang]
             else:
-                q['languageReview'] = list(set(langinfo.keys()).difference([u'en', u'de', u'']))
+                q['languageReview'] = list(
+                    set(langinfo.keys()).difference([u'en', u'de', u'']))
             res = pc(q)
-            resultset.append(dict(language=lang or 'int',
-                langname=langinfo[lang]['native'],
-                results=res[:5]))
+            resultset.append(
+                dict(
+                    language=lang or 'int',
+                    langname=langinfo[lang]['native'],
+                    results=res[:5])
+                )
             # print "getReviewMonographs", lang, len(res)
         return resultset
 
@@ -81,15 +94,20 @@ class HomepageView(BrowserView):
             # see #2458
             if volume_title == r.Title:
                 volume_title = u''
-            resultset.append(dict(Title=r.Title, review_url=r.getURL(),
-                publication_title=publication_title,
-                publication_url=publication_url,
-                volume_title=volume_title,
-                volume_url=volume_url,
-                ))
+            resultset.append(
+                dict(
+                    Title=r.Title,
+                    effective_date=self.format_effective_date(r.EffectiveDate),
+                    publication_title=publication_title,
+                    publication_url=publication_url,
+                    review_url=r.getURL(),
+                    volume_title=volume_title,
+                    volume_url=volume_url,
+                    )
+                )
         # print "getReviewJournals", len(res)
         return resultset
-        
+
     def getPublications(self):
         portal = self.context.portal_url.getPortalObject()
         rezensionen = getattr(portal, 'rezensionen', None)
@@ -105,4 +123,4 @@ class HomepageView(BrowserView):
         else:
             # This can only happen, when there is no initial content yet
             return []
-        
+
