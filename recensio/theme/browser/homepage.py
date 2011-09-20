@@ -19,7 +19,7 @@ class HomepageView(BrowserView):
         if date_string == 'None':
             return ''
         date = DateTime(date_string)
-        return "(%s.%s.%s)" % (date.day(), date.month(), date.year())
+        return "%s-%s-%s" % (date.year(), date.month(), date.day())
 
     def getReviewMonographs(self):
         pc = getToolByName(self.context, 'portal_catalog')
