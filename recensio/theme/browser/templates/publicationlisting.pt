@@ -4,6 +4,7 @@
      i18n:domain="recensio"
      tal:condition="view/visible">
 
+  <a name="publicationslisting" />
   <tal:volumes repeat="volume view/volumes | nothing">
     <h2 tal:content="volume/Title" />
 
