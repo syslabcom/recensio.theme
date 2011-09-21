@@ -2609,6 +2609,10 @@ div.dialog-wrapper {
 width:860px;
 }
 
+.portaltype-document.section-rezensionen #content {
+    width:610px;
+}
+
 table.listing, table.plain {
 margin-bottom:10px !important;
 }
