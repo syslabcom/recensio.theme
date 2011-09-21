@@ -13,6 +13,7 @@
 
     <tal:issues repeat="issue volume/issues | nothing">
       <h3 tal:content="issue/Title" />
+      <span tal:condition="issue/pdf | nothing"><img alt="" src="pdf.png" /><a tal:attributes="href issue/pdf"> <span i18n:translate="label_download_complete_pdf">Download complete file</span></a><span tal:condition="issue/pdfsize">&mdash;<tal:block tal:replace="issue/pdfsize" /> bytes</span></span>
 
       <ul>
         <li tal:repeat="review issue/reviews">

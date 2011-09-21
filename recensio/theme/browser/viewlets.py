@@ -82,6 +82,9 @@ class publicationlisting(ViewletBase):
                     issues[review_parent.id] = {
                         "Title" : review_parent.title,
                         "effective": review_parent.effective()}
+                    if "issue.pdf" in review_parent.objectIds():
+                        issues[review_parent.id]["pdf"] = review_parent["issue.pdf"].absolute_url()
+                        issues[review_parent.id]["pdfsize"] = review_parent["issue.pdf"].getSize()
                 issue = issues[review_parent.id]
                 issue.setdefault("reviews", []).append(review_obj)
 
