@@ -2,6 +2,8 @@
 """
 from zope.app.component.hooks import getSite
 from zope.component import queryUtility
+from zope.i18n import translate
+from zope.i18nmessageid import Message
 from zope.interface import implements
 
 from Products.Archetypes.utils import DisplayList
@@ -9,9 +11,11 @@ from Products.Five.browser import BrowserView
 from plone.i18n.locales.languages import _languagelist
 from plone.registry.interfaces import IRegistry
 
+from recensio.contenttypes import contenttypesMessageFactory as _
 from recensio.policy.interfaces import IRecensioSettings
 
 from interfaces import IRecensioHelperView
+
 
 
 def listRecensioSupportedLanguages():
@@ -24,13 +28,26 @@ def listAvailableContentLanguages():
     registry = queryUtility(IRegistry)
     settings = registry.forInterface(IRecensioSettings)
     allowed_langs = getattr(
-        settings, 'available_content_languages', '').replace('\r', '').split('\n')
+        settings, 'available_content_languages', ''
+        ).replace('\r', '').split('\n')
     terms = []
     if allowed_langs != [u""]:
         terms = [(x, _languagelist[x][u'native'])
                  for x in allowed_langs]
     return DisplayList(terms)
 
+def recensioTranslate(msgid):
+    portal = getSite()
+    language = portal.portal_languages.getPreferredLanguage()
+    return translate(Message(msgid, domain="recensio"),
+                     target_language=language)
+
+def editorTypes():
+    return DisplayList((
+            ("herausgeber", recensioTranslate(u"label_abbrev_herausgeber"),),
+            ("bearbeiter", recensioTranslate(u"label_abbrev_bearbeiter"),),
+            ("redaktion", recensioTranslate(u"label_abbrev_redaktion"),),
+            ))
 
 class RecensioHelperView(BrowserView):
     """ General purpose view methods for Recensio """
