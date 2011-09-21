@@ -168,7 +168,7 @@
                                item_icon python:plone_view.getIcon(result);
                                url python:result_url+'/view' if result_type in use_view_action else result_url+'/';
                                url python:url if searchterm is None else '%s?searchterm=%s' % (url, searchterm);
-                               listAuthors python:result.getObject().list_authors_editorial;">
+                               listAuthors python:getattr(result.getObject(), 'list_authors_editorial', None);">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                   <img width="32" height="32"
