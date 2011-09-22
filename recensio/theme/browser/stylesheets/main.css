@@ -2411,13 +2411,18 @@ margin-top:10px;
 
 
 /*** ***/
-.authorsearch img, .searchResults img, .authorsearch_placeholder {
+.authorsearch img, .authorsearch_placeholder {
 padding-right:5px;
 position:relative;
 width:13px;
 height:13px;
 }
-
+.searchResults img {
+padding-right:5px;
+position:relative;
+width:32px;
+height:32px;
+}
 .letter_not_available {
     color:lightgrey;
 }
