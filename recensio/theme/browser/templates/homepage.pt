@@ -66,6 +66,12 @@
                 <!-- <label><span tal:replace="langres/langname" /></label> -->
                 <ul id="list_reviews"
                     tal:attributes="id string:list_reviews_${langres/language}">
+                  <a href="search?portal_type:list=Review%20Monograph&portal_type:list=Review%20Journal&sort_on=effective&sort_order=reverse"
+                           tal:attributes="href string:search?${langres/query_str}">
+                    <img src="++resource++recensio.theme.images/int.png"
+                             tal:attributes="src string:++resource++recensio.theme.images/${langres/language}.png;
+                                             alt langres/language" />
+                  </a>
                   <tal:res repeat="res langres/results">
                       <li tal:define="is_first python:repeat['res'].start and 'is_first' or 'not_first'"
                           tal:attributes="class string:ellipsis_container ${is_first}">

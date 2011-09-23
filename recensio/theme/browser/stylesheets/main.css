@@ -180,14 +180,13 @@ div#latest_reviews_box ul {
 }
 
 div#latest_reviews_box ul li {
-   background: transparent url(++resource++recensio.theme.images/rez_icon.png) no-repeat;
    border:none;
    position:absolute;
    top:2px;
-   left:0px;
+   left:25px;
    width: 212px;
+   padding: 0 0 0.5em 15px;
 }
-
 div#latest_reviews_box ul li.not_first {
    /* Hide the elements in the ticker as soon as possible see homepage.js*/
    visibility: hidden;
@@ -209,7 +208,7 @@ div.box ul a.review-title {
    position:relative;
 }
 div#latest_reviews_box ul{
-   height:63px;
+   height:47px;
 }
 #participating-journals {
    border-top:1px solid #CCCCCC;

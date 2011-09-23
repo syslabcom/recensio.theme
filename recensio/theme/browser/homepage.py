@@ -5,6 +5,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from recensio.contenttypes.interfaces import IParentGetter
 from plone.i18n.locales.languages import _languagelist
+from ZTUtils import make_query
 
 class HomepageView(BrowserView):
     """ Dynamic elements on the homepage """
@@ -26,24 +27,25 @@ class HomepageView(BrowserView):
         langinfo = _languagelist.copy()
         langinfo[''] = { 'name':   'International',
                          'native': 'int'}
-        query = dict(portal_type=["Review Monograph"],
+        query = dict(portal_type=["Review Monograph", "Review Journal"],
             review_state="published",
             sort_on='effective',
             sort_order='reverse')
         resultset = list()
-        for lang in ('en', 'de', ''):
+        for lang in ('fr', 'de', ''):
             q = query.copy()
             if lang:
                 q['languageReview'] = [lang]
             else:
                 q['languageReview'] = list(
-                    set(langinfo.keys()).difference([u'en', u'de', u'']))
+                    set(langinfo.keys()).difference([u'fr', u'de', u'']))
             res = pc(q)
             resultset.append(
                 dict(
                     language=lang or 'int',
                     langname=langinfo[lang]['native'],
-                    results=res[:5])
+                    results=res[:5],
+                    query_str=make_query(q))
                 )
             # print "getReviewMonographs", lang, len(res)
         return resultset
