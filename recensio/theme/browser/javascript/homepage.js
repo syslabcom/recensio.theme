@@ -11,7 +11,7 @@ jq(document).ready(function () {
     jq('div#latest_reviews_box ul li.not_first').css('display', 'none')
     jq('div#latest_reviews_box ul li.not_first').css('visibility', 'visible')
 
-    jq('#list_reviews_en').easyticker();
+    jq('#list_reviews_fr').easyticker();
     jq('#list_reviews_de').easyticker();
     jq('#list_reviews_int').easyticker();
 
