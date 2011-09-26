@@ -32,22 +32,23 @@
             <div id="latest_reviewparts_box"
                  tal:define="results view/getReviewJournals">
               <ul>
-                <li class="ellipsis_container"
-                    tal:repeat="res results">
+                <li tal:repeat="res results">
+                  <span  class="ellipsis_container">
+                    <div class="ellipsis_text">
+                      <span
+                          tal:attributes="href res/publication_url"
+                          tal:content="res/publication_title">title
+                      </span>,
+                      <span tal:condition="res/volume_title">
+                        <span tal:replace="res/volume_title" />,
+                      </span>
+                      <a href="#"
+                         tal:attributes="href res/review_url"
+                         tal:content="res/Title">title</a>
+                    </div>
+                  </span>
                   <div class="effective_date"
                        tal:content="res/effective_date"/>
-                  <div class="ellipsis_text">
-                    <span
-                        tal:attributes="href res/publication_url"
-                        tal:content="res/publication_title">title
-                    </span>,
-                    <span tal:condition="res/volume_title">
-                        <span tal:replace="res/volume_title" />,
-                    </span>
-                    <a href="#"
-                        tal:attributes="href res/review_url"
-                        tal:content="res/Title">title</a>
-                  </div>
                 </li>
               </ul>
             </div>
@@ -73,15 +74,19 @@
                                              alt langres/language" />
                   </a>
                   <tal:res repeat="res langres/results">
-                      <li tal:define="is_first python:repeat['res'].start and 'is_first' or 'not_first'"
-                          tal:attributes="class string:ellipsis_container ${is_first}">
-                        <div class="effective_date"
-                             tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
+                    <li tal:define="is_first python:repeat['res'].start and 'is_first' or 'not_first'"
+                        tal:attributes="class string:${is_first}">
+                      <span tal:content="python:view.format_authors(res)"/>
+                      <span class="ellipsis_container">
                         <a href="#" class="ellipsis_text"
                            tal:attributes="href res/getURL">
                           <span tal:replace="res/Title" />
+                          <span tal:replace="python:res.getObject().getSubtitle()" />
                         </a>
-                      </li>
+                      </span>
+                      <div class="effective_date"
+                           tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
+                    </li>
                   </tal:res>
                 </ul>
                 <div class="visualClear"></div>
@@ -102,13 +107,15 @@
             <div id="latest_monographies_box"
                  tal:define="results view/getPrintedPresentations">
               <ul>
-                <li class="ellipsis_container"
-                    tal:repeat="res results">
-                  <div class="effective_date"
-                       tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
-                  <a href="#" class="ellipsis_text"
-                     tal:attributes="href res/getURL"
-                     tal:content="res/Title">title</a>
+                <li tal:repeat="res results">
+                  <span tal:content="python:view.format_authors(res)"/>
+                  <span class="ellipsis_container">
+                    <a href="#" class="ellipsis_text"
+                       tal:attributes="href res/getURL"
+                       tal:content="python:res.Title+'. '+res.getObject().getSubtitle()">title</a>
+                    <div class="effective_date"
+                         tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -123,13 +130,14 @@
             <div id="latest_internet_resources_box"
                  tal:define="results view/getOnlinePresentations">
               <ul>
-                <li class="ellipsis_container"
-                    tal:repeat="res results">
+                <li tal:repeat="res results">
+                  <span class="ellipsis_container">
+                    <a href="#" class="ellipsis_text"
+                       tal:attributes="href res/getURL" tal:content="res/Title">
+                    title</a>
+                  </span>
                   <div class="effective_date"
                        tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
-                  <a href="#" class="ellipsis_text"
-                     tal:attributes="href res/getURL" tal:content="res/Title">
-                  title</a>
                 </li>
               </ul>
             </div>

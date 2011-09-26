@@ -20,7 +20,19 @@ class HomepageView(BrowserView):
         if date_string == 'None':
             return ''
         date = DateTime(date_string)
-        return "%s-%s-%s" % (date.year(), date.month(), date.day())
+        return "%s-%02d-%02d" % (date.year(), date.month(), date.day())
+
+    def format_authors(self, brain):
+        ob = brain.getObject()
+        authors = getattr(ob, "authors", "")
+        if len(authors) > 0:
+            firstname = authors[0]["firstname"].strip()
+            initial = len(firstname) > 0 and firstname[0]+". " or ""
+            lastname = authors[0]["lastname"]
+            et_al = len(authors) > 1 and " et al." or ""
+            if len(lastname) > 0:
+                return "%s%s%s:" %(initial, lastname, et_al)
+        return ""
 
     def getReviewMonographs(self):
         pc = getToolByName(self.context, 'portal_catalog')
@@ -105,6 +117,7 @@ class HomepageView(BrowserView):
                     review_url=r.getURL(),
                     volume_title=volume_title,
                     volume_url=volume_url,
+                    review_brain=r
                     )
                 )
         # print "getReviewJournals", len(res)
