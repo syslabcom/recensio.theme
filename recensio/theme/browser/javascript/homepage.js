@@ -13,6 +13,7 @@ jq(document).ready(function () {
 
     jq('#list_reviews_fr').easyticker();
     jq('#list_reviews_de').easyticker();
+    jq('#list_reviews_en').easyticker();
     jq('#list_reviews_int').easyticker();
 
 });

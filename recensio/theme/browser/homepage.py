@@ -7,6 +7,8 @@ from recensio.contenttypes.interfaces import IParentGetter
 from plone.i18n.locales.languages import _languagelist
 from ZTUtils import make_query
 
+REVIEW_LANGUAGES = [u'en', u'de', u'']
+
 class HomepageView(BrowserView):
     """ Dynamic elements on the homepage """
 
@@ -44,13 +46,13 @@ class HomepageView(BrowserView):
             sort_on='effective',
             sort_order='reverse')
         resultset = list()
-        for lang in ('fr', 'de', ''):
+        for lang in REVIEW_LANGUAGES:
             q = query.copy()
             if lang:
                 q['languageReview'] = [lang]
             else:
                 q['languageReview'] = list(
-                    set(langinfo.keys()).difference([u'fr', u'de', u'']))
+                    set(langinfo.keys()).difference(set(REVIEW_LANGUAGES)))
             res = pc(q)
             resultset.append(
                 dict(
