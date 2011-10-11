@@ -7,6 +7,8 @@
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from plone.app.layout.viewlets import ViewletBase
+from plone.memoize import ram
+from hashlib import sha256
 
 class publicationlisting(ViewletBase):
     """ Lists Volumes/Issues/Reviews in the current Publication"""
@@ -62,6 +64,16 @@ class publicationlisting(ViewletBase):
         query["sort_order"] = "descending"
         reviews = catalog(query)
 
+        volumes = self.get_volumes(reviews)
+        return volumes
+
+    @ram.cache(lambda method,self,reviews: sha256(str([x for x in reviews])).digest())
+    def get_volumes(self, reviews):
+        def make_dict(obj):
+            return dict(absolute_url=obj.absolute_url(),
+                        effective=obj.effective(),
+                        getDecoratedTitle=obj.getDecoratedTitle(lastname_first=False),
+                        listAuthors=obj.listAuthors())
         volumes = {}
         for review in reviews:
             review_obj = review.getObject()
@@ -86,14 +98,14 @@ class publicationlisting(ViewletBase):
                         issues[review_parent.id]["pdf"] = review_parent["issue.pdf"].absolute_url()
                         issues[review_parent.id]["pdfsize"] = review_parent["issue.pdf"].getSize()
                 issue = issues[review_parent.id]
-                issue.setdefault("reviews", []).append(review_obj)
+                issue.setdefault("reviews", []).append(make_dict(review_obj))
 
             elif review_parent.portal_type == "Volume":
                 if not volumes.has_key(review_parent.id):
                     volumes[review_parent.id] = {
                         "Title" : review_parent.title }
                 volume = volumes[review_parent.id]
-                volume.setdefault("reviews", []).append(review_obj)
+                volume.setdefault("reviews", []).append(make_dict(review_obj))
 
         # Sort the volumes and issues by changing them into lists and
         # sorting by effective date
@@ -102,7 +114,7 @@ class publicationlisting(ViewletBase):
             vol = volumes[volume]
             for iss in vol["issues"].values():
                 iss["reviews"] = sorted(iss["reviews"],
-                                        key=lambda x: x.listAuthors() and x.listAuthors()[0])
+                                        key=lambda x: x["listAuthors"] and x["listAuthors"][0])
             issues_list = [vol["issues"][i] for i in vol["issues"]]
             sorted_issues = sorted(issues_list,
                                    key=lambda x: x.get("effective",""),
