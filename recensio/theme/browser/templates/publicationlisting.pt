@@ -14,7 +14,7 @@
 
     <tal:issues repeat="issue volume/issues | nothing">
       <h3 tal:content="issue/Title" />
-      <span tal:condition="issue/pdf | nothing"><span tal:define="context issue/pdfobj" metal:use-macro="python:issue['pdfobj'].widget('file', mode='view')" /></span>
+      <span tal:condition="issue/pdf | nothing"><span tal:define="context issue/pdfobj" metal:use-macro="python:issue['pdfobj'].widget('file', mode='view', context=issue['pdfobj'])" /></span>
 
       <ul>
         <li tal:repeat="review issue/reviews">
