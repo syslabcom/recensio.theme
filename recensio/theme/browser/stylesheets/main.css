@@ -2722,6 +2722,11 @@ margin:0 0 1.3em;
     display:none;
 }
 
+/***********hiding manage portlets link*******/
+.managePortletsLink {
+    display:none;
+}
+
 /*************css fix zoom:1 for IE7*************/
 *+html #mainContent {
     zoom:1 !important;
