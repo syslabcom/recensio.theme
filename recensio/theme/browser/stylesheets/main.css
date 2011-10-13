@@ -2756,3 +2756,35 @@ margin:0 0 1.3em;
 body.template-decorated_folder_listing #content-core dt {
     margin:4px 0;
 }
+
+/* Custom CSS from recensio, see #3107 */
+
+.draggable img {float:left;margin-right:5px;}
+.contenttype-publication {width:450px;}
+
+.template-browse-topics .searchResults dd, .template-filtered-search .searchResults dd {width:680px;float:left;margin-left:0px;}
+
+.section-themen-epochen-regionen #mainContent .searchResults dd,
+.section-themen-epochen-regionen-fr #mainContent .searchResults dd,
+.section-themen-epochen-regionen-en #mainContent .searchResults dd {width:570px;}
+
+#parent-fieldname-text td {vertical-align:top;}
+
+td.dhip_zelle {vertical-align:bottom!important;}
+td.dhip_zelle p {padding-right:10px;}
+
+#archetypes-fieldname-subject select {width:400px;}
+
+body {height:100%;}
+
+#navigation {clear:both;}
+
+/*OPERA*/
+#edit-bar {height:60px;}
+
+/*IE7*/
+#authorsearch-description {width:550px}
+#authorsearch-query {width:250px;}
+.authorsearchform {text-align:right;}
+
+#livesearch0 {margin-left:100px;}
