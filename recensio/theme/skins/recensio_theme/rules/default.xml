@@ -58,6 +58,16 @@
   <prepend content="//div[@id='secondary-nav-portlet']"
            theme="//div[@id='content']" />
 
+  <!-- This has been removed before, complaining that the portal messages
+       appeared twice. But in other cases, they won't appear at all
+       If you are fixing it, check out the pdf cutting functionality.
+       It uses stock plone 4 templates, and with these the messages don't
+       appear twice. Whereever these messages appear twice, the template logic
+       must be wrong, and we either fix that or make some more complicated
+       deliverance rules -->
+  <replace css:content="dl.portalMessage"
+           css:theme="dl.portalMessage" />
+
   <!-- Main content rule: Put plone content into recensio content -->
   <append content="//div[@id='content']/*"
           theme="//div[@id='content']" />
@@ -84,16 +94,6 @@
 
   <append css:content="div#clear-after-viewlets"
           css:theme="div#viewlet-below-content" />
-
-  <!-- This has been removed before, complaining that the portal messages
-       appeared twice. But in other cases, they won't appear at all
-       If you are fixing it, check out the pdf cutting functionality.
-       It uses stock plone 4 templates, and with these the messages don't
-       appear twice. Whereever these messages appear twice, the template logic
-       must be wrong, and we either fix that or make some more complicated
-       deliverance rules -->
-  <replace css:content="dl.portalMessage"
-           css:theme="dl.portalMessage" />
 
   <!-- site actions -->
   <replace content="//*[@id='portal-siteactions']"

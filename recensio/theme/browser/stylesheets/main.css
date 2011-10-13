@@ -1141,8 +1141,11 @@ dl.error dd {
 }
 
 /* Additional specificity for when status is shown inside #content */
+/* Actually we don't want portalMessages inside #content, we pull them out with xdv, */
+/* so I've added display:none */
 #content dl.portalMessage {
     font-size: 100%;
+    display: none;
 }
 #content dl.portalMessage dt {
     margin: 0 0.5em 0 0;
