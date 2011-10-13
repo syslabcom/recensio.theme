@@ -81,8 +81,8 @@
                         <a href="#" class="ellipsis_container"
                            tal:attributes="href res/getURL;
                                            class string:ellipsis_container">
-                          <span class="ellipsis_text">
-                              <span tal:replace="res/Title" />. <span tal:replace="python:res.getObject().getSubtitle()" />
+                          <span class="ellipsis_text"
+                                tal:content="python:res.getObject().punctuated_title_and_subtitle">
                           </span>
                         </a>
                       </span>
@@ -114,7 +114,7 @@
                   <span class="ellipsis_container">
                     <a href="#" class="ellipsis_text"
                        tal:attributes="href res/getURL"
-                       tal:content="python:res.Title+'. '+res.getObject().getSubtitle()">title</a>
+                       tal:content="python:res.getObject().punctuated_title_and_subtitle">title</a>
                     <div class="effective_date"
                          tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
                   </span>
