@@ -77,11 +77,13 @@
                     <li tal:define="is_first python:repeat['res'].start and 'is_first' or 'not_first'"
                         tal:attributes="class string:${is_first}">
                       <span tal:content="python:view.format_authors(res)"/>
-                      <span class="ellipsis_container">
-                        <a href="#" class="ellipsis_text"
-                           tal:attributes="href res/getURL">
-                          <span tal:replace="res/Title" />
-                          <span tal:replace="python:res.getObject().getSubtitle()" />
+                      <span>
+                        <a href="#" class="ellipsis_container"
+                           tal:attributes="href res/getURL;
+                                           class string:ellipsis_container">
+                          <span class="ellipsis_text">
+                              <span tal:replace="res/Title" />. <span tal:replace="python:res.getObject().getSubtitle()" />
+                          </span>
                         </a>
                       </span>
                       <div class="effective_date"
