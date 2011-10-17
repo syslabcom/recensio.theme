@@ -123,12 +123,12 @@ class GeneratePdfRecension(BrowserView):
 
         self.canvas.drawImage(
             pdf_watermark_path,
-            (pwidth/2.0) - (0.5 * 13.76 * cm),
-            (pheight/2.0) - (0.5 * 13.76 * cm),
-            13.76 * cm,
-            13.76 * cm,
+            6.2 * cm,
+            9.5 * cm,
+            pwidth-6.20*cm-2.5*cm,
+            6 * cm,
             preserveAspectRatio=True,
-            anchor='c',
+            anchor='sw',
             mask='auto' # To support transparent PNGs
             )
         cover.setFont('DejaVu-Serif', 10)
