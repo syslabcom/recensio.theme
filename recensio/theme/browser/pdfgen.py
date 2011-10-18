@@ -124,8 +124,8 @@ class GeneratePdfRecension(BrowserView):
         self.canvas.drawImage(
             pdf_watermark_path,
             6.2 * cm,
-            6.2 * cm,
-            pwidth-6.20*cm-2.5*cm,
+            9.5 * cm,
+            6 * cm,
             6 * cm,
             preserveAspectRatio=True,
             anchor='sw',
