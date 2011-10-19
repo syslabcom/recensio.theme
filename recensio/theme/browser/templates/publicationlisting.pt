@@ -14,7 +14,18 @@
 
     <tal:issues repeat="issue volume/issues | nothing">
       <h3 tal:content="issue/Title" />
-      <span tal:condition="issue/pdf | nothing"><span tal:define="context issue/pdfobj" metal:use-macro="python:issue['pdfobj'].widget('file', mode='view', context=issue['pdfobj'])" /></span>
+      <span tal:condition="issue/pdf | nothing">
+          <a href="" tal:attributes="href string:${issue/pdf}/at_download/file">
+                <img src="pdf.png" alt="">&nbsp;
+                <span i18n:translate="label_download_complete_pdf">download Gesamt-pdf</span>
+          </a>
+          <span class="discreet">
+              &mdash;
+              <span tal:replace="python:context.lookupMime('application/x-pdf')">ContentType</span>,
+              <tal:size content="issue/pdfsize">?</tal:size>
+          </span>
+
+      </span>
 
       <ul>
         <li tal:repeat="review issue/reviews">

@@ -67,6 +67,13 @@ class publicationlisting(ViewletBase):
         volumes = self.get_volumes(reviews)
         return volumes
 
+    def _formatsize(self, size):
+        size_kb = size/1024;
+        display_size_kb = '{0:n} kB'.format(size_kb) if size_kb > 0 else ''
+        display_size_bytes = ' ({0:n} bytes)'.format(size) if display_size_kb else '{0:n} bytes'.format(size)
+        display_size = '{0}{1}'.format(display_size_kb, display_size_bytes)
+        return display_size
+
     @ram.cache(lambda method,self,reviews: sha256(str([x for x in reviews])).digest())
     def get_volumes(self, reviews):
         def make_dict(obj):
@@ -95,9 +102,8 @@ class publicationlisting(ViewletBase):
                         "Title" : review_parent.title,
                         "effective": review_parent.effective()}
                     if "issue.pdf" in review_parent.objectIds():
-                        issues[review_parent.id]["pdf"] = review_parent["issue.pdf"].absolute_url()
-                        issues[review_parent.id]["pdfobj"] = review_parent["issue.pdf"]
-                        issues[review_parent.id]["pdfsize"] = review_parent["issue.pdf"].getSize()
+                        issues[review_parent.id]["pdf"] = review_parent["issue.pdf"].absolute_url_path()
+                        issues[review_parent.id]["pdfsize"] = self._formatsize(review_parent["issue.pdf"].getField('file').get_size(review_parent["issue.pdf"]))
                 issue = issues[review_parent.id]
                 issue.setdefault("reviews", []).append(make_dict(review_obj))
 
