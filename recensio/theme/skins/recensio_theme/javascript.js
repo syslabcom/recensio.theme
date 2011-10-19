@@ -12,5 +12,12 @@ jq(document).ready(function() {
     jq('.easyticker').easyticker({
         speed: 'slow',
         dureeAffichage: 7000
-        });
+    });
+
+// This is a tiny bit hacky. BoolWidgets don't support 'required' property and 
+// don't show errors. We add the basics via jquery.
+    jq('#formfield-form-declaration_of_identity label').after('<span style="color: #f00;" title="Required" class="required"> ■ </span>')
+    if (jq('dl.error').length > 0 && !jq('#formfield-form-declaration_of_identity input.checkboxType').attr('checked')) {
+            jq('#formfield-form-declaration_of_identity').addClass('error');
+    }
 });
