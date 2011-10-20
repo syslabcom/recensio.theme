@@ -8,9 +8,12 @@
   <tal:volumes repeat="volume view/volumes | nothing">
     <h2 tal:content="volume/Title" />
 
-    <tal:reviews repeat="review volume/reviews | nothing">
-      <h4 tal:content="review/Title" />
-    </tal:reviews>
+    <ul>
+      <li tal:repeat="review volume/reviews | nothing">
+        <a tal:attributes="href review/absolute_url"
+           tal:content="review/getDecoratedTitle" />
+      </li>
+    </ul>
 
     <tal:issues repeat="issue volume/issues | nothing">
       <h3 tal:content="issue/Title" />
