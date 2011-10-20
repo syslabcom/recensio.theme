@@ -80,7 +80,8 @@ class publicationlisting(ViewletBase):
             return dict(absolute_url=obj.absolute_url(),
                         effective=obj.effective(),
                         getDecoratedTitle=obj.getDecoratedTitle(lastname_first=False),
-                        listAuthors=obj.listAuthors())
+                        listAuthors=obj.listAuthors(),
+                        Title=obj.Title())
         volumes = {}
         for review in reviews:
             review_obj = review.getObject()
