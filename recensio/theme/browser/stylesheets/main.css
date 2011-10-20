@@ -168,7 +168,9 @@ div.column_footer ul.easyticker li a{
 
 /* formatting for homepage boxes */
 div#latest_reviewparts_box ul li {
-   background: transparent url(++resource++recensio.theme.images/blank_icon.png) no-repeat;
+   background: transparent url(++resource++recensio.theme.images/blank_icon.png) no-repeat 0 6px;
+   margin-bottom: 0;
+   padding-bottom: 7px;
 }
 
 div#latest_monographies_box ul li {
