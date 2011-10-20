@@ -14,12 +14,12 @@
                 default_max syn/getMaxItems;
                 max max_items|python:syn.getMaxItems(here);
                 max python:same_type(max, 1) and max or default_max;
-                objects python: objectList[:max]">
+                objects python: objectList[:max];">
 
 <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/xml;;charset=utf-8')" />
 
 <channel rdf:about="" tal:attributes="rdf:about request/URL">
-  <title tal:content="context/pretty_title_or_id">The title</title>
+  <title tal:content="python:request.form.get('rss_title', context.pretty_title_or_id())">The title</title>
   <link tal:content="context/portal_url">http://url.to.portal</link>
 
   <description>
