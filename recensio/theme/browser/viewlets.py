@@ -119,16 +119,24 @@ class publicationlisting(ViewletBase):
         volumes_list = []
         for volume in volumes:
             vol = volumes[volume]
-            for iss in vol["issues"].values():
-                iss["reviews"] = sorted(iss["reviews"],
+            sorted_reviews = []
+            sorted_issues = []
+            if vol.has_key("issues"):
+                for iss in vol["issues"].values():
+                    iss["reviews"] = sorted(iss["reviews"],
+                                            key=lambda x: x["listAuthors"] and x["listAuthors"][0])
+                issues_list = [vol["issues"][i] for i in vol["issues"]]
+                sorted_issues = sorted(issues_list,
+                                       key=lambda x: x.get("effective",""),
+                                       reverse=True)
+            if vol.has_key("reviews"):
+                sorted_reviews = sorted(vol["reviews"],
                                         key=lambda x: x["listAuthors"] and x["listAuthors"][0])
-            issues_list = [vol["issues"][i] for i in vol["issues"]]
-            sorted_issues = sorted(issues_list,
-                                   key=lambda x: x.get("effective",""),
-                                   reverse=True)
+
             volumes_list.append({"Title":vol.get("Title", ""),
                                  "effective":vol.get("effective", ""),
-                                 "issues":sorted_issues})
+                                 "issues":sorted_issues,
+                                 "reviews":sorted_reviews})
 
         sorted_volumes  = sorted(volumes_list,
                                  key=lambda x: x.get("effective", ""),
