@@ -4,6 +4,19 @@
   <replace content='/html/head/title' theme='/html/head/title' />
   <replace content='/html/head/base' theme='/html/head/base' />
 
+  <!-- error page handling -->
+  <drop css:theme="span#error_fallback"
+           if-content="//*[@id='content']"/>
+  <!-- Can't figure out how to match a page with just one line of text and no 
+       html elements at all... this does not work unfortunately:
+  <replace theme="children://div[@id='content']"
+           content="/"
+           if-content="not(//*[@id='content'])"/> -->
+  <drop css:theme="div#header"
+           if-content="not(//div[@id='content'])" />
+  <drop css:theme="div#navigation"
+           if-content="not(//div[@id='content'])" />
+
   <!-- Pull in Plone CSS -->
   <append theme="/html/head"
           content="/html/head/link | /html/head/style | /html/head/script | /html/head/meta" />
@@ -107,6 +120,7 @@
   <replace css:content="div#portal-searchbox"
            css:theme="div#suche" />
   <drop css:content="div.searchSection" />
+
 
   <!-- FIXES -->
   <!-- Clear space before navigation inflicts a large offset of the content from the header. We drop it -->
