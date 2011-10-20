@@ -633,6 +633,9 @@ div#browsing-menu .used_facet {
     font-weight: bold !important;
     text-decoration: underline;
 }
+.template-browse-topics .submenu_title span {
+    padding-right: 9px;
+}
 .template-browse-topics .submenu_title {
     background-image: url("++resource++recensio.theme.images/more_arrow.png");
     background-position: 178px 7px;

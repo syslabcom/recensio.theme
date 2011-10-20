@@ -196,9 +196,10 @@
                                        class python:item.has_key('clearquery') and 'selected_facet' or '';" >
                       <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
                     </a>
-                    <tal:title tal:replace="item/voc"/>
-
-                    <span tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
+                    <span>
+                      <tal:title tal:replace="item/voc"/>
+                      <tal:count tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
+                    </span>
                   </div>
 
                   <ul class="submenu_content"
