@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="recensio">
+
+  <head>
+  </head>
+  <body>
+    <div metal:fill-slot="main">
+        <h1><span tal:content="here/Title">Feedtitle</span></h1>
+
+        <p class='documentDescription'><span id='parent-fieldname-description' tal:content="here/Description"></span></p>
+
+        <div id="parent-fieldname-text" tal:define="text here/getRawText; parts python:text.split('<!-- zss -->')"> 
+          <p tal:replace="structure python:parts[0]"></p>
+          
+          <ul>
+            <tal:block repeat="z here/prepFeeds">
+            <li><a href="" tal:attributes="href python:z[1]; title python: z[0]">
+                <img src="++resource++recensio.theme.images/icon_rss_feed.gif" alt="RSS icon">
+                <span tal:replace="python:z[0]" /></a></li>
+            </tal:block>
+          </ul>
+
+          <p tal:replace="structure python:parts[1]" tal:on-error="nothing"></p>
+        
+        </div>
+
+    </div>
+  </body>
+</html>
