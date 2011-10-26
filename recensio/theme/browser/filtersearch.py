@@ -27,16 +27,16 @@ class FilterSearchView(BrowseTopicsView):
         if IATTopic.providedBy(context):
             self.default_query.update(context.buildQuery())
 
-        #self.vocDict = {'languageReviewedText': listAvailableContentLanguages()}
+        #self.vocDict = {'languageReview': listAvailableContentLanguages()}
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(IRecensioSettings)
         allowed_langs = getattr(settings, 'available_content_languages', '').replace('\r', '').split('\n')
-        self.vocDict = {'languageReviewedText': DisplayList([(x, x) for x in allowed_langs])}
+        self.vocDict = {'languageReview': DisplayList([(x, x) for x in allowed_langs])}
 
         self.submenus = [
-            dict(title='Language',id='languageReviewedText'),]
+            dict(title='Language',id='languageReview'),]
 
-        self.queryparam = 'languageReviewedText'
+        self.queryparam = 'languageReview'
 
         BrowserView.__init__(self, context, request)
 
