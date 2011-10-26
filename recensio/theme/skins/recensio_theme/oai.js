@@ -37,9 +37,9 @@ function showResults(data){
         subtitle.text(subtitle.text()[0].toUpperCase() + subtitle.text().substring(1));
         for(var i=0;i<result['authors'].length;i++){
             var author = result['authors'][i];
-            tmpl.find('.oai_authors .value').append('<span class="author"><span class="firstname">' +
+            tmpl.find('.oai_authors .value').append('<div class="author"><span class="firstname">' +
                 author['firstname'] + '</span> <span class="lastname">' +
-                author['lastname'] + '</span></span>');
+                author['lastname'] + '</span></div>');
         }
         var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
         for(var i=0;i<ddcs.length;i++){
