@@ -14,7 +14,8 @@
 
         <p class='documentDescription'><span id='parent-fieldname-description' tal:content="here/Description"></span></p>
 
-        <div id="parent-fieldname-text" tal:define="text here/getRawText; parts python:text.split('<!-- zss -->')"> 
+        <div id="parent-fieldname-text" tal:define="text here/getText; parts
+        python:text.split('[zss]')"> 
           <p tal:replace="structure python:parts[0]"></p>
           
           <ul>
