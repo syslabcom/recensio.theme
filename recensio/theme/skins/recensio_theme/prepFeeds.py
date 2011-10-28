@@ -9,8 +9,8 @@
 ##
 
 
-zss = context.rezensionen.zeitschriften.objectValues()
-
+#zss = context.rezensionen.zeitschriften.objectValues()
+zss = context.portal_catalog(path='/recensio//rezensionen/zeitschriften', portal_type='Publication')
 feeds = []
 parms = {}
 
@@ -19,10 +19,11 @@ tmpl = """search_rss?modified_usage=range%%3Amin&isbn=&series=&sort_order=descen
 
 for z in zss:
 #  parms['path'] = '/'+z.absolute_url(1)
-  parms['path'] = '/'.join(z.getPhysicalPath())
-  parms['rss_title'] = z.Title()
+#  parms['path'] = '/'.join(z.getPhysicalPath())
+  parms['path'] = z.getPath()
+  parms['rss_title'] = z['Title']
   zurl = tmpl % parms
-  feeds.append((z.Title(), zurl))
+  feeds.append((z['Title'], zurl))
 
 feeds.sort()
 return feeds
