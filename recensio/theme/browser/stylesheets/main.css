@@ -169,7 +169,7 @@ div.column_footer ul.easyticker li a{
 /* formatting for homepage boxes */
 div#latest_reviewparts_box ul li {
    background: transparent url(++resource++recensio.theme.images/blank_icon.png) no-repeat 0 5px;
-   margin-bottom: 0;
+   margin-bottom: 0.25em;
    padding-bottom: 7px;
 }
 
@@ -186,7 +186,8 @@ div#latest_reviews_box ul li {
    position:absolute;
    left:25px;
    width: 212px;
-   padding: 0 0 0.5em 15px;
+   padding: 0 0 7px 15px;
+   margin-bottom: 0.25em;
 }
 div#latest_reviews_box ul li.not_first {
    /* Hide the elements in the ticker as soon as possible see homepage.js*/
@@ -204,7 +205,7 @@ div.box ul a.review-title {
 #content div.box ul{
    list-style: none;
    margin: 0 1em;
-   padding:0px;
+   padding:0.25em 0 0 0;
 /*   overflow:hidden; */
    position:relative;
 }
@@ -227,7 +228,7 @@ div#latest_reviews_box ul{
 .box ul li,
 ul.easyticker ul li {
    padding: 0 0 0.5em 40px;
-   margin-bottom: 0.5em;
+   margin-bottom: 0.25em;
    border-bottom:1px dashed #CCCCCC;
 /*   height: 30px; */
    min-height: 57px;
