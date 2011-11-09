@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1 (unreleased)
+2.1 (2011-11-09)
 ----------------
 
 - Fix to google sitemap #3100 [deroiste]
