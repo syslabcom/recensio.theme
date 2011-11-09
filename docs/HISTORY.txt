@@ -4,7 +4,7 @@ Changelog
 2.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix to google sitemap #3100 [deroiste]
 
 
 2.0 (2011-11-08)
