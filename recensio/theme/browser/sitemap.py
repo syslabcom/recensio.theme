@@ -8,7 +8,7 @@ class RecensioSiteMapView(SiteMapView):
     def objects(self):
         """ Overrides the SiteMapView method """
         catalog = getToolByName(self.context, 'portal_catalog')
-        for item in catalog.searchResults({'Language': 'all'}):
+        for item in catalog.searchResults({'Language': 'all', 'b_size': 10000}):
             location = item.getURL()
             map_item = {
                 'loc'      : location,
