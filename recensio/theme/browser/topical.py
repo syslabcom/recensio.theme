@@ -64,6 +64,8 @@ class BrowseTopicsView(SearchFacetsView):
                     if x.split(':')[0].strip('+') in self.facet_fields]
         self.form = form
         query.update(self.form)
+        if 'set_language' in query: 
+            del(query['set_language'])
         catalog = getToolByName(self.context, 'portal_catalog')
         self.results = catalog(query)
         if not self.kw.has_key('results'):
@@ -146,7 +148,7 @@ class BrowseTopicsView(SearchFacetsView):
                 params['facet.field'] = facets + [field]
             if value.startswith('"') and value.endswith('"'):
                 info.append(dict(title=field, value=value[1:-1],
-                    query=make_query(params), doseq=True))
+                    query=make_query(params, doseq=True)))
         return info
 
 

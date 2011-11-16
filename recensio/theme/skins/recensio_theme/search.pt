@@ -28,7 +28,7 @@
      tal:define="use_types_blacklist request/use_types_blacklist | python:True;
                  use_navigation_root request/use_navigation_root | python:True;
                  sort_on request/sort_on|nothing;
-                 results python:context.queryCatalog(REQUEST=request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root);
+                 results python:context.queryCatalog(REQUEST=request,use_navigation_root=use_navigation_root);
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_size python:10; b_size request/b_size | b_size;
                  b_start python:0;b_start request/b_start | b_start;
