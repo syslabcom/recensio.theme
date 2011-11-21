@@ -14,7 +14,10 @@ class PublicationsView(BrowserView):
 
     def _render_cachekey(method, self):
         preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
-        return (preflang)
+        portal_membership = getToolByName(self.context, 'portal_membership')
+        member = portal_membership.getAuthenticatedMember()
+        roles = member.getRolesInContext(self.context)
+        return (preflang, roles)
 
     @ram.cache(_render_cachekey)
     def __call__(self):
