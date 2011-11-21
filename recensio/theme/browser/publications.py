@@ -2,14 +2,23 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
+from plone.memoize import ram
+from plone.memoize.compress import xhtml_compress
+from plone.memoize.instance import memoize
+
 
 class PublicationsView(BrowserView):
     """ Overview page of publications """
 
     template = ViewPageTemplateFile('templates/publications.pt')
 
+    def _render_cachekey(method, self):
+        preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
+        return (preflang)
+
+    @ram.cache(_render_cachekey)
     def __call__(self):
-        return self.template(self)
+        return xhtml_compress(self.template(self))
 
     def publications(self):
         pc = self.context.portal_catalog

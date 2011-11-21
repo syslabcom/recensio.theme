@@ -7,15 +7,24 @@ from recensio.contenttypes.interfaces import IParentGetter
 from plone.i18n.locales.languages import _languagelist
 from ZTUtils import make_query
 
+from plone.memoize import ram
+from plone.memoize.compress import xhtml_compress
+from plone.memoize.instance import memoize
+
 REVIEW_LANGUAGES = [u'en', u'de', u'']
 
 class HomepageView(BrowserView):
     """ Dynamic elements on the homepage """
 
     template = ViewPageTemplateFile('templates/homepage.pt')
-
+    
+    def _render_cachekey(method, self):
+        preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
+        return (preflang)
+        
+    @ram.cache(_render_cachekey)
     def __call__(self):
-        return self.template(self)
+        return xhtml_compress(self.template(self))
 
     def format_effective_date(self, date_string):
         """Format the publication date as specified in #2627"""
