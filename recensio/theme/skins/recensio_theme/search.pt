@@ -170,7 +170,7 @@
                                url python:url if searchterm is None else '%s?searchterm=%s' % (url, searchterm);
                                listAuthors python:getattr(result.getObject(), 'formatted_authors_editorial', None);">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
-                    tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
+                    tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)" tal:on-error="string:[private]">
                   <img width="32" height="32"
                        tal:condition="python:is_review or is_presentation"
                        tal:attributes="src python:(is_review and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
