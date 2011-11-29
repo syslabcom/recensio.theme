@@ -3,6 +3,7 @@ from DateTime import DateTime
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from recensio.contenttypes.interfaces import IParentGetter
 from plone.i18n.locales.languages import _languagelist
 from ZTUtils import make_query
@@ -41,7 +42,7 @@ class HomepageView(BrowserView):
         authors = getattr(ob, "authors", "")
         if len(authors) > 0:
             firstname = authors[0]["firstname"].strip()
-            initial = len(firstname) > 0 and firstname[0]+". " or ""
+            initial = len(firstname) > 0 and safe_unicode(firstname)[0].encode('utf-8')+". " or ""
             lastname = authors[0]["lastname"]
             et_al = len(authors) > 1 and " et al." or ""
             if len(lastname) > 0:
