@@ -4,8 +4,9 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- unicode chars were cut in half when occuring as first letter in
+  author name, resulting in garbage in the "latest reviews" box
+  [reinhardt]
 
 2.1.2 (2011-11-21)
 ------------------

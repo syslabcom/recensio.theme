@@ -7,7 +7,7 @@ setup(name='recensio.theme',
       version=version,
       description="An installable theme for Plone 3",
       long_description=open("README.txt").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+                       open("CHANGES.txt").read(),
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
