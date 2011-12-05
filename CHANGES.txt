@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.3 (unreleased)
+2.1.3 (2011-12-05)
 ------------------
 
 - unicode chars were cut in half when occuring as first letter in
