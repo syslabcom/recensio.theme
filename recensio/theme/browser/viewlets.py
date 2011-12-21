@@ -56,7 +56,7 @@ class publicationlisting(ViewletBase):
 
         catalog = self.context.portal_catalog
         path = '/'.join(self.context.getPhysicalPath()[:-1])
-        query = {}
+        query = {"b_size" : 10000}
         query["path"] = {"query" : path}
         query["portal_type"] = ("Review Journal",
                                 "Review Monograph")
@@ -74,14 +74,16 @@ class publicationlisting(ViewletBase):
         display_size = '{0}{1}'.format(display_size_kb, display_size_bytes)
         return display_size
 
-    @ram.cache(lambda method,self,reviews: sha256(str([x for x in reviews])).digest())
+    @ram.cache(lambda method,self,
+               reviews: sha256(str([x for x in reviews])).digest())
     def get_volumes(self, reviews):
         def make_dict(obj):
-            return dict(absolute_url=obj.absolute_url(),
-                        effective=obj.effective(),
-                        getDecoratedTitle=obj.getDecoratedTitle(lastname_first=False),
-                        listAuthors=obj.listAuthors(),
-                        Title=obj.Title())
+            return dict(
+                absolute_url=obj.absolute_url(),
+                effective=obj.effective(),
+                getDecoratedTitle=obj.getDecoratedTitle(lastname_first=False),
+                listAuthors=obj.listAuthors(),
+                Title=obj.Title())
         volumes = {}
         for review in reviews:
             review_obj = review.getObject()
@@ -103,8 +105,11 @@ class publicationlisting(ViewletBase):
                         "Title" : review_parent.title,
                         "effective": review_parent.effective()}
                     if "issue.pdf" in review_parent.objectIds():
-                        issues[review_parent.id]["pdf"] = review_parent["issue.pdf"].absolute_url_path()
-                        issues[review_parent.id]["pdfsize"] = self._formatsize(review_parent["issue.pdf"].getField('file').get_size(review_parent["issue.pdf"]))
+                        issues[review_parent.id]["pdf"] = review_parent[
+                            "issue.pdf"].absolute_url_path()
+                        issues[review_parent.id]["pdfsize"] = self._formatsize(
+                            review_parent["issue.pdf"].getField(
+                                'file').get_size(review_parent["issue.pdf"]))
                 issue = issues[review_parent.id]
                 issue.setdefault("reviews", []).append(make_dict(review_obj))
 
@@ -124,15 +129,17 @@ class publicationlisting(ViewletBase):
             sorted_issues = []
             if vol.has_key("issues"):
                 for iss in vol["issues"].values():
-                    iss["reviews"] = sorted(iss["reviews"],
-                                            key=lambda x: x["listAuthors"] and x["listAuthors"][0])
+                    iss["reviews"] = sorted(
+                        iss["reviews"],
+                        key=lambda x: x["listAuthors"] and x["listAuthors"][0])
                 issues_list = [vol["issues"][i] for i in vol["issues"]]
                 sorted_issues = sorted(issues_list,
                                        key=lambda x: x.get("effective",""),
                                        reverse=True)
             if vol.has_key("reviews"):
-                sorted_reviews = sorted(vol["reviews"],
-                                        key=lambda x: x["listAuthors"] and x["listAuthors"][0])
+                sorted_reviews = sorted(
+                    vol["reviews"],
+                    key=lambda x: x["listAuthors"] and x["listAuthors"][0])
 
             volumes_list.append({"Title":vol.get("Title", ""),
                                  "effective":vol.get("effective", ""),
