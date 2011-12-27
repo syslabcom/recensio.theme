@@ -57,7 +57,7 @@
 
           <div class="box right_box">
             <a class="one-line"
-               tal:attributes="href string:${portal}/search?portal_type:list=Review+Monograph&amp;sort_on=effective&amp;sort_order=reverse">
+               tal:attributes="href string:${portal}/search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_reviews">
                 Neueste Rezensionen online</h2>
             </a>
