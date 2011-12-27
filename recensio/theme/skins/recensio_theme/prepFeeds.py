@@ -10,7 +10,7 @@
 
 
 #zss = context.rezensionen.zeitschriften.objectValues()
-zss = context.portal_catalog(path='/recensio//rezensionen/zeitschriften', portal_type='Publication')
+zss = context.portal_catalog(path='/recensio/rezensionen/zeitschriften', portal_type='Publication')
 feeds = []
 parms = {}
 
