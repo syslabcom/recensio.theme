@@ -249,17 +249,3 @@ class BrowseTopicsView(SearchFacetsView):
         return not filter(lambda x: x.has_key('clearquery'), submenu) == [
 ]
 
-    def punctuated_title(self, title, subtitle):
-        """ #4040
-
-        if the string already ends in an punctuation mark don't add
-        another """
-        last_char = title[-1]
-
-        if last_char in ["!", "?", ":", ";", ".", ","]:
-            return title
-        elif subtitle:
-            return title + "."
-        else:
-            return title
-

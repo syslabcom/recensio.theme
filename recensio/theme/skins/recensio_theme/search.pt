@@ -47,7 +47,8 @@
                  uq python:modules['ZTUtils'].url_query;
                  here_url context/@@plone_context_state/object_url;
                  rss_url python:uq(request=dict(QUERY_STRING=query_string, URL=here_url+ '/search_rss'), omit=['advanced_search', 'b_start', 'facet']);
-                 is_comment_search python:sort_on == 'last_comment_date' and request.has_key('total_comments');">
+                 is_comment_search python:sort_on == 'last_comment_date' and request.has_key('total_comments');
+                 rhv context/@@recensio-helper-view">
 
     <div id="content-core">
         <form name="searchform"
@@ -171,7 +172,8 @@
                                listAuthors python:getattr(result.getObject(), 'formatted_authors_editorial', None);">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)" tal:on-error="string:[private]">
-                  <img width="32" height="32"
+
+<img width="32" height="32"
                        tal:condition="python:is_review or is_presentation"
                        tal:attributes="src python:(is_review and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
                                        alt result_type;
@@ -195,7 +197,7 @@
                             <span class="volume-title" tal:content="volume_title" /><tal:c condition="volume_title">, </tal:c>
                           </tal:block>
                       </tal:block>
-                      <tal:block tal:content="result/pretty_title_or_id" /><tal:block condition="result/subtitle | nothing">. </tal:block></a><tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
+                      <tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /></a><tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
                   <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="result/isbn | nothing">, ISBN </tal:block><tal:block tal:condition="result/issn | nothing">, ISSN </tal:block>
                   <span class="isbn" tal:condition ="result/isbn | nothing" tal:content="result/isbn" />
                   <span class="issn" tal:condition ="result/issn | nothing" tal:content="result/issn" />

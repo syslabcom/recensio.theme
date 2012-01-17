@@ -75,6 +75,21 @@ class RecensioHelperView(BrowserView):
     def listAvailableContentLanguages(self):
         return listAvailableContentLanguages()
 
+    def punctuated_title(self, title, subtitle):
+        """ #4040
+
+        if the string already ends in an punctuation mark don't add
+        another """
+        last_char = title[-1]
+
+        p_title = title
+        if last_char not in ["!", "?", ":", ";", ".", ","] and subtitle:
+            p_title = p_title + "."
+
+        if subtitle:
+            p_title = p_title + " "
+
+        return p_title
 
 class CreateNewPresentationView(BrowserView):
     """ Helper to direct to new presentation creation """
