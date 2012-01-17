@@ -120,7 +120,7 @@ function takeOver(elem){
     j.find('.oai_keywords li').each(function(){
         var new_val = this.textContent;
         var existing_option = jq('#archetypes-fieldname-subject textarea#subject');
-        if (existing_option.val().match(new_val) {
+        if (existing_option.val().match(new_val)) {
             /* do nothing, already in */
         }else{
             /* Append */
