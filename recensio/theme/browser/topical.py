@@ -64,7 +64,7 @@ class BrowseTopicsView(SearchFacetsView):
                     if x.split(':')[0].strip('+') in self.facet_fields]
         self.form = form
         query.update(self.form)
-        if 'set_language' in query: 
+        if 'set_language' in query:
             del(query['set_language'])
         catalog = getToolByName(self.context, 'portal_catalog')
         self.results = catalog(query)
@@ -123,7 +123,7 @@ class BrowseTopicsView(SearchFacetsView):
                     indexes)
                 )
             return convertFacets(ffdict,
-                self.context, self.form, filt, 
+                self.context, self.form, filt,
                 facet_fields=self.facet_fields, queryparam=self.queryparam)
 
     def selected(self):
@@ -248,3 +248,18 @@ class BrowseTopicsView(SearchFacetsView):
         """
         return not filter(lambda x: x.has_key('clearquery'), submenu) == [
 ]
+
+    def punctuated_title(self, title, subtitle):
+        """ #4040
+
+        if the string already ends in an punctuation mark don't add
+        another """
+        last_char = title[-1]
+
+        if last_char in ["!", "?", ":", ";", ".", ","]:
+            return title
+        elif subtitle:
+            return title + "."
+        else:
+            return title
+
