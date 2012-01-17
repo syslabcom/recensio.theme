@@ -1,4 +1,7 @@
 jq(document).ready(function() {
+    jq(".fieldErrorBox").each(function() {
+        if (this.textContent) { jq(this).addClass('highlighted'); }
+    });
 // hide_title is a style for the rich text editor.
 // This logic will always hide/unhide the next element
     if (navigator.appName.search("Microsoft") !== -1) { // workaround for IE

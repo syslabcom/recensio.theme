@@ -756,10 +756,12 @@ font-size:1.2em;
 .relevance {
     display: None;
 }
-.fieldErrorBox {
-display: block;
+.fieldErrorBox.highlighted {
 border: 1px solid red;
 padding: 0.5em;
+}
+.fieldErrorBox {
+display: block;
 background-color: orange;
 color: black;
 margin: 1em;
