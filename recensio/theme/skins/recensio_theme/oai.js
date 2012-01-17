@@ -119,14 +119,22 @@ function takeOver(elem){
     }
     j.find('.oai_keywords li').each(function(){
         var new_val = this.textContent;
-        var existing_option = jq('#archetypes-fieldname-subject select[name=subject_existing_keywords:list] option[value=' + new_val + ']');
+        var existing_option = jq('#archetypes-fieldname-subject textarea#subject');
+        if (existing_option.val().match(new_val) {
+            /* do nothing, already in */
+        }else{
+            /* Append */
+            newstr = existing_option.val()+'\n'+new_val;
+            existing_option.val(newstr); 
+        }
+        /*var existing_option = jq('#archetypes-fieldname-subject select[name=subject_existing_keywords:list] option[value=' + new_val + ']');
         if(existing_option.length){
             existing_option.attr('selected', 'selected');
         }else{
             var old_new_keywords = jq('#archetypes-fieldname-subject textarea#subject_keywords').val()
             old_new_keywords = old_new_keywords + new_val + '\n';
             jq('#archetypes-fieldname-subject textarea#subject_keywords').val(old_new_keywords);
-        }
+        }*/
     });
     jq('#oaisuggestions .close').click();
 }
