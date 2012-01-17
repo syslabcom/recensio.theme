@@ -756,3 +756,13 @@ font-size:1.2em;
 .relevance {
     display: None;
 }
+.fieldErrorBox {
+display: block;
+border: 1px solid red;
+padding: 0.5em;
+background-color: orange;
+color: black;
+margin: 1em;
+font-family: Courier;
+font-size: 14px;
+}
