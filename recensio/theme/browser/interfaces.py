@@ -4,6 +4,9 @@ from zope.interface import Interface
 class IRecensioHelperView(Interface):
     """ Interface for the RecensioHelperView """
 
+class IRedirectToPublication(Interface):
+    """ Interface for RedirectToPublication """
+
 
 class IGeneratePdfRecension(Interface):
     """Interface for PDF generation BrowserView

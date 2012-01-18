@@ -12,10 +12,10 @@ from plone.i18n.locales.languages import _languagelist
 from plone.registry.interfaces import IRegistry
 
 from recensio.contenttypes import contenttypesMessageFactory as _
+from recensio.contenttypes.interfaces.review import IParentGetter
 from recensio.policy.interfaces import IRecensioSettings
 
-from interfaces import IRecensioHelperView
-
+from interfaces import IRecensioHelperView, IRedirectToPublication
 
 
 def listRecensioSupportedLanguages():
@@ -111,3 +111,11 @@ class ManageMyPresentationsView(BrowserView):
         if homefolder is None:
             return self.request.RESPONSE.redirect('login_form')
         return self.request.RESPONSE.redirect(homefolder.absolute_url())
+
+class RedirectToPublication(BrowserView):
+    implements(IRedirectToPublication)
+
+    def __call__(self):
+        pub = IParentGetter(self).get_parent_object_of_type("Publication")
+        uid = self.context.UID()
+        return self.request.RESPONSE.redirect(pub.absolute_url()+"#"+uid)

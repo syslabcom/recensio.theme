@@ -78,12 +78,13 @@ class publicationlisting(ViewletBase):
                reviews: sha256(str([x for x in reviews])).digest())
     def get_volumes(self, reviews):
         def make_dict(obj):
+            "contains the relevant details for listing a Review"
             return dict(
-                absolute_url=obj.absolute_url(),
-                effective=obj.effective(),
-                getDecoratedTitle=obj.getDecoratedTitle(lastname_first=False),
-                listAuthors=obj.listAuthors(),
-                Title=obj.Title())
+                absolute_url      = obj.absolute_url(),
+                effective         = obj.effective(),
+                getDecoratedTitle = obj.getDecoratedTitle(lastname_first=False),
+                listAuthors       = obj.listAuthors(),
+                Title             = obj.Title())
         volumes = {}
         for review in reviews:
             review_obj = review.getObject()
@@ -93,8 +94,9 @@ class publicationlisting(ViewletBase):
                 volume_obj = review_parent.aq_parent
                 if not volumes.has_key(volume_obj.id):
                     volumes[volume_obj.id] = {
-                        "Title": volume_obj.title,
-                        "effective": volume_obj.effective()
+                        "Title"     : volume_obj.title,
+                        "effective" : volume_obj.effective(),
+                        "UID"       : volume_obj.UID()
                         }
                 volume = volumes[volume_obj.id]
                 if not volume.has_key("issues"):
@@ -102,8 +104,10 @@ class publicationlisting(ViewletBase):
                 issues = volume["issues"]
                 if not issues.has_key(review_parent.id):
                     issues[review_parent.id] = {
-                        "Title" : review_parent.title,
-                        "effective": review_parent.effective()}
+                        "Title"     : review_parent.title,
+                        "effective" : review_parent.effective(),
+                        "UID"       : review_parent.UID()
+                        }
                     if "issue.pdf" in review_parent.objectIds():
                         issues[review_parent.id]["pdf"] = review_parent[
                             "issue.pdf"].absolute_url_path()
@@ -116,7 +120,9 @@ class publicationlisting(ViewletBase):
             elif review_parent.portal_type == "Volume":
                 if not volumes.has_key(review_parent.id):
                     volumes[review_parent.id] = {
-                        "Title" : review_parent.title }
+                        "Title" : review_parent.title,
+                        "UID"   : review_parent.UID()
+                        }
                 volume = volumes[review_parent.id]
                 volume.setdefault("reviews", []).append(make_dict(review_obj))
 
@@ -141,10 +147,13 @@ class publicationlisting(ViewletBase):
                     vol["reviews"],
                     key=lambda x: x["listAuthors"] and x["listAuthors"][0])
 
-            volumes_list.append({"Title":vol.get("Title", ""),
-                                 "effective":vol.get("effective", ""),
-                                 "issues":sorted_issues,
-                                 "reviews":sorted_reviews})
+            volumes_list.append({
+                    "Title"     : vol.get("Title", ""),
+                    "effective" : vol.get("effective", ""),
+                    "issues"    : sorted_issues,
+                    "reviews"   : sorted_reviews,
+                    "UID"       : vol.get("UID", vol.keys()),
+                    })
 
         sorted_volumes  = sorted(volumes_list,
                                  key=lambda x: x.get("effective", ""),

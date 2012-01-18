@@ -6,8 +6,8 @@
 
   <a name="publicationslisting" />
   <tal:volumes repeat="volume view/volumes | nothing">
-    <h2 tal:content="volume/Title" />
-
+    <h2 tal:content="volume/Title"
+        tal:attributes="id volume/UID"/>
     <ul>
       <li tal:repeat="review volume/reviews | nothing">
         <a tal:attributes="href review/absolute_url"
@@ -16,7 +16,8 @@
     </ul>
 
     <tal:issues repeat="issue volume/issues | nothing">
-      <h3 tal:content="issue/Title" />
+      <h3 tal:content="issue/Title"
+          tal:attributes="id issue/UID"/>
       <span tal:condition="issue/pdf | nothing">
           <a href="" tal:attributes="href string:${issue/pdf}/at_download/file">
                 <img src="pdf.png" alt="">&nbsp;

@@ -113,6 +113,20 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="recensio.contenttypes.interfaces.issue.IIssue"
+        name="redirect-to-publication"
+        class=".views.RedirectToPublication"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="recensio.contenttypes.interfaces.volume.IVolume"
+        name="redirect-to-publication"
+        class=".views.RedirectToPublication"
+        permission="zope2.View"
+        />
+
     <browser:viewlet
         name="publicationlisting"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
