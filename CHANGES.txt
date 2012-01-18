@@ -1,6 +1,16 @@
 Changelog
 =========
 
+2.1.5 (2012-01-18)
+------------------
+
+- redirect-to-publication: redirects from an Issue or Volume to the
+  relevant part of the Publication listing page #3985 [deroiste]
+- Schlagwort-Import aus OPAC klappt nicht mehr #4107 [pilz]
+- Fixup punctuation in search and topic browsing result titles #4040
+  [deroiste]
+
+
 2.1.4 (2011-12-22)
 ------------------
 
