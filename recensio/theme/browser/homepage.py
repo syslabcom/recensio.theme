@@ -7,6 +7,8 @@ from Products.CMFPlone.utils import safe_unicode
 from recensio.contenttypes.interfaces import IParentGetter
 from plone.i18n.locales.languages import _languagelist
 from ZTUtils import make_query
+from Acquisition import aq_inner
+from zope.component import getMultiAdapter
 
 from plone.memoize import ram
 from plone.memoize.compress import xhtml_compress
@@ -148,8 +150,14 @@ class HomepageView(BrowserView):
                 review_state="published",
                 path='/'.join(zeitschriften.getPhysicalPath()),
                 sort_on='Title')
-            pubs = pc(query)
-            return sorted(pubs, key=lambda p: p['Title'].lower())
+
+            context = aq_inner(self.context)
+            portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
+
+            lang = portal_state.language()
+
+            pubs = [brain.getObject().restrictedTraverse(brain.getObject().getDefaultPage()).getTranslations()[lang][0] for brain in pc(query)]
+            return sorted(pubs, key=lambda p: p.Title().lower())
         else:
             # This can only happen, when there is no initial content yet
             return []
