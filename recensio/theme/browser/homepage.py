@@ -42,13 +42,16 @@ class HomepageView(BrowserView):
     def format_authors(self, brain):
         ob = brain.getObject()
         authors = getattr(ob, "authors", "")
-        if len(authors) > 0:
-            firstname = authors[0]["firstname"].strip()
-            initial = len(firstname) > 0 and safe_unicode(firstname)[0].encode('utf-8')+". " or ""
-            lastname = authors[0]["lastname"]
-            et_al = len(authors) > 1 and " et al." or ""
-            if len(lastname) > 0:
-                return "%s%s%s:" %(initial, lastname, et_al)
+        if len(authors) == 0 or authors == ({'lastname' : '', 'firstname' : ''},):
+            authors = getattr(ob, "editorial", "")
+        if len(authors) == 0:
+            return ""
+        firstname = authors[0]["firstname"].strip()
+        initial = len(firstname) > 0 and safe_unicode(firstname)[0].encode('utf-8')+". " or ""
+        lastname = authors[0]["lastname"]
+        et_al = len(authors) > 1 and " et al." or ""
+        if len(lastname) > 0:
+            return "%s%s%s:" %(initial, lastname, et_al)
         return ""
 
     def getReviewMonographs(self):
