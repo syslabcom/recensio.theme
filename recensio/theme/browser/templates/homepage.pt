@@ -110,14 +110,14 @@
                  tal:define="results view/getPrintedPresentations">
               <ul>
                 <li tal:repeat="res results">
-                  <span tal:content="python:view.format_authors(res)"/>
+                  <span tal:content="res/authors"/>
                   <span class="ellipsis_container">
                     <a href="#" class="ellipsis_text"
-                       tal:attributes="href res/getURL"
-                       tal:content="python:res.getObject().punctuated_title_and_subtitle">title</a>
+                       tal:attributes="href res/url"
+                       tal:content="res/title">title</a>
                   </span>
                   <div class="effective_date"
-                       tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
+                       tal:content="res/date"/>
                 </li>
               </ul>
             </div>
@@ -135,11 +135,11 @@
                 <li tal:repeat="res results">
                   <span class="ellipsis_container">
                     <a href="#" class="ellipsis_text"
-                       tal:attributes="href res/getURL" tal:content="res/Title">
+                       tal:attributes="href res/url" tal:content="res/title">
                     title</a>
                   </span>
                   <div class="effective_date"
-                       tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
+                       tal:content="res/date"/>
                 </li>
               </ul>
             </div>
@@ -152,8 +152,8 @@
           <h3 i18n:translate="heading_participating_publications">
             Teilnehmende Zeitschriften</h3>
           <tal:rep repeat="publication view/getPublications">
-            <a tal:attributes="href publication/absolute_url"
-               tal:content="publication/Title">
+            <a tal:attributes="href publication/url"
+               tal:content="publication/title">
               Publication</a>
             <span tal:condition="not:repeat/publication/end">|</span>
           </tal:rep>

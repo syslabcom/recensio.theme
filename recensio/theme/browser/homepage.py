@@ -14,6 +14,9 @@ from plone.memoize import ram
 from plone.memoize.compress import xhtml_compress
 from plone.memoize.instance import memoize
 
+import logging
+log = logging.getLogger('recensio.theme')
+
 REVIEW_LANGUAGES = [u'en', u'de', u'']
 
 class HomepageView(BrowserView):
@@ -26,9 +29,10 @@ class HomepageView(BrowserView):
         portal_membership = getToolByName(self.context, 'portal_membership')
         member = portal_membership.getAuthenticatedMember()
         roles = member.getRolesInContext(self.context)
+        
         return (preflang, roles)
         
-    @ram.cache(_render_cachekey)
+#    @ram.cache(_render_cachekey)
     def __call__(self):
         return xhtml_compress(self.template(self))
 
@@ -54,6 +58,7 @@ class HomepageView(BrowserView):
             return "%s%s%s:" %(initial, lastname, et_al)
         return ""
 
+    @ram.cache(_render_cachekey)
     def getReviewMonographs(self):
         pc = getToolByName(self.context, 'portal_catalog')
         langinfo = _languagelist.copy()
@@ -62,7 +67,7 @@ class HomepageView(BrowserView):
         query = dict(portal_type=["Review Monograph", "Review Journal"],
             review_state="published",
             sort_on='effective',
-            sort_order='reverse')
+            sort_order='reverse', b_size=5)
         resultset = list()
         for lang in REVIEW_LANGUAGES:
             q = query.copy()
@@ -82,33 +87,45 @@ class HomepageView(BrowserView):
             # print "getReviewMonographs", lang, len(res)
         return resultset
 
+    @ram.cache(_render_cachekey)
     def getPrintedPresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type=['Presentation Article Review',
                 'Presentation Monograph', 'Presentation Collection'],
                 review_state="published",
             sort_on='effective',
-            sort_order='reverse')
+            sort_order='reverse', b_size=3)
         res = pc(query)
-        # print "getPrintedPresentations", len(res)
-        return res[:3]
+        data = []
+        for r in res[:3]:
+            ob = r.getObject()
+            data.append(dict(url=r.getURL(), 
+                            authors=self.format_authors(r), 
+                            title=ob.punctuated_title_and_subtitle, 
+                            date=self.format_effective_date(r['EffectiveDate'])))
+        return data
 
+    @ram.cache(_render_cachekey)
     def getOnlinePresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type=['Presentation Online Resource'],
             review_state="published",
             sort_on='effective',
-            sort_order='reverse')
+            sort_order='reverse', b_size=3)
         res = pc(query)
         # print "getOnlinePresentations", len(res)
-        return res[:3]
+        data = []
+        for r in res[:3]:
+            data.append(dict(url=r.getURL(), title=r['Title'], date=self.format_effective_date(r['EffectiveDate'])))
+        return data
 
+    @ram.cache(_render_cachekey)
     def getReviewJournals(self):
         pc = getToolByName(self.context, 'portal_catalog')
         query = dict(portal_type=['Issue'],
             review_state="published",
             sort_on='effective',
-            sort_order='reverse')
+            sort_order='reverse', b_size=3)
         res = pc(query)
         resultset = list()
         for r in res[:3]:
@@ -142,7 +159,8 @@ class HomepageView(BrowserView):
                 )
         # print "getReviewJournals", len(res)
         return resultset
-
+    
+    @ram.cache(_render_cachekey)
     def getPublications(self):
         portal = self.context.portal_url.getPortalObject()
         rezensionen = getattr(portal, 'rezensionen', None)
@@ -158,9 +176,10 @@ class HomepageView(BrowserView):
             portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
 
             lang = portal_state.language()
-
+            log.info('Language: %s' % lang)
             pubs = [brain.getObject().restrictedTraverse(brain.getObject().getDefaultPage()).getTranslations()[lang][0] for brain in pc(query)]
-            return sorted(pubs, key=lambda p: p.Title().lower())
+            items = [dict(title=x.Title(), url='/'+x.absolute_url(1)) for x in pubs]
+            return sorted(items, key=lambda p: p['title'].lower())
         else:
             # This can only happen, when there is no initial content yet
             return []
