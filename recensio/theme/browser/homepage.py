@@ -81,7 +81,10 @@ class HomepageView(BrowserView):
                 dict(
                     language=lang or 'int',
                     langname=langinfo[lang]['native'],
-                    results=res[:5],
+                    results=[dict(authors=self.format_authors(x),
+                                    url=x.getURL(),
+                                    title=x.getObject().punctuated_title_and_subtitle,
+                                    date=self.format_effective_date(x['EffectiveDate'])) for x in res[:5]],
                     query_str=make_query(q))
                 )
             # print "getReviewMonographs", lang, len(res)
@@ -153,8 +156,7 @@ class HomepageView(BrowserView):
                     publication_url=publication_url,
                     review_url=r.getURL(),
                     volume_title=volume_title,
-                    volume_url=volume_url,
-                    review_brain=r
+                    volume_url=volume_url
                     )
                 )
         # print "getReviewJournals", len(res)

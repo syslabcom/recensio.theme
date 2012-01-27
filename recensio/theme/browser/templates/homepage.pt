@@ -76,18 +76,18 @@
                   <tal:res repeat="res langres/results">
                     <li tal:define="is_first python:repeat['res'].start and 'is_first' or 'not_first'"
                         tal:attributes="class string:${is_first}">
-                      <span tal:content="python:view.format_authors(res)"/>
+                      <span tal:content="res/authors"/>
                       <span>
                         <a href="#" class="ellipsis_container"
-                           tal:attributes="href res/getURL;
+                           tal:attributes="href res/url;
                                            class string:ellipsis_container">
                           <span class="ellipsis_text"
-                                tal:content="python:res.getObject().punctuated_title_and_subtitle">
+                                tal:content="res/title">
                           </span>
                         </a>
                       </span>
                       <div class="effective_date"
-                           tal:content="python:view.format_effective_date(res.EffectiveDate)"/>
+                           tal:content="res/date"/>
                     </li>
                   </tal:res>
                 </ul>
