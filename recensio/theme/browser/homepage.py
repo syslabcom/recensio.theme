@@ -170,13 +170,12 @@ class HomepageView(BrowserView):
             query = dict(portal_type=['Publication'],
                 review_state="published",
                 path='/'.join(zeitschriften.getPhysicalPath()),
-                sort_on='Title')
+                sort_on='Title', b_size=1000)
 
             context = aq_inner(self.context)
             portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
 
             lang = portal_state.language()
-            log.info('Language: %s' % lang)
             pubs = [brain.getObject().restrictedTraverse(brain.getObject().getDefaultPage()).getTranslations()[lang][0] for brain in pc(query)]
             items = [dict(title=x.Title(), url='/'+x.absolute_url(1)) for x in pubs]
             return sorted(items, key=lambda p: p['title'].lower())
