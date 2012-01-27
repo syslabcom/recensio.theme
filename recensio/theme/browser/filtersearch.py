@@ -22,7 +22,9 @@ class FilterSearchView(BrowseTopicsView):
         self.facet_fields = filter_facets
         self.default_query = {'portal_type': PORTAL_TYPES,
                               'facet': 'true',
-                              'facet.field': self.facet_fields, }
+                              'facet.field': self.facet_fields,
+                              'b_size': 10,
+                              'b_start': 0, }
 
         if IATTopic.providedBy(context):
             self.default_query.update(context.buildQuery())
