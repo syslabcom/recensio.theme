@@ -19,9 +19,8 @@ class AuthorSearchView(BrowserView):
         return self.template(self)
 
     def _render_cachekey(method, self):
-        preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
         current_date = DateTime().Date()
-        return (preflang, current_date)
+        return (current_date, )
 
     @property
     @ram.cache(_render_cachekey)

@@ -9,6 +9,7 @@ from zope.viewlet.interfaces import IViewlet
 from plone.app.layout.viewlets import ViewletBase
 from plone.memoize import ram
 from hashlib import sha256
+from DateTime import DateTime
 
 class publicationlisting(ViewletBase):
     """ Lists Volumes/Issues/Reviews in the current Publication"""
@@ -30,6 +31,7 @@ class publicationlisting(ViewletBase):
             return True
         return False
 
+    @ram.cache(lambda method, self: DateTime().Date())
     def volumes(self):
         """ Return a tree of Reviews for the current publication
 
