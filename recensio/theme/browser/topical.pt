@@ -215,7 +215,7 @@
                         <a href="#" tal:content="subitem/voc"
                            tal:condition="subitem/query"
                            tal:define="query_or_clear python:(True and subitem.get('clearquery', False) or subitem.get('query'))"
-                           tal:attributes="href string:${request/ACTUAL_URL}?${query_or_clear}';
+                           tal:attributes="href string:${request/ACTUAL_URL}?${query_or_clear};
                                            class python:subitem.has_key('clearquery') and 'selected_facet' or '';"
                            i18n:translate="" />
                         <span tal:content="subitem/voc"

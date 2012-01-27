@@ -29,7 +29,9 @@ class BrowseTopicsView(SearchFacetsView):
         self.facet_fields = browsing_facets
         self.default_query = {'portal_type': PORTAL_TYPES,
                               'facet': 'true',
-                              'facet.field': self.facet_fields }
+                              'facet.field': self.facet_fields,
+                              'b_size': 10,
+                              'b_start': 0, }
 
         voc = getToolByName(context, 'portal_vocabularies', None)
         if not voc:
