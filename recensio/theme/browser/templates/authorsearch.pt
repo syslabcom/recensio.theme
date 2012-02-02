@@ -64,7 +64,7 @@
       <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
                        b_size python:30; b_size request/b_size | b_size;
                        b_start python:0; b_start request/b_start | b_start;
-                       batch python:Batch(view.authors, b_size, int(b_start), orphan=1);
+                       batch python:Batch(view.authors, b_size, int(b_start), orphan=0);
                        portal_url context/portal_url;"
            class="authorsearch">
         
