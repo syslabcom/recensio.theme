@@ -85,7 +85,7 @@ class publicationlisting(ViewletBase):
                 absolute_url      = obj.absolute_url(),
                 effective         = obj.effective(),
                 getDecoratedTitle = obj.getDecoratedTitle(lastname_first=False),
-                listAuthors       = obj.listAuthors(),
+                listAuthorsAndEditors = obj.listAuthorsAndEditors(),
                 Title             = obj.Title())
         volumes = {}
         for review in reviews:
@@ -139,7 +139,7 @@ class publicationlisting(ViewletBase):
                 for iss in vol["issues"].values():
                     iss["reviews"] = sorted(
                         iss["reviews"],
-                        key=lambda x: x["listAuthors"] and x["listAuthors"][0])
+                        key=lambda x: x["listAuthorsAndEditors"] and x["listAuthorsAndEditors"][0])
                 issues_list = [vol["issues"][i] for i in vol["issues"]]
                 sorted_issues = sorted(issues_list,
                                        key=lambda x: x.get("effective",""),
@@ -147,7 +147,7 @@ class publicationlisting(ViewletBase):
             if vol.has_key("reviews"):
                 sorted_reviews = sorted(
                     vol["reviews"],
-                    key=lambda x: x["listAuthors"] and x["listAuthors"][0])
+                    key=lambda x: x["listAuthorsAndEditors"] and x["listAuthorsAndEditors"][0])
 
             volumes_list.append({
                     "Title"     : vol.get("Title", ""),
