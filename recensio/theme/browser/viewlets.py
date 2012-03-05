@@ -31,7 +31,7 @@ class publicationlisting(ViewletBase):
             return True
         return False
 
-    @ram.cache(lambda method, self: DateTime().Date())
+    @ram.cache(lambda method, self: self.context.absolute_url() + str(DateTime().Date()))
     def volumes(self):
         """ Return a tree of Reviews for the current publication
 
