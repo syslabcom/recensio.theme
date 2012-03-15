@@ -175,11 +175,21 @@ class HomepageView(BrowserView):
                 sort_on='Title', b_size=1000)
 
             context = aq_inner(self.context)
-            portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
+            portal_state = getMultiAdapter(
+                (context, self.request), name=u'plone_portal_state')
 
             lang = portal_state.language()
-            pubs = [brain.getObject().restrictedTraverse(brain.getObject().getDefaultPage()).getTranslations()[lang][0] for brain in pc(query)]
-            items = [dict(title=x.Title(), url='/'+x.absolute_url(1)) for x in pubs]
+            items = []
+            pubs = []
+            for brain in pc(query):
+                obj = brain.getObject()
+                default_page = obj.restrictedTraverse(obj.getDefaultPage())
+                translations = default_page.getTranslations()
+                translation = translations.get(lang, None)
+                if translation:
+                    pubs.append(translation)
+                    items.append(
+                        {"title" : x.Title(), "url" : '/'+x.absolute_url(1)})
             return sorted(items, key=lambda p: p['title'].lower())
         else:
             # This can only happen, when there is no initial content yet
