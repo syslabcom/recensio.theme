@@ -25,12 +25,14 @@ class HomepageView(BrowserView):
     template = ViewPageTemplateFile('templates/homepage.pt')
 
     def _render_cachekey(method, self):
-        preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
+        preflang = getToolByName(
+            self.context, 'portal_languages').getPreferredLanguage()
         portal_membership = getToolByName(self.context, 'portal_membership')
         member = portal_membership.getAuthenticatedMember()
         roles = member.getRolesInContext(self.context)
 
-        return (preflang, roles)
+        today = DateTime().strftime("%Y-%m-%d")
+        return (preflang, roles, today)
 
 #    @ram.cache(_render_cachekey)
     def __call__(self):
