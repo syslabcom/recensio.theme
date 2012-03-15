@@ -4,7 +4,7 @@ Changelog
 2.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added the current date to the homepage cachekey #4384 [deroiste]
 
 
 2.3 (2012-03-04)
