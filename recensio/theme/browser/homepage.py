@@ -23,15 +23,15 @@ class HomepageView(BrowserView):
     """ Dynamic elements on the homepage """
 
     template = ViewPageTemplateFile('templates/homepage.pt')
-    
+
     def _render_cachekey(method, self):
         preflang = getToolByName(self.context, 'portal_languages').getPreferredLanguage()
         portal_membership = getToolByName(self.context, 'portal_membership')
         member = portal_membership.getAuthenticatedMember()
         roles = member.getRolesInContext(self.context)
-        
+
         return (preflang, roles)
-        
+
 #    @ram.cache(_render_cachekey)
     def __call__(self):
         return xhtml_compress(self.template(self))
@@ -102,9 +102,9 @@ class HomepageView(BrowserView):
         data = []
         for r in res[:3]:
             ob = r.getObject()
-            data.append(dict(url=r.getURL(), 
-                            authors=self.format_authors(r), 
-                            title=ob.punctuated_title_and_subtitle, 
+            data.append(dict(url=r.getURL(),
+                            authors=self.format_authors(r),
+                            title=ob.punctuated_title_and_subtitle,
                             date=self.format_effective_date(r['EffectiveDate'])))
         return data
 
@@ -161,7 +161,7 @@ class HomepageView(BrowserView):
                 )
         # print "getReviewJournals", len(res)
         return resultset
-    
+
     @ram.cache(_render_cachekey)
     def getPublications(self):
         portal = self.context.portal_url.getPortalObject()
