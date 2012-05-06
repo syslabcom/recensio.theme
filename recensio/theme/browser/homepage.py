@@ -182,16 +182,15 @@ class HomepageView(BrowserView):
 
             lang = portal_state.language()
             items = []
-            pubs = []
             for brain in pc(query):
                 obj = brain.getObject()
                 default_page = obj.restrictedTraverse(obj.getDefaultPage())
                 translations = default_page.getTranslations()
                 translation = translations.get(lang, None)
                 if translation:
-                    pubs.append(translation)
                     items.append(
-                        {"title" : x.Title(), "url" : '/'+x.absolute_url(1)})
+                        {"title" : translation.Title(),
+                         "url" : '/'+translation.absolute_url(1)})
             return sorted(items, key=lambda p: p['title'].lower())
         else:
             # This can only happen, when there is no initial content yet
