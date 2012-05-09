@@ -10,6 +10,9 @@ from plone.app.layout.viewlets import ViewletBase
 from plone.memoize import ram
 from hashlib import sha256
 from DateTime import DateTime
+import logging
+
+log = logging.getLogger(__name__)
 
 class publicationlisting(ViewletBase):
     """ Lists Volumes/Issues/Reviews in the current Publication"""
@@ -89,7 +92,11 @@ class publicationlisting(ViewletBase):
                 Title             = obj.Title())
         volumes = {}
         for review in reviews:
-            review_obj = review.getObject()
+            try:
+                review_obj = review.getObject()
+            except AttributeError:
+                log.error("Solr has search results for an object that does not exist in zodb. This can lead to exceptions. See #4656 how to fix it")
+                continue
             review_parent = review_obj.aq_parent
             if review_parent.portal_type == "Issue":
                 # The Issue parent must be a Volume
