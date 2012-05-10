@@ -4,7 +4,7 @@ Changelog
 2.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Bugfix, error in homepage.py reverting to version from 2.3 [deroiste]
 
 
 2.5 (2012-05-06)
