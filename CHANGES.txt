@@ -1,10 +1,11 @@
 Changelog
 =========
 
-2.7 (unreleased)
+2.7 (2012-06-15)
 ----------------
 
-- Nothing changed yet.
+- Handle title subtitle case. See #4022
+  [do3cc]
 
 
 2.6 (2012-05-10)
