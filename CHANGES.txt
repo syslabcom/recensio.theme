@@ -4,14 +4,15 @@ Changelog
 2.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixing caching issues. See #5276
+  [gerken]
 
 
 2.7 (2012-06-15)
 ----------------
 
 - Handle title subtitle case. See #4022
-  [do3cc]
+  [gerken]
 
 
 2.6 (2012-05-10)

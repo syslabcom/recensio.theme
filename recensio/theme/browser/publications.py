@@ -1,6 +1,7 @@
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from DateTime import DateTime
 
 from plone.memoize import ram
 from plone.memoize.compress import xhtml_compress
@@ -17,7 +18,8 @@ class PublicationsView(BrowserView):
         portal_membership = getToolByName(self.context, 'portal_membership')
         member = portal_membership.getAuthenticatedMember()
         roles = member.getRolesInContext(self.context)
-        return (preflang, roles)
+        today = DateTime().strftime("%Y-%m-%d")
+        return (preflang, roles, today)
 
     @ram.cache(_render_cachekey)
     def __call__(self):

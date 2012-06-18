@@ -11,8 +11,17 @@ from plone.memoize import ram
 from hashlib import sha256
 from DateTime import DateTime
 import logging
+from Products.CMFCore.utils import getToolByName
 
 log = logging.getLogger(__name__)
+
+def _render_cachekey(method, self):
+    portal_membership = getToolByName(self.context, 'portal_membership')
+    member = portal_membership.getAuthenticatedMember()
+    roles = member.getRolesInContext(self.context)
+    today = DateTime().strftime("%Y-%m-%d")
+    context_url = self.context.absolute_url()
+    return (context_url, roles, today)
 
 class publicationlisting(ViewletBase):
     """ Lists Volumes/Issues/Reviews in the current Publication"""
@@ -34,7 +43,8 @@ class publicationlisting(ViewletBase):
             return True
         return False
 
-    @ram.cache(lambda method, self: self.context.absolute_url() + str(DateTime().Date()))
+
+    @ram.cache(self._render_cachekey)
     def volumes(self):
         """ Return a tree of Reviews for the current publication
 
