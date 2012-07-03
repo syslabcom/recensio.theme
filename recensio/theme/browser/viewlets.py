@@ -44,7 +44,7 @@ class publicationlisting(ViewletBase):
         return False
 
 
-    @ram.cache(self._render_cachekey)
+    @ram.cache(_render_cachekey)
     def volumes(self):
         """ Return a tree of Reviews for the current publication
 
