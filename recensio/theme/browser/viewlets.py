@@ -105,7 +105,7 @@ class publicationlisting(ViewletBase):
             try:
                 review_obj = review.getObject()
             except AttributeError:
-                log.error("Solr has search results for an object that does not exist in zodb. This can lead to exceptions. See #4656 how to fix it")
+                log.error("Solr has search results for an object that does not exist in zodb. This can lead to exceptions. See #4656 how to fix it", exc_info=True)
                 continue
             review_parent = review_obj.aq_parent
             if review_parent.portal_type == "Issue":
