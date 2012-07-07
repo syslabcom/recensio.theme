@@ -57,7 +57,6 @@ class AuthorSearchView(BrowserView):
         current_date = DateTime().Date()
         return (current_date, )
 
-    @property
     @ram.cache(_render_cachekey)
     def all_authors(self):
         catalog = getToolByName(self.context, 'portal_catalog')
@@ -105,17 +104,18 @@ class AuthorSearchView(BrowserView):
 
         return authors
 
+    @property
     def authors(self):
         author_string = self.request.get('authors')
         if author_string:
             authors = [x.lower() for x in author_string.split(' ')]
-            for one_author_data in self.all_authors:
+            for one_author_data in self.all_authors():
                 one_author_lowered = one_author_data['name'].lower()
                 for author_searched in authors:
                     if author_searched in one_author_lowered():
                         yield one_author_data
         else:
-            for one_author in self.all_authors:
+            for one_author in self.all_authors():
                 yield one_author
 
     @property
