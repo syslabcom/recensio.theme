@@ -108,15 +108,16 @@ class AuthorSearchView(BrowserView):
     def authors(self):
         author_string = self.request.get('authors')
         if author_string:
+            retval = []
             authors = [x.lower() for x in author_string.split(' ')]
             for one_author_data in self.all_authors():
                 one_author_lowered = one_author_data['name'].lower()
                 for author_searched in authors:
-                    if author_searched in one_author_lowered():
-                        yield one_author_data
+                    if author_searched in one_author_lowered:
+                        retval.append(one_author_data)
+            return retval
         else:
-            for one_author in self.all_authors():
-                yield one_author
+            return self.all_authors()
 
     @property
     @ram.cache(_render_cachekey)
