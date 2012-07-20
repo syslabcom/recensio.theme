@@ -40,6 +40,6 @@ class PublicationsView(BrowserView):
 		  sort_on="sortable_title",
                   review_state='published')
         for pub in pubs:
-            publist.append(self.brain_to_pub(brain, currlang)
+            publist.append(self.brain_to_pub(brain, currlang))
         return publist
         
