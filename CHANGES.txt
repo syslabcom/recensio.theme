@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.9 (unreleased)
-----------------
+2.9.0 (2012-07-22)
+------------------
 
 - Improved caching of authorsearch, iow it works again
   [gerken]
