@@ -7,17 +7,20 @@ from plone.memoize import ram, view
 from plone.memoize.compress import xhtml_compress
 from plone.memoize.instance import memoize
 
+def _render_cachekey(method, self, brain, lang):
+    return(brain.getPath(), lang, DateTime().dayOfYear())
 
 class PublicationsView(BrowserView):
     """ Overview page of publications """
 
-    template = ViewPageTemplateFile('templates/publications.pt')
+    __call__ = ViewPageTemplateFile('templates/publications.pt')
 
-    @view.memoize
+    @ram.cache(_render_cachekey)
     def brain_to_pub(self, brain, lang):
+        print brain.Title
         pubob = brain.getObject()
         if 'logo' in pubob.objectIds():
-            logourl = pub.getURL()+'/logo/image_thumb'
+            logourl = brain.getURL()+'/logo/image_thumb'
         else:
             logourl = self.context.portal_url()+'/empty_publication.jpg'
         if pubob.getDefaultPage():
@@ -29,7 +32,7 @@ class PublicationsView(BrowserView):
                 or pubob.Title()
         desc = defob and defob.Description() or pubob.Description()
         morelink = defob and defob.absolute_url() or ""
-        return dict(ob=pubob, title=title, desc=desc, logo=logourl, link=morelink)
+        return dict(title=title, desc=desc, logo=logourl, link=morelink)
 
     def publications(self):
         pc = self.context.portal_catalog
@@ -37,9 +40,8 @@ class PublicationsView(BrowserView):
         currlang = self.context.portal_languages.getPreferredLanguage()
         pubs = pc(portal_type="Publication", 
                   path='/'.join(self.context.getPhysicalPath()), 
-		  sort_on="sortable_title",
+                  sort_on="sortable_title",
                   review_state='published')
         for pub in pubs:
-            publist.append(self.brain_to_pub(brain, currlang))
+            publist.append(self.brain_to_pub(pub, currlang))
         return publist
-        
