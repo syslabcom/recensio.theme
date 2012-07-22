@@ -4,7 +4,10 @@ Changelog
 2.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Improved caching of authorsearch, iow it works again
+  [gerken]
+- Improved caching of reviewpage
+  [gerken]
 
 
 2.8 (2012-06-19)
