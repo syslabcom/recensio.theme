@@ -17,7 +17,6 @@ class PublicationsView(BrowserView):
 
     @ram.cache(_render_cachekey)
     def brain_to_pub(self, brain, lang):
-        print brain.Title
         pubob = brain.getObject()
         if 'logo' in pubob.objectIds():
             logourl = brain.getURL()+'/logo/image_thumb'
