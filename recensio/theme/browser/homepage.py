@@ -127,29 +127,40 @@ class HomepageView(BrowserView):
     @ram.cache(_render_cachekey)
     def getReviewJournals(self):
         pc = getToolByName(self.context, 'portal_catalog')
-        query = dict(portal_type=['Issue'],
+        query = dict(portal_type=['Issue', 'Volume'],
             review_state="published",
             sort_on='effective',
-            sort_order='reverse', b_size=3)
+            sort_order='reverse', b_size=6)
         res = pc(query)
         resultset = list()
-        for r in res[:3]:
+        objects = []
+        for r in res:
+            objects.append(r.getObject())
+        for obj in objects:
+            if obj.portal_type == "Issue" and \
+                obj.__parent__.portal_type == "Volume":
+                if obj.__parent__ in objects:
+                    objects.pop(obj.__parent__)
+
+        for r in res[:]:
             try:
                 o = r.getObject()
-            except:
-                # XXX log error here
+            except (AttributeError, KeyError):
+                log.exception("Could not get object. Probably this means "
+                    "the is a mismatch with solr")
+                continue
+            if o not in objects:
                 continue
             pg = IParentGetter(o)
             publication = pg.get_parent_object_of_type('Publication')
             publication_title = publication and publication.Title() or u''
             publication_url = publication and publication.absolute_url() or u''
-            volume = pg.get_parent_object_of_type('Volume')
+            if o.portal_type == 'Volume':
+                volume = o
+            else:
+                volume = pg.get_parent_object_of_type('Volume')
             volume_title = volume and volume.Title() or u''
             volume_url = volume and volume.absolute_url() or u''
-            # temporary hack until Issues can be added directly to publications
-            # see #2458
-            if volume_title == r.Title:
-                volume_title = u''
             resultset.append(
                 dict(
                     Title=r.Title,
@@ -162,7 +173,7 @@ class HomepageView(BrowserView):
                     )
                 )
         # print "getReviewJournals", len(res)
-        return resultset
+        return resultset[:3]
 
     @ram.cache(_render_cachekey)
     def getPublications(self):
