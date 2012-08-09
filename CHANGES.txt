@@ -1,10 +1,11 @@
 Changelog
 =========
 
-2.9.0.2 (unreleased)
+2.9.0.2 (2012-08-09)
 --------------------
 
-- Nothing changed yet.
+- Startpage now shows Volumes properly.
+  [gerken]
 
 
 2.9.0.1 (2012-07-22)
