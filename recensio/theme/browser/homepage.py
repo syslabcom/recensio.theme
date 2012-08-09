@@ -131,21 +131,22 @@ class HomepageView(BrowserView):
             review_state="published",
             sort_on='effective',
             sort_order='reverse', b_size=6)
-        res = pc(query)
+        res = [x for x in pc(query) if x]
         resultset = list()
-        objects = []
+        objects = {}
         for r in res:
-            objects.append(r.getObject())
-        for obj in objects:
+            objects[r.getObject()] = r
+        for obj, brain in objects.items():
             if obj.portal_type == "Issue" and \
                 obj.__parent__.portal_type == "Volume":
-                if obj.__parent__ in objects:
-                    objects.pop(obj.__parent__)
-
-        for r in res[:]:
+                if obj.__parent__ in objects.keys():
+                    res.remove(objects[obj.__parent__])
+        for r in res:
+            if not r:
+                continue
             try:
                 o = r.getObject()
-            except (AttributeError, KeyError):
+            except AttributeError:
                 log.exception("Could not get object. Probably this means "
                     "the is a mismatch with solr")
                 continue
