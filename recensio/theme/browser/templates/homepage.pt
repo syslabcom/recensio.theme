@@ -25,7 +25,7 @@
           <div class="box">
             <a class="one-line"
                href="#"
-               tal:attributes="href string:${portal}/search?portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse">
+               tal:attributes="href string:${portal}/searchNoVolDoubles?portal_type:list=Volume&amp;portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse">
               <h2 i18n:translate="label_latest_review_journals">
                 Neueste Rezensionsteile online</h2>
             </a>
@@ -35,16 +35,18 @@
                 <li tal:repeat="res results">
                   <span  class="ellipsis_container">
                     <div class="ellipsis_text">
-                      <span
-                          tal:attributes="href res/publication_url"
-                          tal:content="res/publication_title">title
-                      </span>,
-                      <span tal:condition="res/volume_title">
-                        <span tal:replace="res/volume_title" />,
-                      </span>
                       <a href="#"
-                         tal:attributes="href res/review_url"
-                         tal:content="res/Title">title</a>
+                         tal:attributes="href res/review_url">
+                        <span
+                            tal:attributes="href res/publication_url"
+                            tal:content="res/publication_title">title
+                        </span>,
+                        <span tal:condition="res/volume_title">
+                          <span tal:replace="res/volume_title" />,
+                        </span>
+                        <span
+                           tal:content="res/Title">title</span>
+                      </a>
                     </div>
                   </span>
                   <div class="effective_date"
