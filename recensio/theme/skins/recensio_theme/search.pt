@@ -50,7 +50,11 @@
                  is_comment_search python:sort_on == 'last_comment_date' and request.has_key('total_comments');
                  rhv context/@@recensio-helper-view">
 
-    <div id="content-core">
+    <div id="content-core" 
+         tal:define="view nocall:context/filtered-search;
+                     dummy python:view(results=results);">
+        <metal:language-menu use-macro="context/filtered-search/macros/browsing-menu" />
+
         <form name="searchform"
               action="search"
               class="searchPage"

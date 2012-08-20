@@ -26,13 +26,14 @@
                             desc_ellipsis site_properties/ellipsis;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             portal_url context/portal_url;
-                            usedFacets view/getUsedFacets;
-                            submenus view/getSubmenus;"
+                            usedFacets view/getUsedFacets;"
                 >
 
       <div id="content-core">
-        <div id="browsing-menu-wrapper">
-            <div id="browsing-menu" tal:define="menu view/getMenu;">
+        <div id="browsing-menu-wrapper" metal:define-macro="browsing-menu">
+            <div id="browsing-menu" 
+                 tal:define="menu view/getMenu;
+                             submenus view/getSubmenus;">
               <tal:submenus repeat="submenu submenus">
                 <div class="submenu"
                      tal:attributes="id python:'submenu_' + submenu['id'];">
