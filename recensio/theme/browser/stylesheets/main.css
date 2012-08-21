@@ -1045,12 +1045,12 @@ top /*\**/:-11px\9
 
 /* group personaltools */
 
-
+/*
 #portal-personaltools {
     float: right;
     background: #e3e3e3;
     position: relative;
-    z-index: 3; /* personaltools should be above #portal-header (with z-index: 2) */
+    z-index: 3; /* personaltools should be above #portal-header (with z-index: 2) *//*
     top: 0;
     right: 0;
     padding: 0.25em 0.5em;
@@ -1065,6 +1065,7 @@ top /*\**/:-11px\9
 #portal-personaltools #anon-personalbar a {
     float: left;
 }
+*/
 /* @end */
 
 
@@ -1777,7 +1778,7 @@ div.overlay-iframe {
 /* default close button positioned on upper-left corner */
 div.overlaybg div.close,
 div.overlay div.close {
-    background-image: url(pb_close.png);
+    background-image: url(../images/pb_close.png);
     position: absolute;
     left: -14px;
     top: -14px;
