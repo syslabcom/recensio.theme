@@ -151,4 +151,12 @@
         layer="recensio.theme.interfaces.IRecensioLayer"
         />
 
+    <browser:view
+        for="*"
+        name="r"
+        class="plone.app.uuid.browser.RedirectToUUIDView"
+        permission="zope.Public"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+    
 </configure>
