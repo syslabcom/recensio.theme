@@ -159,4 +159,7 @@
         layer="recensio.theme.interfaces.IRecensioLayer"
         />
     
+    <adapter factory=".nextprevious.RecensioFolderNextPrevious"
+        />
+
 </configure>
