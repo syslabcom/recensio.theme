@@ -50,12 +50,11 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
     def buildNextPreviousQuery(self):
         query                    = {}
         query['portal_type']     = [
-            'Presentation Online Resource', 'Presentation Article Review',
-            'Presentation Collection', 'Presentation Monograph',
             'Review Journal', 'Review Monograph',
                 ]
         query['path']            = dict(query = '/'.join(self.context.getPhysicalPath()),
                                         depth = 1)
+        query['b_size'] = 10000
                 
         # Filters on content
         query['is_default_page'] = False
