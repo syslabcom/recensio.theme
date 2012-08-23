@@ -31,7 +31,7 @@
         destination="2"
         title="Upgrade 1"
         profile="recensio.theme:default"
-        handler="upgrades.v1to2"
+        handler=".upgrades.v1to2"
         />
 
 </configure>
