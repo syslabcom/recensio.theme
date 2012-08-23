@@ -25,4 +25,13 @@
         handler="recensio.theme.setuphandlers.addUnsafeTransforms">
     </genericsetup:importStep>
 
+    <genericsetup:upgradeStep
+        sortkey="1"
+        source="1"
+        destination="2"
+        title="Upgrade 1"
+        profile="recensio.theme:default"
+        handler="upgrades.v1to2"
+        />
+
 </configure>
