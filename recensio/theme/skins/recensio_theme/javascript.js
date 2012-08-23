@@ -33,7 +33,11 @@ jq(document).ready(function () {
                 matcher: function(term){
                     var entries = this.query.split('\n'),
                         searching_for = entries[entries.length-1];
-                    return term.find(searching_for) !== -1;
+                    return term.search(searching_for) !== -1;
+                },
+                updater: function(term){
+                    var entries = this.query.split('\n');
+                    return entries.slice(0, entries.length - 1).concat([term]);
                 }
             });
         });
