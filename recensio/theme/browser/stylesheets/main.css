@@ -2623,6 +2623,14 @@ div#extra-design-elements { display: none; }
     margin-top:0.5em;
 }
 
+#publicationlisting .review_container ul {
+    display:none;
+}
+
+#publicationlisting .review_container.expanded ul {
+    display:block;
+}
+
 /***********Styles for highlighting the batch 1,2,3....********/
 
 div.dialog-wrapper {

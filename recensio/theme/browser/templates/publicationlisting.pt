@@ -1,3 +1,6 @@
+<script type="text/javascript"
+    src="++resource++recensio.theme.javascript/publicationlisting.js">
+</script>
 <div id="publicationlisting"
      tal:define="language context/@@plone_portal_state/language;
                  portal_url context/portal_url;"
@@ -6,37 +9,57 @@
 
   <a name="publicationslisting" />
   <tal:volumes repeat="volume view/volumes | nothing">
-    <h2 tal:content="volume/Title"
-        tal:attributes="id volume/UID"/>
-    <ul>
-      <li tal:repeat="review volume/reviews | nothing">
-        <a tal:attributes="href review/absolute_url"
-           tal:content="review/getDecoratedTitle" />
-      </li>
-    </ul>
+    <div class="review_container"
+         tal:define="volume_reviews python:view.reviews(volume=volume['id']);
+                     volume_expanded python:view.is_expanded(volume['UID'])"
+         tal:attributes="id volume/UID;
+                         class volume/css_classes">
+        <a href="#" tal:attributes="href volume/toggle_link"
+           tal:condition="volume_reviews">
+            <h2 tal:content="volume/Title" />
+        </a>
+        <h2 tal:content="volume/Title" tal:condition="not:volume_reviews" />
+        <ul tal:condition="volume_reviews">
+          <li tal:repeat="review volume_reviews"
+              tal:condition="volume_expanded">
+            <a tal:attributes="href review/absolute_url"
+               tal:content="review/getDecoratedTitle" />
+          </li>
+        </ul>
+    </div>
 
-    <tal:issues repeat="issue volume/issues | nothing">
-      <h3 tal:content="issue/Title"
-          tal:attributes="id issue/UID"/>
-      <span tal:condition="issue/pdf | nothing">
-          <a href="" tal:attributes="href string:${issue/pdf}/at_download/file">
-                <img src="pdf.png" alt="">&nbsp;
-                <span i18n:translate="label_download_complete_pdf">download Gesamt-pdf</span>
+    <tal:issues repeat="issue python:view.issues(volume=volume['id'])">
+      <div class="review_container"
+           tal:define="issue_reviews python:view.reviews(volume=volume['id'],issue=issue['id']);
+                       issue_expanded python:view.is_expanded(issue['UID'])"
+           tal:attributes="id issue/UID;
+                           class issue/css_classes">
+          <a href="#" tal:attributes="href issue/toggle_link"
+             tal:condition="issue_reviews">
+              <h3 tal:content="issue/Title" />
           </a>
-          <span class="discreet">
-              &mdash;
-              <span tal:replace="python:context.lookupMime('application/x-pdf')">ContentType</span>,
-              <tal:size content="issue/pdfsize">?</tal:size>
+          <h3 tal:content="issue/Title" tal:condition="not:issue_reviews" />
+          <span tal:condition="issue/pdf | nothing">
+              <a href="" tal:attributes="href string:${issue/pdf}/at_download/file">
+                    <img src="pdf.png" alt="">&nbsp;
+                    <span i18n:translate="label_download_complete_pdf">download Gesamt-pdf</span>
+              </a>
+              <span class="discreet">
+                  &mdash;
+                  <span tal:replace="python:context.lookupMime('application/x-pdf')">ContentType</span>,
+                  <tal:size content="issue/pdfsize">?</tal:size>
+              </span>
+
           </span>
 
-      </span>
-
-      <ul>
-        <li tal:repeat="review issue/reviews">
-          <a tal:attributes="href review/absolute_url"
-             tal:content="review/getDecoratedTitle" />
-        </li>
-      </ul>
+          <ul tal:condition="issue_reviews">
+            <li tal:repeat="review issue_reviews"
+                tal:condition="issue_expanded">
+              <a tal:attributes="href review/absolute_url"
+                 tal:content="review/getDecoratedTitle" />
+            </li>
+          </ul>
+      </div>
     </tal:issues>
   </tal:volumes>
 

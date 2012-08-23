@@ -4,6 +4,7 @@
 
 """
 
+from ZTUtils import make_query
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from plone.app.layout.viewlets import ViewletBase
@@ -27,60 +28,101 @@ class publicationlisting(ViewletBase):
     """ Lists Volumes/Issues/Reviews in the current Publication"""
     implements(IViewlet)
 
-    def visible(self):
-        """ should we display at all? """
+    def __init__(self, context, request, view, manager=None):
+        super(publicationlisting, self).__init__(context, request, view, manager)
         try:
             parents = self.request.PARENTS
         except AttributeError:
             return False
         if len(parents)<2:
             return False
-        parent = self.request.PARENTS[1]
+        self.parent = self.request.PARENTS[1]
+
+    def visible(self):
+        """ should we display at all? """
         if hasattr(self.context, 'portal_type') and \
            self.context.portal_type=='Document' and \
-           hasattr(parent, 'portal_type') and \
-           parent.portal_type=='Publication':
+           hasattr(self.parent, 'portal_type') and \
+           self.parent.portal_type=='Publication':
             return True
         return False
 
+    def is_expanded(self, uid):
+        return uid in self.request.get('expand', [])
 
-    @ram.cache(_render_cachekey)
+    def _make_dict(self, obj):
+        "contains the relevant details for listing a Review"
+        return dict(
+            absolute_url      = obj.absolute_url(),
+            effective         = obj.effective(),
+            getDecoratedTitle = obj.getDecoratedTitle(lastname_first=False),
+            listAuthorsAndEditors = obj.listAuthorsAndEditors(),
+            Title             = obj.Title())
+
+    def _get_toggle_link(self, uid):
+        expand = self.request.get('expand', [])[:]
+        if uid in expand:
+            expand.remove(uid)
+        else:
+            expand.append(uid)
+        toggle_link = '%s?%s#%s' % (self.context.absolute_url(),
+                                make_query(expand=expand),
+                                uid)
+        return toggle_link
+
+    def _get_css_classes(self, obj):
+        css_classes = []
+        if len(obj.objectIds(['ReviewMonograph', 'ReviewJournal'])) > 0:
+            css_classes.append('review_container')
+            if self.is_expanded(obj.UID()):
+                css_classes.append('expanded')
+        return ' '.join(css_classes) or None
+
+    def _make_issue_dict(self, obj):
+        issue_dict = {'Title':  obj.Title(),
+                      'id':     obj.getId(),
+                      'UID':    obj.UID(),
+                      'toggle_link': self._get_toggle_link(obj.UID()),
+                      'css_classes': self._get_css_classes(obj),
+                   }
+
+        if "issue.pdf" in obj.objectIds():
+            issue_dict['pdf'] = obj["issue.pdf"].absolute_url_path()
+            issue_dict['pdfsize'] = self._formatsize(obj["issue.pdf"].getField(
+                    'file').get_size(obj["issue.pdf"]))
+        return issue_dict
+
     def volumes(self):
-        """ Return a tree of Reviews for the current publication
-
-        Reviews are contained within a tree of Volumes and Issues
-        under each Publication
-         * Volumes may contain Issues and Reviews
-         * Issues may only contain Reviews
-
-        {"vol_1" : {
-                "title" : "Volume 1",
-                "reviews" : [
-                    review_obj_1, review_obj_2
-                    ],
-                "issues" : {
-                    "issue_1": {
-                        "title" : "Issue 1",
-                        "reviews" : [
-                            review_obj_1, review_obj_2
-                            ]}
-                    }
-         }
-
-         """
-
-        catalog = self.context.portal_catalog
-        path = '/'.join(self.context.getPhysicalPath()[:-1])
-        query = {"b_size" : 10000}
-        query["path"] = {"query" : path}
-        query["portal_type"] = ("Review Journal",
-                                "Review Monograph")
-        query["sort_on"] = "effective"
-        query["sort_order"] = "descending"
-        reviews = catalog(query)
-
-        volumes = self.get_volumes(reviews)
+        volume_objs = self.parent.objectValues('Volume')
+        volumes = [{'Title': v.Title(),
+                    'id':    v.getId(),
+                    'UID':   v.UID(),
+                    'toggle_link': self._get_toggle_link(v.UID()),
+                    'css_classes': self._get_css_classes(v),
+                   } for v in volume_objs]
         return volumes
+
+    def issues(self, volume):
+        if not volume in self.parent.objectIds():
+            return []
+        issue_objs = self.parent[volume].objectValues('Issue')
+        issues = [self._make_issue_dict(i) for i in issue_objs]
+        return issues
+        
+    #@ram.cache(_render_cachekey)
+    def reviews(self, volume, issue=None):
+        if not volume in self.parent.objectIds():
+            return []
+        if issue is None:
+            review_objs = self.parent[volume].objectValues(
+                ['ReviewMonograph', 'ReviewJournal'])
+        else:
+            if not issue in self.parent[volume].objectIds():
+                return []
+            review_objs = self.parent[volume][issue].objectValues(
+                ['ReviewMonograph', 'ReviewJournal'])
+        reviews = [self._make_dict(rev) for rev in review_objs]
+        return reviews
 
     def _formatsize(self, size):
         size_kb = size/1024;
