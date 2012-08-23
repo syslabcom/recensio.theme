@@ -170,17 +170,17 @@
 
   , listen: function () {
       this.$element
-        .on('blur',     $.proxy(this.blur, this))
-        .on('keypress', $.proxy(this.keypress, this))
-        .on('keyup',    $.proxy(this.keyup, this))
+        .bind('blur',     $.proxy(this.blur, this))
+        .bind('keypress', $.proxy(this.keypress, this))
+        .bind('keyup',    $.proxy(this.keyup, this))
 
       if ($.browser.webkit || $.browser.msie) {
-        this.$element.on('keydown', $.proxy(this.keydown, this))
+        this.$element.bind('keydown', $.proxy(this.keydown, this))
       }
 
       this.$menu
-        .on('click', $.proxy(this.click, this))
-        .on('mouseenter', 'li', $.proxy(this.mouseenter, this))
+        .bind('click', $.proxy(this.click, this))
+        .bind('mouseenter li', $.proxy(this.mouseenter, this))
     }
 
   , move: function (e) {
@@ -289,7 +289,7 @@
   * ================== */
 
   $(function () {
-    $('body').on('focus.typeahead.data-api', '[data-provide="typeahead"]', function (e) {
+    $('body').bind('focus.typeahead.data-api [data-provide="typeahead"]', function (e) {
       var $this = $(this)
       if ($this.data('typeahead')) return
       e.preventDefault()
