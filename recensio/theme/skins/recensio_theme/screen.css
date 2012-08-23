@@ -768,3 +768,20 @@ margin: 1em;
 font-family: Courier;
 font-size: 14px;
 }
+
+.dropdown-menu {
+    position: absolute;
+    background-color: white;
+    border-width: 1px;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    padding: 4px;
+}
+.dropdown-menu li {
+    display: block;
+}
+
+.dropdown-menu li.active {
+    background: #E8E1D0;
+}

@@ -23,4 +23,10 @@ jq(document).ready(function() {
     if (jq('dl.error').length > 0 && !jq('#formfield-form-declaration_of_identity input.checkboxType').attr('checked')) {
             jq('#formfield-form-declaration_of_identity').addClass('error');
     }
+
+    if(jq("textarea#subject").length){
+        jq.getJSON("/subject_list_json", function(data){
+            jq("textarea#subject").typeahead({source: data});
+        });
+    }
 });
