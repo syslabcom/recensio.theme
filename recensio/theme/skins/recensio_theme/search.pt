@@ -168,12 +168,16 @@
             <tal:results repeat="result batch">
             <tal:entry define="result_url result/getURL;
                                result_type result/portal_type;
+                               result_obj result/getObject;
                                is_review python:result_type.startswith('Review');
                                is_presentation python:result_type.startswith('Presentation');
                                item_icon python:plone_view.getIcon(result);
                                url python:result_url+'/view' if result_type in use_view_action else result_url+'/';
                                url python:url if searchterm is None else '%s?searchterm=%s' % (url, searchterm);
-                               listAuthors python:getattr(result.getObject(), 'formatted_authors_editorial', None);">
+                               listAuthors python:getattr(result_obj, 'formatted_authors_editorial', None);
+                               issn result_obj/getIssn | nothing;
+                               isbn result_obj/getIsbn | nothing;
+                               ">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)" tal:on-error="string:[private]">
 
@@ -187,7 +191,7 @@
                   <span class="authors"
                         tal:condition="listAuthors"
                         tal:attributes="class string:authors"
-                        tal:content="listAuthors"/>
+                        tal:content="listAuthors"/>:
 
                   <a
                      href="#"
@@ -202,9 +206,9 @@
                           </tal:block>
                       </tal:block>
                       <tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /></a><tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
-                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="result/isbn | nothing">, ISBN </tal:block><tal:block tal:condition="result/issn | nothing">, ISSN </tal:block>
-                  <span class="isbn" tal:condition ="result/isbn | nothing" tal:content="result/isbn" />
-                  <span class="issn" tal:condition ="result/issn | nothing" tal:content="result/issn" />
+                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="isbn | nothing">, ISBN </tal:block><tal:block tal:condition="issn | nothing">, ISSN </tal:block>
+                  <span class="isbn" tal:condition ="isbn | nothing" tal:content="isbn" />
+                  <span class="issn" tal:condition ="issn | nothing" tal:content="issn" />
 
                   <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                         <br /><tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
