@@ -1,5 +1,6 @@
 <script type="text/javascript"
-    src="++resource++recensio.theme.javascript/publicationlisting.js">
+    src="++resource++recensio.theme.javascript/publicationlisting.js"
+    tal:attributes="src string:${context/portal_url}/++resource++recensio.theme.javascript/publicationlisting.js">
 </script>
 <div id="publicationlisting"
      tal:define="language context/@@plone_portal_state/language;
