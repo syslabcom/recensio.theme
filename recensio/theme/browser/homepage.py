@@ -131,7 +131,7 @@ class HomepageView(BrowserView):
             review_state="published",
             sort_on='effective',
             sort_order='reverse', b_size=6)
-        res = [x for x in pc(query) if x]
+        res = pc(query)[:6]
         resultset = list()
         objects = {}
         for r in res:
@@ -139,7 +139,8 @@ class HomepageView(BrowserView):
         for obj, brain in objects.items():
             if obj.portal_type == "Issue" and \
                 obj.__parent__.portal_type == "Volume":
-                if obj.__parent__ in objects.keys():
+                if obj.__parent__ in objects.keys() \
+                   and objects[obj.__parent__] in res:
                     res.remove(objects[obj.__parent__])
         for r in res:
             if not r:
@@ -148,7 +149,7 @@ class HomepageView(BrowserView):
                 o = r.getObject()
             except AttributeError:
                 log.exception("Could not get object. Probably this means "
-                    "the is a mismatch with solr")
+                    "there is a mismatch with solr")
                 continue
             if o not in objects:
                 continue
