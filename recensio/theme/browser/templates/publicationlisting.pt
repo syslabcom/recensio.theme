@@ -11,18 +11,18 @@
   <a name="publicationslisting" />
   <tal:volumes repeat="volume view/volumes | nothing">
     <div class="review_container"
-         tal:define="volume_reviews python:view.reviews(volume=volume['id']);
-                     volume_expanded python:view.is_expanded(volume['UID'])"
+         tal:define="volume_expanded python:view.is_expanded(volume['UID']);
+                     is_container python:volume['css_classes'] and 'review_container' in volume['css_classes'];"
          tal:attributes="id volume/UID;
                          class volume/css_classes">
         <a href="#" tal:attributes="href volume/toggle_link"
-           tal:condition="volume_reviews">
+                    tal:condition="is_container">
             <h2 tal:content="volume/Title" />
         </a>
-        <h2 tal:content="volume/Title" tal:condition="not:volume_reviews" />
-        <ul tal:condition="volume_reviews">
-          <li tal:repeat="review volume_reviews"
-              tal:condition="volume_expanded">
+        <h2 tal:content="volume/Title" tal:condition="not:is_container" />
+        <ul tal:condition="is_container">
+          <li tal:condition="volume_expanded"
+              tal:repeat="review python:view.reviews(volume=volume['id'])">
             <a tal:attributes="href review/absolute_url"
                tal:content="review/getDecoratedTitle" />
           </li>
@@ -31,15 +31,17 @@
 
     <tal:issues repeat="issue python:view.issues(volume=volume['id'])">
       <div class="review_container"
-           tal:define="issue_reviews python:view.reviews(volume=volume['id'],issue=issue['id']);
-                       issue_expanded python:view.is_expanded(issue['UID'])"
+           tal:define="issue_expanded python:view.is_expanded(issue['UID']);
+                       is_container python:issue['css_classes'] and 'review_container' in issue['css_classes'];"
            tal:attributes="id issue/UID;
                            class issue/css_classes">
           <a href="#" tal:attributes="href issue/toggle_link"
-             tal:condition="issue_reviews">
+                      tal:condition="is_container">
               <h3 tal:content="issue/Title" />
           </a>
-          <h3 tal:content="issue/Title" tal:condition="not:issue_reviews" />
+          <h3 tal:content="issue/Title" tal:condition="not:is_container" />
+
+
           <span tal:condition="issue/pdf | nothing">
               <a href="" tal:attributes="href string:${issue/pdf}/at_download/file">
                     <img src="pdf.png" alt="">&nbsp;
@@ -50,12 +52,11 @@
                   <span tal:replace="python:context.lookupMime('application/x-pdf')">ContentType</span>,
                   <tal:size content="issue/pdfsize">?</tal:size>
               </span>
-
           </span>
 
-          <ul tal:condition="issue_reviews">
-            <li tal:repeat="review issue_reviews"
-                tal:condition="issue_expanded">
+          <ul tal:condition="is_container">
+            <li tal:condition="issue_expanded"
+                tal:repeat="review python:view.reviews(volume=volume['id'],issue=issue['id'])">
               <a tal:attributes="href review/absolute_url"
                  tal:content="review/getDecoratedTitle" />
             </li>
