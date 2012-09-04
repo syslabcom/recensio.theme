@@ -17,8 +17,9 @@ jq(document).ready(function() {
 
         ul = targ.find('ul');
         if (targ.hasClass('expanded')) {
-            ul.toggle('slow');
-            targ.removeClass('expanded')
+            ul.toggle('slow', function () {
+                targ.removeClass('expanded');
+            });
         } else {
             if (ul.find('> *').length == 0) {
                 base_url = document.location.protocol + '//' + document.location.host + document.location.pathname;
