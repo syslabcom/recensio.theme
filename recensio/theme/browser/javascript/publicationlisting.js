@@ -17,13 +17,19 @@ jq(document).ready(function() {
 
         ul = targ.find('ul');
         if (targ.hasClass('expanded')) {
+            ul.toggle('slow');
             targ.removeClass('expanded')
         } else {
             if (ul.find('> *').length == 0) {
-                base_url = document.location.protocol + '//' + document.location.hostname + document.location.pathname;
-                ul.load(base_url + '?expand:list=' + targ.attr('id') + ' #' + targ.attr('id') + ' ul > *');
-            } 
-            targ.addClass('expanded');
+                base_url = document.location.protocol + '//' + document.location.host + document.location.pathname;
+                ul.load(base_url + '?expand:list=' + targ.attr('id') + ' #' + targ.attr('id') + ' ul > *', function() {
+                    ul.toggle('slow'); 
+                    targ.addClass('expanded');
+                });
+            } else {
+                ul.toggle('slow');
+                targ.addClass('expanded');
+            }
         }
     })
 });

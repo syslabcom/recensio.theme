@@ -2623,10 +2623,22 @@ div#extra-design-elements { display: none; }
     margin-top:0.5em;
 }
 
+#publicationlisting .review_container a h3::after {
+/*    background: url('++resource++recensio.theme.images/more_arrow.png') 20px -1px no-repeat;*/
+    content: "▸";
+    margin-left: 3px;
+    display: inline-block;
+}
 #publicationlisting .review_container ul {
     display:none;
 }
 
+#publicationlisting .review_container.expanded a h3::after {
+/*    background: url('++resource++recensio.theme.images/more_arrow_open.png') 20px -1px no-repeat*/
+    content: "▾";
+    margin-left: 3px;
+    display: inline-block;
+}
 #publicationlisting .review_container.expanded ul {
     display:block;
 }
