@@ -4,8 +4,12 @@ Changelog
 2.9.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added piwik
+  [reinhardt]
 
+- Add support for zeitschriften not to display all issues and reviews
+  immediately, but after clicking.
+  [reinhardt]
 
 2.9.1 (2012-08-30)
 ------------------
