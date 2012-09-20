@@ -27,6 +27,7 @@ setup(name='recensio.theme',
           'recensio.contenttypes',
           'reportlab',
           'setuptools',
+          'Products.CMFPlone',
       ],
       extras_require={
         "test" : "plone.app.testing"
