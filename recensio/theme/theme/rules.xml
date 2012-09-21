@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <replace content='/html/head/title' theme='/html/head/title' />
+  <replace content='/html/head/base' theme='/html/head/base' />
+
+  <theme href="theme.html" css:if-content="#visual-portal-wrapper" />
+
+  <!-- error page handling -->
+  <drop css:theme="span#error_fallback"
+           if-content="//*[@id='content']"/>
+  <!-- Can't figure out how to match a page with just one line of text and no
+       html elements at all... this does not work unfortunately:
+  <replace theme="children://div[@id='content']"
+           content="/"
+           if-content="not(//*[@id='content'])"/> -->
+  <drop css:theme="div#header"
+           if-content="not(//div[@id='content'])" />
+  <drop css:theme="div#navigation"
+           if-content="not(//div[@id='content'])" />
+
+  <!-- Pull in Plone CSS -->
+  <append theme="/html/head"
+          content="/html/head/link | /html/head/style | /html/head/script | /html/head/meta" />
+
+  <!-- Copy over the id/class attributes on the body tag, this is
+       important for Kupu and per-section styling -->
+  <merge attributes="class" css:content="body" css:theme="body" />
+  <copy attributes="id dir" css:content="body" css:theme="body" />
+
+  <!-- portal-personaltools -->
+  <drop css:theme="p#logged_in"
+        if-content="//dt[@id='anon-personalbar']" />
+  <replace css:content="a#my_homepage"
+           css:theme="a#user-name" />
+  <replace css:content="li#personaltools-preferences a"
+           css:theme="a.einstellungen" />
+  <replace css:content="li#personaltools-logout a"
+           css:theme="a#logout" />
+
+  <drop theme="//p[@class='login_links']"
+        if-content="//dl[@id='portal-personaltools']/dt/a[@id='user-name']" />
+
+  <!-- the links in the anon-personalbar don't have ids so we are
+       using the index of the elements instead -->
+  <replace content="//dt[@id='anon-personalbar']/a[1]"
+           css:theme="a#login" />
+  <replace content="//dt[@id='anon-personalbar']/a[2]"
+           css:theme="a#register" />
+
+  <!-- portal-languageselector -->
+  <replace css:content="li.language-de a"
+           css:theme="a.language-de" />
+  <replace css:content="li.language-en a"
+           css:theme="a.language-en" />
+  <replace css:content="li.language-fr a"
+           css:theme="a.language-fr" />
+
+
+  <!-- page_image: the flash banner -->
+  <replace css:content="object#page_image"
+           css:theme="object#page_image" />
+
+  <!-- transfer the breadcrumbs -->
+  <replace css:content="div#portal-breadcrumbs"
+           css:theme="div#loc" />
+
+  <!-- The top navigation -->
+  <replace css:content="ul#portal-globalnav "
+           css:theme="div#navigation > ul " />
+
+  <!-- Secondary navigation -->
+  <prepend content="//div[@id='secondary-nav-portlet']"
+           theme="//div[@id='content']" />
+
+  <!-- This has been removed before, complaining that the portal messages
+       appeared twice. But in other cases, they won't appear at all
+       If you are fixing it, check out the pdf cutting functionality.
+       It uses stock plone 4 templates, and with these the messages don't
+       appear twice. Whereever these messages appear twice, the template logic
+       must be wrong, and we either fix that or make some more complicated
+       deliverance rules -->
+  <replace css:content="dl.portalMessage"
+           css:theme="dl.portalMessage" />
+
+  <!-- Main content rule: Put plone content into recensio content -->
+  <append content="//div[@id='content']/*"
+          theme="//div[@id='content']" />
+
+
+  <!-- Main portlet rule: Put plone right column into recensio column3 -->
+  <append content="//div[@id='portal-column-two']/*"
+          theme="//div[@id='column3']/span" />
+
+  <drop css:theme="div#column3" css:if-content="body.template-atct_edit" />
+  <drop css:theme="div#column3" if-content="not(//div[@id='portal-column-two']/*)" />
+
+  <!-- transfer the logo -->
+  <replace content="//*[@id='recensio_logo']"
+           theme="//*[@id='recensio_logo']" />
+
+  <!-- transfer the content views for editing -->
+  <prepend css:content="div#edit-bar"
+           css:theme="div#mainContent"  />
+
+  <!-- include the viewlet-below-content -->
+  <replace css:content="div#viewlet-below-content"
+           css:theme="div#viewlet-below-content"  />
+
+  <append css:content="div#clear-after-viewlets"
+          css:theme="div#viewlet-below-content" />
+
+  <!-- site actions -->
+  <replace content="//*[@id='portal-siteactions']"
+           theme="//*[@id='portal-siteactions']" />
+
+  <!-- footer -->
+  <replace content="//*[@id='footer']"
+           theme="//*[@id='footer']" />
+
+  <!-- search -->
+  <replace css:content="div#portal-searchbox"
+           css:theme="div#suche" />
+  <drop css:content="div.searchSection" />
+
+  <!-- Pull in webstats javascript -->
+  <append css:content="#webstats_js" theme="/html/body"/>
+
+
+  <!-- FIXES -->
+  <!-- Clear space before navigation inflicts a large offset of the content from the header. We drop it -->
+  <drop content="//*[@id='clear-space-before-navigation']" />
+
+  <!--
+     <replace content='//*[@id="portal-personaltools"]' theme='//*[@id="portal-personaltools"]' />
+     <replace content='//*[@id="portal-searchbox"]/*' theme='//*[@id="search-container"]/*' />
+
+     <replace content='//*[@id="portal-breadcrumbs"]' theme='//*[@id="breadcrumbs"]'/>
+     -->
+  <!-- rule for control panel, apply only if a portlet prefs portlet is present -->
+  <!--    <append content='//*[@id="portal-column-one"]' theme='//*[@id="portlet-slot-1"]'
+                  if-content="//dl[@id='portlet-prefs']"/>
+          <append content='//*[@id="portal-column-one"]' theme='//*[@id="portlet-slot-1"]'
+                  if-content="//div[@id='portletmanager-plone-leftcolumn']"/>
+          -->
+  <!-- add the right portlet column -->
+  <!--    <append content='//*[@id="portal-column-two"]' theme='//*[@id="portlet-slot-2"]' />
+
+          <append content='//*[@id="status-messages"]/*' theme='//*[@id="status-messages-container"]'/>
+          <replace content='//*[@id="portal-column-content"]/div/*' theme='//*[@id="folder-contents"]/*' />
+
+          <replace content='//*[@id="footpanel"]' theme='//*[@id="dockbottoms-inner"]' />
+          -->
+</rules>
