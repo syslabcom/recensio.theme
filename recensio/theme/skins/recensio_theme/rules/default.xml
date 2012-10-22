@@ -121,6 +121,9 @@
            css:theme="div#suche" />
   <drop css:content="div.searchSection" />
 
+  <!-- Pull in webstats javascript -->
+  <append css:content="#webstats_js" theme="/html/body"/>
+
 
   <!-- FIXES -->
   <!-- Clear space before navigation inflicts a large offset of the content from the header. We drop it -->

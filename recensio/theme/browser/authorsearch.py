@@ -113,9 +113,10 @@ class AuthorSearchView(BrowserView):
     @view.memoize
     def alpha_index(self):
         alpha_index = {}
+        authors = self.authors
         for letter in self.ALPHABET:
             part = filter(lambda a: a['name'].startswith(letter),
-                          self.authors)
+                          authors)
             if part:
-                alpha_index[letter] = self.authors.index(part[0])
+                alpha_index[letter] = authors.index(part[0])
         return alpha_index
