@@ -5,7 +5,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
-from plone.memoize import ram
+from plone.memoize import ram, view
 from DateTime import DateTime
 
 PRESENTATION_TYPES = ['Presentation Monograph',
@@ -84,21 +84,11 @@ class AuthorSearchView(BrowserView):
             'facet.mincount': '1',
             }).facet_counts['facet_fields']['authors']
 
-        authors = self.request.get('authors')
-        if authors:
-            items = [x.lower() for x in authors.split(' ')]
-            authors = [dict(name=x,
-                       reviews=reviews.get(safe_unicode(x), 0),
-                       presentations=presentations.get(safe_unicode(x),
-                       0), comments=comments.get(safe_unicode(x), 0))
-                       for x in catalog.uniqueValuesFor('authors')
-                       if True in [y in x.lower() for y in items]]
-        else:
-            authors = [dict(name=x,
-                       reviews=reviews.get(safe_unicode(x), 0),
-                       presentations=presentations.get(safe_unicode(x),
-                       0), comments=comments.get(safe_unicode(x), 0))
-                       for x in catalog.uniqueValuesFor('authors')]
+        authors = [dict(name=x,
+                   reviews=reviews.get(safe_unicode(x), 0),
+                   presentations=presentations.get(safe_unicode(x),
+                   0), comments=comments.get(safe_unicode(x), 0))
+                   for x in catalog.uniqueValuesFor('authors')]
         authors = filter(lambda x: x['presentations'] + x['reviews'] \
                          + x['comments'] != 0, authors)
 
@@ -120,7 +110,7 @@ class AuthorSearchView(BrowserView):
             return self.all_authors()
 
     @property
-    @ram.cache(_render_cachekey)
+    @view.memoize
     def alpha_index(self):
         alpha_index = {}
         for letter in self.ALPHABET:
