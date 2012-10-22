@@ -5,7 +5,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
-from plone.memoize import ram, view
+from plone.memoize import ram, instance
 from DateTime import DateTime
 
 PRESENTATION_TYPES = ['Presentation Monograph',
@@ -95,6 +95,7 @@ class AuthorSearchView(BrowserView):
         return authors
 
     @property
+    @instance.memoize
     def authors(self):
         author_string = self.request.get('authors')
         if author_string:
@@ -110,7 +111,6 @@ class AuthorSearchView(BrowserView):
             return self.all_authors()
 
     @property
-    @view.memoize
     def alpha_index(self):
         alpha_index = {}
         authors = self.authors
