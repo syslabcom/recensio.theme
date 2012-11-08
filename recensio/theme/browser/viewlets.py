@@ -92,7 +92,7 @@ class publicationlisting(ViewletBase):
         return issue_dict
 
     def volumes(self):
-        volume_objs = sorted(self.parent.objectValues('Volume'), key=lambda v: v.effective())
+        volume_objs = sorted(self.parent.objectValues('Volume'), key=lambda v: v.effective(), reverse=True)
         volumes = [{'Title': v.Title(),
                     'id':    v.getId(),
                     'UID':   v.UID(),
@@ -104,7 +104,7 @@ class publicationlisting(ViewletBase):
     def issues(self, volume):
         if not volume in self.parent.objectIds():
             return []
-        issue_objs = sorted(self.parent[volume].objectValues('Issue'), key=lambda v: v.effective())
+        issue_objs = sorted(self.parent[volume].objectValues('Issue'), key=lambda v: v.effective(), reverse=True)
         issues = [self._make_issue_dict(i) for i in issue_objs]
         return issues
         
@@ -120,7 +120,7 @@ class publicationlisting(ViewletBase):
                 return []
             review_objs = self.parent[volume][issue].objectValues(
                 ['ReviewMonograph', 'ReviewJournal'])
-        review_objs = sorted(review_objs, key=lambda v: v.effective())
+        review_objs = sorted(review_objs, key=lambda v: v.effective(), reverse=True)
         reviews = [self._make_dict(rev) for rev in review_objs]
         return reviews
 
