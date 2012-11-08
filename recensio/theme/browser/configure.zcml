@@ -65,7 +65,7 @@
     <browser:page
         for="*"
         name="browse-topics"
-        template="topical.pt"
+        template="templates/topical.pt"
         class=".topical.BrowseTopicsView"
         permission="zope2.View"
         />
@@ -73,7 +73,7 @@
     <browser:page
         for="*"
         name="filtered-search"
-        template="filtersearch.pt"
+        template="templates/filtersearch.pt"
         class=".filtersearch.FilterSearchView"
         permission="zope2.View"
         />
