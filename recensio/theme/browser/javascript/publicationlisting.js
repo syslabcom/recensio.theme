@@ -2,7 +2,7 @@
 
 
 jq(document).ready(function() {
-    jq('.review_container a').removeAttr('href').css('cursor', 'pointer').click(function(e) {
+    jq('.review_container a.container_trigger').removeAttr('href').css('cursor', 'pointer').click(function(e) {
         var targ;
         if (!e) var e = window.event;
         if (e.target) targ = e.target;
