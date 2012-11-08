@@ -43,7 +43,7 @@
           <h3 tal:content="issue/Title" tal:condition="not:is_container" />
 
 
-          <span tal:condition="issue/pdf | nothing">
+          <span class="pdf" tal:condition="issue/pdf | nothing">
               <a href="" tal:attributes="href string:${issue/pdf}/at_download/file">
                     <img src="pdf.png" alt="">&nbsp;
                     <span i18n:translate="label_download_complete_pdf">download Gesamt-pdf</span>
@@ -55,6 +55,13 @@
               </span>
           </span>
 
+          <tal:comment replace="nothing">
+          An image would be nicer, but not my expertise :(
+          <img tal:condition="is_container"
+               class="loading" src="++resource++recensio.theme.images/fancy_loading.png"
+               tal:attributes="src string:${context/portal_url}/++resource++recensio.theme.images/fancy_loading.png">&nbsp;
+          </tal:comment>
+          <span tal:condition="is_container" class="loading">Loading...</span>
           <ul tal:condition="is_container">
             <li tal:condition="issue_expanded"
                 tal:repeat="review python:view.reviews(volume=volume['id'],issue=issue['id'])">

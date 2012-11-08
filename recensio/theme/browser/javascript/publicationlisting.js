@@ -22,8 +22,10 @@ jq(document).ready(function() {
             });
         } else {
             if (ul.find('> *').length == 0) {
+                targ.find('.loading').show();
                 base_url = document.location.protocol + '//' + document.location.host + document.location.pathname;
                 ul.load(base_url + '?expand:list=' + targ.attr('id') + ' #' + targ.attr('id') + ' ul > *', function() {
+                    targ.find('.loading').hide();
                     ul.toggle('slow'); 
                     targ.addClass('expanded');
                 });
