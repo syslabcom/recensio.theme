@@ -225,6 +225,12 @@ color: #000;
 	position:absolute;
 }
 
+object#page_image img {
+	position:absolute;
+    top:0px;
+    right:0px;
+}
+
 #content_impressum, #content_tagung, #content_textseite,
 #mainContent { 
    background-color:#fff; 
