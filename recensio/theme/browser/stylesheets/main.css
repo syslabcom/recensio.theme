@@ -2125,7 +2125,7 @@ fieldset,
 }
 
 /* commenting */
-div#commenting textarea {
+div#commenting textarea, div.discussion textarea {
    height: 150px;
    width: 99%;
 }
