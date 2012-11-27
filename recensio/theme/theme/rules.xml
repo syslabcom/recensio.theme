@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules xmlns="http://namespaces.plone.org/xdv"
-       xmlns:css="http://namespaces.plone.org/xdv+css">
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <replace content='/html/head/title' theme='/html/head/title' />
   <replace content='/html/head/base' theme='/html/head/base' />
+
+  <theme href="theme.html" css:if-content="#visual-portal-wrapper" />
 
   <!-- error page handling -->
   <drop css:theme="span#error_fallback"
            if-content="//*[@id='content']"/>
-  <!-- Can't figure out how to match a page with just one line of text and no 
+  <!-- Can't figure out how to match a page with just one line of text and no
        html elements at all... this does not work unfortunately:
   <replace theme="children://div[@id='content']"
            content="/"
@@ -18,18 +21,28 @@
            if-content="not(//div[@id='content'])" />
 
   <!-- Pull in Plone CSS -->
+    
   <append theme="/html/head"
-          content="/html/head/link | /html/head/style | /html/head/script | /html/head/meta" />
+          content="/html/head/link | /html/head/style | /html/head/script" />
+
+  <!-- Replace the viewport with the one in the theme.html -->
+
+  <repalce theme="/html/head">
+    <drop content="/html/head/meta/[@name='viewport']"/>
+    <copy theme="/html/head/meta" content="/html/head/meta" />
+  </repalce>
+
+  <replace theme="/html/head/meta/[@name='viewport']" content="/html/head/meta/[@name='viewport']"/>
 
   <!-- Copy over the id/class attributes on the body tag, this is
        important for Kupu and per-section styling -->
-  <prepend theme="/html/body" content="/html/body/@class" />
-  <prepend theme="/html/body" content="/html/body/@id" />
+  <merge attributes="class" css:content="body" css:theme="body" />
+  <copy attributes="id dir" css:content="body" css:theme="body" />
 
   <!-- portal-personaltools -->
   <drop css:theme="p#logged_in"
-        if-content="//dt[@id='anon-personalbar']" />
-  <replace css:content="a#my_homepage"
+        css:if-content="#anon-personalbar a" />
+  <replace css:content="a#personaltools-mystuff"
            css:theme="a#user-name" />
   <replace css:content="li#personaltools-preferences a"
            css:theme="a.einstellungen" />
@@ -41,9 +54,9 @@
 
   <!-- the links in the anon-personalbar don't have ids so we are
        using the index of the elements instead -->
-  <replace content="//dt[@id='anon-personalbar']/a[1]"
+  <replace css:content="#personaltools-login"
            css:theme="a#login" />
-  <replace content="//dt[@id='anon-personalbar']/a[2]"
+  <replace css:content="#personaltools-join"
            css:theme="a#register" />
 
   <!-- portal-languageselector -->

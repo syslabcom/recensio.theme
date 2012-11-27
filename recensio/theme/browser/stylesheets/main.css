@@ -2143,7 +2143,7 @@ fieldset,
 }
 
 /* commenting */
-div#commenting textarea {
+div#commenting textarea, div.discussion textarea {
    height: 150px;
    width: 99%;
 }
@@ -2414,12 +2414,17 @@ width:100%;
     float: right;
     width: 620px;
 }
-.template-filtered-search .searchResults,
-.template-search .searchResults {
+.template-filtered-search .searchResults {
     bottom: 1500px;
     float: right;
     width: 740px;
 }
+
+.template-search .searchResults {
+    bottom: 1500px;
+    width: 740px;
+}
+
 
 /***************styles for footer pictures and links************/
 #column_wide {
@@ -2830,7 +2835,7 @@ body.template-decorated_folder_listing #content-core dt {
 .draggable img {float:left;margin-right:5px;}
 .contenttype-publication {width:450px;}
 
-.template-browse-topics .searchResults dd, 
+.template-browse-topics .searchResults dd,
 .template-filtered-search .searchResults dd,
 .template-search .searchResults dd {width:680px;float:left;margin-left:0px;}
 

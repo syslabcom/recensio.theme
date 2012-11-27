@@ -5,7 +5,7 @@ version = '2.10.1.dev0'
 
 setup(name='recensio.theme',
       version=version,
-      description="An installable theme for Plone 3",
+      description="An Diazo theme for Plone 4",
       long_description=open("README.txt").read() + "\n" +
                        open("CHANGES.txt").read(),
       classifiers=[
@@ -22,11 +22,12 @@ setup(name='recensio.theme',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'collective.xdv',
+          'plone.app.theming',
           'logilab-common',
           'recensio.contenttypes',
           'reportlab',
           'setuptools',
+          'Products.CMFPlone',
       ],
       extras_require={
         "test" : "plone.app.testing"
@@ -35,6 +36,4 @@ setup(name='recensio.theme',
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      setup_requires=["PasteScript"],
-      paster_plugins = ["ZopeSkel"],
       )

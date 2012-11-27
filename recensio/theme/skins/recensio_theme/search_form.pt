@@ -33,7 +33,6 @@
                           portal context/@@plone_portal_state/portal;
                           recensiohelperview python:portal.restrictedTraverse('@@recensio-helper-view');
                           portal_catalog nocall:portal/portal_catalog;
-                          options context/@@searchform-options;
                           supp_languages recensiohelperview/listAvailableContentLanguages;
                           authors request/authors|string:;
                           authors python:getattr(authors, 'append', None) and ' '.join(authors) or authors;
@@ -328,7 +327,7 @@
 
           <div class="field"
 
-               tal:condition="options/show_review_state">
+               tal:condition="python:False">
 
             <label for="review_state"
                    class=""
@@ -718,7 +717,7 @@
 
           <div class="field"
 
-               tal:condition="options/show_title">
+               tal:condition="python:False">
             <label for="Title"
                    class=""
                    i18n:translate="label_title">Title</label>
@@ -740,7 +739,7 @@
 
           <div class="field"
 
-               tal:condition="options/show_description">
+               tal:condition="python:False">
 
             <label for="Description"
                    class=""
@@ -766,7 +765,7 @@
           <h2 i18n:translate="">Display options</h2>
 
           <div class="field"
-               tal:condition="options/show_sort_on">
+               tal:condition="python:True">
             <label for="sort_on" i18n:translate="">Sort results</label>
 
             <div class="formHelp" i18n:translate="">
@@ -793,7 +792,7 @@
           </div>
 
           <div class="field"
-               tal:condition="options/show_batch_size">
+               tal:condition="python:True">
             <label for="b_size" i18n:translate="label_results_per_page">Results per page</label>
 
             <div class="formHelp" i18n:translate="description_results_per_page">
