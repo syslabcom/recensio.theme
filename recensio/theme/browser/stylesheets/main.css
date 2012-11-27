@@ -901,6 +901,24 @@ width:206px;
 min-height:667px;
 }
 
+/*****overrides for content "like" buttons**********/
+
+#content-core #facebook-like {
+    float: left;
+    height: 40px;
+    margin-top:0px !important;
+} 
+
+#content-core #facebook-like iframe {
+    height: 40px;
+    margin-top: 0px;
+    width: 100px;
+}
+
+#content-core #twitter-it {
+    float: left;
+}
+
 /******************Styles for RSS Feed Main Site******************/
 body.template-document_view ol {
     margin-top:0px;
