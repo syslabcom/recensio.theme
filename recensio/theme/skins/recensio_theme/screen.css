@@ -1,6 +1,6 @@
 body {
 	font: normal 11px Verdana, Arial, Helvetica;
-	color:#58595B;	
+	color:#58595B;
 	background:#e8e1d0 url(imgs/bg.png) no-repeat 0 0;
 	height: 100%;
 }
@@ -148,7 +148,7 @@ color: #000;
 #recensio_logo {
 	float:left;
 	margin-top:31px;
-	
+
 }
 #language {
 	font-size:inherit;
@@ -226,8 +226,8 @@ color: #000;
 }
 
 #content_impressum, #content_tagung, #content_textseite,
-#mainContent { 
-   background-color:#fff; 
+#mainContent {
+   background-color:#fff;
    padding:25px 20px 20px 20px;
    margin:170px 0 0 0;
 
@@ -237,13 +237,13 @@ color: #000;
    float: left;
 }
 
-body.template-homepage-view #content, 
+body.template-homepage-view #content,
 body.template-review_view #content,
 body.template-publications-view #content,
 body.template-homepage-view #viewlet-below-content,
 body.template-review_view  #viewlet-below-content,
 body.template-publications-view #viewlet-below-content {
-   width: 605px; 
+   width: 605px;
 }
 body.template-publications-view div#content_left img {
     float:left;
@@ -312,11 +312,11 @@ body.template-publications-view div#content_left h2 {
 	width:46%;
 	float:left;
  }
- 
+
  .right_box {
 	margin-left:27px;
  }
- 
+
 #portal-searchbox {
 	margin-top:22px;
 	text-align:right;
@@ -332,7 +332,7 @@ body.template-publications-view div#content_left h2 {
 	width:160px;
 	color:#777;
 	}
- 
+
 #ieg {
 	width:175px;
 	margin-left:-9px;
@@ -350,7 +350,7 @@ body.template-publications-view div#content_left h2 {
 
 .einstellungen {
 	padding:3px 6px;
-	
+
 }
 
 .login_links a{
@@ -365,6 +365,46 @@ body.template-publications-view div#content_left h2 {
 /* Startseite
 ----------------------------------------------------------------------------------------------------*/
 
+body.template-homepage-view .portletTALPortlet {
+
+}
+
+body.template-homepage-view .portletTALPortlet h2 {
+    font-size: 120%;
+}
+
+body.template-homepage-view .portletTALPortlet p {
+    border-radius: 10px;
+    position: relative;
+    padding: 7px 10px 10px 10px;
+
+background: rgb(242,238,229); /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyZWVlNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlOGUxZDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(242,238,229,1) 0%, rgba(232,225,208,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,238,229,1)), color-stop(100%,rgba(232,225,208,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(242,238,229,1) 0%,rgba(232,225,208,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(242,238,229,1) 0%,rgba(232,225,208,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(242,238,229,1) 0%,rgba(232,225,208,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(242,238,229,1) 0%,rgba(232,225,208,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2eee5', endColorstr='#e8e1d0',GradientType=0 ); /* IE6-8 */
+
+}
+
+body.template-homepage-view .portletTALPortlet p .redPortletHeader {
+    color: #c1272d;
+}
+
+body.template-homepage-view .portletTALPortlet p .arrow {
+    background-image: url("++resource++recensio.theme.images/play-button.png");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    bottom: -5px;
+    height: 30px;
+    position: absolute;
+    right: -5px;
+    width: 30px;
+}
 
 body.template-homepage-view #postit {
 	margin:30px 0 0 20px;
@@ -517,11 +557,11 @@ font-size:1.2em;
 	width:50%;
 	float:left;
 	margin-bottom:40px;
-	
+
 }
 #projektleitung img {
 	margin-bottom:10px;
-	
+
 }
 #content_textseite h4 {
 	display:inline;
@@ -569,7 +609,7 @@ font-size:1.2em;
 
 #kommentare_container h2 {
 	margin-top:15px;
-	
+
 }
 
 #kommentare_container h2 {
@@ -582,18 +622,18 @@ font-size:1.2em;
 #kommentare_container .username {
 	font-size:1.6em;
 	font-weight:bold;
-	
+
 }
 #kommentare_container .datum {
 	font-size:0.8em;
-	
+
 }
 #kommentare_container .kommentar {
 	border-bottom:1px dashed #CCCCCC;
-	
+
 	margin-bottom:35px;
 	padding-left:15px;
-	
+
 }
 
 #kommentare_container .reply {
@@ -623,7 +663,7 @@ font-size:1.2em;
 	margin-top: 15px;
 	height:115px;
 	padding-top:25px;
-	
+
 }
 
 #footer ul {
@@ -653,7 +693,7 @@ font-size:1.2em;
 }
 #footer h2 span {
     font-size:0.7em;
-    
+
 }
 
 /* old */
