@@ -2859,4 +2859,13 @@ body {height:100%;}
 #authorsearch-query {width:250px;}
 .authorsearchform {text-align:right;}
 
+.fancybox-inner {
+    top: 0px; 
+    left: 0px;     
+}
+.fancybox-skin {
+    padding:0 !important;
+    background:#FFF !important;
+}
+
 #livesearch0 {margin-left:100px;}

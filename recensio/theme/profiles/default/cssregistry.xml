@@ -54,7 +54,7 @@
               compression="safe"
               cookable="True"
               enabled="1"
-              id="++resource++recensio.theme.stylesheets/jquery.fancybox-1.3.1.css"
+              id="++resource++recensio.theme.stylesheets/jquery.fancybox-2.1.3.css"
               media="screen"
               rel="stylesheet"
               rendering="import"
