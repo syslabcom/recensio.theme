@@ -893,6 +893,24 @@ width:206px;
 min-height:667px;
 }
 
+/*****overrides for content "like" buttons**********/
+
+#content-core #facebook-like {
+    float: left;
+    height: 40px;
+    margin-top:0px !important;
+}
+
+#content-core #facebook-like iframe {
+    height: 40px;
+    margin-top: 0px;
+    width: 130px;
+}
+
+#content-core #twitter-it {
+    float: left;
+}
+
 /******************Styles for RSS Feed Main Site******************/
 body.template-document_view ol {
     margin-top:0px;
@@ -2790,5 +2808,14 @@ body {height:100%;}
 #authorsearch-description {width:550px}
 #authorsearch-query {width:250px;}
 .authorsearchform {text-align:right;}
+
+.fancybox-inner {
+    top: 0px;
+    left: 0px;
+}
+.fancybox-skin {
+    padding:0 !important;
+    background:#FFF !important;
+}
 
 #livesearch0 {margin-left:100px;}
