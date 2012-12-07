@@ -907,12 +907,12 @@ min-height:667px;
     float: left;
     height: 40px;
     margin-top:0px !important;
-} 
+}
 
 #content-core #facebook-like iframe {
     height: 40px;
     margin-top: 0px;
-    width: 100px;
+    width: 130px;
 }
 
 #content-core #twitter-it {
@@ -2860,8 +2860,8 @@ body {height:100%;}
 .authorsearchform {text-align:right;}
 
 .fancybox-inner {
-    top: 0px; 
-    left: 0px;     
+    top: 0px;
+    left: 0px;
 }
 .fancybox-skin {
     padding:0 !important;
