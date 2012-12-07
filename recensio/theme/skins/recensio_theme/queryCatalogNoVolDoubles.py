@@ -127,6 +127,7 @@ if show_query:
 
 paths = []
 result_to_remove = []
+results = [x for x in results if x]
 for result in results:
     paths.append(result.getPath())
 
