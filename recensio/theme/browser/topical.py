@@ -24,6 +24,7 @@ PORTAL_TYPES = ['Presentation Online Resource', 'Presentation Article Review',
 class BrowseTopicsView(SearchFacetsView):
     """View for topical browsing (ddcPlace etc.)
     """
+    show_if_empty = False
 
     def __init__(self, context, request):
         self.facet_fields = browsing_facets
@@ -70,8 +71,7 @@ class BrowseTopicsView(SearchFacetsView):
             del(query['set_language'])
         catalog = getToolByName(self.context, 'portal_catalog')
         self.results = catalog(query)
-        if not self.kw.has_key('results'):
-            self.kw['results'] = self.results
+        self.kw['results'] = self.results
         return super(BrowseTopicsView, self).__call__(*args, **kw)
 
     def getResults(self):
@@ -215,7 +215,7 @@ class BrowseTopicsView(SearchFacetsView):
 
             if facets_sub:
                 facets_sub = facets_sub[0]
-            if facets_sub or selected_sub:
+            if facets_sub or selected_sub or self.show_if_empty:
                 submenu = getSubmenu(self.vocDict[attrib], facets_sub, selected_sub)
             menu[attrib] = submenu
         return menu

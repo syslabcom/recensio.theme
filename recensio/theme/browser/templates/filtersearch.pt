@@ -31,7 +31,7 @@
 
       <div id="content-core">
         <div id="browsing-menu-wrapper" metal:define-macro="browsing-menu">
-            <div id="browsing-menu" 
+            <div id="browsing-menu"
                  tal:define="menu view/getMenu;
                              submenus view/getSubmenus;">
               <tal:submenus repeat="submenu submenus">
@@ -164,11 +164,11 @@
                             tal:repeat="author result/listAuthors">
                         <a tal:content="author"
                            tal:attributes="href string:$portal_url/search?authors:list=$author" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span>:
-                  </tal:block> 
+                  </tal:block>
 
                   <span class="title">
                       <a
-                         href="#" 
+                         href="#"
                          tal:attributes="href url;
                                          class string:$item_wf_state_class">
                           <tal:block condition="python:result_type == 'Issue'">
@@ -182,7 +182,7 @@
                           <tal:block tal:content="result/pretty_title_or_id" /><tal:block condition="python: getattr(result, 'subtitle', False) and (result.pretty_title_or_id()[-1] not in '!?:;.,' or False)">.</tal:block><tal:block condition="result/subtitle | nothing"> </tal:block></a></span><tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
                   <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="has_isbn">, ISBN </tal:block><tal:block tal:condition="has_issn">, ISSN </tal:block>
                   <span class="isbn" tal:condition ="result/isbn | nothing" tal:content="result/isbn" />
-                  
+
                   <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                         <br /><tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
                   <tal:block tal:condition="result/get_publication_title | nothing">
@@ -197,13 +197,13 @@
                   </span>
                   </tal:author>
                 </dt>
-            
+
                 <dd>
 
                 <span class="documentByLine"
                       >
 
-                    <span class="documentEffective" 
+                    <span class="documentEffective"
                         tal:condition="python:result.review_state == 'published' and toLocalizedTime(result.EffectiveDate, long_format=1)">
                         <span i18n:translate="box_effective">
                         published
