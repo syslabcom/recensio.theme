@@ -179,8 +179,8 @@
       }
 
       this.$menu
-        .bind('click', $.proxy(this.click, this))
-        .bind('mouseenter li', $.proxy(this.mouseenter, this))
+        .bind('click', $.proxy(this.click, this));
+      this.$menu.delegate('li', 'mouseenter', $.proxy(this.mouseover, this));
     }
 
   , move: function (e) {
@@ -253,9 +253,12 @@
       this.select()
     }
 
-  , mouseenter: function (e) {
+  , mouseover: function (e) {
       this.$menu.find('.active').removeClass('active')
-      $(e.currentTarget).addClass('active')
+      console.log(e.currentTarget.nodeName);
+      if(e.currentTarget.nodeName == "LI"){
+        $(e.currentTarget).addClass('active');
+      }
     }
 
   }

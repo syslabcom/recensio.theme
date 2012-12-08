@@ -19,7 +19,7 @@ jq(document).ready(function () {
         dureeAffichage: 7000
     });
 
-    // This is a tiny bit hacky. BoolWidgets don't support 'required' property and 
+    // This is a tiny bit hacky. BoolWidgets don't support 'required' property and
     // don't show errors. We add the basics via jquery.
     jq('#formfield-form-declaration_of_identity label').after('<span style="color: #f00;" title="Required" class="required"> ■ </span>')
     if (jq('dl.error').length > 0 && !jq('#formfield-form-declaration_of_identity input.checkboxType').attr('checked')) {
@@ -27,7 +27,7 @@ jq(document).ready(function () {
     }
 
     if (jq("textarea#subject").length) {
-        jq.getJSON("/subject_list_json", function (data) {
+        jq.getJSON(portal_url + "/subject_list_json", function (data) {
             jq("textarea#subject").typeahead({
                 source: data,
                 matcher: function(term){
@@ -37,7 +37,7 @@ jq(document).ready(function () {
                 },
                 updater: function(term){
                     var entries = this.query.split('\n');
-                    return entries.slice(0, entries.length - 1).concat([term]);
+                    return entries.slice(0, entries.length - 1).concat([term]).join("\n");
                 }
             });
         });
