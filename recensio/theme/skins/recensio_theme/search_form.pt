@@ -300,6 +300,40 @@
             </div>
           </div>
 
+          <div class="field" tal:replace="nothing">
+
+            <label for="Rezensent"
+                   class=""
+                   i18n:translate="label_rezensent">Rezensent</label>
+
+            <div class="">
+              <div class="formHelp" i18n:translate="help_search_rezensent">
+                Return items created by a particular person.
+              </div>
+
+              <tal:rezensenten tal:define="rezensenten python:portal.portal_catalog.uniqueValuesFor('getReviewAuthor');
+                                        selected request/Creator|nothing">
+                <select name="Rezensent"
+                        id="Rezensent"
+                        tal:condition="python: len(rezensenten) &lt;= 30">
+                  <option value=""
+                          class="default_option"
+                          i18n:translate="label_any_author">Any Creator</option>
+                  <metal:block tal:repeat="rezensent rezensenten">
+                    <option value=""
+                            tal:attributes="value rezensent;
+                                            selected python:selected == rezensent and 'selected' or '';"
+                            tal:content="rezensent">username </option>
+                  </metal:block>
+                </select>
+
+                <input name="Rezensent"
+                       tal:condition="python: len(rezensenten) &gt; 30 "
+                       tal:attributes="value selected" />
+              </tal:rezensenten>
+            </div>
+          </div>
+
           <div class="field">
 
             <label for="Creator"
