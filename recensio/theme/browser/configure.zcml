@@ -6,7 +6,7 @@
 
   <include package="z3c.jbot" file="meta.zcml" />
   <browser:jbot directory="template_overrides"
-      layer=".interfaces.IThemeSpecific" />
+      layer="recensio.theme.interfaces.IRecensioLayer" />
 
     <browser:resourceDirectory
         name="recensio.theme.images"
