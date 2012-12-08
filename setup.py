@@ -28,6 +28,7 @@ setup(name='recensio.theme',
           'reportlab',
           'setuptools',
           'Products.CMFPlone',
+          'z3c.jbot',
       ],
       extras_require={
         "test" : "plone.app.testing"
