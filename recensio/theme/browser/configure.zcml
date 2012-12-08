@@ -135,6 +135,14 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="plone.nextprevious"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.NextPreviousViewlet"
+        permission="zope2.View"
+        />
+
+
     <browser:page
         for="*"
         name="newsletter-view"
@@ -158,7 +166,7 @@
         permission="zope.Public"
         layer="recensio.theme.interfaces.IRecensioLayer"
         />
-    
+
     <adapter factory=".nextprevious.RecensioFolderNextPrevious"
         />
 
