@@ -4,14 +4,16 @@
 
 """
 
-from ZTUtils import make_query
-from zope.interface import implements
-from zope.viewlet.interfaces import IViewlet
+from DateTime import DateTime
+from plone.app.layout.nextprevious import view as npview
 from plone.app.layout.viewlets import ViewletBase
 from plone.memoize import ram
-from DateTime import DateTime
-import logging
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
+from zope.interface import implements
+from zope.viewlet.interfaces import IViewlet
+from ZTUtils import make_query
+import logging
 
 log = logging.getLogger(__name__)
 
@@ -107,7 +109,7 @@ class publicationlisting(ViewletBase):
         issue_objs = sorted(self.parent[volume].objectValues('Issue'), key=lambda v: v.effective(), reverse=True)
         issues = [self._make_issue_dict(i) for i in issue_objs]
         return issues
-        
+
     @ram.cache(_render_cachekey)
     def reviews(self, volume, issue=None):
         if not volume in self.parent.objectIds():
@@ -131,3 +133,5 @@ class publicationlisting(ViewletBase):
         display_size = '{0}{1}'.format(display_size_kb, display_size_bytes)
         return display_size
 
+class NextPreviousViewlet(npview.NextPreviousViewlet):
+    index = ZopeTwoPageTemplateFile('templates/nextprevious.pt')
