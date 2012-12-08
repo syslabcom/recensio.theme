@@ -2864,6 +2864,34 @@ body {height:100%;}
 
 #navigation {clear:both;}
 
+/* recensio-styles for collapsible */
+
+dl.collapsible {
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+dl.collapsedBlockCollapsible {
+    height: auto;
+}
+
+dl.expandedInlineCollapsible dt.collapsibleHeader,
+dl.expandedBlockCollapsible dt.collapsibleHeader {
+
+}
+
+dl.collapsible dt.collapsibleHeader {
+  background-color: rgb(246, 246, 246);
+  margin: 0;
+  font-size: 100%;
+  top: 0;
+}
+
+dl.collapsible dd.collapsibleContent {
+  padding: 0;
+}
+
 /*IE7*/
 #authorsearch-description {width:550px}
 #authorsearch-query {width:250px;}

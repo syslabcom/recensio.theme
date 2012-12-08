@@ -70,100 +70,10 @@
           </fieldset>
 		  <fieldset>
 			<legend i18n:translate="label_general">Generelles</legend>
-          <div class="field"
-               tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
-               tal:condition="usedSubjects">
-
-            <div class="formHelp" i18n:translate="help_search_tags">
-              Return items matching some or all of these tags.
-              Multiple words may be found by pressing <strong>Ctrl</strong>
-              (or <strong>Apple</strong> key on Mac) while clicking the
-              keywords.
-            </div>
-
-            <select name="Subject:list"
-                    id="Subject"
-                    size="7"
-                    multiple="multiple"
-                    tal:define="contentSubjects context/Subject;">
-              <option value="#"
-                      tal:repeat="subject usedSubjects"
-                      tal:content="subject"
-                      tal:attributes="value subject"
-                      i18n:domain="plone-metadata"
-                      i18n:translate=""
-                      >dummy</option>
-            </select>
-            <br />
-
-            <input type="radio"
-                   name="Subject_usage:ignore_empty"
-                   id="Subject_or"
-                   value=""
-                   class="noborder"
-                   tal:attributes="checked python:(request.get('Subject_usage:ignore_empty', '') == '') and 1 or ''"/>
-            <label for="Subject_or" i18n:translate="description_subject_or">
-              Match any
-            </label>
-            <br />
-
-            <input type="radio"
-                   name="Subject_usage:ignore_empty"
-                   id="Subject_and"
-                   value="operator:and"
-                   class="noborder"
-                   tal:attributes="checked python:(request.get('Subject_usage:ignore_empty') != '') and 1 or 0"/>
-            <label for="Subject_and" i18n:translate="description_subject_and">
-              Match all
-            </label>
-          </div>
 
 
-
-          <div class="field"
-
-               tal:define="portal_types portal/portal_types;
-                           all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
-                           all_used_types python:[x for x in all_used_types if x not in ('Topic', 'Folder', 'Document', 'Image', 'Issue', 'Volume')];
-                           used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
-                           all_checked python:(len(used_types) == len(request.get('portal_type', [])));
-                           toggle_select_state python:all_checked and 'true' or 'false';">
-            <label i18n:translate="label_item_type" i18n:domain="plone"
-                   class="">Item type</label>
-            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('portal_type', '')"/>
-
-            <div class="">
-              <div class="formHelp" i18n:translate="help_search_item_type" i18n:domain="plone">
-                Return items of a specific type.
-              </div>
-
-              <div style="float:left; margin-right: 2em;"
-                   tal:define="typeLists python:context.createMultiColumnList(used_types, numCols=2, sort_on='self');"
-                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
-                   tal:repeat="sublist typeLists">
-                <tal:items repeat="type sublist">
-                  <input type="checkbox"
-                         name="portal_type:list"
-                         value="#"
-                         class="noborder"
-                         checked="checked"
-                         tal:attributes="value type;
-                                         id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
-                                         checked python:((type in request.get('portal_type', []))) and 'checked' or ''"/>
-                  <label for=""
-                         i18n:translate="" i18n:domain="recensio"
-                         tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
-                         tal:content="python: portal_types.getTypeInfo(type).Title()"
-                         />
-                  <br />
-                </tal:items>
-              </div>
-              <div class="visualClear" id="clear-after-item-type"><!-- --></div>
-            </div>
-          </div>
-
-
-        <tal:datetime define="today python:DateTime().earliestTime();
+        <tal:datetime tal:replace="nothing"
+                      define="today python:DateTime().earliestTime();
                                     isAnon context/@@plone_portal_state/anonymous;
                                     member context/@@plone_portal_state/member;
                                     yesterday python:(today-1).Date();
@@ -424,59 +334,6 @@
             </div>
           </div>
 
-          <div class="field"
-
-               tal:define="avail_magazines python:portal_catalog(portal_type='Publication');
-                           all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) ;
-                           toggle_select_state python:all_checked and 'true' or 'false';">
-            <label i18n:translate="label_magazines"
-                   class="">Zeitschriften</label>
-
-            <div class="">
-              <div class="formHelp" i18n:translate="help_search_magazines">
-                Findet Artikel, die in einer der ausgewählten Zeitschrift erschienen sind.
-              </div>
-
-              <span class="optionsToggle">
-                <input type="checkbox"
-                       onclick=""
-                       name="pt_toggle"
-                       value="#"
-                       id="pt_toggle"
-                       class="noborder"
-                       checked="checked"
-                       tal:attributes="checked python:all_checked and 'checked' or '';
-                                       onclick string:javascript:toggleSelect(this, 'path:list', ${toggle_select_state});"/>
-                <label for="pt_toggle"
-                       i18n:translate="label_toggle"
-                       >Select All/None
-                </label>
-              </span>
-              <br />
-              <div style="float:left; margin-right: 2em;"
-                   tal:define="magazineLists python:context.createMultiColumnList(sequence.sort(avail_magazines, sort=(('Title', 'nocase', 'asc'),)), numCols=2);"
-                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
-                   tal:repeat="sublist magazineLists">
-                <tal:items repeat="mag sublist">
-                  <input type="checkbox"
-                         name="path:list"
-                         value="#"
-                         class="noborder"
-                         checked="checked"
-                         tal:attributes="value mag/getPath;
-                                         id string:magazines_${repeat/sublist/number}_${repeat/mag/number};
-                                         checked python:((mag.getPath() in request.get('path', [])) ) and 'checked' or ''"/>
-                  <label for=""
-                         i18n:translate=""
-                         tal:attributes="for string:magazines_${repeat/sublist/number}_${repeat/mag/number}"
-                         tal:content="python: mag.Title or mag.getId"
-                         />
-                  <br />
-                </tal:items>
-              </div>
-              <div class="visualClear" id="clear-after-magazine"><!-- --></div>
-            </div>
-          </div>
 
           <div class="formControls">
             <input class="context"
@@ -613,7 +470,14 @@
 		</fieldset>
 
 		<fieldset>
-			<legend i18n:translate="thematic_search">Thematische Suche</legend>
+
+          <dl class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">
+            <h2 i18n:translate="thematic_search">Thematische Suche</h2>
+
+            </dt>
+
+          <dd class="collapsibleContent">
 
 
           <div class="field"
@@ -705,6 +569,58 @@
             </div>
           </div>
 
+          <div class="field"
+               tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
+               tal:condition="usedSubjects">
+
+            <label for="topic"
+                   class=""
+                   i18n:translate="label_tags">Schlagwörter</label>
+
+            <div class="formHelp" i18n:translate="help_search_tags">
+              Return items matching some or all of these tags.
+              Multiple words may be found by pressing <strong>Ctrl</strong>
+              (or <strong>Apple</strong> key on Mac) while clicking the
+              keywords.
+            </div>
+
+            <select name="Subject:list"
+                    id="Subject"
+                    size="7"
+                    multiple="multiple"
+                    tal:define="contentSubjects context/Subject;">
+              <option value="#"
+                      tal:repeat="subject usedSubjects"
+                      tal:content="subject"
+                      tal:attributes="value subject"
+                      i18n:domain="plone-metadata"
+                      i18n:translate=""
+                      >dummy</option>
+            </select>
+            <br />
+
+            <input type="radio"
+                   name="Subject_usage:ignore_empty"
+                   id="Subject_or"
+                   value=""
+                   class="noborder"
+                   tal:attributes="checked python:(request.get('Subject_usage:ignore_empty', '') == '') and 1 or ''"/>
+            <label for="Subject_or" i18n:translate="description_subject_or">
+              Match any
+            </label>
+            <br />
+
+            <input type="radio"
+                   name="Subject_usage:ignore_empty"
+                   id="Subject_and"
+                   value="operator:and"
+                   class="noborder"
+                   tal:attributes="checked python:(request.get('Subject_usage:ignore_empty') != '') and 1 or 0"/>
+            <label for="Subject_and" i18n:translate="description_subject_and">
+              Match all
+            </label>
+          </div>
+
           <div class="formControls">
             <input class="context"
                    type="submit"
@@ -712,6 +628,118 @@
                    value="Search"
                    i18n:attributes="value label_search;"
                    />
+          </div>
+        </dl>
+    </fieldset>
+
+
+    <fieldset>
+
+          <dl class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">
+            <h2 i18n:translate="label_magazines">Zeitschriften</h2>
+              <div class="formHelp" i18n:translate="help_search_magazines">
+                Findet Artikel, die in einer der ausgewählten Zeitschrift erschienen sind.
+              </div>
+
+            </dt>
+
+          <dd class="collapsibleContent">
+          <div class="field"
+
+               tal:define="avail_magazines python:portal_catalog(portal_type='Publication');
+                           all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) ;
+                           toggle_select_state python:all_checked and 'true' or 'false';">
+
+            <div class="">
+              <span class="optionsToggle">
+                <input type="checkbox"
+                       onclick=""
+                       name="pt_toggle"
+                       value="#"
+                       id="pt_toggle"
+                       class="noborder"
+                       checked="checked"
+                       tal:attributes="checked python:all_checked and 'checked' or '';
+                                       onclick string:javascript:toggleSelect(this, 'path:list', ${toggle_select_state});"/>
+                <label for="pt_toggle"
+                       i18n:translate="label_toggle"
+                       >Select All/None
+                </label>
+              </span>
+              <br />
+              <div style="float:left; margin-right: 2em;"
+                   tal:define="magazineLists python:context.createMultiColumnList(sequence.sort(avail_magazines, sort=(('Title', 'nocase', 'asc'),)), numCols=2);"
+                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
+                   tal:repeat="sublist magazineLists">
+                <tal:items repeat="mag sublist">
+                  <input type="checkbox"
+                         name="path:list"
+                         value="#"
+                         class="noborder"
+                         checked="checked"
+                         tal:attributes="value mag/getPath;
+                                         id string:magazines_${repeat/sublist/number}_${repeat/mag/number};
+                                         checked python:((mag.getPath() in request.get('path', [])) ) and 'checked' or ''"/>
+                  <label for=""
+                         i18n:translate=""
+                         tal:attributes="for string:magazines_${repeat/sublist/number}_${repeat/mag/number}"
+                         tal:content="python: mag.Title or mag.getId"
+                         />
+                  <br />
+                </tal:items>
+              </div>
+              <div class="visualClear" id="clear-after-magazine"><!-- --></div>
+            </div>
+          </div>
+          </dd>
+
+</fieldset>
+
+    <fieldset>
+
+          <h2 i18n:translate="">Display options</h2>
+
+          <div class="field"
+
+               tal:define="portal_types portal/portal_types;
+                           all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
+                           all_used_types python:[x for x in all_used_types if x not in ('Topic', 'Folder', 'Document', 'Image', 'Issue', 'Volume')];
+                           used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
+                           all_checked python:(len(used_types) == len(request.get('portal_type', [])));
+                           toggle_select_state python:all_checked and 'true' or 'false';">
+            <label i18n:translate="label_item_type" i18n:domain="plone"
+                   class="">Item type</label>
+            <input class="collapse_trick" type="text" tal:attributes="value python:request.get('portal_type', '')"/>
+
+            <div class="">
+              <div class="formHelp" i18n:translate="help_search_item_type" i18n:domain="plone">
+                Return items of a specific type.
+              </div>
+
+              <div style="float:left; margin-right: 2em;"
+                   tal:define="typeLists python:context.createMultiColumnList(used_types, numCols=2, sort_on='self');"
+                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
+                   tal:repeat="sublist typeLists">
+                <tal:items repeat="type sublist">
+                  <input type="checkbox"
+                         name="portal_type:list"
+                         value="#"
+                         class="noborder"
+                         checked="checked"
+                         tal:attributes="value type;
+                                         id string:portal_type_${repeat/sublist/number}_${repeat/type/number};
+                                         checked python:((type in request.get('portal_type', []))) and 'checked' or ''"/>
+                  <label for=""
+                         i18n:translate="" i18n:domain="recensio"
+                         tal:attributes="for string:portal_type_${repeat/sublist/number}_${repeat/type/number}"
+                         tal:content="python: portal_types.getTypeInfo(type).Title()"
+                         />
+                  <br />
+                </tal:items>
+              </div>
+              <div class="visualClear" id="clear-after-item-type"><!-- --></div>
+            </div>
           </div>
 
 
@@ -761,8 +789,6 @@
                      />
             </div>
           </div>
-
-          <h2 i18n:translate="">Display options</h2>
 
           <div class="field"
                tal:condition="python:True">
@@ -827,7 +853,7 @@
           </div>
 		</fieldset>
 
-		<fieldset>
+		<fieldset tal:replace="nothing">
           <legend i18n:translate="help_recensio_id">recensio-ID</legend>
 
           <div class="field">
