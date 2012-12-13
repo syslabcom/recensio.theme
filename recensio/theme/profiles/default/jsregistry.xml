@@ -37,7 +37,7 @@
     conditionalcomment="" cookable="True" enabled="True" expression=""
     id="++resource++recensio.theme.behaviour/jquery.easing-1.3.pack.js"
     inline="False"/>
- <javascript authenticated="False" cacheable="True" compression="safe"
+ <javascript authenticated="False" cacheable="True" compression="none"
     conditionalcomment="" cookable="False" enabled="True" expression=""
     id="++resource++recensio.theme.behaviour/jquery.fancybox-2.1.3.js"
     inline="False"/>
