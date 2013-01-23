@@ -1,7 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
+<<<<<<< HEAD
 version = '2.10.1.dev0'
+=======
+version = '2.9.2.2.dev0'
+>>>>>>> 2.9.x
 
 setup(name='recensio.theme',
       version=version,

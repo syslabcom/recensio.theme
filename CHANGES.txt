@@ -17,8 +17,9 @@ Changelog
   immediately, but after clicking.
   [reinhardt]
 
-2.9.1 (2012-08-30)
-------------------
+
+2.9.2.1 (2013-01-23)
+--------------------
 
 - Nothing changed yet.
 
@@ -31,6 +32,12 @@ Changelog
 
 2.9.1.2 (2012-11-06)
 --------------------
+
+- Nothing changed yet.
+
+
+2.9.1 (2012-08-30)
+------------------
 
 - Nothing changed yet.
 
