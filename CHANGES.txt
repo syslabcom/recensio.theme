@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.9.4 (unreleased)
+2.9.4 (2013-01-30)
 ------------------
 
 - Backported piwik from reinhardt. Finally
