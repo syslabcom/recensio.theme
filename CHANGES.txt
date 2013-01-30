@@ -4,7 +4,8 @@ Changelog
 2.9.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Backported piwik from reinhardt. Finally
+  [do3cc]
 
 
 2.9.3 (2013-01-30)
