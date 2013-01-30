@@ -17,6 +17,11 @@ Changelog
   immediately, but after clicking.
   [reinhardt]
 
+2.9.3 (2013-01-30)
+------------------
+
+- Nothing changed yet.
+
 
 2.9.2.1 (2013-01-23)
 --------------------
