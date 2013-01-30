@@ -17,6 +17,13 @@ Changelog
   immediately, but after clicking.
   [reinhardt]
 
+2.9.4 (2013-01-30)
+------------------
+
+- Backported piwik from reinhardt. Finally
+  [do3cc]
+
+
 2.9.3 (2013-01-30)
 ------------------
 
