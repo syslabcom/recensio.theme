@@ -4,7 +4,8 @@ Changelog
 2.10.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- latest review, don't show result title if result is volume. #6681
+  [do3cc]
 
 
 2.10.0 (2012-09-07)

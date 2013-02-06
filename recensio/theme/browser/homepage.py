@@ -163,9 +163,13 @@ class HomepageView(BrowserView):
                 volume = pg.get_parent_object_of_type('Volume')
             volume_title = volume and volume.Title() or u''
             volume_url = volume and volume.absolute_url() or u''
+
+            # The title of the result shall only be shown if the result
+            # is a volume. Because we already show the volume title.
+            result_title = r.Title if o != volume else ''
             resultset.append(
                 dict(
-                    Title=r.Title,
+                    Title=result_title,
                     effective_date=self.format_effective_date(r.EffectiveDate),
                     publication_title=publication_title,
                     publication_url=publication_url,
