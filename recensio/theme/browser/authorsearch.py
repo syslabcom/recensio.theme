@@ -84,7 +84,7 @@ class AuthorSearchView(BrowserView):
             'facet.mincount': '1',
             }).facet_counts['facet_fields']['authors']
 
-        authors = [dict(name=x,
+        authors = [dict(name=x.strip(', '),
                    reviews=reviews.get(safe_unicode(x), 0),
                    presentations=presentations.get(safe_unicode(x),
                    0), comments=comments.get(safe_unicode(x), 0))
