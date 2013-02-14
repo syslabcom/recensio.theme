@@ -141,7 +141,7 @@
 
     <browser:viewlet
         name="plone.nextprevious"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
         class=".viewlets.NextPreviousViewlet"
         permission="zope2.View"
         />
