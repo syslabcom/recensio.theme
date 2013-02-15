@@ -30,7 +30,9 @@
                 >
 
       <div id="content-core">
-        <div id="browsing-menu-wrapper" metal:define-macro="browsing-menu">
+        <div id="browsing-menu-wrapper" 
+            tal:condition="python: not request.get('advanced_search', False)"
+            metal:define-macro="browsing-menu">
             <div id="browsing-menu"
                  tal:define="menu view/getMenu;
                              submenus view/getSubmenus;">
