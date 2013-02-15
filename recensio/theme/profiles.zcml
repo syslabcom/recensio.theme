@@ -12,13 +12,6 @@
         />
 
     <genericsetup:importStep
-        name="recensio.theme-setup-xdv"
-        title="Recensio Theme: Enable the ICTExtranet theme"
-        description="Install and configure the Recensio XDV theme"
-        handler="recensio.theme.setuphandlers.setupXDVTheme">
-    </genericsetup:importStep>
-
-    <genericsetup:importStep
         name="recensio.theme.addUnsafeTransforms"
         title="Recensio Theme: Add 'unsafe' transforms"
         description="Add transforms that are considered unsafe to portal_transforms"
