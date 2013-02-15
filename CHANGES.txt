@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.10.1 (unreleased)
--------------------
+3.0.0 (2013-02-15)
+------------------
 
 - latest review, don't show result title if result is volume. #6681
   [do3cc]
