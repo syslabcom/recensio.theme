@@ -11,7 +11,6 @@
     <include package=".browser" />
     <include file="skins.zcml" />
     <include file="profiles.zcml" />
-    <!-- <include package="collective.xdv" /> -->
     <include package="recensio.contenttypes" />"
 
     <plone:static

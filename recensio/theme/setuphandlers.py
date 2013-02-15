@@ -5,7 +5,6 @@ from plone.portlets.interfaces import IPortletAssignmentMapping
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.unsafe_transforms import build_transforms
 from plone.registry.interfaces import IRegistry
-from collective.xdv.interfaces import ITransformSettings
 
 log = logging.getLogger('recensio.theme.setuphandlers.py')
 
