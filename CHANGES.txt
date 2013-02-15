@@ -6,6 +6,8 @@ Changelog
 
 - latest review, don't show result title if result is volume. #6681
   [do3cc]
+- Many more changes to accomodate Plone 4.2 and many fixes
+  [gerken]
 
 
 2.10.0 (2012-09-07)
