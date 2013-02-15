@@ -4,7 +4,8 @@ Changelog
 3.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Explicitly deactivate faceted search for advanced search.
+  [gerken]
 
 
 3.0.0 (2013-02-15)
