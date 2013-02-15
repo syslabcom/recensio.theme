@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.1 (unreleased)
+3.0.1 (2013-02-15)
 ------------------
 
 - Explicitly deactivate faceted search for advanced search.
