@@ -12,6 +12,7 @@
     <include file="skins.zcml" />
     <include file="profiles.zcml" />
     <include package="recensio.contenttypes" />"
+    <include package="plone.resource" file="meta.zcml" />
 
     <plone:static
         directory="theme"
