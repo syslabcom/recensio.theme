@@ -209,7 +209,7 @@
                       <tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /><tal:block replace="result/subtitle | nothing" /></a><tal:block tal:condition="python: not rj and year or False">,</tal:block>
                       <tal:rj tal:condition="rj">
 
-                        <span tal:content="string:${result_obj/volumeNumber}"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span></tal:rj><span tal:condition="not:rj" class="year" tal:content="year" /><tal:block tal:condition="isbn | nothing">, ISBN </tal:block><tal:block tal:condition="issn | nothing">, ISSN </tal:block>
+                        <span tal:content="string:${result_obj/volumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span></tal:rj><span tal:condition="not:rj" class="year" tal:content="year" /><tal:block tal:condition="isbn | nothing">, ISBN </tal:block><tal:block tal:condition="issn | nothing">, ISSN </tal:block>
                   <span class="isbn" tal:condition ="isbn | nothing" tal:content="isbn" />
                   <span class="issn" tal:condition ="issn | nothing" tal:content="issn" />
 
