@@ -95,7 +95,7 @@ class AuthorSearchView(BrowserView):
                    0), comments=comments.get(safe_unicode(x), 0))
                    for x in catalog.uniqueValuesFor('authors')]
         authors = filter(lambda x: x['presentations'] + x['reviews']
-                         + x['comments'] != 0, authors)
+                         + (1 if x['comments'] else 0) != 0, authors)
 
         return authors
 
