@@ -4,7 +4,8 @@ Changelog
 3.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Prevent duplicate authors.
+  [gerken]
 
 
 3.0.4 (2013-02-15)

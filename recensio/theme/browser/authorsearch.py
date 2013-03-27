@@ -106,6 +106,7 @@ class AuthorSearchView(BrowserView):
                 for author_searched in authors:
                     if author_searched in one_author_lowered:
                         retval.append(one_author_data)
+                        break
             return retval
         else:
             return self.all_authors()
