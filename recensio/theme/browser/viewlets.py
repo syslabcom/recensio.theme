@@ -94,7 +94,10 @@ class publicationlisting(ViewletBase):
         return issue_dict
 
     def volumes(self):
-        volume_objs = sorted(self.parent.objectValues('Volume'), key=lambda v: v.effective(), reverse=True)
+        objects = self.parent.getFolderContents(
+            {'portal_type': 'Volume'},
+            full_objects=True)
+        volume_objs = sorted(objects, key=lambda v: v.effective(), reverse=True)
         volumes = [{'Title': v.Title(),
                     'id':    v.getId(),
                     'UID':   v.UID(),
@@ -106,7 +109,10 @@ class publicationlisting(ViewletBase):
     def issues(self, volume):
         if not volume in self.parent.objectIds():
             return []
-        issue_objs = sorted(self.parent[volume].objectValues('Issue'), key=lambda v: v.effective(), reverse=True)
+        objects = self.parent[volume].getFolderContents(
+            {'portal_type': 'Issue'},
+            full_objects=True)
+        issue_objs = sorted(objects, key=lambda v: v.effective, reverse=True)
         issues = [self._make_issue_dict(i) for i in issue_objs]
         return issues
 
@@ -115,23 +121,26 @@ class publicationlisting(ViewletBase):
         if not volume in self.parent.objectIds():
             return []
         if issue is None:
-            review_objs = self.parent[volume].objectValues(
-                ['ReviewMonograph', 'ReviewJournal'])
+            review_objs = self.parent[volume].getFolderContents(
+                {'portal_type': ['Review Monograph', 'Review Journal']},
+                full_objects=True)
         else:
             if not issue in self.parent[volume].objectIds():
                 return []
-            review_objs = self.parent[volume][issue].objectValues(
-                ['ReviewMonograph', 'ReviewJournal'])
+            review_objs = self.parent[volume][issue].getFolderContents(
+                {'portal_type': ['Review Monograph', 'Review Journal']},
+                full_objects=True)
         review_objs = sorted(review_objs, key=lambda v: v.effective(), reverse=True)
         reviews = [self._make_dict(rev) for rev in review_objs]
         return reviews
 
     def _formatsize(self, size):
-        size_kb = size/1024;
+        size_kb = size / 1024
         display_size_kb = '{0:n} kB'.format(size_kb) if size_kb > 0 else ''
         display_size_bytes = ' ({0:n} bytes)'.format(size) if display_size_kb else '{0:n} bytes'.format(size)
         display_size = '{0}{1}'.format(display_size_kb, display_size_bytes)
         return display_size
+
 
 class NextPreviousViewlet(npview.NextPreviousViewlet):
     index = ZopeTwoPageTemplateFile('templates/nextprevious.pt')

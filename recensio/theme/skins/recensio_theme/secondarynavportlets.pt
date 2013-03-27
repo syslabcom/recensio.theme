@@ -8,7 +8,7 @@
   <div metal:define-macro="ueberuns"
         id="secondary-nav-portlet" class="firstmenu">
     <ul>
-      <li 
+      <li
          tal:define="is_current python:context.getId().startswith('index_html')"
          tal:attributes="class python:is_current and 'first active' or 'first';
                          id python:is_current and 'firstcurrent' or ''"
@@ -16,10 +16,10 @@
         <a href="index_html"
            i18n:translate="label_secondary_nav_concept">Konzept</a>
       </li>
-      <li 
+      <li
          tal:define="is_current python:context.getId().startswith('kontakt')"
          tal:attributes="id python:is_current and 'current' or ''">
-        <a href="kontakt" 
+        <a href="kontakt"
            tal:attributes="class python:is_current and 'active' or ''"
            i18n:translate="label_secondary_nav_contact">Kontakt</a>
       </li>
@@ -27,7 +27,7 @@
          tal:define="is_current python:context.getId().startswith('benutzerrichtlinien')"
          tal:attributes="id python:is_current and 'current' or ''"
          >
-        <a href="benutzerrichtlinien" 
+        <a href="benutzerrichtlinien"
            tal:attributes="class python:is_current and 'active' or ''"
            i18n:translate="label_secondary_nav_user_guidelines">Benutzerrichtlinien</a>
       </li>
@@ -35,7 +35,7 @@
          tal:define="is_current python:context.getId().startswith('zitierhinweise')"
          tal:attributes="id python:is_current and 'current' or ''"
          >
-        <a 
+        <a
            tal:attributes="class python:is_current and 'active' or ''"
            href="zitierhinweise"
            i18n:translate="label_secondary_nav_zitierhinweise">Zitierhinweise</a>
@@ -44,7 +44,7 @@
          tal:define="is_current python:context.getId().startswith('copyright')"
          tal:attributes="id python:is_current and 'current' or ''"
          >
-        <a 
+        <a
            tal:attributes="class python:is_current and 'active' or ''"
            href="copyright"
            i18n:translate="label_secondary_nav_copyright">Copyright</a>
@@ -53,7 +53,7 @@
          tal:define="is_current python:context.getId().startswith('datenschutz')"
          tal:attributes="id python:is_current and 'lastcurrent' or ''"
          >
-        <a 
+        <a
            tal:attributes="class python:is_current and 'active' or ''"
            href="datenschutz"
            i18n:translate="label_secondary_nav_datenschutz">Datenschutz</a>
@@ -64,7 +64,7 @@
   <div metal:define-macro="rezensionen" tal:condition="python:context.id == 'rezensionen' or context.id == 'zeitschriften'"
         id="secondary-nav-portlet" class="firstmenu">
     <ul>
-      <li 
+      <li
          tal:define="is_current python:context.getId().startswith('zeitschriften') and not 'search' in context.REQUEST.getURL()"
          tal:attributes="class python:is_current and 'first active' or 'first';
                          id python:is_current and 'firstcurrent' or ''"
@@ -77,7 +77,7 @@
          tal:define="is_current python:'search' in context.REQUEST.getURL()"
          tal:attributes="id python:is_current and 'lastcurrent' or ''"
          >
-        <a 
+        <a
            tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/filtered-search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal&amp;sort_order=reverse&amp;sort_on=effective'"
            href="filtered-search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal"
            i18n:translate="label_secondary_nav_latest_reviews">Neueste Rezensionen</a>
@@ -86,32 +86,45 @@
   </div>
 
   <div metal:define-macro="praesentationen"
-        id="secondary-nav-portlet" class="firstmenu" tal:define="portal context/portal_url">
+        id="secondary-nav-portlet" class="firstmenu"
+        tal:define="parent context/@@plone_context_state/parent;
+                    parent_url python:parent.absolute_url()">
     <ul>
-      <li 
+      <li
          tal:define="is_current python:context.getId().startswith('monographien')"
          tal:attributes="class python:is_current and 'first active' or 'first';
                          id python:is_current and 'firstcurrent' or ''"
          >
         <a href="../monographien"
+           tal:attributes="href string:${parent_url}/monographien"
            i18n:translate="label_secondary_nav_monographien">Monographien</a>
       </li>
-      <li 
+      <li
          tal:define="is_current python:context.getId().startswith('aufsaetze')"
          tal:attributes="id python:is_current and 'current' or ''">
         <a href="../aufsaetze"
-           tal:attributes="class python:is_current and 'active' or ''"
+           tal:attributes="class python:is_current and 'active' or '';
+                           href string:${parent_url}/aufsaetze"
            i18n:translate="label_secondary_nav_aufsaetze">Aufsätze</a>
       </li>
-      <li class="last"
+      <li
          tal:define="is_current python:context.getId().startswith('internetressourcen')"
-         tal:attributes="id python:is_current and 'lastcurrent' or ''"
+         tal:attributes="id python:is_current and 'current' or ''"
          >
-        <a 
-           tal:attributes="class python:is_current and 'active' or ''"
-           href="../internetressourcen"
+        <a href="../internetressourcen"
+           tal:attributes="class python:is_current and 'active' or '';
+                           href string:${parent_url}/internetressourcen"
            i18n:translate="label_secondary_nav_internetressourcen">Internetressourcen </a>
       </li>
+      <li class="last"
+         tal:define="is_current python:context.getId().startswith('praesentation-erstellen')"
+         tal:attributes="id python:is_current and 'lastcurrent' or ''">
+        <a href="../praesentation-erstellen"
+           tal:attributes="class python:is_current and 'active' or '';
+                           href string:${parent_url}/praesentation-erstellen"
+           i18n:translate="label_secondary_nav_praesentation_erstellen">Pr&auml;sentation erstellen </a>
+      </li>
+
     </ul>
   </div>
 
