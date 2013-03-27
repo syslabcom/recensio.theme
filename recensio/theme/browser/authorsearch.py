@@ -60,36 +60,39 @@ class AuthorSearchView(BrowserView):
     @ram.cache(_render_cachekey)
     def all_authors(self):
         catalog = getToolByName(self.context, 'portal_catalog')
+        membership_tool = getToolByName(self.context, 'portal_membership')
+
         reviews = catalog({
-            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"' \
+            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
                     % x, REVIEW_TYPES)) + ')',
             'facet': 'true',
             'facet.field': 'authors',
             'facet.limit': '-1',
             'facet.mincount': '1',
-            }).facet_counts['facet_fields']['authors']
+        }).facet_counts['facet_fields']['authors']
         presentations = catalog({
-            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"' \
+            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
                     % x, PRESENTATION_TYPES)) + ')',
             'facet': 'true',
             'facet.field': 'authors',
             'facet.limit': '-1',
             'facet.mincount': '1',
-            }).facet_counts['facet_fields']['authors']
-        comments = catalog({
-            'fq': '+portal_type:"Discussion Item"',
-            'facet': 'true',
-            'facet.field': 'authors',
-            'facet.limit': '-1',
-            'facet.mincount': '1',
-            }).facet_counts['facet_fields']['authors']
+        }).facet_counts['facet_fields']['authors']
+        commentator_user_ids = catalog.uniqueValuesFor('commentators')
+        comments = {}
+        for commentator_id in commentator_user_ids:
+            member = membership_tool.getMemberById(commentator_id)
+            comments[safe_unicode(('%s, %s' % (
+                member.getProperty('lastname'),
+                member.getProperty('firstname'))
+            )).encode('utf-8')] = 1
 
         authors = [dict(name=x.strip(', '),
                    reviews=reviews.get(safe_unicode(x), 0),
                    presentations=presentations.get(safe_unicode(x),
                    0), comments=comments.get(safe_unicode(x), 0))
                    for x in catalog.uniqueValuesFor('authors')]
-        authors = filter(lambda x: x['presentations'] + x['reviews'] \
+        authors = filter(lambda x: x['presentations'] + x['reviews']
                          + x['comments'] != 0, authors)
 
         return authors
