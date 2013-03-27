@@ -67,7 +67,7 @@
                        batch python:Batch(view.authors, b_size, int(b_start), orphan=0);
                        portal_url context/portal_url;"
            class="authorsearch">
-        
+
         <div id="authorsearch-alphabet">
           <tal:block repeat="letter view/ALPHABET">
             <a href="#" tal:condition="python:letter in view.alpha_index" tal:content="letter" tal:attributes="href python:context.absolute_url() + '?b_start=' + str(view.alpha_index[letter])" />
@@ -112,7 +112,7 @@
                    tal:condition="author/comments"
                    i18n:attributes="title label_all_comments_author"
                    title="All comments of this author"
-                   tal:attributes="href string:$portal_url/search?portal_type:list=Discussion+Item&amp;authorsFulltext:list=${author/name}">
+                   tal:attributes="href string:$portal_url/search?commentators=${author/comments}">
                   <img i18n:attributes="alt label_all_comments_author"
                        alt="All comments of this author"
                        src="++resource++recensio.theme.images/Monograph.png" />

@@ -82,10 +82,12 @@ class AuthorSearchView(BrowserView):
         comments = {}
         for commentator_id in commentator_user_ids:
             member = membership_tool.getMemberById(commentator_id)
+            if not member:
+                continue
             comments[safe_unicode(('%s, %s' % (
                 member.getProperty('lastname'),
                 member.getProperty('firstname'))
-            )).encode('utf-8')] = 1
+            )).encode('utf-8')] = commentator_id
 
         authors = [dict(name=x.strip(', '),
                    reviews=reviews.get(safe_unicode(x), 0),
