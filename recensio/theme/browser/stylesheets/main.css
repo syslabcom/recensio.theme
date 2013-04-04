@@ -1950,7 +1950,7 @@ table.listing td.draggable {
 
 div.listingBar {
     font-size: 80%;
-    margin: 1em 0;
+    margin: 0 0 1em;
 }
 
 span.current {
@@ -2216,19 +2216,11 @@ label {
 
 /* hides edit tab injected by collective.solr */
 
-body.portaltype-review-monograph #fieldsetlegend-settings {
-    display:none !important;
-}
-
-body.portaltype-presentation-collection #fieldsetlegend-settings {
-    display:none !important;
-}
-
-body.portaltype-presentation-article-review #fieldsetlegend-settings {
-    display:none !important;
-}
-
-body.portaltype-presentation-online-resource #fieldsetlegend-settings {
+body.portaltype-review-monograph #fieldsetlegend-settings,
+body.portaltype-presentation-collection #fieldsetlegend-settings,
+body.portaltype-presentation-monograph #fieldsetlegend-settings,
+body.portaltype-presentation-article-review #fieldsetlegend-settings,
+body.portaltype-presentation-online-resource #fieldsetlegend-settings{
     display:none !important;
 }
 

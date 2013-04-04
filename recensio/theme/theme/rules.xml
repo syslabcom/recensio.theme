@@ -21,7 +21,7 @@
            if-content="not(//div[@id='content'])" />
 
   <!-- Pull in Plone CSS -->
-    
+
   <append theme="/html/head"
           content="/html/head/link | /html/head/style | /html/head/script" />
 
@@ -42,7 +42,10 @@
   <!-- portal-personaltools -->
   <drop css:theme="p#logged_in"
         css:if-content="#anon-personalbar a" />
-  <replace css:content="a#personaltools-mystuff"
+  <replace css:content-children="a#user-name"
+           css:theme-children="a#user-name" />
+  <copy attributes="href id"
+           css:content="#personaltools-mystuff a"
            css:theme="a#user-name" />
   <replace css:content="li#personaltools-preferences a"
            css:theme="a.einstellungen" />

@@ -1,11 +1,54 @@
 Changelog
 =========
 
-2.10.1 (unreleased)
--------------------
+3.0.6 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+3.0.5 (2013-02-18)
+------------------
+
+- Prevent duplicate authors.
+  [gerken]
+
+
+3.0.4 (2013-02-15)
+------------------
+
+- Remove more xdv residue.
+  [pbauer]
+
+
+3.0.3 (2013-02-15)
+------------------
+
+- Remove XDV residue.
+  [gerken]
+
+
+3.0.2 (2013-02-15)
+------------------
+
+- Add username in theme
+  [pbauer]
+
+
+3.0.1 (2013-02-15)
+------------------
+
+- Explicitly deactivate faceted search for advanced search.
+  [gerken]
+
+
+3.0.0 (2013-02-15)
+------------------
 
 - latest review, don't show result title if result is volume. #6681
   [do3cc]
+- Many more changes to accomodate Plone 4.2 and many fixes
+  [gerken]
 
 
 2.10.0 (2012-09-07)

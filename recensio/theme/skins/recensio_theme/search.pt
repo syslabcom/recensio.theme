@@ -177,11 +177,13 @@
                                listAuthors python:getattr(result_obj, 'formatted_authors_editorial', None);
                                issn result_obj/getIssn | nothing;
                                isbn result_obj/getIsbn | nothing;
+                               year python:result_obj.yearOfPublication or result_obj.officialYearOfPublication;
+                               rj python:result_type == 'Review Journal';
                                ">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)" tal:on-error="string:[private]">
 
-<img width="32" height="32"
+                  <img width="32" height="32"
                        tal:condition="python:is_review or is_presentation"
                        tal:attributes="src python:(is_review and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
                                        alt result_type;
@@ -191,10 +193,9 @@
                   <span class="authors"
                         tal:condition="listAuthors"
                         tal:attributes="class string:authors"
-                        tal:content="listAuthors"/>:
+                        tal:content="string:${listAuthors}:"/>
 
-                  <a
-                     href="#"
+                  <a href="#"
                      tal:attributes="href url;
                                      class string:$item_wf_state_class">
                       <tal:block condition="python:result_type == 'Issue'">
@@ -205,8 +206,10 @@
                             <span class="volume-title" tal:content="volume_title" /><tal:c condition="volume_title">, </tal:c>
                           </tal:block>
                       </tal:block>
-                      <tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /></a><tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
-                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="isbn | nothing">, ISBN </tal:block><tal:block tal:condition="issn | nothing">, ISSN </tal:block>
+                      <tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /><tal:block replace="result/subtitle | nothing" /></a><tal:block tal:condition="python: not rj and year or False">,</tal:block>
+                      <tal:rj tal:condition="rj">
+
+                        <span tal:content="string:${result_obj/volumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span></tal:rj><span tal:condition="not:rj" class="year" tal:content="year" /><tal:block tal:condition="isbn | nothing">, ISBN </tal:block><tal:block tal:condition="issn | nothing">, ISSN </tal:block>
                   <span class="isbn" tal:condition ="isbn | nothing" tal:content="isbn" />
                   <span class="issn" tal:condition ="issn | nothing" tal:content="issn" />
 
