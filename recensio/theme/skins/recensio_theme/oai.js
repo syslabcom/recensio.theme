@@ -78,6 +78,7 @@ function takeOver(elem){
     takeSimpleInputOver('location', 'placeOfPublication');
     takeSimpleInputOver('publisher');
     takeSimpleInputOver('pages');
+    takeSimpleInputOver('bv', 'urn');
     takeSimpleInputOver('year', 'yearOfPublication');
     var new_lang = j.find('.oai_language .value').text().trim();
     jq('select#languageReviewedText').val(new_lang);
@@ -125,7 +126,7 @@ function takeOver(elem){
         }else{
             /* Append */
             newstr = existing_option.val()+'\n'+new_val;
-            existing_option.val(newstr); 
+            existing_option.val(newstr);
         }
         /*var existing_option = jq('#archetypes-fieldname-subject select[name=subject_existing_keywords:list] option[value=' + new_val + ']');
         if(existing_option.length){
