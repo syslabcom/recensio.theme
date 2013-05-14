@@ -69,6 +69,9 @@ class BrowseTopicsView(SearchFacetsView):
         query.update(self.form)
         if 'set_language' in query:
             del(query['set_language'])
+        for key in query.keys():
+            if query[key] == '':
+                del(query[key])
         catalog = getToolByName(self.context, 'portal_catalog')
         self.results = catalog(query)
         self.kw['results'] = self.results

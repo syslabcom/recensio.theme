@@ -177,7 +177,7 @@
                                listAuthors python:getattr(result_obj, 'formatted_authors_editorial', None);
                                issn result_obj/getIssn | nothing;
                                isbn result_obj/getIsbn | nothing;
-                               year python:result_obj.yearOfPublication or result_obj.officialYearOfPublication;
+                               year python:(hasattr(result_obj, 'getYearOfPublication') and result_obj.getYearOfPublication()) or (hasattr(result_obj, 'getOfficialYearOfPublication') and result_obj.getOfficialYearOfPublication());
                                rj python:result_type == 'Review Journal';
                                ">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"

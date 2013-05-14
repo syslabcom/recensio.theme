@@ -41,6 +41,8 @@
 			<fieldset>
 			<legend i18n:translate="label_search_text">Volltextsuche</legend>
           <input type="hidden" name="advanced_search" value="True" />
+          <input type="hidden" value="languageReview" name="facet_field">
+          <input type="hidden" value="true" name="facet">
 
           <div class="field">
             <div class="formHelp" i18n:translate="help_search_text">

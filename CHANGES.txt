@@ -4,7 +4,8 @@ Changelog
 3.0.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Enable language Filter in advanced search.
+  [do3cc]
 
 
 3.0.7 (2013-05-14)
