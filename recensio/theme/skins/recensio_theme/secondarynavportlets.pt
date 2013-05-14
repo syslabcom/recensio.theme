@@ -121,7 +121,7 @@
          tal:attributes="id python:is_current and 'lastcurrent' or ''">
         <a href="/Members/add_new_item"
            tal:attributes="class python:is_current and 'active' or '';
-                           href string:${parent_url}/praesentation-erstellen"
+                           href string:/Members/add_new_item"
            i18n:translate="label_secondary_nav_praesentation_erstellen">Pr&auml;sentation erstellen </a>
       </li>
 
