@@ -78,7 +78,7 @@ function takeOver(elem){
     takeSimpleInputOver('location', 'placeOfPublication');
     takeSimpleInputOver('publisher');
     takeSimpleInputOver('pages');
-    takeSimpleInputOver('bv', 'urn');
+    //takeSimpleInputOver('bv', 'urn');
     takeSimpleInputOver('year', 'yearOfPublication');
     var new_lang = j.find('.oai_language .value').text().trim();
     jq('select#languageReviewedText').val(new_lang);
