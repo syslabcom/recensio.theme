@@ -27,4 +27,13 @@
         handler=".upgrades.v1to2"
         />
 
+    <genericsetup:upgradeStep
+        sortkey="2"
+        source="2"
+        destination="3"
+        title="Upgrade 2"
+        profile="recensio.theme:default"
+        handler=".upgrades.v2to3"
+        />
+
 </configure>
