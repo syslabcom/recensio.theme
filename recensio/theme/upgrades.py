@@ -17,19 +17,25 @@ def v1to2(portal_setup):
 
 
 def v2to3(portal_setup):
-    old_re = '<area .*title="Newsletter"[^>]*>[\s]*'\
-             '<area .*title="RSS-Feed"[^>]*>'
-    new_str = '<area shape="poly" coords="30,90,135,75,128,25,22,35" '\
-              'title="RSS-Feed" alt="RSS-Feed" '\
-              'href="http://localhost:8010/recensio/RSS-feeds">'
+    newsletter_re = r'[ \t]*<area .*title="Newsletter"[^>]*>\s*\n'
+    rss_re = '(<area [^>]*) coords="[0-9,]*" ([^>]*RSS-Feed[^>]*>)'
+    rss_re2 = '(<area [^>]*RSS-Feed[^>]*) coords="[0-9,]*" ([^>]*>)'
+    new_rss_str = r'\1 coords="30,90,135,75,128,25,22,35" \2'
     portal = getSite()
     frontpage = portal.get('front-page')
-    column = getUtility(IPortletManager,
-                        name=u'plone.rightcolumn',
-                        context=frontpage)
-    manager = getMultiAdapter((frontpage, column,), IPortletAssignmentMapping)
-    postit = manager.get('postit')
-    if postit is None:
-        log.warn('No postit portlet found, skipping upgrade')
-        return
-    postit.tal = re.sub(old_re, new_str, postit.tal)
+    translations = frontpage.getTranslations().values()
+    for fp_trans, status in translations:
+        column = getUtility(IPortletManager,
+                            name=u'plone.rightcolumn',
+                            context=fp_trans)
+        manager = getMultiAdapter((fp_trans, column,),
+                                  IPortletAssignmentMapping)
+        postit = manager.get('postit')
+        if postit is None:
+            log.warn('No postit portlet found for {0}, '
+                     'skipping upgrade'.format(
+                         fp_trans.Language()))
+            return
+        postit.tal = re.sub(newsletter_re, '', postit.tal)
+        postit.tal = re.sub(rss_re, new_rss_str, postit.tal)
+        postit.tal = re.sub(rss_re2, new_rss_str, postit.tal)

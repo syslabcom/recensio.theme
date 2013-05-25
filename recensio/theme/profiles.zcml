@@ -31,7 +31,7 @@
         sortkey="2"
         source="2"
         destination="3"
-        title="Upgrade 2"
+        title="Upgrade Postit Portlet"
         profile="recensio.theme:default"
         handler=".upgrades.v2to3"
         />
