@@ -125,14 +125,18 @@ if show_query:
     except ParseError:
         pass
 
+
+# We do not want to have results where both an item and its parent is found.
+# This code removes any child items.
+# Without the rstrip('/') + '/', /lala/1test and lala/11test would result in items being removed.
 paths = []
 result_to_remove = []
 results = [x for x in results if x]
 for result in results:
-    paths.append(result.getPath())
+    paths.append(result.getPath().rstrip('/') + '/')
 
 for result in results:
-    if len([x for x in paths if result.getPath() in x]) > 1:
+    if len([x for x in paths if result.getPath().rstrip('/') + '/' in x]) > 1:
         result_to_remove.append(result)
 
 return [x for x in results if x not in result_to_remove]
