@@ -105,13 +105,16 @@ class AuthorSearchView(BrowserView):
         author_string = self.request.get('authors')
         if author_string:
             retval = []
-            authors = [x.lower() for x in author_string.split(' ')]
+            authors = [x.lower() for x in author_string.strip("\"'").split(' ')]
             for one_author_data in self.all_authors():
                 one_author_lowered = one_author_data['name'].lower()
+                all_tokens_found = True
                 for author_searched in authors:
-                    if author_searched in one_author_lowered:
-                        retval.append(one_author_data)
+                    if author_searched not in one_author_lowered:
+                        all_tokens_found = False
                         break
+                if all_tokens_found:
+                    retval.append(one_author_data)
             return retval
         else:
             return self.all_authors()
