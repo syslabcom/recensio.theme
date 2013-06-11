@@ -87,7 +87,7 @@ class AuthorSearchView(BrowserView):
             comments[safe_unicode(('%s, %s' % (
                 member.getProperty('lastname'),
                 member.getProperty('firstname'))
-            )).encode('utf-8')] = commentator_id
+            ))] = commentator_id
 
         authors = [dict(name=x.strip(', '),
                    reviews=reviews.get(safe_unicode(x), 0),
