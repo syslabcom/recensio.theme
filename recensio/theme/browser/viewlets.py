@@ -130,7 +130,8 @@ class publicationlisting(ViewletBase):
             review_objs = self.parent[volume][issue].getFolderContents(
                 {'portal_type': ['Review Monograph', 'Review Journal']},
                 full_objects=True)
-        review_objs = sorted(review_objs, key=lambda v: v.effective(), reverse=True)
+        review_objs = sorted(review_objs,
+                             key=lambda v: v.listAuthorsAndEditors())
         reviews = [self._make_dict(rev) for rev in review_objs]
         return reviews
 
