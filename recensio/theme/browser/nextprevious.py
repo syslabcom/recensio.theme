@@ -8,14 +8,13 @@ from plone.memoize.instance import memoize
 
 from Products.CMFCore.utils import getToolByName
 
-from recensio.contenttypes.content.issue import Issue
+from recensio.contenttypes.interfaces import IIssue, IVolume
 
 
 class RecensioFolderNextPrevious(ATFolderNextPrevious):
     """ Use EffectiveDate to determine next/previous instead of
         getObjPositionInParent """
     implements(INextPreviousProvider)
-    adapts(Issue)
 
     @property
     def enabled(self):
@@ -65,3 +64,11 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
         query['is_folderish'] = False
 
         return query
+
+
+class RecensioVolumeNextPrevious(RecensioFolderNextPrevious):
+    adapts(IVolume)
+
+
+class RecensioIssueNextPrevious(RecensioFolderNextPrevious):
+    adapts(IIssue)
