@@ -4,8 +4,18 @@ Changelog
 3.0.8 (unreleased)
 ------------------
 
+Feature changes
+~~~~~~~~~~~~~~~
+
 - Enable language Filter in advanced search.
   [do3cc]
+- #7470 Enable the BV Number OAI suggestion [deroiste]
+
+Upgrade notes
+~~~~~~~~~~~~~
+
+- #7470 There is a custom copy of oai.js in the root of the instance,
+  this needs to be deleted after deployment [deroiste]
 
 
 3.0.7 (2013-05-14)

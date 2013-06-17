@@ -62,6 +62,7 @@ function showResults(data){
 }
 
 function takeOver(elem){
+    debugger;
     var j = jq(elem).parent().parent();
     var missing_flag = false;
     function takeSimpleInputOver(source, destination){
@@ -78,7 +79,7 @@ function takeOver(elem){
     takeSimpleInputOver('location', 'placeOfPublication');
     takeSimpleInputOver('publisher');
     takeSimpleInputOver('pages');
-    //takeSimpleInputOver('bv', 'urn');
+    takeSimpleInputOver('bv');
     takeSimpleInputOver('year', 'yearOfPublication');
     var new_lang = j.find('.oai_language .value').text().trim();
     jq('select#languageReviewedText').val(new_lang);
