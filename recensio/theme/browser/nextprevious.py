@@ -8,31 +8,32 @@ from plone.memoize.instance import memoize
 
 from Products.CMFCore.utils import getToolByName
 
-from recensio.contenttypes.content.issue import Issue
+from recensio.contenttypes.interfaces import IIssue, IVolume
+
 
 class RecensioFolderNextPrevious(ATFolderNextPrevious):
-    """ Use EffectiveDate to determine next/previous instead of 
+    """ Use EffectiveDate to determine next/previous instead of
         getObjPositionInParent """
     implements(INextPreviousProvider)
-    adapts(Issue)
 
     @property
     def enabled(self):
         return True
-    
+
     @memoize
     def itemRelatives(self, oid):
         """Get the relative next and previous items
         """
-        catalog  = getToolByName(self.context, 'portal_catalog')
+        catalog = getToolByName(self.context, 'portal_catalog')
         obj = self.context[oid]
         path = '/'.join(obj.getPhysicalPath())
 
         previous = None
-        next     = None
+        next = None
 
         result = sorted(catalog(self.buildNextPreviousQuery()),
-                            key=lambda x: x["listAuthorsAndEditors"] and x["listAuthorsAndEditors"][0])
+                        key=lambda x: x["listAuthorsAndEditors"]
+                        and x["listAuthorsAndEditors"][0])
         if result and len(result) > 1:
             pathlist = [x.getPath() for x in result]
             if path in pathlist:
@@ -43,24 +44,31 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
                     next = self.buildNextPreviousItem(result[index + 1])
 
         nextPrevious = {
-            'next'      : next,
-            'previous'  : previous,
-            }
+            'next':       next,
+            'previous':   previous,
+        }
 
         return nextPrevious
-        
+
     def buildNextPreviousQuery(self):
-        query                    = {}
-        query['portal_type']     = [
+        query = {}
+        query['portal_type'] = [
             'Review Journal', 'Review Monograph',
-                ]
-        query['path']            = dict(query = '/'.join(self.context.getPhysicalPath()),
-                                        depth = 1)
+        ]
+        query['path'] = dict(query='/'.join(self.context.getPhysicalPath()),
+                             depth=1)
         query['b_size'] = 10000
-                
+
         # Filters on content
         query['is_default_page'] = False
-        query['is_folderish']    = False
+        query['is_folderish'] = False
 
         return query
 
+
+class RecensioVolumeNextPrevious(RecensioFolderNextPrevious):
+    adapts(IVolume)
+
+
+class RecensioIssueNextPrevious(RecensioFolderNextPrevious):
+    adapts(IIssue)
