@@ -2670,7 +2670,8 @@ div#extra-design-elements { display: none; }
     margin-top:0.5em;
 }
 
-#publicationlisting .review_container a h3::after {
+#publicationlisting .review_container a h3::after,
+#publicationlisting .review_container a h2::after {
 /*    background: url('++resource++recensio.theme.images/more_arrow.png') 20px -1px no-repeat;*/
     content: "▸";
     margin-left: 3px;
@@ -2686,7 +2687,8 @@ div#extra-design-elements { display: none; }
     display:none;
 }
 
-#publicationlisting .review_container.expanded a h3::after {
+#publicationlisting .review_container.expanded a h3::after,
+#publicationlisting .review_container.expanded a h2::after {
 /*    background: url('++resource++recensio.theme.images/more_arrow_open.png') 20px -1px no-repeat*/
     content: "▾";
     margin-left: 3px;

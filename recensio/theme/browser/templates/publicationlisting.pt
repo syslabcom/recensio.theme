@@ -15,7 +15,8 @@
                      is_container python:volume['css_classes'] and 'review_container' in volume['css_classes'];"
          tal:attributes="id volume/UID;
                          class volume/css_classes">
-        <a href="#" tal:attributes="href volume/toggle_link"
+        <a href="#" class="container_trigger"
+           tal:attributes="href volume/toggle_link"
                     tal:condition="is_container">
             <h2 tal:content="volume/Title" />
         </a>
