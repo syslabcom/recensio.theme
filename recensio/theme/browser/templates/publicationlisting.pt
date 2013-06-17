@@ -20,6 +20,19 @@
             <h2 tal:content="volume/Title" />
         </a>
         <h2 tal:content="volume/Title" tal:condition="not:is_container" />
+
+        <span class="pdf" tal:condition="volume/pdf | nothing">
+            <a href="" tal:attributes="href string:${volume/pdf}/at_download/file">
+                  <img src="pdf.png" alt="">&nbsp;
+                  <span i18n:translate="label_download_complete_pdf">download Gesamt-pdf</span>
+            </a>
+            <span class="discreet">
+                &mdash;
+                <span tal:replace="python:context.lookupMime('application/x-pdf')">ContentType</span>,
+                <tal:size content="volume/pdfsize">?</tal:size>
+            </span>
+        </span>
+
         <ul tal:condition="is_container">
           <li tal:condition="volume_expanded"
               tal:repeat="review python:view.reviews(volume=volume['id'])">

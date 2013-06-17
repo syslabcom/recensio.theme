@@ -79,7 +79,7 @@ class publicationlisting(ViewletBase):
                 css_classes.append('expanded')
         return ' '.join(css_classes) or None
 
-    def _make_issue_dict(self, obj):
+    def _make_iss_or_vol_dict(self, obj):
         issue_dict = {'Title':  obj.Title(),
                       'id':     obj.getId(),
                       'UID':    obj.UID(),
@@ -98,12 +98,7 @@ class publicationlisting(ViewletBase):
             {'portal_type': 'Volume'},
             full_objects=True)
         volume_objs = sorted(objects, key=lambda v: v.effective(), reverse=True)
-        volumes = [{'Title': v.Title(),
-                    'id':    v.getId(),
-                    'UID':   v.UID(),
-                    'toggle_link': self._get_toggle_link(v.UID()),
-                    'css_classes': self._get_css_classes(v),
-                   } for v in volume_objs]
+        volumes = [self._make_iss_or_vol_dict(v) for v in volume_objs]
         return volumes
 
     def issues(self, volume):
@@ -113,7 +108,7 @@ class publicationlisting(ViewletBase):
             {'portal_type': 'Issue'},
             full_objects=True)
         issue_objs = sorted(objects, key=lambda v: v.effective, reverse=True)
-        issues = [self._make_issue_dict(i) for i in issue_objs]
+        issues = [self._make_iss_or_vol_dict(i) for i in issue_objs]
         return issues
 
     @ram.cache(_render_cachekey)
