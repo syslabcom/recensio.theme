@@ -7,9 +7,24 @@ Changelog
 Feature changes
 ~~~~~~~~~~~~~~~
 
+- also show complete pdf link for volumes if available, refs #7741 [reinhardt]
+- also register NextPrevious adapter for Volumes, refs #7740 [reinhardt]
+- new postit images and upgrade step for portlet, refs #7531 [reinhardt]
 - Enable language Filter in advanced search.
   [do3cc]
 - #7470 Enable the BV Number OAI suggestion [deroiste]
+
+Bugfixes
+~~~~~~~~
+
+- fixed js toggle of volumes in publicationlisting, refs #7741 [reinhardt]
+- don't pass b_size and b_start, we need all results to determine whether to
+  display a given Volume; refs #7629 [reinhardt]
+- sort by author instead of effective date in publicationlisting, refs #7533
+  [reinhardt]
+- Be more careful removing double entries. refs #6650 [do3cc]
+- One encoding too much. refs #5983 [do3cc]
+- AND Search, refs #5983 [do3cc]
 
 Upgrade notes
 ~~~~~~~~~~~~~
