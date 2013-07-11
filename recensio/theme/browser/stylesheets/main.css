@@ -487,6 +487,9 @@ div#portal-advanced-search {
 ul.authors li, li.inline_listing {
    display: inline !important;
 }
+li.inline_listing.authorname {
+   width: 192px;
+}
 
 ul.authors,
 ul.authors ul {

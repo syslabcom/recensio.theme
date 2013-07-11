@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Optimise call of alpha_index to speed up author page (pilz)
+- Style fixes for authorsearch to support multiline names (pilz)
 
 
 3.1.0 (2013-07-07)

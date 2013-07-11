@@ -119,7 +119,7 @@
                 </a>
                 <div class="authorsearch_placeholder" tal:condition="not:author/comments" />
               </li>
-              <li class="inline_listing">
+              <li class="inline_listing authorname">
                 <a href="."
                    i18n:attributes="title label_all_items_author"
                    title="All items of this author"
