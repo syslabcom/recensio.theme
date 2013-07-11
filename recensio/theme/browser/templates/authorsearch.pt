@@ -68,10 +68,10 @@
                        portal_url context/portal_url;"
            class="authorsearch">
 
-        <div id="authorsearch-alphabet">
+        <div id="authorsearch-alphabet" tal:define="ai view/alpha_index">
           <tal:block repeat="letter view/ALPHABET">
-            <a href="#" tal:condition="python:letter in view.alpha_index" tal:content="letter" tal:attributes="href python:context.absolute_url() + '?b_start=' + str(view.alpha_index[letter])" />
-            <span tal:condition="python:not letter in view.alpha_index" class="letter_not_available" tal:content="letter" />
+            <a href="#" tal:condition="python:letter in ai" tal:content="letter" tal:attributes="href python:context.absolute_url() + '?b_start=' + str(ai[letter])" />
+            <span tal:condition="python:not letter in ai" class="letter_not_available" tal:content="letter" />
           </tal:block>
         </div>
 

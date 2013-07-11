@@ -4,7 +4,7 @@ Changelog
 3.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Optimise call of alpha_index to speed up author page (pilz)
 
 
 3.1.0 (2013-07-07)
