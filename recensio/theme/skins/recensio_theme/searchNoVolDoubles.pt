@@ -189,6 +189,11 @@
                      href="#"
                      tal:attributes="href url;
                                      class string:$item_wf_state_class">
+                      <tal:block condition="python:result_type == 'Volume'">
+                          <tal:block define="publication_title python:result.getObject().getParentNode().Title();">
+                            <span class="publication-title" tal:content="publication_title" />:
+                          </tal:block>
+                      </tal:block>
                       <tal:block condition="python:result_type == 'Issue'">
                           <tal:block define="volume python:result.getObject().getParentNode();
                                              volume_title python:volume.Title();
