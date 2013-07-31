@@ -5,6 +5,8 @@ import logging
 import os
 import tempfile
 
+from plone.uuid.interfaces import IUUID
+
 from reportlab.lib.colors import grey
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.lib.styles import ParagraphStyle
@@ -74,7 +76,8 @@ class GeneratePdfRecension(BrowserView):
                 os.remove(cover)
             if new_path:
                 os.remove(new_path)
-        self._prepareHeader(len(pdfdata))
+
+        self._prepareHeader(len(pdfdata), "%s.pdf" % IUUID(self.context))
         return pdfdata
 
     def _prepareHeader(self, contentlength, filename='review.pdf'):
