@@ -827,3 +827,7 @@ font-size: 14px;
 .dropdown-menu li.active {
     background: #E8E1D0;
 }
+/* hide newly surfaced Settings tab on review, fixes #8039 */
+body.template-atct_edit.portaltype-review-journal a#fieldsetlegend-settings {
+        display: none;
+}

@@ -8,6 +8,7 @@ Changelog
 - Style fixes for authorsearch to support multiline names (pilz)
 - Changed the filename for pdf downloads to be the UID.pdf. Fixes #8020  (pilz)
 - Add a line to display title of a volume in searchNoVolDoubles. Fixes #6685 (pilz)
+- Added a style to hide the new settings tab in review journal edit form. Fixes #8039 (pilz)
 
 3.1.0 (2013-07-07)
 ------------------
