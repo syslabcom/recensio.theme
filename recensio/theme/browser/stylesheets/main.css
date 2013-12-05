@@ -2926,3 +2926,11 @@ dl.collapsible dd.collapsibleContent {
 }
 
 #livesearch0 {margin-left:100px;}
+
+
+.portaltype-review-journal #archetypes-fieldname-heading__page_number_of_presented_review_in_journal,
+.portaltype-review-journal #archetypes-fieldname-heading_presented_work, 
+.portaltype-review-monograph #archetypes-fieldname-heading__page_number_of_presented_review_in_journal,
+.portaltype-review-monograph #archetypes-fieldname-heading_presented_work {
+  display:none;
+}
