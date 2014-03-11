@@ -34,20 +34,12 @@
               <ul>
                 <li tal:repeat="res results">
                   <span  class="ellipsis_container">
-                    <div class="ellipsis_text">
-                      <a href="#"
+                      <a href="#" class="ellipsis_text"
                          tal:attributes="href res/review_url">
-                        <span
-                            tal:attributes="href res/publication_url"
-                            tal:content="res/publication_title">title
-                        </span>,
-                        <span tal:condition="res/volume_title">
-                          <span tal:replace="res/volume_title" />,
-                        </span>
-                        <span
-                           tal:content="res/Title">title</span>
+                        <span tal:replace="res/publication_title">title</span>,
+                        <span tal:condition="res/volume_title" tal:replace="res/volume_title" />,
+                        <span tal:replace="res/Title">title</span>
                       </a>
-                    </div>
                   </span>
                   <div class="effective_date"
                        tal:content="res/effective_date"/>
@@ -113,11 +105,9 @@
               <ul>
                 <li tal:repeat="res results">
                   <span tal:content="res/authors"/>
-                  <span class="ellipsis_container">
-                    <a href="#" class="ellipsis_text"
-                       tal:attributes="href res/url"
-                       tal:content="res/title">title</a>
-                  </span>
+                    <a href="#" tal:attributes="href res/url" class="ellipsis_container">
+                        <span class="ellipsis_text" tal:content="res/title">title</span>
+                    </a>
                   <div class="effective_date"
                        tal:content="res/date"/>
                 </li>
@@ -135,11 +125,10 @@
                  tal:define="results view/getOnlinePresentations">
               <ul>
                 <li tal:repeat="res results">
-                  <span class="ellipsis_container">
-                    <a href="#" class="ellipsis_text"
-                       tal:attributes="href res/url" tal:content="res/title">
-                    title</a>
-                  </span>
+                    <a href="#" class=" ellipsis_container"
+                       tal:attributes="href res/url">
+                       <span class="ellipsis_text" tal:content="res/title" />
+                    </a>
                   <div class="effective_date"
                        tal:content="res/date"/>
                 </li>
