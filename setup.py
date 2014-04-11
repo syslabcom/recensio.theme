@@ -32,7 +32,8 @@ setup(name='recensio.theme',
           'z3c.jbot',
       ],
       extras_require={
-        "test" : "plone.app.testing"
+        "test" : ["plone.app.testing",
+                  "recensio.policy"],
         },
       entry_points="""
       [z3c.autoinclude.plugin]

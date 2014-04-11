@@ -177,4 +177,13 @@
     <adapter factory=".nextprevious.RecensioIssueNextPrevious"
         />
 
+    <browser:page
+        for="*"
+        name="breadcrumbs_view"
+        class=".navigation.RecensioNavigationBreadcrumbs"
+        permission="zope.Public"
+        allowed_attributes="breadcrumbs"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+
 </configure>
