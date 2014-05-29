@@ -84,6 +84,8 @@ for k in REQUEST.keys():
         if k == 'isbn':
             v = ''.join(v.split('-'))
             v = ''.join(v.split(' '))
+        if k == 'SearchableText':
+            v = context.restrictedTraverse('@@recensio-helper-view').normalize_isbns_in_text(v)
         query[k] = v
         show_query = 1
     elif k.endswith('_usage'):

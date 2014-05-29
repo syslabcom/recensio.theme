@@ -1,5 +1,6 @@
 """ Views and functions for Recensio.net
 """
+import re
 from zope.app.component.hooks import getSite
 from zope.component import queryUtility
 from zope.i18n import translate
@@ -90,6 +91,16 @@ class RecensioHelperView(BrowserView):
             p_title = p_title + " "
 
         return p_title
+
+    def normalize_isbns_in_text(self, text):
+        expr = re.compile(u'[0-9]+[ \-0-9]*[0-9]+')
+        for match in expr.findall(text):
+            isbn = match
+            isbn = ''.join(isbn.split('-'))
+            isbn = ''.join(isbn.split(' '))
+            text = text.replace(match, isbn)
+        return text
+
 
 class CreateNewPresentationView(BrowserView):
     """ Helper to direct to new presentation creation """

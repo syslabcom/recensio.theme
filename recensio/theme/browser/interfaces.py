@@ -4,6 +4,12 @@ from zope.interface import Interface
 class IRecensioHelperView(Interface):
     """ Interface for the RecensioHelperView """
 
+    def normalize_isbns_in_text(text):
+        """Enables flexible full text search for ISBNs"""
+
+    def punctuated_title(self, title, subtitle):
+        """ """
+
 class IRedirectToPublication(Interface):
     """ Interface for RedirectToPublication """
 

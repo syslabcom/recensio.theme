@@ -41,7 +41,6 @@
     <browser:page
         for="*"
         allowed_interface=".interfaces.IRecensioHelperView"
-        allowed_attributes="punctuated_title"
         name="recensio-helper-view"
         class=".views.RecensioHelperView"
         permission="zope2.View"
