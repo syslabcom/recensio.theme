@@ -28,7 +28,8 @@ class TestSearch(unittest.TestCase):
         self.assertOneSearchResult('9788360448417')
         self.assertOneSearchResult('978 83 60448 41 7')
         self.assertOneSearchResult('9-788-3604-48-41-7')
-        self.assertOneSearchResult(u'9-788-3604-48-41-7 Černivci')
+        self.assertOneSearchResult(
+            u'9-788-3604-48-41-7 Černivci'.encode('utf-8'))
         noLongerProvides(self.portal.REQUEST, IRecensioLayer)
 
     def test_normalize_isbns_in_text(self):
@@ -41,5 +42,5 @@ class TestSearch(unittest.TestCase):
     def test_normalize_isbns_in_text_unicode(self):
         helper_view = RecensioHelperView(self.portal, self.portal.REQUEST)
         res = helper_view.normalize_isbns_in_text(
-            u'społeczeństwa 978-83-60448-39-7')
-        self.assertEqual(res, u'społeczeństwa 9788360448397')
+            u'społeczeństwa 978-83-60448-39-7'.encode('utf-8'))
+        self.assertEqual(res, u'społeczeństwa 9788360448397'.encode('utf-8'))
