@@ -2527,7 +2527,7 @@ height:32px;
 }
 
 .oaisuggestion .missing {
-    color: red;
+    display: none;
 }
 
 #oaisuggestions div.spinner{
