@@ -34,6 +34,7 @@
             </span>
         </span>
 
+        <span tal:condition="is_container" class="loading">Loading...</span>
         <ul tal:condition="is_container">
           <li tal:condition="volume_expanded"
               tal:repeat="review python:view.reviews(volume=volume['id'])">
