@@ -78,6 +78,8 @@ function takeOver(elem){
     takeSimpleInputOver('subtitle');
     takeSimpleInputOver('location', 'placeOfPublication');
     takeSimpleInputOver('publisher');
+    takeSimpleInputOver('series');
+    takeSimpleInputOver('seriesVol');
     takeSimpleInputOver('pages');
     takeSimpleInputOver('bv');
     takeSimpleInputOver('year', 'yearOfPublication');
