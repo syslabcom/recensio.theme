@@ -204,7 +204,11 @@ class HomepageView(BrowserView):
                 try:
                     obj = brain.getObject()
                     default_page = obj.restrictedTraverse(obj.getDefaultPage())
-                    translated_ob = default_page.getTranslations()[lang][0]
+                    translations = default_page.getTranslations()
+                    if not lang in translations:
+                        translated_ob = default_page
+                    else:
+                        translated_ob = translations[lang][0]
                     pubs.append(translated_ob)
                 except Unauthorized:
                     continue
