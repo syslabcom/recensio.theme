@@ -6,6 +6,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from recensio.contenttypes.interfaces import IParentGetter
+from recensio.contenttypes.interfaces.publication import IPublication
 from plone.i18n.locales.languages import _languagelist
 from ZTUtils import make_query
 from Acquisition import aq_inner
@@ -189,7 +190,8 @@ class HomepageView(BrowserView):
         zeitschriften = getattr(rezensionen, 'zeitschriften', None)
         pc = getToolByName(self.context, 'portal_catalog')
         if zeitschriften:
-            query = dict(portal_type=['Publication'],
+            query = dict(
+                object_provides=[IPublication.__identifier__],
                 review_state="published",
                 path='/'.join(zeitschriften.getPhysicalPath()),
                 sort_on='Title', b_size=1000)
