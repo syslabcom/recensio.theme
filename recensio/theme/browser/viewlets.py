@@ -4,6 +4,7 @@
 
 """
 
+from Acquisition import aq_parent
 from DateTime import DateTime
 from plone.app.layout.nextprevious import view as npview
 from plone.app.layout.viewlets import ViewletBase
@@ -14,6 +15,9 @@ from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from ZTUtils import make_query
 import logging
+
+from recensio.contenttypes.interfaces.review import IReview
+from recensio.contenttypes.interfaces.publication import IPublication
 
 log = logging.getLogger(__name__)
 
@@ -32,22 +36,16 @@ class publicationlisting(ViewletBase):
     implements(IViewlet)
 
     def __init__(self, context, request, view, manager=None):
+        if not IPublication.providedBy(context):
+            # If we're not on a Publication, we're probably on the default page
+            # of one
+            context = aq_parent(context)
         super(publicationlisting, self).__init__(
             context, request, view, manager)
-        try:
-            parents = self.request.PARENTS
-        except AttributeError:
-            return False
-        if len(parents) < 2:
-            return False
-        self.parent = self.request.PARENTS[1]
 
     def visible(self):
         """ should we display at all? """
-        if hasattr(self.context, 'portal_type') and \
-           self.context.portal_type == 'Document' and \
-           hasattr(self.parent, 'portal_type') and \
-           self.parent.portal_type == 'Publication':
+        if IPublication.providedBy(self.context):
             return True
         return False
 
@@ -79,10 +77,12 @@ class publicationlisting(ViewletBase):
 
     def _get_css_classes(self, obj):
         css_classes = []
-        if len(obj.objectIds(['ReviewMonograph', 'ReviewJournal'])) > 0:
-            css_classes.append('review_container')
-            if self.is_expanded(obj.UID()):
-                css_classes.append('expanded')
+        for sub_id in obj.objectIds():
+            if IReview.providedBy(obj[sub_id]):
+                css_classes.append('review_container')
+                if self.is_expanded(obj.UID()):
+                    css_classes.append('expanded')
+                break
         return ' '.join(css_classes) or None
 
     def _make_iss_or_vol_dict(self, obj):
@@ -100,7 +100,7 @@ class publicationlisting(ViewletBase):
         return issue_dict
 
     def volumes(self):
-        objects = self.parent.getFolderContents(
+        objects = self.context.getFolderContents(
             {'portal_type': 'Volume'},
             full_objects=True)
         volume_objs = sorted(objects,
@@ -110,9 +110,9 @@ class publicationlisting(ViewletBase):
         return volumes
 
     def issues(self, volume):
-        if not volume in self.parent.objectIds():
+        if not volume in self.context.objectIds():
             return []
-        objects = self.parent[volume].getFolderContents(
+        objects = self.context[volume].getFolderContents(
             {'portal_type': 'Issue'},
             full_objects=True)
         issue_objs = sorted(objects, key=lambda v: v.effective, reverse=True)
@@ -121,17 +121,17 @@ class publicationlisting(ViewletBase):
 
     @ram.cache(_render_cachekey)
     def reviews(self, volume, issue=None):
-        if not volume in self.parent.objectIds():
+        if not volume in self.context.objectIds():
             return []
         if issue is None:
-            review_objs = self.parent[volume].getFolderContents(
-                {'portal_type': ['Review Monograph', 'Review Journal']},
+            review_objs = self.context[volume].getFolderContents(
+                {'object_provides': [IReview.__identifier__]},
                 full_objects=True)
         else:
-            if not issue in self.parent[volume].objectIds():
+            if not issue in self.context[volume].objectIds():
                 return []
-            review_objs = self.parent[volume][issue].getFolderContents(
-                {'portal_type': ['Review Monograph', 'Review Journal']},
+            review_objs = self.context[volume][issue].getFolderContents(
+                {'object_provides': [IReview.__identifier__]},
                 full_objects=True)
         review_objs = sorted(review_objs,
                              key=lambda v: v.listAuthorsAndEditors())
