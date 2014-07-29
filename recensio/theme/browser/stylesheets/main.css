@@ -2448,7 +2448,7 @@ width:100%;
     width: 740px;
 }
 
-.site-recensio.template-search #content-core {
+body.template-search #content-core {
     width: inherit;
 }
 
