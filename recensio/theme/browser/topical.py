@@ -192,12 +192,13 @@ class BrowseTopicsView(SearchFacetsView):
                                   % selectedinfo[0])
 
                 # recurse if we have subordinate vocabulary items
-                if isinstance(item[1][1], dict) or \
-                        isinstance(item[1][1], OrderedDict):
-                    subsubmenu = getSubmenu(item[1][1], facet, selected)
-                    iteminfo['submenu'] = subsubmenu
-                    # iteminfo['count'] += sum(map(
-                    #         lambda x: x['count'], subsubmenu))
+                if item[1]:
+                    if isinstance(item[1][1], dict) or \
+                            isinstance(item[1][1], OrderedDict):
+                        subsubmenu = getSubmenu(item[1][1], facet, selected)
+                        iteminfo['submenu'] = subsubmenu
+                        # iteminfo['count'] += sum(map(
+                        #         lambda x: x['count'], subsubmenu))
 
                 submenu.append(iteminfo)
 
