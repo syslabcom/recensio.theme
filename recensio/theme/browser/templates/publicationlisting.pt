@@ -39,7 +39,7 @@
           <li tal:condition="volume_expanded"
               tal:repeat="review python:view.reviews(volume=volume['id'])">
             <a tal:attributes="href review/absolute_url"
-               tal:content="review/getDecoratedTitle" />
+               tal:content="structure review/getDecoratedTitle" />
           </li>
         </ul>
     </div>
@@ -81,7 +81,7 @@
             <li tal:condition="issue_expanded"
                 tal:repeat="review python:view.reviews(volume=volume['id'],issue=issue['id'])">
               <a tal:attributes="href review/absolute_url"
-                 tal:content="review/getDecoratedTitle" />
+                 tal:content="structure review/getDecoratedTitle" />
             </li>
           </ul>
       </div>
