@@ -36,6 +36,7 @@
                           supp_languages recensiohelperview/listAvailableContentLanguages;
                           authors request/authors|string:;
                           authors python:getattr(authors, 'append', None) and ' '.join(authors) or authors;
+                          is_flat python:lambda items: not sum([bool(item[1][1]) for item in items]);
                           "
             >
 			<fieldset>
@@ -388,57 +389,61 @@
 		<fieldset>
 
           <dl class="collapsible collapsedOnLoad">
-            <dt class="collapsibleHeader">
-            <h2 i18n:translate="thematic_search">Thematische Suche</h2>
+              <dt class="collapsibleHeader">
+              <h2 i18n:translate="thematic_search">Thematische Suche</h2>
 
-            </dt>
+              </dt>
 
-          <dd class="collapsibleContent">
+            <dd class="collapsibleContent">
 
 
-          <div class="field"
+            <div class="field"
 
-               tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
-                           avail_regions python:dict(voc.getVocabularyDict(voc)).items();
-                           all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) ;
-                           toggle_select_state python:all_checked and 'true' or 'false';
-                           num_cols python:1;
-                           is_flat python:lambda items: not sum([bool(item[1][1]) for item in items]);">
-            <label for="region"
-                   class=""
-                   i18n:translate="label_region">Region</label>
-            <div class="">
-              <div class="formHelp" i18n:translate="help_region">
-               The region that you are looking for.
-              </div>
+                 tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
+                             avail_values python:dict(voc.getVocabularyDict(voc)).items();
+                             field_name string:ddcPlace;
+                             num_cols python:1;
+                             ">
+              <label for="region"
+                     class=""
+                     i18n:translate="label_region">Region</label>
+              <div class="">
+                <div class="formHelp" i18n:translate="help_region">
+                 The region that you are looking for.
+                </div>
 
-              <metal:ddc-list define-macro="ddclist">
-                  <div class="">
-                    <div style="float:left; margin-right: 2em;"
-                         tal:define="regionLists python:context.createMultiColumnList(avail_regions, numCols=num_cols);"
-                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
-                         tal:repeat="sublist regionLists">
-                      <tal:items repeat="region sublist">
-                        <div tal:define="subtree python:dict(region[1][1] or {}).items();">
-                            <dl class="collapsible collapsedOnLoad" tal:omit-tag="not:subtree"
-                                tal:attributes="class python:(subtree and (recensiohelperview.contains_one_of(subtree, request.get('ddcPlace', [])))) and 'collapsible' or 'collapsible collapsedOnLoad'">
+                <metal:ddc-list define-macro="ddclist">
+                    <div class="" tal:define="
+                         selected_values python:request.get(field_name, []);
+                         all_checked python:(len(avail_values) == len(selected_values)) ;
+                         toggle_select_state python:all_checked and 'true' or 'false';
+                         ">
+                      <div style="float:left; margin-right: 2em;"
+                           tal:define="valueLists python:context.createMultiColumnList(avail_values, numCols=num_cols);"
+                           tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
+                           tal:repeat="sublist valueLists">
+                        <tal:items repeat="value sublist">
+                          <div tal:define="subtree python:dict(value[1][1] or {}).items();">
+                              <dl class="collapsible collapsedOnLoad" tal:omit-tag="not:subtree"
+                                  tal:attributes="class python:(subtree and (recensiohelperview.contains_one_of(subtree, selected_values))) and 'collapsible' or 'collapsible collapsedOnLoad'">
                               <dt class="collapsibleHeader" tal:omit-tag="not:subtree">
                                 <input type="checkbox"
                                        name="ddcPlace:list"
                                        value="#"
                                        class="noborder"
                                        checked="checked"
-                                       tal:attributes="value python:region[0];
-                                                       id string:ddcPlace_${repeat/sublist/number}_${repeat/region/number};
-                                                       checked python:((region[0] in request.get('ddcPlace', []))) and 'checked' or ''"/>
+                                       tal:attributes="value python:value[0];
+                                                       id string:${field_name}_${repeat/sublist/number}_${repeat/value/number};
+                                                       checked python:((value[0] in selected_values)) and 'checked' or '';
+                                                       name string:${field_name}:list"/>
                                 <label for=""
                                        i18n:translate="" i18n:domain="recensio"
-                                       tal:attributes="for string:ddcPlace_${repeat/sublist/number}_${repeat/region/number}"
-                                       tal:content="python:region[1][0]"
+                                       tal:attributes="for string:${field_name}_${repeat/sublist/number}_${repeat/value/number}"
+                                       tal:content="python:value[1][0]"
                                        />
                               </dt>
                               <dd class="collapsibleContent" tal:omit-tag="not:subtree">
-                                  <tal:recurse tal:condition="subtree" tal:define="avail_regions subtree; num_cols python:(subtree and is_flat(subtree)) and 3 or 1;">
+                                  <tal:recurse tal:condition="subtree" tal:define="avail_values subtree; num_cols python:(subtree and is_flat(subtree)) and 3 or 1;">
                                       <metal:ddc-recurse use-macro="context/search_form/macros/ddclist" />
                                   </tal:recurse>
                               </dd>
@@ -447,7 +452,7 @@
                         </div>
                       </tal:items>
                     </div>
-                    <div class="visualClear" id="clear-after-region"><!-- --></div>
+                    <div class="visualClear" id="clear-after-region" tal:attributes="id string:clear-after-${field_name}"><!-- --></div>
                   </div>
               </metal:ddc-list>
 
@@ -457,9 +462,9 @@
           <div class="field"
 
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('epoch_values');
-                           avail_epochs python:voc.getDisplayList(voc).items();
-                           all_checked python:(len(avail_epochs) == len(request.get('ddcTime', []))) ;
-                           toggle_select_state python:all_checked and 'true' or 'false';">
+                           avail_values python:dict(voc.getVocabularyDict(voc)).items();
+                           field_name string:ddcTime;
+                           num_cols python:1">
             <label for="epoch"
                    class=""
                    i18n:translate="label_epoch">Epoche</label>
@@ -469,17 +474,7 @@
 
               </div>
 
-              <div style="float:left; margin-right: 2em;"
-                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
-                <select multiple="multiple"
-                        name="ddcTime:list"
-                        size="10">
-                  <tal:items repeat="epo avail_epochs">
-                    <option tal:attributes="value python:epo[0]; selected python:((epo[0] in request.get('ddcTime', [])) ) and 'selected'" tal:content="python:epo[1]" />
-                  </tal:items>
-                </select>
-              </div>
-              <div class="visualClear" id="clear-after-epoch"><!-- --></div>
+              <metal:ddc-recurse use-macro="context/search_form/macros/ddclist" />
 
             </div>
           </div>
