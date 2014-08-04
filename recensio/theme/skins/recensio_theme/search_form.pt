@@ -402,6 +402,9 @@
                  tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
                              avail_values python:dict(voc.getVocabularyDict(voc)).items();
                              field_name string:ddcPlace;
+                             selected_values python:request.get(field_name, []);
+                             all_checked python:(len(avail_values) == len(selected_values)) ;
+                             toggle_select_state python:all_checked and 'true' or 'false';
                              num_cols python:1;
                              ">
               <label for="region"
@@ -412,12 +415,24 @@
                  The region that you are looking for.
                 </div>
 
+                <span class="optionsToggle">
+                  <input type="checkbox"
+                         onclick=""
+                         name="pt_toggle"
+                         value="#"
+                         id="pt_toggle"
+                         class="noborder"
+                         checked="checked"
+                         tal:attributes="checked python:all_checked and 'checked' or '';
+                                         onclick string:javascript:toggleSelect(this, '${field_name}:list', ${toggle_select_state});"/>
+                  <label for="pt_toggle"
+                         i18n:translate="label_toggle"
+                         >Select All/None
+                  </label>
+                </span>
+
                 <metal:ddc-list define-macro="ddclist">
-                    <div class="" tal:define="
-                         selected_values python:request.get(field_name, []);
-                         all_checked python:(len(avail_values) == len(selected_values)) ;
-                         toggle_select_state python:all_checked and 'true' or 'false';
-                         ">
+                    <div class="" >
                       <div style="float:left; margin-right: 2em;"
                            tal:define="valueLists python:context.createMultiColumnList(avail_values, numCols=num_cols);"
                            tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
@@ -464,6 +479,9 @@
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('epoch_values');
                            avail_values python:dict(voc.getVocabularyDict(voc)).items();
                            field_name string:ddcTime;
+                           selected_values python:request.get(field_name, []);
+                           all_checked python:(len(avail_values) == len(selected_values)) ;
+                           toggle_select_state python:all_checked and 'true' or 'false';
                            num_cols python:1">
             <label for="epoch"
                    class=""
@@ -474,6 +492,21 @@
 
               </div>
 
+              <span class="optionsToggle">
+                <input type="checkbox"
+                       onclick=""
+                       name="pt_toggle"
+                       value="#"
+                       id="pt_toggle"
+                       class="noborder"
+                       checked="checked"
+                       tal:attributes="checked python:all_checked and 'checked' or '';
+                                       onclick string:javascript:toggleSelect(this, '${field_name}:list', ${toggle_select_state});"/>
+                <label for="pt_toggle"
+                       i18n:translate="label_toggle"
+                       >Select All/None
+                </label>
+              </span>
               <metal:ddc-recurse use-macro="context/search_form/macros/ddclist" />
 
             </div>
@@ -484,6 +517,9 @@
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('topic_values');
                            avail_values python:dict(voc.getVocabularyDict(voc)).items();
                            field_name string:ddcSubject;
+                           selected_values python:request.get(field_name, []);
+                           all_checked python:(len(avail_values) == len(selected_values)) ;
+                           toggle_select_state python:all_checked and 'true' or 'false';
                            num_cols python:2;
                            ">
             <label for="topic"
@@ -494,6 +530,21 @@
                The Topic that you are looking for
               </div>
 
+              <span class="optionsToggle">
+                <input type="checkbox"
+                       onclick=""
+                       name="pt_toggle"
+                       value="#"
+                       id="pt_toggle"
+                       class="noborder"
+                       checked="checked"
+                       tal:attributes="checked python:all_checked and 'checked' or '';
+                                       onclick string:javascript:toggleSelect(this, '${field_name}:list', ${toggle_select_state});"/>
+                <label for="pt_toggle"
+                       i18n:translate="label_toggle"
+                       >Select All/None
+                </label>
+              </span>
               <metal:ddc-recurse use-macro="context/search_form/macros/ddclist" />
 
             </div>
