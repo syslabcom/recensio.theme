@@ -482,9 +482,10 @@
           <div class="field"
 
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('topic_values');
-                           avail_topics python:voc.getDisplayList(voc).items();
-                           all_checked python:(len(avail_topics) == len(request.get('ddcSubject', []))) ;
-                           toggle_select_state python:all_checked and 'true' or 'false';">
+                           avail_values python:dict(voc.getVocabularyDict(voc)).items();
+                           field_name string:ddcSubject;
+                           num_cols python:2;
+                           ">
             <label for="topic"
                    class=""
                    i18n:translate="label_topic">Thema</label>
@@ -493,18 +494,7 @@
                The Topic that you are looking for
               </div>
 
-
-              <div style="float:left; margin-right: 2em;"
-                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
-                <select multiple="multiple"
-                        name="ddcSubject:list"
-                        size="10">
-                  <tal:items repeat="top avail_topics">
-                    <option tal:attributes="value python:top[0]; selected python:((top[0] in request.get('ddcSubject', [])) ) and 'selected'" tal:content="python:top[1]" />
-                  </tal:items>
-                </select>
-              </div>
-              <div class="visualClear" id="clear-after-topic"><!-- --></div>
+              <metal:ddc-recurse use-macro="context/search_form/macros/ddclist" />
 
             </div>
           </div>
