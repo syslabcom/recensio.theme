@@ -399,9 +399,12 @@
           <div class="field"
 
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
-                           avail_regions python:voc.getDisplayList(voc).items();
+                           avail_regions python:dict(voc.getVocabularyDict(voc)).items();
                            all_checked python:(len(avail_regions) == len(request.get('ddcPlace', []))) ;
-                           toggle_select_state python:all_checked and 'true' or 'false';">
+                           toggle_select_state python:all_checked and 'true' or 'false';
+                           num_cols python:1;
+                           is_flat python:lambda items: not sum([bool(item[1][1]) for item in items]);
+                           any_selected python:lambda subtree, recurse: sum([item[0] in request.get('ddcPlace', []) or recurse(dict(item[1][1] or {}).items(), recurse) for item in subtree])">
             <label for="region"
                    class=""
                    i18n:translate="label_region">Region</label>
@@ -410,17 +413,44 @@
                The region that you are looking for.
               </div>
 
-              <div style="float:left; margin-right: 2em;"
-                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
-                <select multiple="multiple"
-                        name="ddcPlace:list"
-                        size="10">
-                  <tal:items repeat="reg avail_regions">
-                    <option tal:attributes="value python:reg[0]; selected python:((reg[0] in request.get('ddcPlace', [])) ) and 'selected'" tal:content="python:reg[1]" />
-                  </tal:items>
-                </select>
-              </div>
-              <div class="visualClear" id="clear-after-region"><!-- --></div>
+              <metal:ddc-list define-macro="ddclist">
+                  <div class="">
+                    <div style="float:left; margin-right: 2em;"
+                         tal:define="regionLists python:context.createMultiColumnList(avail_regions, numCols=num_cols);"
+                         tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
+                         tal:repeat="sublist regionLists">
+                      <tal:items repeat="region sublist">
+                        <div tal:define="subtree python:dict(region[1][1] or {}).items();">
+                            <dl class="collapsible collapsedOnLoad" tal:omit-tag="not:subtree"
+                                tal:attributes="class python:(subtree and (any_selected(subtree, any_selected))) and 'collapsible' or 'collapsible collapsedOnLoad'">
+                              <dt class="collapsibleHeader" tal:omit-tag="not:subtree">
+                                <input type="checkbox"
+                                       name="ddcPlace:list"
+                                       value="#"
+                                       class="noborder"
+                                       checked="checked"
+                                       tal:attributes="value python:region[0];
+                                                       id string:ddcPlace_${repeat/sublist/number}_${repeat/region/number};
+                                                       checked python:((region[0] in request.get('ddcPlace', []))) and 'checked' or ''"/>
+                                <label for=""
+                                       i18n:translate="" i18n:domain="recensio"
+                                       tal:attributes="for string:ddcPlace_${repeat/sublist/number}_${repeat/region/number}"
+                                       tal:content="python:region[1][0]"
+                                       />
+                              </dt>
+                              <dd class="collapsibleContent" tal:omit-tag="not:subtree">
+                                  <tal:recurse tal:condition="subtree" tal:define="avail_regions subtree; num_cols python:(subtree and is_flat(subtree)) and 3 or 1;">
+                                      <metal:ddc-recurse use-macro="context/search_form/macros/ddclist" />
+                                  </tal:recurse>
+                              </dd>
+                            </dl>
+                            <br tal:condition="python:num_cols &gt; 1" />
+                        </div>
+                      </tal:items>
+                    </div>
+                    <div class="visualClear" id="clear-after-region"><!-- --></div>
+                  </div>
+              </metal:ddc-list>
 
             </div>
           </div>

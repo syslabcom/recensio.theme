@@ -1572,7 +1572,7 @@ dl.collapsible dd.collapsibleContent > dl {
 dl.expandedInlineCollapsible dt.collapsibleHeader,
 dl.expandedBlockCollapsible dt.collapsibleHeader {
     padding: 0 0.5em 0 2em;
-    background: White url(treeExpanded.png) no-repeat 0.5em 50%;
+    background: url(treeExpanded.png) no-repeat 0.5em 50%;
     cursor: pointer;
 }
 
@@ -1589,7 +1589,7 @@ dl.collapsedBlockCollapsible dt.collapsibleHeader {
     padding: 0 0.5em 0 2em;
     line-height: 1.2em;
     cursor: pointer;
-    background: White url(treeCollapsed.png) no-repeat 0.5em 50%;
+    background: url(treeCollapsed.png) no-repeat 0.5em 50%;
 }
 dl.collapsedInlineCollapsible dd.collapsibleContent,
 dl.collapsedBlockCollapsible dd.collapsibleContent {
@@ -2887,7 +2887,7 @@ body {height:100%;}
 
 dl.collapsible {
     border-width: 0;
-    margin: 0;
+    margin: 1em 0 0 0;
     padding: 0;
 }
 
@@ -2901,13 +2901,14 @@ dl.expandedBlockCollapsible dt.collapsibleHeader {
 }
 
 dl.collapsible dt.collapsibleHeader {
-  background-color: rgb(246, 246, 246);
+  /*background-color: rgb(246, 246, 246);*/
   margin: 0;
   font-size: 100%;
   top: 0;
 }
 
 dl.collapsible dd.collapsibleContent {
+  margin-left: 2em;
   padding: 0;
 }
 
