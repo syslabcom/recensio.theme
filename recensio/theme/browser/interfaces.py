@@ -10,6 +10,10 @@ class IRecensioHelperView(Interface):
     def punctuated_title(self, title, subtitle):
         """ """
 
+    def contains_one_of(self, items, values):
+        """ """
+
+
 class IRedirectToPublication(Interface):
     """ Interface for RedirectToPublication """
 

@@ -101,6 +101,15 @@ class RecensioHelperView(BrowserView):
             text = text.replace(match, isbn)
         return text
 
+    def contains_one_of(self, items, values):
+        """Check whether one of the values is contained in items. items must be
+        a list of tuples as acquired by calling items() on a vocabulary dict.
+        """
+        return sum(
+            [item[0] in values or
+             self.contains_one_of(dict(item[1][1] or {}).items(), values)
+             for item in items])
+
 
 class CreateNewPresentationView(BrowserView):
     """ Helper to direct to new presentation creation """
