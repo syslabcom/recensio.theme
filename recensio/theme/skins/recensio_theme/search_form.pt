@@ -565,19 +565,11 @@
               keywords.
             </div>
 
-            <select name="Subject:list"
-                    id="Subject"
-                    size="7"
-                    multiple="multiple"
-                    tal:define="contentSubjects context/Subject;">
-              <option value="#"
-                      tal:repeat="subject usedSubjects"
-                      tal:content="subject"
-                      tal:attributes="value subject"
-                      i18n:domain="plone-metadata"
-                      i18n:translate=""
-                      >dummy</option>
-            </select>
+            <textarea name="Subject:lines"
+                      id="subject"
+                      cols="40"
+                      rows="5"
+                      tal:content="python:request.get('Subject', []) and '\n'.join(request.get('Subject', [])) or ''"></textarea>
             <br />
 
             <input type="radio"
