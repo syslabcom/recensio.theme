@@ -1,10 +1,17 @@
 Changelog
 =========
 
-3.1.3 (unreleased)
-------------------
+3.2 (2014-08-05)
+----------------
 
-- Nothing changed yet.
+- take over series and seriesVol from opac search, refs #9813 [reinhardt]
+- also show 'loading' placeholder for volumes, refs #8037 [reinhardt]
+- Refs #9813 hide suggestions which aren't available in recensio.net.
+  Previously these were filtered out on the server side [deroiste]
+- Full text search for ISBN. ISBNs are matched in SearchableText and normalized
+  like in the isbn field search, refs #9472 [reinhardt]
+- don't show links in the breadcrumbs if they would lead to a publication that
+  the user is not allowed to view, refs #8486 [reinhardt]
 
 
 3.1.2 (2014-03-18)
