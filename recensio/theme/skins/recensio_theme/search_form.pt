@@ -402,6 +402,7 @@
                  tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
                              avail_values python:dict(voc.getVocabularyDict(voc)).items();
                              field_name string:ddcPlace;
+                             prefix field_name;
                              selected_values python:request.get(field_name, []);
                              all_checked python:(len(avail_values) == len(selected_values)) ;
                              toggle_select_state python:all_checked and 'true' or 'false';
@@ -448,17 +449,17 @@
                                        class="noborder"
                                        checked="checked"
                                        tal:attributes="value python:value[0];
-                                                       id string:${field_name}_${repeat/sublist/number}_${repeat/value/number};
+                                                       id string:${prefix|nothing}_${repeat/sublist/number}_${repeat/value/number};
                                                        checked python:((value[0] in selected_values)) and 'checked' or '';
                                                        name string:${field_name}:list"/>
                                 <label for=""
                                        i18n:translate="" i18n:domain="recensio"
-                                       tal:attributes="for string:${field_name}_${repeat/sublist/number}_${repeat/value/number}"
+                                       tal:attributes="for string:${prefix|nothing}_${repeat/sublist/number}_${repeat/value/number}"
                                        tal:content="python:value[1][0]"
                                        />
                               </dt>
                               <dd class="collapsibleContent" tal:omit-tag="not:subtree">
-                                  <tal:recurse tal:condition="subtree" tal:define="avail_values subtree; num_cols python:(subtree and is_flat(subtree)) and 3 or 1;">
+                                  <tal:recurse tal:condition="subtree" tal:define="avail_values subtree; num_cols python:(subtree and is_flat(subtree)) and 3 or 1; prefix string:${prefix|nothing}_${repeat/sublist/number}_${repeat/value/number};">
                                       <metal:ddc-recurse use-macro="context/search_form/macros/ddclist" />
                                   </tal:recurse>
                               </dd>
@@ -479,6 +480,7 @@
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('epoch_values');
                            avail_values python:dict(voc.getVocabularyDict(voc)).items();
                            field_name string:ddcTime;
+                           prefix field_name;
                            selected_values python:request.get(field_name, []);
                            all_checked python:(len(avail_values) == len(selected_values)) ;
                            toggle_select_state python:all_checked and 'true' or 'false';
@@ -517,6 +519,7 @@
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('topic_values');
                            avail_values python:dict(voc.getVocabularyDict(voc)).items();
                            field_name string:ddcSubject;
+                           prefix field_name;
                            selected_values python:request.get(field_name, []);
                            all_checked python:(len(avail_values) == len(selected_values)) ;
                            toggle_select_state python:all_checked and 'true' or 'false';
