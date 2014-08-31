@@ -187,11 +187,11 @@ class HomepageView(BrowserView):
     def getPublications(self):
         portal = self.context.portal_url.getPortalObject()
         rezensionen = getattr(portal, 'rezensionen', None)
-        zeitschriften = getattr(rezensionen, 'zeitschriften', None)
+        journals = getattr(rezensionen, 'journals', None)
         edited_volumes = getattr(rezensionen, 'edited-volumes', None)
         pc = getToolByName(self.context, 'portal_catalog')
-        if zeitschriften:
-            path = ['/'.join(zeitschriften.getPhysicalPath())]
+        if journals:
+            path = ['/'.join(journals.getPhysicalPath())]
             if edited_volumes:
                 path.append('/'.join(edited_volumes.getPhysicalPath()))
             query = dict(
