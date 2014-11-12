@@ -64,13 +64,14 @@
                                    result_type result/portal_type;
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
+                                   is_article python:result_type.startswith('Article');
                                    item_icon python:plone_view.getIcon(result);
                                    url python:result_url+'/view' if result_type in use_view_action else result_url+'/';">
                   <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                       tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                     <img width="32" height="32"
-                         tal:condition="python:is_review or is_presentation"
-                         tal:attributes="src python:(is_review and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
+                         tal:condition="python:is_review or is_presentation or is_article"
+                         tal:attributes="src python:((is_review or is_article) and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
                                          alt result_type;
                                          title result_type;"
                          i18n:attributes="alt; title;" />
@@ -114,6 +115,15 @@
                         Presented by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock>
                   </span>
                   </tal:author>
+
+                  <span class="article-author" tal:condition="is_article" tal:attributes="class string:review-author">
+                        <br /><tal:author i18n:translate="by">by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
+                  <tal:block tal:condition="result/get_publication_title | nothing">
+                  <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in: <tal:block i18n:name="get_publication_title" replace="result/get_publication_title" />, <tal:block i18n:name="get_volume_title" replace="result/get_volume_title" />, <tal:block i18n:name="get_issue_title" replace="result/get_issue_title" />
+                  </tal:journal>
+                  </tal:block>
+                  </span>
+
                 </dt>
 
                 <dd>

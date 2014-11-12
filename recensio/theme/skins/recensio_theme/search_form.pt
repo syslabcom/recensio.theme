@@ -38,8 +38,8 @@
                           authors python:getattr(authors, 'append', None) and ' '.join(authors) or authors;
                           "
             >
-			<fieldset>
-			<legend i18n:translate="label_search_text">Volltextsuche</legend>
+      <fieldset>
+      <legend i18n:translate="label_search_text">Volltextsuche</legend>
           <input type="hidden" name="advanced_search" value="True" />
           <input type="hidden" value="languageReview" name="facet_field">
           <input type="hidden" value="true" name="facet">
@@ -58,7 +58,7 @@
                    tal:attributes="value request/SearchableText|nothing"
                    />
           </div>
-		<div class="visualClear" id="clear-space-before-submit"></div>
+    <div class="visualClear" id="clear-space-before-submit"></div>
 
           <div class="formControls">
             <input class="context"
@@ -70,8 +70,8 @@
           </div>
 
           </fieldset>
-		  <fieldset>
-			<legend i18n:translate="label_general">Generelles</legend>
+      <fieldset>
+      <legend i18n:translate="label_general">Generelles</legend>
 
 
         <tal:datetime tal:replace="nothing"
@@ -239,6 +239,36 @@
 
           <div class="field"
 
+               tal:define="voc python:context.portal_vocabularies.getVocabularyByName('text_form');
+                           avail_forms python:voc.getDisplayList(voc).items();
+                           all_checked python:(len(avail_forms) == len(request.get('textForm', []))) ;
+                           toggle_select_state python:all_checked and 'true' or 'false';">
+            <label for="textForm"
+                   class=""
+                   i18n:translate="label_text_form">Text form</label>
+            <div class="">
+              <div class="formHelp" i18n:translate="help_text_form">
+               The form of the text you are looking for.
+              </div>
+
+              <div style="float:left; margin-right: 2em;"
+                   tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');">
+                <select multiple="multiple"
+                        name="textForm:list"
+                        size="3">
+                  <tal:items repeat="reg avail_forms">
+                    <option tal:attributes="value python:reg[0]; selected python:((reg[0] in request.get('textForm', [])) ) and 'selected'" tal:content="python:reg[1]" />
+                  </tal:items>
+                </select>
+              </div>
+              <div class="visualClear" id="clear-after-textForm"><!-- --></div>
+
+            </div>
+          </div>
+
+
+          <div class="field"
+
                tal:condition="python:False">
 
             <label for="review_state"
@@ -381,8 +411,8 @@
           </div>
          </fieldset>
 
-		<fieldset>
-		<legend i18n:translate="label_titleOrShortname">Buch, Aufsatz, Zeitschrift</legend>
+    <fieldset>
+    <legend i18n:translate="label_titleOrShortname">Buch, Aufsatz, Zeitschrift</legend>
 
           <div class="field">
             <div class="">
@@ -503,9 +533,9 @@
                    i18n:attributes="value label_search;"
                    />
           </div>
-		</fieldset>
+    </fieldset>
 
-		<fieldset>
+    <fieldset>
 
           <dl class="collapsible collapsedOnLoad">
             <dt class="collapsibleHeader">
@@ -606,6 +636,108 @@
           </div>
 
           <div class="field"
+               tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('getManuscriptsShelfmark');"
+               tal:condition="usedSubjects">
+
+            <label for="medievalAuthorsWorks"
+                   class=""
+                   i18n:translate="label_manuscripts_shelfmark">Manuskripte/Signatur</label>
+
+            <div class="formHelp" i18n:translate="help_search_manuscripts_shelfmark">
+              Return items matching some or all of these tags.
+              Multiple words may be found by pressing <strong>Ctrl</strong>
+              (or <strong>Apple</strong> key on Mac) while clicking the
+              keywords.
+            </div>
+
+            <select name="getManuscriptsShelfmark:list"
+                    id="getManuscriptsShelfmark"
+                    size="7"
+                    multiple="multiple">
+              <option value="#"
+                      tal:repeat="subject usedSubjects"
+                      tal:content="subject"
+                      tal:attributes="value subject"
+                      i18n:domain="philrom"
+                      i18n:translate=""
+                      >dummy</option>
+            </select>
+            <br />
+
+            <input type="radio"
+                   name="getManuscriptsShelfmark_usage:ignore_empty"
+                   id="getManuscriptsShelfmark_or"
+                   value=""
+                   class="noborder"
+                   tal:attributes="checked python:(request.get('getManuscriptsShelfmark_usage:ignore_empty', '') == '') and 1 or ''"/>
+            <label for="getManuscriptsShelfmark_or" i18n:translate="description_subject_or">
+              Match any
+            </label>
+            <br />
+
+            <input type="radio"
+                   name="getManuscriptsShelfmark_usage:ignore_empty"
+                   id="getManuscriptsShelfmark_and"
+                   value="operator:and"
+                   class="noborder"
+                   tal:attributes="checked python:(request.get('getManuscriptsShelfmark_usage:ignore_empty') != '') and 1 or 0"/>
+            <label for="getManuscriptsShelfmark_and" i18n:translate="description_subject_and">
+              Match all
+            </label>
+          </div>
+
+          <div class="field"
+               tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('getMedievalAuthorsWorks');"
+               tal:condition="usedSubjects">
+
+            <label for="medievalAuthorsWorks"
+                   class=""
+                   i18n:translate="label_medieval_authors_works">Mittelalterliche Autoren/Werke</label>
+
+            <div class="formHelp" i18n:translate="help_search_medieval_authors_works">
+              Return items matching some or all of these tags.
+              Multiple words may be found by pressing <strong>Ctrl</strong>
+              (or <strong>Apple</strong> key on Mac) while clicking the
+              keywords.
+            </div>
+
+            <select name="getMedievalAuthorsWorks:list"
+                    id="getMedievalAuthorsWorks"
+                    size="7"
+                    multiple="multiple">
+              <option value="#"
+                      tal:repeat="subject usedSubjects"
+                      tal:content="subject"
+                      tal:attributes="value subject"
+                      i18n:domain="philrom"
+                      i18n:translate=""
+                      >dummy</option>
+            </select>
+            <br />
+
+            <input type="radio"
+                   name="getMedievalAuthorsWorks_usage:ignore_empty"
+                   id="getMedievalAuthorsWorks_or"
+                   value=""
+                   class="noborder"
+                   tal:attributes="checked python:(request.get('getMedievalAuthorsWorks_usage:ignore_empty', '') == '') and 1 or ''"/>
+            <label for="getMedievalAuthorsWorks_or" i18n:translate="description_subject_or">
+              Match any
+            </label>
+            <br />
+
+            <input type="radio"
+                   name="getMedievalAuthorsWorks_usage:ignore_empty"
+                   id="getMedievalAuthorsWorks_and"
+                   value="operator:and"
+                   class="noborder"
+                   tal:attributes="checked python:(request.get('getMedievalAuthorsWorks_usage:ignore_empty') != '') and 1 or 0"/>
+            <label for="getMedievalAuthorsWorks_and" i18n:translate="description_subject_and">
+              Match all
+            </label>
+          </div>
+
+          <div class="field"
                tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
                tal:condition="usedSubjects">
 
@@ -683,7 +815,7 @@
           <dd class="collapsibleContent">
           <div class="field"
 
-               tal:define="avail_magazines python:portal_catalog(portal_type='Publication');
+               tal:define="avail_magazines python:portal_catalog(object_provides='recensio.contenttypes.interfaces.publication.IPublication');
                            all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
 
@@ -887,9 +1019,9 @@
                    i18n:attributes="value label_search;"
                    />
           </div>
-		</fieldset>
+    </fieldset>
 
-		<fieldset tal:replace="nothing">
+    <fieldset tal:replace="nothing">
           <legend i18n:translate="help_recensio_id">recensio-ID</legend>
 
           <div class="field">
@@ -902,7 +1034,7 @@
                      />
             </div>
 
-		<div class="visualClear" id="clear-space-before-submit"></div>
+    <div class="visualClear" id="clear-space-before-submit"></div>
 
           <div class="formControls">
             <input class="context"
@@ -912,7 +1044,7 @@
                    i18n:attributes="value label_search;"
                    />
           </div>
-		</fieldset>
+    </fieldset>
 
 
         </form>
