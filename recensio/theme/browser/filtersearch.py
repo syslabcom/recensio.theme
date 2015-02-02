@@ -1,9 +1,11 @@
-from zope.component import queryUtility
+from zope.app.component.hooks import getSite
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 from Products.Five.browser import BrowserView
 from Products.Archetypes.utils import DisplayList
 from Products.ATContentTypes.interfaces import IATTopic
 
-from plone.registry.interfaces import IRegistry
+from plone.i18n.locales.languages import _languagelist
 
 from recensio.policy.utility import filter_facets
 from recensio.policy.interfaces import IRecensioSettings
@@ -32,10 +34,13 @@ class FilterSearchView(BrowseTopicsView):
 
         #self.vocDict = {'languageReview': listAvailableContentLanguages()}
 
-        registry = queryUtility(IRegistry)
-        settings = registry.forInterface(IRecensioSettings)
-        allowed_langs = getattr(settings, 'available_content_languages', '').replace('\r', '').split('\n')
-        self.vocDict = {'languageReview': DisplayList([(x, x) for x in allowed_langs])}
+        util = getUtility(
+            IVocabularyFactory,
+            u"recensio.policy.vocabularies.available_content_languages")
+        vocab = util(getSite())
+        terms = [(x.value, _languagelist[x.value][u'native'])
+                 for x in vocab]
+        self.vocDict = {'languageReview': DisplayList(terms)}
 
         self.submenus = [
             dict(title='Language',id='languageReview'),]

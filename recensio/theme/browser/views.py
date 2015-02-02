@@ -2,10 +2,12 @@
 """
 import re
 from zope.app.component.hooks import getSite
+from zope.component import getUtility
 from zope.component import queryUtility
 from zope.i18n import translate
 from zope.i18nmessageid import Message
 from zope.interface import implements
+from zope.schema.interfaces import IVocabularyFactory
 
 from Products.Archetypes.utils import DisplayList
 from Products.Five.browser import BrowserView
@@ -26,15 +28,12 @@ def listRecensioSupportedLanguages():
     return DisplayList(terms)
 
 def listAvailableContentLanguages():
-    registry = queryUtility(IRegistry)
-    settings = registry.forInterface(IRecensioSettings)
-    allowed_langs = getattr(
-        settings, 'available_content_languages', ''
-        ).replace('\r', '').split('\n')
-    terms = []
-    if allowed_langs != [u""]:
-        terms = [(x, _languagelist[x][u'native'])
-                 for x in allowed_langs]
+    util = getUtility(
+        IVocabularyFactory,
+        u"recensio.policy.vocabularies.available_content_languages")
+    vocab = util(getSite())
+    terms = [(x.value, _languagelist[x.value][u'native'])
+             for x in vocab]
     return DisplayList(terms)
 
 def recensioTranslate(msgid):
