@@ -32,15 +32,7 @@ class FilterSearchView(BrowseTopicsView):
         if IATTopic.providedBy(context):
             self.default_query.update(context.buildQuery())
 
-        #self.vocDict = {'languageReview': listAvailableContentLanguages()}
-
-        util = getUtility(
-            IVocabularyFactory,
-            u"recensio.policy.vocabularies.available_content_languages")
-        vocab = util(getSite())
-        terms = [(x.value, _languagelist[x.value][u'native'])
-                 for x in vocab]
-        self.vocDict = {'languageReview': DisplayList(terms)}
+        self.vocDict = {'languageReview': listAvailableContentLanguages()}
 
         self.submenus = [
             dict(title='Language',id='languageReview'),]
