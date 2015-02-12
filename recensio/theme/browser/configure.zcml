@@ -195,4 +195,12 @@
         layer="recensio.theme.interfaces.IRecensioLayer"
         />
 
+    <browser:page
+        for="*"
+        name="add_new_item"
+        permission="cmf.SetOwnPassword"
+        template="./templates/add_new_item.pt"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+
 </configure>
