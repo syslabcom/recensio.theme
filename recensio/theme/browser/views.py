@@ -2,19 +2,17 @@
 """
 import re
 from zope.app.component.hooks import getSite
-from zope.component import queryUtility
 from zope.i18n import translate
 from zope.i18nmessageid import Message
 from zope.interface import implements
 
 from Products.Archetypes.utils import DisplayList
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from plone.i18n.locales.languages import _languagelist
-from plone.registry.interfaces import IRegistry
 
 from recensio.contenttypes import contenttypesMessageFactory as _
 from recensio.contenttypes.interfaces.review import IParentGetter
-from recensio.policy.interfaces import IRecensioSettings
 
 from interfaces import IRecensioHelperView, IRedirectToPublication
 
@@ -26,15 +24,12 @@ def listRecensioSupportedLanguages():
     return DisplayList(terms)
 
 def listAvailableContentLanguages():
-    registry = queryUtility(IRegistry)
-    settings = registry.forInterface(IRecensioSettings)
-    allowed_langs = getattr(
-        settings, 'available_content_languages', ''
-        ).replace('\r', '').split('\n')
-    terms = []
-    if allowed_langs != [u""]:
-        terms = [(x, _languagelist[x][u'native'])
-                 for x in allowed_langs]
+    voctool = getToolByName(getSite(), 'portal_vocabularies')
+    vocab = voctool.get('available_content_languages')
+    if not vocab:
+        return DisplayList([])
+    vocab = vocab.getTranslation() or vocab
+    terms = [(x, vocab.get(x).title) for x in vocab]
     return DisplayList(terms)
 
 def recensioTranslate(msgid):
