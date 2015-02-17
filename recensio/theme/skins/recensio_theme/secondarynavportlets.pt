@@ -88,7 +88,8 @@
   <div metal:define-macro="praesentationen"
         id="secondary-nav-portlet" class="firstmenu"
         tal:define="parent context/@@plone_context_state/parent;
-                    parent_url python:parent.absolute_url()">
+                    parent_url python:parent.absolute_url();
+                    portal_url parent/portal_url">
     <ul>
       <li
          tal:define="is_current python:context.getId().startswith('monographien')"
@@ -121,7 +122,7 @@
          tal:attributes="id python:is_current and 'lastcurrent' or ''">
         <a href="/Members/add_new_item"
            tal:attributes="class python:is_current and 'active' or '';
-                           href string:/Members/add_new_item"
+                           href string:${portal_url}/Members/add_new_item"
            i18n:translate="label_secondary_nav_praesentation_erstellen">Pr&auml;sentation erstellen </a>
       </li>
 
