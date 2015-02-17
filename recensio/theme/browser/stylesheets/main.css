@@ -213,16 +213,19 @@ div#latest_reviews_box ul{
    height:64px;
 }
 #participating-journals {
-   border-top:1px solid #CCCCCC;
+   /*border-top:1px solid #CCCCCC;*/
+   border-top: 1px solid #00f; /*aggiunto bordo stondato al box del footer */
    padding-top:20px;
+   font-style: italic; /* punto 2 della mail */
 }
 
 #participating-journals a {
-   color: #999999;
+   color: #000;
 }
 
 #participating-journals a:hover {
-   color:#916145;
+   color:#0000dd;
+   font-style: normal; /*punto 2 della mail */  
 }
 
 .box ul li,
@@ -392,6 +395,7 @@ div#reviewhtml {
    border: 1px solid #d3d4a7;
 	/***had to add a specific height to prevent the accordion to blow up this div***/
    height:205px;
+   width:594px; /*modifica qui per evitare che si spani il layout delle recensioni */
    padding: 9px 9px 20px;
    margin-top: 45px;
 }
@@ -2155,7 +2159,7 @@ fieldset,
 /* commenting */
 div#commenting textarea, div.discussion textarea {
    height: 150px;
-   width: 99%;
+   width: 59%;
 }
 
 div#commenting input.submit-widget {
@@ -2712,7 +2716,7 @@ div.dialog-wrapper {
 
 /*****************bugfixes***********/
 #content, #content_impressum, #content_tagung, #content_textseite {
-width:860px;
+/*width:594px; /* Modifica qui per evitare che si spani il layout delle recensioni, controlla anche message.notice*/ 
 }
 
 .portaltype-document.section-rezensionen #content {

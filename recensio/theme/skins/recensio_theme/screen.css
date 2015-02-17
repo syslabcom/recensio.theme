@@ -1,7 +1,7 @@
 body {
-	font: normal 11px Verdana, Arial, Helvetica;
+	font: normal 14px Calibri;
 	color:#58595B;
-	background:#e8e1d0 url(imgs/bg.png) no-repeat 0 0;
+	background:#ffffff url(../images/personal/bg2.png) repeat-x; /*#e8e1d0 url(imgs/bg.png) no-repeat 0 0;*/
 	height: 100%;
 }
 
@@ -34,7 +34,7 @@ img{
 }
 
 a {
-	color:#7F4B2B;
+	color:#5e5959;
 	text-decoration:none;
 }
 
@@ -42,6 +42,9 @@ a:hover {
 	color:#846F59;
 }
 
+a:visited {
+	color:#3333ff;
+} /* aggiunto colore visited punto 3 della mail */
 
 
 /* Subnavi
@@ -157,35 +160,43 @@ color: #000;
 /*Navigation
 -----------------------------------------------------------------------------------------------------*/
 #navigation div.bar-end {
-   float: left;
-   width: 11px;
-   height: 39px
+  /* float: left; se commentato aggiunge uno spazio vuoto fra il logo merlin e la barra di navigazione orizzontale */
+  /* width: 11px; */
+   height: 9px /* elimina spazio fra header e navigation bar orizzontale */
+	
 }
 
 #navigation #navi-left {
-   background: transparent url(++resource++recensio.theme.images/navi_bg_left.png) no-repeat;
+  /* background: transparent url(++resource++recensio.theme.images/navi_bg_left.png) no-repeat; */
+ 
 }
 
 #navigation #navi-right {
-   background: transparent url(++resource++recensio.theme.images/navi_bg_right.png) no-repeat;
+   /*background: transparent url(++resource++recensio.theme.images/navi_bg_right.png) no-repeat;*/
 }
 
-#navigation ul {
+#navigation ul { /*questa è la barra di navigazione orizzontale */
 	height:39px;
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	background:url(imgs/navigation/navi_bg.png) repeat-x 0 0;
-	background-color:#f3f0e9;
-	float:left;
-	width: 878px;
+	/* background:url(imgs/navigation/navi_bg.png) repeat-x 0 0; */
+	background-color:#00f;
+	width: 100%;
+	margin-left: auto; /* centratura della barra */
+    margin-right: auto; /* centratura della barra */
+	border: 0px solid; /*aggiunto bordo stondato al box del footer */
+    /* border-radius: 15px; /*aggiunto bordo stondato al box del footer */
+    /*box-shadow: 10px 10px 5px #888888; /*aggiunta ombra al box*/
+    
 }
 
 #navigation a {
 	font-family: Georgia, serif;
 	font-weight:normal;
 	text-decoration:none;
-	color:#58595B;
+	color:#ffffff;
+
 }
 #navigation a:visited {
 	text-decoration:none;
@@ -199,10 +210,10 @@ color: #000;
 	float:left;
 	height:25px;
 	line-height:25px;
-	padding:0 15px 0 15px;
-	border-right: 1px solid #C1B49A;
-	border-left: 1px double #FFF;
-	margin-top:7px;
+	padding:/*0 15px 0 25px*/0 0 0 25px; /* allineate le voci di menu, centrate: se modifichi il parametro alla riga 185 "width: 90%" il tutto sballa; ultimo valore: 33px*/
+	/*border-right: 1px solid #C1B49A; ELIMINATE LE RIGHE VERTICALI A SEPARARE LE VOCI DI MENU NELLA NAVIGAZIONE ORIZZONTALE
+	border-left: 1px double #FFF; */
+	margin-top:7px;	
 }
 #navigation img {
 	float:left;
@@ -233,9 +244,12 @@ object#page_image img {
 
 #content_impressum, #content_tagung, #content_textseite,
 #mainContent {
-   background-color:#fff;
+   background-color:#ffffff; /* punto 2 della mail */
    padding:25px 20px 20px 20px;
-   margin:170px 0 0 0;
+   margin:140px 0 0 0; /* aggiunto spazio fra header e maincontent */
+   border: 1px solid #00f;
+   /* border-radius: 25px;*/
+   box-shadow: 10px 10px 5px #888888; /* aggiunta ombra al box */
 
 }
 
@@ -244,12 +258,16 @@ object#page_image img {
 }
 
 body.template-homepage-view #content,
+{
+  /* width: 605px; COMMENTA QUESTO PER ALLARGARE IL BOX DEI PARTICIPATING JOURNALS, non allargare agli elementi sottostanti, pena la perdita di coerenza del layout delle recensioni*/
+}
+
 body.template-review_view #content,
 body.template-publications-view #content,
 body.template-homepage-view #viewlet-below-content,
 body.template-review_view  #viewlet-below-content,
 body.template-publications-view #viewlet-below-content {
-   width: 605px;
+width: 605px;
 }
 body.template-publications-view div#content_left img {
     float:left;
@@ -426,24 +444,24 @@ body.template-homepage-view #teiln_zeit a:hover {
 }
 
 body.template-homepage-view .box {
-   width: 289px;
+   /*width: 289px; larghezza box contenuti */ 
 }
 
 body.template-homepage-view .box a.one-line,
 body.template-homepage-view .box a.two-lines {
-   color:#58595B;
+   color:#00f;
    display:block;
    width:289px;
    padding: 5px;
 }
 
 body.template-homepage-view .box a.one-line {
-	background: transparent url(++resource++recensio.theme.images/h2_bg_sm.png) no-repeat;
+	/*  background: transparent url(++resource++recensio.theme.images/h2_bg_sm.png) no-repeat; PUNTO 2 della MAIL*/
 	height:28px;
 }
 
 body.template-homepage-view .box a.two-lines{
-	background: transparent url(++resource++recensio.theme.images/h2_bg_lg.png) no-repeat;
+	/* background: transparent url(++resource++recensio.theme.images/h2_bg_lg.png) no-repeat; PUNTO 2 della MAIL*/
 	height:38px;
 }
 
@@ -660,11 +678,17 @@ font-size:1.2em;
 ----------------------------------------------------------------------------------------------------*/
 
 #footer {
-	background:url(imgs/footer_bg.png) repeat-y 0 0;
+
+  	background: linear-gradient(#f8f8f8, #ffffff); /*aggiunto sfondo sfumato nel box del footer */
+	/*background: #e0e0e0; /*url(imgs/footer_bg.png) no-repeat 0 0;*/
 	font-size:0.9em;
 	margin-top: 15px;
-	height:115px;
+	height:180px;
 	padding-top:25px;
+	/*border: solid 1px;*/
+	border: 1px solid #00f; /*aggiunto bordo stondato al box del footer */
+   /* border-radius: 25px; /*aggiunto bordo stondato al box del footer */
+    box-shadow: 10px 10px 5px #888888; /*aggiunta ombra al box*/
 
 }
 
@@ -758,8 +782,8 @@ font-size:1.2em;
 
 .rounded_STYLE > .tl, .rounded_STYLE > .tr, .rounded_STYLE > .bl, .rounded_STYLE > .br
 {
-  width: 9px;
-  height: 9px;
+  width: 0px; /* PUNTO 1 della MAIL */
+  height: 0px;
   position: absolute;
 }
 
