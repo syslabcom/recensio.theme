@@ -401,11 +401,13 @@
             <div class="field"
 
                  tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
-                             avail_values python:dict(voc.getVocabularyDict(voc)).items();
+                             all_values python:dict(voc.getVocabularyDict(voc)).items();
+                             europe_values python:[x for x in all_values if x[0] == '4'];
+                             other_values python:[x for x in all_values if x[0] != '4'];
                              field_name string:ddcPlace;
                              prefix field_name;
                              selected_values python:request.get(field_name, []);
-                             all_checked python:(len(avail_values) == len(selected_values)) ;
+                             all_checked python:(len(all_values) == len(selected_values)) ;
                              toggle_select_state python:all_checked and 'true' or 'false';
                              num_cols python:1;
                              ">
@@ -430,6 +432,7 @@
                   </label>
                 </span>
 
+                <tal:europe define="avail_values europe_values">
                 <metal:ddc-list define-macro="ddclist">
                     <div class="" >
                       <div style="float:left; margin-right: 2em;"
@@ -469,6 +472,10 @@
                     <div class="visualClear" id="clear-after-region" tal:attributes="id string:clear-after-${field_name}"><!-- --></div>
                   </div>
               </metal:ddc-list>
+              </tal:europe>
+              <tal:other define="avail_values other_values">
+                  <metal:ddc-list use-macro="context/search_form/macros/ddclist" />
+              </tal:other>
 
             </div>
           </div>
