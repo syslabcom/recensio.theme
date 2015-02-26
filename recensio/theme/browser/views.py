@@ -35,6 +35,7 @@ def listAvailableContentLanguages():
     if allowed_langs != [u""]:
         terms = [(x, _languagelist[x][u'native'])
                  for x in allowed_langs]
+        terms.sort()
     return DisplayList(terms)
 
 def recensioTranslate(msgid):

@@ -484,6 +484,7 @@
 
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('epoch_values');
                            avail_values python:dict(voc.getVocabularyDict(voc)).items();
+                           dummy python:avail_values.sort(key=lambda x: x[0]);
                            field_name string:ddcTime;
                            prefix field_name;
                            selected_values python:request.get(field_name, []);
@@ -519,6 +520,7 @@
 
                tal:define="voc python:context.portal_vocabularies.getVocabularyByName('topic_values');
                            avail_values python:dict(voc.getVocabularyDict(voc)).items();
+                           dummy python:avail_values.sort(key=lambda x: x[1]);
                            field_name string:ddcSubject;
                            prefix field_name;
                            selected_values python:request.get(field_name, []);
