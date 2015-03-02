@@ -251,6 +251,7 @@ class BrowseTopicsView(SearchFacetsView):
         """Returns True if submenu has an entry with clearquery set, i.e.
            should be displayed expanded
         """
-        return not filter(lambda x: x.has_key('clearquery'), submenu) == [
+        return not filter(lambda x: x.has_key('clearquery') or
+                          self.expandSubmenu(x['submenu']), submenu) == [
 ]
 

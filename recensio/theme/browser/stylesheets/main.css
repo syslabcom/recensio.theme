@@ -653,6 +653,9 @@ div#browsing-menu .used_facet {
     font-weight: bold;
     color: #7F4B2B;
 }
+.template-browse-topics .submenu-lvl2 ul .submenu_title {
+    background-position: 163px 7px;
+}
 .template-filtered-search .submenu_title,
 .template-search .submenu_title {
     background-position: 178px 7px;
