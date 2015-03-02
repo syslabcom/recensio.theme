@@ -210,8 +210,8 @@ class HomepageView(BrowserView):
                         pubs.append(translated_ob)
                 except Unauthorized:
                     continue
-            items = [dict(title=x.Title(), id=x.getId(), url='/'+x.absolute_url(1)) for x in pubs]
-            return sorted(items, key=lambda p: p['id'])
+            items = [dict(title=x.Title(), url='/'+x.absolute_url(1)) for x in pubs]
+            return items
         else:
             # This can only happen, when there is no initial content yet
             return []
