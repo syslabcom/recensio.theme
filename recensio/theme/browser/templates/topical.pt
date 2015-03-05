@@ -180,10 +180,12 @@
               <div class="visualClear"><!-- --></div>
 
               <tal:block tal:repeat="item python:menu[submenu['id']]">
-                <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])"
+                     tal:define="level python:2;">
+                  <metal:macro define-macro="submenu">
                   <div class="submenu_title empty"
-                       tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
-                                       class python:'submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
+                       tal:attributes="id python:'sub-title-' + item['name'].replace(':','-').replace('.','_');
+                                       class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
                     <tal:block tal:condition="exists:item/clearquery">
                       <a title="Remove this selection" i18n:attributes="title"
                          tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
@@ -204,31 +206,24 @@
                   </div>
 
                   <ul class="submenu_content"
-                      tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
+                      tal:attributes="id python:'sub-content-' + item['name'].replace(':','-').replace('.','_');
                                       class python:'submenu_content' + (view.expandSubmenu(item['submenu']) and ' open' or '');">
                     <tal:submenu repeat="subitem item/submenu">
                       <li class="submenu_item"
-                          tal:define="selected python:subitem.get('clearquery') and 'selected' or 'unselected'"
+                          tal:define="selected python:subitem.get('clearquery') and 'selected' or 'unselected';
+                                      item subitem;
+                                      level python:level + 1;"
                           tal:attributes="class string:submenu_item ${selected}"
                           tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.expandSubmenu(subitem['submenu'])">
 
-                        <a href="#" tal:content="subitem/voc"
-                           tal:condition="subitem/query"
-                           tal:define="query_or_clear python:(True and subitem.get('clearquery', False) or subitem.get('query'))"
-                           tal:attributes="href string:${request/ACTUAL_URL}?${query_or_clear};
-                                           class python:subitem.has_key('clearquery') and 'selected_facet' or '';"
-                           i18n:translate="" />
-                        <span tal:content="subitem/voc"
-                              tal:condition="not:subitem/query"
-                              i18n:translate="" />
-                        <span tal:condition="python:subitem['count'] > 0"
-                              tal:replace="string:(${subitem/count})" />
+                        <metal:submenu use-macro="here/browse-topics/macros/submenu" />
                       </li>
 
                     </tal:submenu>
                   </ul>
 
                   <div class="visualClear"><!-- --></div>
+                  </metal:macro>
                 </div>
               </tal:block>
               <div class="submenu_more invisible">
