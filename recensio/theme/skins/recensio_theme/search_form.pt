@@ -391,7 +391,7 @@
           <dl class="collapsible collapsedOnLoad">
               <dt class="collapsibleHeader">
               <h2 i18n:translate="thematic_search">Thematische Suche</h2>
-              <div class="formHelp"></div>
+              <div class="formHelp">&nbsp;</div>
 
               </dt>
 
