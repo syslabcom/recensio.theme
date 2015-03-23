@@ -47,7 +47,11 @@ function showResults(data){
             jq(result[ddc]).each(function(i, data){
                 var css_class = 'missing';
                 var li_text = data;
-                var matching_elems = jq('#' + ddc + ' option').filter(function(){return this.value == data;});
+                var source_id = ddc;
+                if (ddc == 'ddcPlace') {
+                    source_id = ddc + '_bsb';  // ddcPlace values differ in BSB
+                }
+                var matching_elems = jq('#' + source_id + ' option').filter(function(){return this.value == data;});
                 if(matching_elems.length){
                     css_class = '';
                     li_text = matching_elems[0].text;
