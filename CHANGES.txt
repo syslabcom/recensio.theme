@@ -1,10 +1,11 @@
 Changelog
 =========
 
-3.4.1 (unreleased)
+3.4.1 (2015-04-07)
 ------------------
 
-- Nothing changed yet.
+- also use structure for authors/editors in search results, refs #10782
+  [reinhardt]
 
 
 3.4.0 (2015-04-07)
