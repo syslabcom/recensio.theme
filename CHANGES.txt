@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.4 (unreleased)
-----------------
+3.4.0 (2015-04-07)
+------------------
 
 - added third level to browsing view, refs #5752 [reinhardt]
 - Refs #11023 sort publications on home page and in RSS feeds [deroiste]
