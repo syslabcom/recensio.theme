@@ -2567,6 +2567,12 @@ height:32px;
     color:#58595B !important;
     font-size:101% !important;
 }
+form#searchform dd dl.collapsible {
+    margin: 0;
+}
+form#searchform h3 {
+    padding-top: 0.3em;
+}
 
 /*********styles to fix sideeffects of margin, padding 0********/
 p.discreet {
