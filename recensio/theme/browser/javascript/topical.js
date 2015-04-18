@@ -59,7 +59,7 @@ jq(document).ready(function() {
             targ = targ.parentNode;
 
         //if (!(targ.tagName = "DIV") {}
-        topical.toggler(jq('.submenu_content#' + targ.id),
+        topical.toggler(jq('.submenu_content#' + targ.id.replace('title', 'content')),
                 jq('.submenu_title#' + targ.id));
     }
                                             );

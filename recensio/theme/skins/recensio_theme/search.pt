@@ -191,9 +191,7 @@
                        i18n:attributes="alt; title;" />
 
                   <span class="authors"
-                        tal:condition="listAuthors"
-                        tal:attributes="class string:authors"
-                        tal:content="string:${listAuthors}:"/>
+                        tal:condition="listAuthors"><tal:authors tal:replace="structure listAuthors">Sanctus Keller (ed.): Rolf Pirminius &lt;Sanctus&gt;</tal:authors>:</span>
 
                   <a href="#"
                      tal:attributes="href url;

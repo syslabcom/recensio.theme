@@ -649,9 +649,17 @@ div#browsing-menu .used_facet {
     background-position: 178px 7px;
     background-repeat: no-repeat;
     cursor: pointer;
-    padding: 5px;
-    font-weight: bold;
     color: #7F4B2B;
+}
+.template-browse-topics .submenu_title.level-2 {
+    font-weight: bold;
+    padding: 5px;
+}
+.template-browse-topics .submenu_title.level-3 {
+    background-position: 165px 7px;
+}
+.template-browse-topics .submenu_title.level-4 {
+    background-position: 154px 7px;
 }
 .template-filtered-search .submenu_title,
 .template-search .submenu_title {
@@ -721,17 +729,6 @@ span.headlinebutton {
    padding: 0 0 5px 7px;
 }
 
-.submenu_item.selected {
-   background-image: url("++resource++recensio.theme.images/checkbox_selected_brown_bg.png");
-}
-
-.submenu_item.unselected {
-   background-image: url("++resource++recensio.theme.images/checkbox_unselected_brown_bg.png");
-}
-
-li.submenu_item a {
-   padding-left: 22px;
-}
 #headline_languageReviewedText .headlinebutton {
     font-weight:normal;
     font-size:10px;
@@ -2572,6 +2569,12 @@ height:32px;
     font-weight:bold !important;
     color:#58595B !important;
     font-size:101% !important;
+}
+form#searchform dd dl.collapsible {
+    margin: 0;
+}
+form#searchform h3 {
+    padding-top: 0.3em;
 }
 
 /*********styles to fix sideeffects of margin, padding 0********/

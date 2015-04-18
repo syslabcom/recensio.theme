@@ -192,7 +192,7 @@ class HomepageView(BrowserView):
             query = dict(portal_type=['Publication'],
                 review_state="published",
                 path='/'.join(zeitschriften.getPhysicalPath()),
-                sort_on='Title', b_size=1000)
+                sort_on='id', b_size=1000)
 
             context = aq_inner(self.context)
             portal_state = getMultiAdapter(
@@ -204,12 +204,14 @@ class HomepageView(BrowserView):
                 try:
                     obj = brain.getObject()
                     default_page = obj.restrictedTraverse(obj.getDefaultPage())
-                    translated_ob = default_page.getTranslations()[lang][0]
-                    pubs.append(translated_ob)
+                    translations = default_page.getTranslations()
+                    if lang in translations:
+                        translated_ob = translations[lang][0]
+                        pubs.append(translated_ob)
                 except Unauthorized:
                     continue
             items = [dict(title=x.Title(), url='/'+x.absolute_url(1)) for x in pubs]
-            return sorted(items, key=lambda p: p['title'].lower())
+            return items
         else:
             # This can only happen, when there is no initial content yet
             return []

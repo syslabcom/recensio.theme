@@ -10,7 +10,11 @@
 
 
 #zss = context.rezensionen.zeitschriften.objectValues()
-zss = context.portal_catalog(path='/recensio/rezensionen/zeitschriften', portal_type='Publication')
+zss = context.portal_catalog(
+  path='/recensio/rezensionen/zeitschriften',
+  portal_type='Publication',
+  sort_on='id',
+)
 feeds = []
 parms = {}
 
@@ -25,6 +29,5 @@ for z in zss:
   zurl = tmpl % parms
   feeds.append((z['Title'], zurl))
 
-feeds.sort()
 return feeds
 
