@@ -655,8 +655,11 @@ div#browsing-menu .used_facet {
     font-weight: bold;
     padding: 5px;
 }
-.template-browse-topics .submenu-lvl2 ul .submenu_title {
-    background-position: 163px 7px;
+.template-browse-topics .submenu_title.level-3 {
+    background-position: 165px 7px;
+}
+.template-browse-topics .submenu_title.level-4 {
+    background-position: 154px 7px;
 }
 .template-filtered-search .submenu_title,
 .template-search .submenu_title {

@@ -1,8 +1,27 @@
 Changelog
 =========
 
-3.4 (unreleased)
-----------------
+3.4.3 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+3.4.2 (2015-04-09)
+------------------
+
+- adjusted styles for browsing menu, refs #5752
+
+
+3.4.1 (2015-04-07)
+------------------
+
+- also use structure for authors/editors in search results, refs #10782
+  [reinhardt]
+
+
+3.4.0 (2015-04-07)
+------------------
 
 - added third level to browsing view, refs #5752 [reinhardt]
 - Refs #11023 sort publications on home page and in RSS feeds [deroiste]
