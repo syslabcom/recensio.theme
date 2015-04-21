@@ -216,7 +216,7 @@
                           tal:attributes="class string:submenu_item ${selected}"
                           tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.expandSubmenu(subitem['submenu'])">
 
-                        <metal:submenu use-macro="here/browse-topics/macros/submenu" />
+                        <metal:submenu use-macro="view/macros/submenu" />
                       </li>
 
                     </tal:submenu>
