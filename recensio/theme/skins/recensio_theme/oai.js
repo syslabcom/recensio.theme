@@ -56,6 +56,14 @@ function showResults(data){
                     css_class = '';
                     li_text = matching_elems[0].text;
                 }
+                if (ddc == 'ddcPlace') {
+                    var matching_elems = jq('#' + ddc + ' option').filter(function(){return this.text == li_text;});
+                    if(matching_elems.length){
+                        data = matching_elems[0].value;
+                    } else {
+                        css_class = 'missing';
+                    }
+                }
                 tmpl.find('.oai_' + ddc + ' ul').append('<li ddc_id="' + data + '" class="' + css_class + '">' + li_text + '</li>');
             });
             jq('#oaisuggestiontemplate').after(tmpl).next().show();
@@ -66,7 +74,6 @@ function showResults(data){
 }
 
 function takeOver(elem){
-    debugger;
     var j = jq(elem).parent().parent();
     var missing_flag = false;
     function takeSimpleInputOver(source, destination){
