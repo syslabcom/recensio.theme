@@ -1,10 +1,11 @@
 Changelog
 =========
 
-3.4.4 (unreleased)
+3.4.4 (2015-09-01)
 ------------------
 
-- Nothing changed yet.
+- use separate lookup for ddcPlace (the bsb opac values differ from the
+  internal ones), refs #10622 [reinhardt]
 
 
 3.4.3 (2015-04-21)
