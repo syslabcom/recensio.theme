@@ -47,10 +47,22 @@ function showResults(data){
             jq(result[ddc]).each(function(i, data){
                 var css_class = 'missing';
                 var li_text = data;
-                var matching_elems = jq('#' + ddc + ' option').filter(function(){return this.value == data;});
+                var source_id = ddc;
+                if (ddc == 'ddcPlace') {
+                    source_id = ddc + '_bsb';  // ddcPlace values differ in BSB
+                }
+                var matching_elems = jq('#' + source_id + ' option').filter(function(){return this.value == data;});
                 if(matching_elems.length){
                     css_class = '';
                     li_text = matching_elems[0].text;
+                }
+                if (ddc == 'ddcPlace') {
+                    var matching_elems = jq('#' + ddc + ' option').filter(function(){return this.text == li_text;});
+                    if(matching_elems.length){
+                        data = matching_elems[0].value;
+                    } else {
+                        css_class = 'missing';
+                    }
                 }
                 tmpl.find('.oai_' + ddc + ' ul').append('<li ddc_id="' + data + '" class="' + css_class + '">' + li_text + '</li>');
             });
@@ -62,7 +74,6 @@ function showResults(data){
 }
 
 function takeOver(elem){
-    debugger;
     var j = jq(elem).parent().parent();
     var missing_flag = false;
     function takeSimpleInputOver(source, destination){
