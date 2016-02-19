@@ -2915,6 +2915,14 @@ dl.collapsible dd.collapsibleContent {
   padding: 0;
 }
 
+/*** string fallback widget (doi) ***/
+label.fallback {
+    font-style: italic;
+}
+input#doi_fallback {
+    border: none;
+}
+
 /*IE7*/
 #authorsearch-description {width:550px}
 #authorsearch-query {width:250px;}
