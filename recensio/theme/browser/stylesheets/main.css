@@ -866,15 +866,6 @@ li.accordion-item .accordion-content {
 
 /**************************************Styles for "like" button**********************/
 
-#facebook-like {
-height:53px;
-margin-top:10px !important;
-}
-#facebook-like iframe {
-margin-top:5px;
-width:200px;
-height: 80px;
-}
 .connect_widget div.connect_confirmation_cell_no_like {
 margin-top:3px;
 padding-left:0px;
@@ -902,18 +893,6 @@ min-height:667px;
 }
 
 /*****overrides for content "like" buttons**********/
-
-#content-core #facebook-like {
-    float: left;
-    height: 40px;
-    margin-top:0px !important;
-}
-
-#content-core #facebook-like iframe {
-    height: 40px;
-    margin-top: 0px;
-    width: 130px;
-}
 
 #content-core #twitter-it {
     float: left;
