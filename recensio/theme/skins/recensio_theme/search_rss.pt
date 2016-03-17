@@ -8,11 +8,9 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal">
 
-<tal:block define="dummy python:context.rssAllowed(site=True)" />
-
 <tal:block
     define="
-        syn context/portal_syndication;
+        syn nocall:context/syndication-util;
         max_items syn/max_items;
         start python: int(request.get('b_start', 0));
         startnumber python: start+1;

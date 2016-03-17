@@ -11,9 +11,9 @@
 <metal:block
     define-macro="master"
     tal:define="rhv context/@@recensio-helper-view;
-                syn context/portal_syndication;
-                default_max syn/getMaxItems;
-                max request/b_size|max_items|python:syn.getMaxItems(here);
+                syn nocall:context/syndication-util;
+                default_max syn/max_items;
+                max request/b_size|max_items|default_max;
                 max python:same_type(max, 1) and max or default_max;
                 objects python: objectList[:max];">
 
