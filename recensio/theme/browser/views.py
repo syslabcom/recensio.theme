@@ -1,7 +1,7 @@
 """ Views and functions for Recensio.net
 """
 import re
-from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 from zope.component import queryUtility
 from zope.i18n import translate
 from zope.i18nmessageid import Message
