@@ -5,7 +5,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=vocab, value
+##parameters=vocab, value, widget=None
 
 
 try:
