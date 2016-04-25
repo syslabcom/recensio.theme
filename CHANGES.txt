@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.4.5 (unreleased)
+4.0.0 (2016-04-25)
 ------------------
 
 - New post-it images, refs #13370
