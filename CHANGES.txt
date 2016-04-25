@@ -4,7 +4,12 @@ Changelog
 3.4.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- New post-it images, refs #13370
+- Removed styles for facebook like buttons, refs #13370
+- Fixes for Plone 4.3, refs #11785
+- removed dfg reference from footer, refs #11972
+- styles for string fallback widget (doi), refs #12126
+- added test_homepage
 
 
 3.4.4 (2015-09-01)
