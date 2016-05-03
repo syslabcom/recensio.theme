@@ -72,8 +72,8 @@
 
 
   <!-- page_image: the flash banner -->
-  <replace css:content="object#page_image"
-           css:theme="object#page_image" />
+  <replace css:content="img#page_image"
+           css:theme="img#page_image" />
 
   <!-- transfer the breadcrumbs -->
   <replace css:content="div#portal-breadcrumbs"
