@@ -63,12 +63,20 @@
            css:theme="a#register" />
 
   <!-- portal-languageselector -->
-  <replace css:content="li.language-de a"
-           css:theme="a.language-de" />
-  <replace css:content="li.language-en a"
-           css:theme="a.language-en" />
-  <replace css:content="li.language-fr a"
-           css:theme="a.language-fr" />
+  <drop css:theme="a.language-de" />
+  <drop css:theme="a.language-en" />
+  <drop css:theme="a.language-fr" />
+  <replace css:theme="p#language">
+		  <p id="language">
+		    Please choose your language:&#160;&#160;
+            <xsl:for-each css:select="ul#portal-languageselector li a">
+                <xsl:if test="position()!=1">
+&#160;|&#160;
+                </xsl:if>
+                <xsl:copy-of select="."/>
+            </xsl:for-each>
+		  </p>
+  </replace>
 
 
   <!-- page_image: the flash banner -->
