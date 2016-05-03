@@ -6,6 +6,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from recensio.contenttypes.interfaces import IParentGetter
+from plone import api
 from plone.i18n.locales.languages import _languagelist
 from ZTUtils import make_query
 from Acquisition import aq_inner
@@ -33,7 +34,9 @@ class HomepageView(BrowserView):
         roles = member.getRolesInContext(self.context)
 
         today = DateTime().strftime("%Y-%m-%d")
-        return (preflang, roles, today)
+        root = api.portal.get_navigation_root(context=self.context)
+        path = '/'.join(root.getPhysicalPath())
+        return (path, preflang, roles, today)
 
 #    @ram.cache(_render_cachekey)
     def __call__(self):
@@ -67,7 +70,9 @@ class HomepageView(BrowserView):
         langinfo = _languagelist.copy()
         langinfo[''] = { 'name':   'International',
                          'native': 'int'}
+        root = api.portal.get_navigation_root(context=self.context)
         query = dict(portal_type=["Review Monograph", "Review Journal"],
+            path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',
             sort_order='reverse', b_size=5)
@@ -96,8 +101,10 @@ class HomepageView(BrowserView):
     @ram.cache(_render_cachekey)
     def getPrintedPresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
+        root = api.portal.get_navigation_root(context=self.context)
         query = dict(portal_type=['Presentation Article Review',
                 'Presentation Monograph', 'Presentation Collection'],
+                path='/'.join(root.getPhysicalPath()),
                 review_state="published",
             sort_on='effective',
             sort_order='reverse', b_size=3)
@@ -114,7 +121,9 @@ class HomepageView(BrowserView):
     @ram.cache(_render_cachekey)
     def getOnlinePresentations(self):
         pc = getToolByName(self.context, 'portal_catalog')
+        root = api.portal.get_navigation_root(context=self.context)
         query = dict(portal_type=['Presentation Online Resource'],
+            path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',
             sort_order='reverse', b_size=3)
@@ -128,7 +137,9 @@ class HomepageView(BrowserView):
     @ram.cache(_render_cachekey)
     def getReviewJournals(self):
         pc = getToolByName(self.context, 'portal_catalog')
+        root = api.portal.get_navigation_root(context=self.context)
         query = dict(portal_type=['Issue', 'Volume'],
+            path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',
             sort_order='reverse', b_size=6)
