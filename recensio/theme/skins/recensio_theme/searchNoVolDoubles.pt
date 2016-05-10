@@ -139,7 +139,7 @@
         </p>
 
         <p class="discreet"
-           tal:condition="context/portal_syndication/isSiteSyndicationAllowed">
+           tal:condition="context/syndication-util/context_allowed">
            <a href="" tal:attributes="href rss_url"><img src="/++resource++recensio.theme.images/icon_rss_feed.gif"
             tal:attributes="src string:${portal_url}/++resource++recensio.theme.images/icon_rss_feed.gif" alt="RSS icon" /></a>
             <a href=""
