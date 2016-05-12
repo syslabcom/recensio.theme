@@ -1,5 +1,7 @@
 from plone.app.layout.sitemap.sitemap import SiteMapView
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.browser.navtree import getNavigationRoot
+
 
 class RecensioSiteMapView(SiteMapView):
     """ Customised sitemap which give reviews from Francia and
@@ -8,7 +10,18 @@ class RecensioSiteMapView(SiteMapView):
     def objects(self):
         """ Overrides the SiteMapView method """
         catalog = getToolByName(self.context, 'portal_catalog')
-        for item in catalog.searchResults({'Language': 'all', 'b_size': 10000}):
+        root = getNavigationRoot(self.context)
+        query = {
+            'Language': 'all',
+            'path': root,
+            'b_size': 10000,
+        }
+        results = catalog.searchResults(query)
+        if None in results:
+            query['b_size'] = len(results)
+            results = catalog.searchResults(query)
+
+        for item in results:
             location = item.getURL()
             map_item = {
                 'loc'      : location,
