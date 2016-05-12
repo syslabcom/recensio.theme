@@ -617,7 +617,8 @@
           <dd class="collapsibleContent">
           <div class="field"
 
-               tal:define="avail_magazines python:portal_catalog(portal_type='Publication');
+               tal:define="portal_path context/portal_url/getPortalPath;
+                           avail_magazines python:portal_catalog(path=portal_path, portal_type='Publication');
                            all_checked python:(len(avail_magazines) == len(request.get('avail_magazines', []))) ;
                            toggle_select_state python:all_checked and 'true' or 'false';">
 
