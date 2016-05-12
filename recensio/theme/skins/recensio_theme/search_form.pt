@@ -39,7 +39,17 @@
                           is_flat python:lambda items: not sum([bool(item[1][1]) for item in items]);
                           "
             >
+
+          <div class="field">
+              <input type="checkbox" name="use_navigation_root:boolean" value="False"
+                     tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
+                  <label for="use_navigation_root:boolean"
+                         i18n:translate="">
+                      Plattformübergreifende Suche</label>
+          </div>
+
 			<fieldset>
+
 			<legend i18n:translate="label_search_text">Volltextsuche</legend>
           <input type="hidden" name="advanced_search" value="True" />
           <input type="hidden" value="languageReview" name="facet_field">

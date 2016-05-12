@@ -179,9 +179,14 @@
                                isbn result_obj/getIsbn | nothing;
                                year python:(hasattr(result_obj, 'getYearOfPublication') and result_obj.getYearOfPublication()) or (hasattr(result_obj, 'getOfficialYearOfPublication') and result_obj.getOfficialYearOfPublication());
                                rj python:result_type == 'Review Journal';
+                               portal_path context/portal_url/getPortalPath;
+                               result_portal python:result.getPath().split('/')[1];
+                               result_foreign python:result_portal != portal_path[1:];
+                               result_class python:'contenttype-' + normalizeString(result.portal_type);
+                               result_class python:result_foreign and (result_class + ' foreign portal-' + result_portal) or result_class;
                                ">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
-                    tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)" tal:on-error="string:[private]">
+                    tal:attributes="class result_class" tal:on-error="string:[private]">
 
                   <img width="32" height="32"
                        tal:condition="python:is_review or is_presentation"
@@ -226,7 +231,7 @@
                   </tal:author>
                 </dt>
 
-                <dd>
+                <dd tal:attributes="class result_class">
 
                 <span class="documentByLine"
                       >
@@ -268,6 +273,8 @@
                         </tal:relevance>
                     </span>
                 </span>
+
+                <span class="source-portal" tal:condition="result_foreign">&mdash; <span tal:content="python:context.restrictedTraverse('/' + result_portal).Title()">Recensio.net</span></span>
 
                 </dd>
 

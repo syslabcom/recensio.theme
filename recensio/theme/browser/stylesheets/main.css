@@ -2925,3 +2925,8 @@ input#doi_fallback {
 .portaltype-review-monograph #archetypes-fieldname-heading_presented_work {
   display:none;
 }
+
+dl.searchResults dt.foreign,
+dl.searchResults dd.foreign {
+    background-color: #EFECEC;
+}
