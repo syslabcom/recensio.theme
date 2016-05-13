@@ -42,6 +42,9 @@ class GeneratePdfRecension(BrowserView):
     """View to generate PDF cover sheets
     """
 
+    logo_main = '++resource++recensio.theme.images/logo2_fuer-Deckblatt.jpg'
+    logo_watermark = '++resource++recensio.theme.images/logo_icon_watermark.jpg'
+
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
 
@@ -86,8 +89,9 @@ class GeneratePdfRecension(BrowserView):
         R.setHeader('content-disposition', 'inline; filename="%s"' % filename)
         R.setHeader('content-length', str(contentlength))
 
-    def _drawImage(self, filename, x, y, width, height, **kw):
-        fullPath = resource_filename(__name__, os.path.join('images', filename))
+    def _drawImage(self, fileurl, x, y, width, height, **kw):
+        res = self.context.restrictedTraverse(fileurl)
+        fullPath = res.context.path
         self.canvas.drawImage(fullPath,
             x, y, width, height,
             **kw)
@@ -108,15 +112,14 @@ class GeneratePdfRecension(BrowserView):
                                 '/../../data/DejaVuSerif.ttf')
         pdfmetrics.registerFont( TTFont('DejaVu-Serif', font) )
 
-        self._drawImage('logo2_fuer-Deckblatt.jpg',
+        self._drawImage(self.logo_main,
                         0,
                         pheight - 4.21*cm,
                         28.28*cm,
                         4.21*cm)
 
-        pdf_watermark_path = resource_filename(
-            __name__,
-            os.path.join('images', 'logo_icon_watermark.jpg'))
+        pdf_watermark = self.context.restrictedTraverse(self.logo_watermark)
+        pdf_watermark_path = pdf_watermark.context.path
 
         publication = self.context.get_parent_object_of_type("Publication")
         if publication != None:
