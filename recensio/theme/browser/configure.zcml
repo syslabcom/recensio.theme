@@ -58,14 +58,6 @@
         />
 
     <browser:page
-        for="recensio.contenttypes.interfaces.IReviewMonograph"
-        name="generate-pdf-recension"
-        allowed_interface=".interfaces.IGeneratePdfRecension"
-        class=".pdfgen.GeneratePdfRecension"
-        permission="zope2.View"
-        />
-
-    <browser:page
         for="*"
         name="browse-topics"
         template="templates/topical.pt"
