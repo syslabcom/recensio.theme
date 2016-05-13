@@ -70,7 +70,7 @@ class HomepageView(BrowserView):
         query = dict(portal_type=["Review Monograph", "Review Journal"],
             review_state="published",
             sort_on='effective',
-            sort_order='reverse', b_size=5)
+            sort_order='reverse', b_size=10)
         resultset = list()
         for lang in REVIEW_LANGUAGES:
             q = query.copy()
@@ -89,7 +89,7 @@ class HomepageView(BrowserView):
                         results=[dict(authors=self.format_authors(x),
                                         url=x.getURL(),
                                         title=x.getObject().punctuated_title_and_subtitle,
-                                        date=self.format_effective_date(x['EffectiveDate'])) for x in res[part*3:part*3+2]],
+                                        date=self.format_effective_date(x['EffectiveDate'])) for x in res[part*5:part*5+4]],
                         query_str=make_query(q))
                     )
             # print "getReviewMonographs", lang, len(res)
