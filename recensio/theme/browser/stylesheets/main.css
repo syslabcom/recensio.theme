@@ -2517,6 +2517,10 @@ height:32px;
   width: 300px;
 }
 
+#oaisuggestions #ddcPlace_bsb {
+    display: none;
+}
+
 /*******styles for Opac search popup**********/
 .oaisuggestion tr {
    border-bottom:1px solid #CDCDCD;
