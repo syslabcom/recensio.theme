@@ -47,6 +47,16 @@
           </span>
         </h1>
 
+            <p class="cross-platform">
+                <a href="#" tal:attributes="href view/get_toggle_cross_platform_url" id="toggle-cross-platform">
+                  <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png" tal:condition="not:request/use_navigation_root|nothing">
+                  <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png" tal:condition="request/use_navigation_root|nothing">
+                  <label for="use_navigation_root:boolean"
+                         i18n:translate="">
+                      Plattformübergreifendes Browsing</label>
+                </a>
+            </p>
+
         <div class="visualClear"></div>
         <div tal:condition="results"
              tal:define="normalizeString nocall: context/plone_utils/normalizeString;

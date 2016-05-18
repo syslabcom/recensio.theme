@@ -7,6 +7,7 @@ from zope.component import queryUtility
 
 from Products.Archetypes.utils import OrderedDict
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.browser.navtree import getNavigationRoot
 from collective.solr.browser.facets import (
     SearchFacetsView, param)
 from collective.solr.interfaces import ISolrConnectionConfig
@@ -72,6 +73,8 @@ class BrowseTopicsView(SearchFacetsView):
         for key in query.keys():
             if query[key] == '':
                 del(query[key])
+        if form.get('use_navigation_root', True) and 'path' not in query:
+            query['path'] = getNavigationRoot(self.context)
         catalog = getToolByName(self.context, 'portal_catalog')
         self.results = catalog(query)
         self.kw['results'] = self.results
@@ -255,3 +258,7 @@ class BrowseTopicsView(SearchFacetsView):
                           self.expandSubmenu(x['submenu']), submenu) == [
 ]
 
+    def get_toggle_cross_platform_url(self):
+        new_form = self.request.form.copy()
+        new_form['use_navigation_root'] = not new_form['use_navigation_root']
+        return '?'.join((self.request['ACTUAL_URL'], make_query(new_form)))
