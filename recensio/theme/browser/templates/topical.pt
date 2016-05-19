@@ -49,8 +49,8 @@
 
             <p class="cross-portal">
                 <a href="#" tal:attributes="href view/get_toggle_cross_portal_url" id="toggle-cross-portal">
-                  <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png" tal:condition="not:request/use_navigation_root|nothing">
-                  <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png" tal:condition="request/use_navigation_root|nothing">
+                  <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png" tal:condition="not:request/use_navigation_root|python:True">
+                  <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png" tal:condition="request/use_navigation_root|python:True">
                   <label for="use_navigation_root:boolean"
                          i18n:translate="">
                       Plattformübergreifendes Browsing</label>

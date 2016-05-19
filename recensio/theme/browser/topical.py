@@ -260,5 +260,5 @@ class BrowseTopicsView(SearchFacetsView):
 
     def get_toggle_cross_portal_url(self):
         new_form = self.request.form.copy()
-        new_form['use_navigation_root'] = not new_form['use_navigation_root']
+        new_form['use_navigation_root'] = not new_form.get('use_navigation_root', True)
         return '?'.join((self.request['ACTUAL_URL'], make_query(new_form)))
