@@ -264,7 +264,7 @@
                                    class="link-tag"
                                    rel="tag"
                                    tal:content="tag"
-                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
+                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
                                    Tag
                                 </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
                             </span>
