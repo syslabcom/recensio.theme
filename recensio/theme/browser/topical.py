@@ -258,7 +258,7 @@ class BrowseTopicsView(SearchFacetsView):
                           self.expandSubmenu(x['submenu']), submenu) == [
 ]
 
-    def get_toggle_cross_platform_url(self):
+    def get_toggle_cross_portal_url(self):
         new_form = self.request.form.copy()
         new_form['use_navigation_root'] = not new_form['use_navigation_root']
         return '?'.join((self.request['ACTUAL_URL'], make_query(new_form)))
