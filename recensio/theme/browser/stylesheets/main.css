@@ -560,6 +560,13 @@ ul.authors li.author {
    width:32%;
 }
 
+.crossportalsearchform {
+    padding-bottom: 1em;
+}
+.crossportalsearchform label {
+    font-weight: normal;
+}
+
 /********************Styles for ul Zeitschriften***************/
 
 .template-folder_listing #content-core dt {

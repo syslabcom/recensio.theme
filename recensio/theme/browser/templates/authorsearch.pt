@@ -21,6 +21,8 @@
           <input type="text" name="authors"
                  class="text"
                  tal:attributes="value request/authors|nothing"/>
+          <input type="hidden" name="use_navigation_root:boolean" value="True"
+                  tal:attributes="value request/use_navigation_root|python:True"/>
           <input type="submit" value="Search"
                  class="submit"
                  i18n:attributes="value" />
@@ -68,9 +70,20 @@
                        portal_url context/portal_url;"
            class="authorsearch">
 
+        <form class="crossportalsearchform">
+          <input type="hidden" name="authors"
+                 tal:attributes="value request/authors|nothing"/>
+          <input type="checkbox" name="use_navigation_root:boolean" value="False"
+                 onClick="jq('.crossportalsearchform').submit()"
+                 tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
+              <label for="use_navigation_root:boolean"
+                      i18n:translate="">
+                  Plattformübergreifende Suche</label>
+        </form>
+
         <div id="authorsearch-alphabet" tal:define="ai view/alpha_index">
           <tal:block repeat="letter view/ALPHABET">
-            <a href="#" tal:condition="python:letter in ai" tal:content="letter" tal:attributes="href python:context.absolute_url() + '?b_start=' + str(ai[letter])" />
+            <a href="#" tal:condition="python:letter in ai" tal:content="letter" tal:attributes="href python:context.absolute_url() + '?b_start=' + str(ai[letter]) + '&use_navigation_root:boolean=' + str(request.get('use_navigation_root', True))" />
             <span tal:condition="python:not letter in ai" class="letter_not_available" tal:content="letter" />
           </tal:block>
         </div>
@@ -80,7 +93,7 @@
           Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
         </div>
 
-        <ul class="authors" tal:condition="view/authors">
+        <ul class="authors" tal:condition="view/authors" tal:define="use_navigation_root request/use_navigation_root|python:True">
           <li class="author" tal:repeat="author batch">
             <ul tal:condition="author">
               <li class="inline_listing">
@@ -88,7 +101,7 @@
                    tal:condition="author/presentations"
                    i18n:attributes="title label_all_presentations_author"
                    title="All presentations of this author"
-                   tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authorsFulltext:list=${author/name}">
+                   tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authorsFulltext=${author/name}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
                   <img i18n:attributes="alt label_all_presentations_author"
                        alt="All presentations of this author"
                        src="++resource++recensio.theme.images/InternetResource.png"/>
@@ -100,7 +113,7 @@
                    tal:condition="author/reviews"
                    i18n:attributes="title label_all_reviews_author"
                    title="All reviews of this author"
-                   tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authorsFulltext:list=${author/name}">
+                   tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authorsFulltext=${author/name}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
                   <img i18n:attributes="alt label_all_reviews_author"
                        alt="All reviews of this author"
                        src="++resource++recensio.theme.images/Aufsaetze.png" />
@@ -112,7 +125,7 @@
                    tal:condition="author/comments"
                    i18n:attributes="title label_all_comments_author"
                    title="All comments of this author"
-                   tal:attributes="href string:$portal_url/search?commentators=${author/comments}">
+                   tal:attributes="href string:$portal_url/search?commentators=${author/comments}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
                   <img i18n:attributes="alt label_all_comments_author"
                        alt="All comments of this author"
                        src="++resource++recensio.theme.images/Monograph.png" />
@@ -123,7 +136,7 @@
                 <a href="."
                    i18n:attributes="title label_all_items_author"
                    title="All items of this author"
-                   tal:attributes="href string:$portal_url/search?authorsFulltext:list=${author/name}"
+                   tal:attributes="href string:$portal_url/search?authorsFulltext=${author/name}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}"
                    tal:content="author/name">Author</a>
               </li>
             </ul>
