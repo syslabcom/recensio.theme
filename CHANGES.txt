@@ -4,7 +4,7 @@ Changelog
 4.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Another syndication fix for Plone 4.3, refs #11785 #13624 [reinhardt]
 
 
 4.0.0 (2016-04-25)
