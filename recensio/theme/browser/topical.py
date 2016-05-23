@@ -11,8 +11,14 @@ from Products.CMFPlone.browser.navtree import getNavigationRoot
 from collective.solr.browser.facets import (
     SearchFacetsView, param)
 from collective.solr.interfaces import ISolrConnectionConfig
+from plone.memoize import instance
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
+from zope.component.hooks import getSite
+from zope.component.hooks import setSite
 
 #from recensio.contenttypes.config import PORTAL_TYPES
+from recensio.policy.interfaces import IRecensioSettings
 from recensio.policy.utility import getSelectedQuery, \
     convertFacets, browsing_facets
 
@@ -262,3 +268,23 @@ class BrowseTopicsView(SearchFacetsView):
         new_form = self.request.form.copy()
         new_form['use_navigation_root'] = not new_form.get('use_navigation_root', True)
         return '?'.join((self.request['ACTUAL_URL'], make_query(new_form)))
+
+    @instance.memoize
+    def get_foreign_portal_url(self, portal_id):
+        this_portal = getSite()
+        other_portal = self.context.unrestrictedTraverse('/' + portal_id)
+        setSite(other_portal)
+        registry = getUtility(IRegistry)
+        recensio_settings = registry.forInterface(IRecensioSettings)
+        external_url = recensio_settings.external_portal_url
+        setSite(this_portal)
+        return external_url
+
+    def get_foreign_url(self, result):
+        portal_id = result.getPath().split('/')[1]
+        other_portal = self.context.unrestrictedTraverse('/' + portal_id)
+        external_url = self.get_foreign_portal_url(portal_id)
+        if not external_url:
+            return result.getURL()
+        return result.getURL().replace(
+            other_portal.absolute_url(), external_url)

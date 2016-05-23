@@ -44,3 +44,15 @@ class INewsletterView(Interface):
     def subscribe():
         """ subscribe to newsletter """
 
+
+class IFilterSearchView(Interface):
+    """Interface for FilterSearchView
+    """
+    def __call__():
+        """Render the view"""
+
+    def sort(submenu):
+        """Sort submenu"""
+
+    def get_foreign_url(result):
+        """Get the external URL of a search result from another portal"""
