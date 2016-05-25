@@ -12,8 +12,7 @@
    <element value="Document"/>
   </linkable>
   <customplugins>
-   <element value="ploneimage"/>
-   <element value="plonelink"/>
+   <element value="plonebrowser"/>
    <element value="s_textmetrics|/++resource++recensio.theme.plugins/tinymce/s-textmetrics-v1.2/editor_plugin_src.js"/>
   </customplugins>
   <containsanchors>
