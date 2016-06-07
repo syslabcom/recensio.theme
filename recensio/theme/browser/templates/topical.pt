@@ -53,7 +53,7 @@
                   <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png" tal:condition="request/use_navigation_root|python:True">
                   <label for="use_navigation_root:boolean"
                          i18n:translate="">
-                      Plattformübergreifendes Browsing</label>
+                      Plattformübergreifendes Browsing: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
                 </a>
             </p>
 

@@ -56,3 +56,7 @@ class IFilterSearchView(Interface):
 
     def get_foreign_url(result):
         """Get the external URL of a search result from another portal"""
+
+    def get_portal_link_snippet():
+        """Get a comma snippet of HTML with a comma separated list of links to
+        all available portals"""

@@ -1,6 +1,8 @@
 from copy import deepcopy
+from traceback import format_stack
 import logging
 
+from Acquisition import aq_parent
 from Products.Five.browser import BrowserView
 from ZTUtils import make_query
 from zope.component import queryUtility
@@ -26,6 +28,22 @@ log = logging.getLogger('recensio.theme/topical.py')
 PORTAL_TYPES = ['Presentation Online Resource', 'Presentation Article Review',
     'Presentation Collection', 'Presentation Monograph',
         'Review Journal', 'Review Monograph' ]
+
+
+class SwitchPortal(object):
+    def __init__(self, portal):
+        self.portal = portal
+
+    def __enter__(self):
+        self.original_portal = getSite()
+        setSite(self.portal)
+
+    def __exit__(self, type, value, traceback):
+        setSite(self.original_portal)
+        if value:
+            log.warn('Could not get portal url of ' + self.portal.id,
+                      exc_info=(type, value, traceback))
+            return True
 
 
 class BrowseTopicsView(SearchFacetsView):
@@ -271,13 +289,12 @@ class BrowseTopicsView(SearchFacetsView):
 
     @instance.memoize
     def get_foreign_portal_url(self, portal_id):
-        this_portal = getSite()
         other_portal = self.context.unrestrictedTraverse('/' + portal_id)
-        setSite(other_portal)
-        registry = getUtility(IRegistry)
-        recensio_settings = registry.forInterface(IRecensioSettings)
-        external_url = recensio_settings.external_portal_url
-        setSite(this_portal)
+        external_url = None
+        with SwitchPortal(other_portal):
+            registry = getUtility(IRegistry)
+            recensio_settings = registry.forInterface(IRecensioSettings)
+            external_url = recensio_settings.external_portal_url
         return external_url
 
     def get_foreign_url(self, result):
@@ -288,3 +305,22 @@ class BrowseTopicsView(SearchFacetsView):
             return result.getURL()
         return result.getURL().replace(
             other_portal.absolute_url(), external_url)
+
+    @instance.memoize
+    def get_all_portal_ids(self):
+        this_portal = getSite()
+        app = aq_parent(this_portal)
+        return app.objectIds('Plone Site')
+
+    def get_portal_link_snippet(self):
+        portal_ids = self.get_all_portal_ids()
+        link_tpl = '<a href="{1}">{0}</a>'
+        portal_infos = []
+        for portal_id in portal_ids:
+            portal_title = self.context.restrictedTraverse('/' + portal_id).Title()
+            portal_infos.append(
+                (portal_title, self.get_foreign_portal_url(portal_id)))
+        link_snippet = ', '.join([
+            link_tpl.format(*portal_info) for portal_info in portal_infos
+            if portal_info[1]])
+        return link_snippet
