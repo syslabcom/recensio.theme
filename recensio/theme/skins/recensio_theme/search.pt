@@ -72,13 +72,13 @@
                    value="Search"
                    i18n:attributes="value label_search;"/>
 
-            <p class="cross-portal">
-              <input type="checkbox" name="use_navigation_root:boolean" value="False"
+            <span class="cross-portal">
+              <input type="checkbox" name="use_navigation_root:boolean" value="False" id="use_navigation_root"
                      tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
-                  <label for="use_navigation_root:boolean"
+                  <label for="use_navigation_root"
                          i18n:translate="">
                       Plattformübergreifende Suche</label>
-            </p>
+            </span>
 
             <p class="discreet"
                i18n:translate="search_results_advanced">
