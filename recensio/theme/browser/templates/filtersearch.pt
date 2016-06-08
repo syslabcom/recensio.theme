@@ -46,12 +46,11 @@
                   </div>
 
                   <div class="visualClear"><!-- --></div>
-
                   <tal:block tal:repeat="item python:menu[submenu['id']]">
                     <div class="submenu-lvl2" tal:condition="python:(item['count']>=0 and item['query']) or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
-                      <div class="submenu_title empty"
+                      <div class="submenu_title empty fw-caret-right"
                            tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
-                                           class python:'submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
+                                           class python:'fw-caret-right submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
                         <tal:block tal:condition="exists:item/clearquery">
                           <a title="Remove this selection" i18n:attributes="title"
                              class="selected"

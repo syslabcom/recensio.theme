@@ -222,6 +222,9 @@ color: #000;
 
 #page_image {
 	position:absolute;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 
 object#page_image img {
@@ -668,7 +671,7 @@ font-size:1.2em;
 ----------------------------------------------------------------------------------------------------*/
 
 #footer {
-    background-color: white;
+    background-color: #f4f1ea;
     border-radius: 10px;
 	font-size:0.9em;
 	margin-top: 15px;
@@ -702,6 +705,12 @@ font-size:1.2em;
     width: 850px;
     margin:-3px 0 5px 30px;
 }
+#footer div a img {
+    height: 55px;
+    padding: 0.5em;
+}
+
+
 #footer h2 span {
     font-size:0.7em;
 
