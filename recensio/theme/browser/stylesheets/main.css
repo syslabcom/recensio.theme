@@ -971,7 +971,7 @@ top /*\**/:-11px\9
 /************************ Subnavi *************************/
 /* From the design mockup for the secondary navigation on
  recensio.net */
-
+/*
 .firstmenu{
    margin-bottom: 34px;
 }
@@ -1042,7 +1042,7 @@ top /*\**/:-11px\9
    padding: 6px 28px 4px 30px;
    background: url(++resource++recensio.theme.images/navtab_current_left.png) no-repeat;
    color: #000;
-}
+}*/
 
 /**************styles to hide the profile pic*****************/
 
@@ -2675,7 +2675,6 @@ div#extra-design-elements { display: none; }
 
 #publicationlisting .review_container a h3::after,
 #publicationlisting .review_container a h2::after {
-/*    background: url('++resource++recensio.theme.images/more_arrow.png') 20px -1px no-repeat;*/
     content: "▸";
     margin-left: 3px;
     display: inline-block;
@@ -2692,7 +2691,6 @@ div#extra-design-elements { display: none; }
 
 #publicationlisting .review_container.expanded a h3::after,
 #publicationlisting .review_container.expanded a h2::after {
-/*    background: url('++resource++recensio.theme.images/more_arrow_open.png') 20px -1px no-repeat*/
     content: "▾";
     margin-left: 3px;
     display: inline-block;
