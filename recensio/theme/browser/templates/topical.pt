@@ -180,13 +180,15 @@
               <div class="visualClear"><!-- --></div>
 
               <tal:block tal:repeat="item python:menu[submenu['id']]">
-                <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])"
-                     tal:define="level python:2;">
+                <div class="submenu-lvl2" 
+                     tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])"
+                     tal:define="level python:2;
+                                  can_expand python:item['submenu'] and True or False">
                   <metal:macro define-macro="submenu">
                   <div class="submenu_title empty"
                        tal:attributes="id python:'sub-title-' + item['name'].replace(':','-').replace('.','_');
                                        class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
-                    <div class="fa fa-caret-right togglebutton"/>
+                    <div class="togglebutton" tal:condition="can_expand"/>
                     <div class="delimiterbox">
                       <tal:block tal:condition="exists:item/clearquery">
                         <a title="Remove this selection" i18n:attributes="title"

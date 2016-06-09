@@ -652,11 +652,6 @@ div#browsing-menu .used_facet {
 }
 .template-browse-topics .submenu_title span {
 }
-.fa.fa-caret-right.togglebutton {
-  font-size: 1.8em;
-  float: right;  
-  padding-top: 1px;
-}
 .template-browse-topics .submenu_title {
     cursor: pointer;
     color: #7F4B2B;
@@ -680,9 +675,22 @@ div#browsing-menu .used_facet {
     font-weight: normal;
     padding: 5px;
 }
+.togglebutton {
+      padding: 0 5px 3px 0;  
+}
+.togglebutton:before {
+  font-size: 1.8em;
+  font-family: FontAwesome;
+  content: "\f0da";    
+  float: right;  
+  padding-top: 1px;
+}
 
-.submenu_title.open {
-  background-image: url("++resource++recensio.theme.images/more_arrow_open.png");
+.submenu_title.empty .togglebutton {
+  display:none;
+}
+.submenu_title.open .togglebutton:before {
+  content: "\f0d7";
 }
 
 .submenu_title.empty {
