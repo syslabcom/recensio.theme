@@ -435,7 +435,8 @@ body.template-homepage-view .box {
 body.template-homepage-view .box a.one-line h2:before,
 body.template-homepage-view .box a.two-lines h2:before {
     font-family: FontAwesome;
-    content: "\f0e6";    
+    content: "\f04b";
+    color: white;
     font-size: 1.4em;
     padding-right: 0.5em;
 }
@@ -474,7 +475,7 @@ body.template-homepage-view .box a:hover h2 {
 body.template-homepage-view .box h2{
 	width:254px;
 	height:13px;
-	padding:  0 10px 10px 5px;
+	padding:  0 10px 10px 0.5em;
 	font-size:1em;
 }
 
