@@ -1,6 +1,6 @@
 oai_overlay=null;
 function getDataFromOAI(isbn){
-    var baseURL = '/recensio/opac?identifier=';
+    var baseURL = '/recensio/metadata_query?identifier=';
     jq.ajax({
         url: baseURL + isbn,
         dataType: 'json',
@@ -23,7 +23,7 @@ function showResults(data){
         jq('#oaisuggestiontemplate').after(tmpl).next().show();
         return
     }
-    for (var result_id=0;result_id<data.length;result_id++){
+    for (var result_id=data.length-1;result_id>=0;result_id--){
         var tmpl = jq('#oaisuggestiontemplate').clone();
         tmpl[0].id = "";
         var result = data[result_id];
@@ -66,8 +66,10 @@ function showResults(data){
                 }
                 tmpl.find('.oai_' + ddc + ' ul').append('<li ddc_id="' + data + '" class="' + css_class + '">' + li_text + '</li>');
             });
-            jq('#oaisuggestiontemplate').after(tmpl).next().show();
         }
+        tmpl.find('.source_link').attr('href', result['source']['url']);
+        tmpl.find('.source_link .source_name').text(result['source']['title']);
+        jq('#oaisuggestiontemplate').after(tmpl).next().show();
     }
     jq('.useit').click(function(){takeOver(this);});
     oai_overlay = jq('#oaisuggestions').overlay();
