@@ -47,6 +47,8 @@
           </span>
         </h1>
 
+        <tal:comment replace="nothing">
+            <!-- Deactivating according to #13568-41 -->
             <p class="cross-portal">
                 <a href="#" tal:attributes="href view/get_toggle_cross_portal_url" id="toggle-cross-portal">
                   <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png" tal:condition="not:request/use_navigation_root|python:True">
@@ -56,6 +58,7 @@
                       Plattformübergreifendes Browsing: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
                 </a>
             </p>
+        </tal:comment>
 
         <div class="visualClear"></div>
         <div tal:condition="results"
