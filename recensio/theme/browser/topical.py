@@ -25,9 +25,7 @@ from recensio.policy.utility import getSelectedQuery, \
     convertFacets, browsing_facets
 
 log = logging.getLogger('recensio.theme/topical.py')
-PORTAL_TYPES = ['Presentation Online Resource', 'Presentation Article Review',
-    'Presentation Collection', 'Presentation Monograph',
-        'Review Journal', 'Review Monograph' ]
+PORTAL_TYPES = ['Review Journal', 'Review Monograph']
 
 
 class SwitchPortal(object):

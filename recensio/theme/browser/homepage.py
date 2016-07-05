@@ -75,7 +75,7 @@ class HomepageView(BrowserView):
             path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',
-            sort_order='reverse', b_size=5)
+            sort_order='reverse', b_size=10)
         resultset = list()
         for lang in REVIEW_LANGUAGES:
             q = query.copy()
@@ -85,54 +85,20 @@ class HomepageView(BrowserView):
                 q['languageReview'] = list(
                     set(langinfo.keys()).difference(set(REVIEW_LANGUAGES)))
             res = pc(q)
-            resultset.append(
-                dict(
-                    language=lang or 'int',
-                    langname=langinfo[lang]['native'],
-                    results=[dict(authors=self.format_authors(x),
-                                    url=x.getURL(),
-                                    title=x.getObject().punctuated_title_and_subtitle,
-                                    date=self.format_effective_date(x['EffectiveDate'])) for x in res[:5]],
-                    query_str=make_query(q))
-                )
+            for part in range(2):
+                resultset.append(
+                    dict(
+                        language=lang or 'int',
+                        part=part,
+                        langname=langinfo[lang]['native'],
+                        results=[dict(authors=self.format_authors(x),
+                                        url=x.getURL(),
+                                        title=x.getObject().punctuated_title_and_subtitle,
+                                        date=self.format_effective_date(x['EffectiveDate'])) for x in res[part*5:part*5+4]],
+                        query_str=make_query(q))
+                    )
             # print "getReviewMonographs", lang, len(res)
         return resultset
-
-    @ram.cache(_render_cachekey)
-    def getPrintedPresentations(self):
-        pc = getToolByName(self.context, 'portal_catalog')
-        root = api.portal.get_navigation_root(context=self.context)
-        query = dict(portal_type=['Presentation Article Review',
-                'Presentation Monograph', 'Presentation Collection'],
-                path='/'.join(root.getPhysicalPath()),
-                review_state="published",
-            sort_on='effective',
-            sort_order='reverse', b_size=3)
-        res = pc(query)
-        data = []
-        for r in res[:3]:
-            ob = r.getObject()
-            data.append(dict(url=r.getURL(),
-                            authors=self.format_authors(r),
-                            title=ob.punctuated_title_and_subtitle,
-                            date=self.format_effective_date(r['EffectiveDate'])))
-        return data
-
-    @ram.cache(_render_cachekey)
-    def getOnlinePresentations(self):
-        pc = getToolByName(self.context, 'portal_catalog')
-        root = api.portal.get_navigation_root(context=self.context)
-        query = dict(portal_type=['Presentation Online Resource'],
-            path='/'.join(root.getPhysicalPath()),
-            review_state="published",
-            sort_on='effective',
-            sort_order='reverse', b_size=3)
-        res = pc(query)
-        # print "getOnlinePresentations", len(res)
-        data = []
-        for r in res[:3]:
-            data.append(dict(url=r.getURL(), title=r['Title'], date=self.format_effective_date(r['EffectiveDate'])))
-        return data
 
     @ram.cache(_render_cachekey)
     def getReviewJournals(self):
@@ -142,8 +108,8 @@ class HomepageView(BrowserView):
             path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',
-            sort_order='reverse', b_size=6)
-        res = pc(query)[:6]
+            sort_order='reverse', b_size=12)
+        res = pc(query)[:12]
         resultset = list()
         objects = {}
         for r in res:
@@ -191,7 +157,7 @@ class HomepageView(BrowserView):
                     )
                 )
         # print "getReviewJournals", len(res)
-        return resultset[:3]
+        return resultset[:6]
 
     @ram.cache(_render_cachekey)
     def getPublications(self):
