@@ -560,6 +560,13 @@ ul.authors li.author {
    width:32%;
 }
 
+.crossportalsearchform {
+    padding-bottom: 1em;
+}
+.crossportalsearchform label {
+    font-weight: normal;
+}
+
 /********************Styles for ul Zeitschriften***************/
 
 .template-folder_listing #content-core dt {
@@ -2424,7 +2431,7 @@ width:100%;
     width: 740px;
 }
 
-.site-recensio.template-search #content-core {
+body.template-search #content-core {
     width: inherit;
 }
 
@@ -2928,4 +2935,9 @@ input#doi_fallback {
 .portaltype-review-monograph #archetypes-fieldname-heading__page_number_of_presented_review_in_journal,
 .portaltype-review-monograph #archetypes-fieldname-heading_presented_work {
   display:none;
+}
+
+dl.searchResults dt.foreign,
+dl.searchResults dd.foreign {
+    background-color: #EFECEC;
 }

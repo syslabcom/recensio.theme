@@ -23,6 +23,7 @@ setup(name='recensio.theme',
       zip_safe=False,
       install_requires=[
           'plone.app.theming',
+          'plone.api',
           'plone.resource',
           'logilab-common',
           'recensio.contenttypes',

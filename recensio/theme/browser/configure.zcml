@@ -70,6 +70,7 @@
         name="filtered-search"
         template="templates/filtersearch.pt"
         class=".filtersearch.FilterSearchView"
+        allowed_interface=".interfaces.IFilterSearchView"
         permission="zope2.View"
         />
 
