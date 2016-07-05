@@ -115,7 +115,7 @@ class publicationlisting(ViewletBase):
         objects = self.parent[volume].getFolderContents(
             {'portal_type': 'Issue'},
             full_objects=True)
-        issue_objs = sorted(objects, key=lambda v: v.effective, reverse=True)
+        issue_objs = sorted(objects, key=lambda v: v.effective(), reverse=True)
         issues = [self._make_iss_or_vol_dict(i) for i in issue_objs]
         return issues
 
