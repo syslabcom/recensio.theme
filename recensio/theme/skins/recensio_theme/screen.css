@@ -1,7 +1,11 @@
 body {
 	font: normal 11px Verdana, Arial, Helvetica;
 	color:#58595B;
-	background:#e8e1d0 url(imgs/bg.png) no-repeat 0 0;
+    background: #e8e1d0; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(rgba(249,247,242,0.9), rgba(232, 225, 209, 1), rgba(232, 225, 208, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(249,247,242,0.9), rgba(232, 225, 209, 1),rgba(232, 225, 208, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(249,247,242,0.9), rgba(232, 225, 209, 1),rgba(232, 225, 208, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(249,247,242,0.9), rgba(232, 225, 209, 1),rgba(232, 225, 208, 1)); /* Standard syntax */
 	height: 100%;
 }
 
@@ -162,30 +166,25 @@ color: #000;
    height: 39px
 }
 
-#navigation #navi-left {
-   background: transparent url(++resource++recensio.theme.images/navi_bg_left.png) no-repeat;
-}
-
-#navigation #navi-right {
-   background: transparent url(++resource++recensio.theme.images/navi_bg_right.png) no-repeat;
-}
 
 #navigation ul {
 	height:39px;
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	background:url(imgs/navigation/navi_bg.png) repeat-x 0 0;
-	background-color:#f3f0e9;
+	background-color:#e8e1d0;
 	float:left;
-	width: 878px;
+	width: 100%;
+    border-radius: 10px;
 }
 
 #navigation a {
 	font-family: Georgia, serif;
 	font-weight:normal;
 	text-decoration:none;
+    font-size: small;
 	color:#58595B;
+
 }
 #navigation a:visited {
 	text-decoration:none;
@@ -223,6 +222,9 @@ color: #000;
 
 #page_image {
 	position:absolute;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 
 object#page_image img {
@@ -291,7 +293,7 @@ body.template-publications-view div#content_left h2 {
 #column3 {
 	width: 204px;
 	float:right;
-	background-image:url(imgs/shadow.png);
+    /*border-left: 1px solid #ddd;*/
 	padding-left: 40px;
 	margin: 0;
 	background-repeat:no-repeat;
@@ -429,22 +431,32 @@ body.template-homepage-view .box {
    width: 289px;
 }
 
+
+body.template-homepage-view .box a.one-line h2:before,
+body.template-homepage-view .box a.two-lines h2:before {
+    font-family: FontAwesome;
+    content: "\f04b";
+    color: white;
+    font-size: 1.4em;
+    padding-right: 0.5em;
+}
 body.template-homepage-view .box a.one-line,
 body.template-homepage-view .box a.two-lines {
    color:#58595B;
    display:block;
    width:289px;
-   padding: 5px;
+   padding: 0.5em;
+   background-color: #e8e1d0;
 }
 
 body.template-homepage-view .box a.one-line {
-	background: transparent url(++resource++recensio.theme.images/h2_bg_sm.png) no-repeat;
-	height:28px;
+	height:16px;
+    margin-bottom: 12px;
 }
 
 body.template-homepage-view .box a.two-lines{
-	background: transparent url(++resource++recensio.theme.images/h2_bg_lg.png) no-repeat;
-	height:38px;
+    height:26px;
+    margin-bottom: 12px;
 }
 
 body.template-homepage-view .box img {
@@ -463,7 +475,7 @@ body.template-homepage-view .box a:hover h2 {
 body.template-homepage-view .box h2{
 	width:254px;
 	height:13px;
-	padding:  0 10px 10px 25px;
+	padding:  0 10px 10px 0.5em;
 	font-size:1em;
 }
 
@@ -660,7 +672,8 @@ font-size:1.2em;
 ----------------------------------------------------------------------------------------------------*/
 
 #footer {
-	background:url(imgs/footer_bg.png) repeat-y 0 0;
+    background-color: #f4f1ea;
+    border-radius: 10px;
 	font-size:0.9em;
 	margin-top: 15px;
 	height:115px;
@@ -693,6 +706,12 @@ font-size:1.2em;
     width: 850px;
     margin:-3px 0 5px 30px;
 }
+#footer div a img {
+    height: 55px;
+    padding: 0.5em;
+}
+
+
 #footer h2 span {
     font-size:0.7em;
 

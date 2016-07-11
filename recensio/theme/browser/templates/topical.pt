@@ -201,29 +201,33 @@
               <div class="visualClear"><!-- --></div>
 
               <tal:block tal:repeat="item python:menu[submenu['id']]">
-                <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])"
-                     tal:define="level python:2;">
+                <div class="submenu-lvl2" 
+                     tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])"
+                     tal:define="level python:2;
+                                  can_expand python:item['submenu'] and True or False">
                   <metal:macro define-macro="submenu">
                   <div class="submenu_title empty"
                        tal:attributes="id python:'sub-title-' + item['name'].replace(':','-').replace('.','_');
                                        class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
-                    <tal:block tal:condition="exists:item/clearquery">
-                      <a title="Remove this selection" i18n:attributes="title"
-                         tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
-                        <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png"/>
+                    <div class="togglebutton" tal:condition="can_expand"/>
+                    <div class="delimiterbox">
+                      <tal:block tal:condition="exists:item/clearquery">
+                        <a title="Remove this selection" i18n:attributes="title"
+                           tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
+                          <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png"/>
+                        </a>
+                      </tal:block>
+                      <a href="#"
+                         tal:condition="not:exists:item/clearquery"
+                         tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
+                                         class python:item.has_key('clearquery') and 'selected_facet' or '';" >
+                        <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
                       </a>
-                    </tal:block>
-
-                    <a href="#"
-                       tal:condition="not:exists:item/clearquery"
-                       tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
-                                       class python:item.has_key('clearquery') and 'selected_facet' or '';" >
-                      <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
-                    </a>
-                    <span>
-                      <tal:title tal:replace="item/voc"/>
-                      <tal:count tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
-                    </span>
+                      <span tal:omit-tag="">
+                        <tal:title tal:replace="item/voc"/>
+                        <tal:count tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
+                      </span>
+                    </div>
                   </div>
 
                   <ul class="submenu_content"
