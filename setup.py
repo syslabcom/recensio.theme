@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '4.0.3.dev0'
+version = '4.1.1.dev0'
 
 setup(name='recensio.theme',
       version=version,
@@ -23,6 +23,7 @@ setup(name='recensio.theme',
       zip_safe=False,
       install_requires=[
           'plone.app.theming',
+          'plone.api',
           'plone.resource',
           'logilab-common',
           'recensio.contenttypes',

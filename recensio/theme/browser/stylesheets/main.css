@@ -560,6 +560,13 @@ ul.authors li.author {
    width:32%;
 }
 
+.crossportalsearchform {
+    padding-bottom: 1em;
+}
+.crossportalsearchform label {
+    font-weight: normal;
+}
+
 /********************Styles for ul Zeitschriften***************/
 
 .template-folder_listing #content-core dt {
@@ -628,9 +635,18 @@ div#browsing-menu .used_facet {
 .submenu_more.invisible {
     display: none;
 }
-
+.submenu_title {
+    white-space: nowrap;
+}
 .submenu_title a {
     font-weight: bold;
+}
+.submenu_title .delimiterbox {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-bottom: 3px;  
+    width: 155px;
 }
 .template-filtered-search .submenu_title a,
 .template-search .submenu_title a {
@@ -642,12 +658,8 @@ div#browsing-menu .used_facet {
     text-decoration: underline;
 }
 .template-browse-topics .submenu_title span {
-    padding-right: 9px;
 }
 .template-browse-topics .submenu_title {
-    background-image: url("++resource++recensio.theme.images/more_arrow.png");
-    background-position: 178px 7px;
-    background-repeat: no-repeat;
     cursor: pointer;
     color: #7F4B2B;
 }
@@ -670,9 +682,22 @@ div#browsing-menu .used_facet {
     font-weight: normal;
     padding: 5px;
 }
+.togglebutton {
+      padding: 0 5px 3px 0;  
+}
+.togglebutton:before {
+  font-size: 1.8em;
+  font-family: FontAwesome;
+  content: "\f0da";    
+  float: right;  
+  padding-top: 1px;
+}
 
-.submenu_title.open {
-  background-image: url("++resource++recensio.theme.images/more_arrow_open.png");
+.submenu_title.empty .togglebutton {
+  display:none;
+}
+.submenu_title.open .togglebutton:before {
+  content: "\f0d7";
 }
 
 .submenu_title.empty {
@@ -953,7 +978,7 @@ top /*\**/:-11px\9
 /************************ Subnavi *************************/
 /* From the design mockup for the secondary navigation on
  recensio.net */
-
+/*
 .firstmenu{
    margin-bottom: 34px;
 }
@@ -1024,7 +1049,7 @@ top /*\**/:-11px\9
    padding: 6px 28px 4px 30px;
    background: url(++resource++recensio.theme.images/navtab_current_left.png) no-repeat;
    color: #000;
-}
+}*/
 
 /**************styles to hide the profile pic*****************/
 
@@ -2424,7 +2449,7 @@ width:100%;
     width: 740px;
 }
 
-.site-recensio.template-search #content-core {
+body.template-search #content-core {
     width: inherit;
 }
 
@@ -2515,6 +2540,10 @@ height:32px;
   border: 1px solid #CDCDCD;
   height: 200px;
   width: 300px;
+}
+
+#oaisuggestions #ddcPlace_bsb {
+    display: none;
 }
 
 /*******styles for Opac search popup**********/
@@ -2657,7 +2686,6 @@ div#extra-design-elements { display: none; }
 
 #publicationlisting .review_container a h3::after,
 #publicationlisting .review_container a h2::after {
-/*    background: url('++resource++recensio.theme.images/more_arrow.png') 20px -1px no-repeat;*/
     content: "▸";
     margin-left: 3px;
     display: inline-block;
@@ -2674,7 +2702,6 @@ div#extra-design-elements { display: none; }
 
 #publicationlisting .review_container.expanded a h3::after,
 #publicationlisting .review_container.expanded a h2::after {
-/*    background: url('++resource++recensio.theme.images/more_arrow_open.png') 20px -1px no-repeat*/
     content: "▾";
     margin-left: 3px;
     display: inline-block;
@@ -2924,4 +2951,9 @@ input#doi_fallback {
 .portaltype-review-monograph #archetypes-fieldname-heading__page_number_of_presented_review_in_journal,
 .portaltype-review-monograph #archetypes-fieldname-heading_presented_work {
   display:none;
+}
+
+dl.searchResults dt.foreign,
+dl.searchResults dd.foreign {
+    background-color: #EFECEC;
 }

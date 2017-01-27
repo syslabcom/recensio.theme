@@ -47,6 +47,19 @@
           </span>
         </h1>
 
+        <tal:comment replace="nothing">
+            <!-- Deactivating according to #13568-41 -->
+            <p class="cross-portal">
+                <a href="#" tal:attributes="href view/get_toggle_cross_portal_url" id="toggle-cross-portal">
+                  <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png" tal:condition="not:request/use_navigation_root|python:True">
+                  <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png" tal:condition="request/use_navigation_root|python:True">
+                  <label for="use_navigation_root:boolean"
+                         i18n:translate="">
+                      Plattformübergreifendes Browsing: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
+                </a>
+            </p>
+        </tal:comment>
+
         <div class="visualClear"></div>
         <div tal:condition="results"
              tal:define="normalizeString nocall: context/plone_utils/normalizeString;
@@ -55,7 +68,7 @@
                          batch python:Batch(results, b_size, int(b_start), orphan=0);">
 
 
-          <dl class="searchResults">
+          <dl class="searchResults" tal:define="use_navigation_root request/use_navigation_root|python:True">
 
             <tal:results repeat="result batch">
               <tal:has_results condition="result">
@@ -65,9 +78,15 @@
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
                                    item_icon python:plone_view.getIcon(result);
-                                   url python:result_url+'/view' if result_type in use_view_action else result_url+'/';">
+                                   portal_path context/portal_url/getPortalPath;
+                                   result_portal python:result.getPath().split('/')[1];
+                                   result_foreign python:result_portal != portal_path[1:];
+                                   result_url python:result_foreign and view.get_foreign_url(result) or result_url;
+                                   url python:result_url+'/view' if result_type in use_view_action else result_url+'/';
+                                   result_class python:'contenttype-' + normalizeString(result.portal_type);
+                                   result_class python:result_foreign and (result_class + ' foreign portal-' + result_portal) or result_class;">
                   <dt tal:define="item_wf_state_class string:state-${result/review_state};"
-                      tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
+                      tal:attributes="class result_class">
                     <img width="32" height="32"
                          tal:condition="python:is_review or is_presentation"
                          tal:attributes="src python:(is_review and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
@@ -80,7 +99,7 @@
                       <span class="author" tal:attributes="class string:author"
                             tal:repeat="author result/listAuthors">
                         <a tal:content="author"
-                           tal:attributes="href string:$portal_url/search?authors:list=$author" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
+                           tal:attributes="href string:$portal_url/search?authors:list=$author&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
                   </tal:block>
 
                   <span class="title">
@@ -116,7 +135,7 @@
                   </tal:author>
                 </dt>
 
-                <dd>
+                <dd tal:attributes="class result_class">
 
                 <span class="documentByLine"
                       >
@@ -140,7 +159,7 @@
                                    class="link-tag"
                                    rel="tag"
                                    tal:content="tag"
-                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
+                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
                                    Tag
                                 </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
                             </span>
@@ -157,6 +176,8 @@
                         </tal:relevance>
                     </span>
                 </span>
+
+                <span class="source-portal" tal:condition="result_foreign">&mdash; <span tal:content="python:context.restrictedTraverse('/' + result_portal).Title()">Recensio.net</span></span>
 
                 </dd>
 
@@ -180,29 +201,33 @@
               <div class="visualClear"><!-- --></div>
 
               <tal:block tal:repeat="item python:menu[submenu['id']]">
-                <div class="submenu-lvl2" tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])"
-                     tal:define="level python:2;">
+                <div class="submenu-lvl2" 
+                     tal:condition="python:item['count']>0 or item.has_key('clearquery') or view.showSubmenu(item['submenu'])"
+                     tal:define="level python:2;
+                                  can_expand python:item['submenu'] and True or False">
                   <metal:macro define-macro="submenu">
                   <div class="submenu_title empty"
                        tal:attributes="id python:'sub-title-' + item['name'].replace(':','-').replace('.','_');
                                        class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
-                    <tal:block tal:condition="exists:item/clearquery">
-                      <a title="Remove this selection" i18n:attributes="title"
-                         tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
-                        <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png"/>
+                    <div class="togglebutton" tal:condition="can_expand"/>
+                    <div class="delimiterbox">
+                      <tal:block tal:condition="exists:item/clearquery">
+                        <a title="Remove this selection" i18n:attributes="title"
+                           tal:attributes="href string:${request/ACTUAL_URL}?${item/clearquery}">
+                          <img src="++resource++recensio.theme.images/checkbox_selected_brown_bg.png"/>
+                        </a>
+                      </tal:block>
+                      <a href="#"
+                         tal:condition="not:exists:item/clearquery"
+                         tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
+                                         class python:item.has_key('clearquery') and 'selected_facet' or '';" >
+                        <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
                       </a>
-                    </tal:block>
-
-                    <a href="#"
-                       tal:condition="not:exists:item/clearquery"
-                       tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
-                                       class python:item.has_key('clearquery') and 'selected_facet' or '';" >
-                      <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
-                    </a>
-                    <span>
-                      <tal:title tal:replace="item/voc"/>
-                      <tal:count tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
-                    </span>
+                      <span tal:omit-tag="">
+                        <tal:title tal:replace="item/voc"/>
+                        <tal:count tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
+                      </span>
+                    </div>
                   </div>
 
                   <ul class="submenu_content"

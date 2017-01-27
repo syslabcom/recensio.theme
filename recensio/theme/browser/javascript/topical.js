@@ -57,7 +57,7 @@ jq(document).ready(function() {
         else if (e.srcElement) targ = e.srcElement;
         if (targ.nodeType == 3) // defeat Safari bug
             targ = targ.parentNode;
-
+        targ = targ.closest('.submenu_title');
         //if (!(targ.tagName = "DIV") {}
         topical.toggler(jq('.submenu_content#' + targ.id.replace('title', 'content')),
                 jq('.submenu_title#' + targ.id));

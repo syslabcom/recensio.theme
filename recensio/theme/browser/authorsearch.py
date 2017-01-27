@@ -1,9 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from Acquisition import aq_parent
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.utils import safe_unicode
 from plone.memoize import ram, instance
 from DateTime import DateTime
@@ -55,45 +57,75 @@ class AuthorSearchView(BrowserView):
 
     def _render_cachekey(method, self):
         current_date = DateTime().Date()
-        return (current_date, )
+        navigation_root = getNavigationRoot(self.context)
+        use_navigation_root = self.request.get('use_navigation_root', True)
+        return (current_date, navigation_root, use_navigation_root, )
 
     @ram.cache(_render_cachekey)
     def all_authors(self):
         catalog = getToolByName(self.context, 'portal_catalog')
         membership_tool = getToolByName(self.context, 'portal_membership')
+        portal_url = getToolByName(self.context, 'portal_url')
+        navigation_root = getNavigationRoot(self.context)
 
-        reviews = catalog({
+        base_query = {
+            'facet': 'true',
+            'facet.field': 'authors',
+            'facet.limit': '-1',
+            'facet.mincount': '1',
+        }
+        if self.request.get('use_navigation_root', True):
+            base_query['path'] = navigation_root
+
+        review_query = base_query.copy()
+        review_query.update({
             'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
                     % x, REVIEW_TYPES)) + ')',
-            'facet': 'true',
-            'facet.field': 'authors',
-            'facet.limit': '-1',
-            'facet.mincount': '1',
-        }).facet_counts['facet_fields']['authors']
-        presentations = catalog({
+        })
+        reviews = catalog(review_query).facet_counts['facet_fields']['authors']
+
+        presentation_query = base_query.copy()
+        presentation_query.update({
             'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
                     % x, PRESENTATION_TYPES)) + ')',
-            'facet': 'true',
-            'facet.field': 'authors',
-            'facet.limit': '-1',
-            'facet.mincount': '1',
-        }).facet_counts['facet_fields']['authors']
-        commentator_user_ids = catalog.uniqueValuesFor('commentators')
+        })
+        presentations = catalog(presentation_query).facet_counts['facet_fields']['authors']
+
+        comment_query = base_query.copy()
+        comment_query.update({
+            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
+                    % x, REVIEW_TYPES + PRESENTATION_TYPES)) + ')',
+            'facet.field': 'commentators',
+        })
+        comments = catalog(comment_query).facet_counts['facet_fields']['commentators']
+        commentator_user_ids = comments.keys()
         comments = {}
         for commentator_id in commentator_user_ids:
             member = membership_tool.getMemberById(commentator_id)
             if not member:
-                continue
+                portal = portal_url.getPortalObject()
+                siblings = aq_parent(portal).objectValues('Plone Site')
+                for sibling in siblings:
+                    if sibling == portal:
+                        continue
+                    mt = getToolByName(sibling, 'portal_membership')
+                    member = mt.getMemberById(commentator_id)
+                    if member:
+                        break
+                if not member:
+                    continue
             comments[safe_unicode(('%s, %s' % (
                 member.getProperty('lastname'),
                 member.getProperty('firstname'))
             ))] = commentator_id
 
+        author_names = set(
+            presentations.keys() + reviews.keys() + comments.keys())
         authors = [dict(name=x.strip(', '),
                    reviews=reviews.get(safe_unicode(x), 0),
                    presentations=presentations.get(safe_unicode(x),
                    0), comments=comments.get(safe_unicode(x), 0))
-                   for x in catalog.uniqueValuesFor('authors')]
+                   for x in sorted(author_names)]
         authors = filter(lambda x: x['presentations'] + x['reviews']
                          + (1 if x['comments'] else 0) != 0, authors)
 

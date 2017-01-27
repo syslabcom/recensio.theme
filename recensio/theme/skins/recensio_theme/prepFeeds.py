@@ -9,9 +9,10 @@
 ##
 
 
+portalPath = context.portal_url.getPortalPath()
 #zss = context.rezensionen.zeitschriften.objectValues()
 zss = context.portal_catalog(
-  path='/recensio/rezensionen/zeitschriften',
+  path=portalPath + '/rezensionen/zeitschriften',
   portal_type='Publication',
   sort_on='id',
 )

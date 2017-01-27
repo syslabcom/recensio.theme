@@ -59,8 +59,8 @@
                  tal:define="results view/getReviewMonographs">
               <span tal:repeat="langres results">
                 <!-- <label><span tal:replace="langres/langname" /></label> -->
-                <ul id="list_reviews"
-                    tal:attributes="id string:list_reviews_${langres/language}">
+                <ul id="list_reviews" class="list_reviews"
+                    tal:attributes="id string:list_reviews_${langres/language}_${langres/part}">
                   <a href="search?portal_type:list=Review%20Monograph&portal_type:list=Review%20Journal&sort_on=effective&sort_order=reverse"
                            tal:attributes="href string:search?${langres/query_str}">
                     <img src="++resource++recensio.theme.images/int.png"
@@ -92,52 +92,6 @@
         </div>
 
         <div class="visualClear"></div>
-
-        <div id="rowBottom" class="boxrow">
-          <div class="box">
-            <a class="two-lines"
-               tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;sort_on=effective&amp;sort_order=reverse">
-              <h2 i18n:translate="label_latest_monographies">
-                Neueste Präsentationen von Monographien und Aufsätzen</h2>
-            </a>
-            <div id="latest_monographies_box"
-                 tal:define="results view/getPrintedPresentations">
-              <ul>
-                <li tal:repeat="res results">
-                  <span tal:content="res/authors"/>
-                    <a href="#" tal:attributes="href res/url" class="ellipsis_container">
-                        <span class="ellipsis_text" tal:content="res/title">title</span>
-                    </a>
-                  <div class="effective_date"
-                       tal:content="res/date"/>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="box right_box">
-            <a class="two-lines"
-               tal:attributes="href string:${portal}/search?portal_type:list=Presentation+Online+Resource&amp;sort_on=effective&amp;sort_order=reverse">
-              <h2 i18n:translate="label_latest_internet_resources">
-                Neueste Präsentationen von Internetressourcen</h2>
-            </a>
-            <div id="latest_internet_resources_box"
-                 tal:define="results view/getOnlinePresentations">
-              <ul>
-                <li tal:repeat="res results">
-                    <a href="#" class=" ellipsis_container"
-                       tal:attributes="href res/url">
-                       <span class="ellipsis_text" tal:content="res/title" />
-                    </a>
-                  <div class="effective_date"
-                       tal:content="res/date"/>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div style="clear:left;"></div>
 
         <div id="participating-journals">
           <h3 i18n:translate="heading_participating_publications">
