@@ -4,7 +4,8 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Restored lost changes.
+  [reinhardt]
 
 
 4.1.0 (2017-01-27)
