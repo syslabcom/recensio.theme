@@ -12,6 +12,8 @@ Changelog
 
 - Restored lost changes.
   [reinhardt]
+- margin-top for twitter button, refs #13628
+  [reinhardt]
 
 
 4.1.0 (2017-01-27)
