@@ -4,7 +4,8 @@ Changelog
 4.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Töchter, refs #13564, #13565, #13566, #13568, #13569, #13659, #13718
+  [reinhardt]
 
 
 4.0.0 (2016-04-25)
