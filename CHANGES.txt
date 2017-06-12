@@ -4,7 +4,8 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Removed tab "Zitierhinweise". Refs #15418
+  [reinhardt]
 
 
 4.1.1 (2017-01-27)
