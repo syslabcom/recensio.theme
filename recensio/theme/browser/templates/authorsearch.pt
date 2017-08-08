@@ -29,10 +29,6 @@
         </form>
 
         <ul id="authors-select-all">
-          <li id="all-presentations">
-            <span i18n:translate="label_all_presentations"
-                  >All presentations of an author</span>
-          </li>
           <li id="all-reviews">
             <span i18n:translate="label_all_reviews"
                   >All reviews of an author</span>
@@ -49,17 +45,12 @@
         <h1 i18n:translate="">Autorensuche</h1>
         <p class="description" i18n:translate="description_authorsearch_1">
           Sie finden hier die Autorinnen und Autoren von auf
-          recensio.net publizierten Rezensionen, Präsentationen
-          (Aufsätze, Monographien, Internetressourcen) und Kommentaren
-          sowie die Autoren von hier rezensierten Werken.  Jedem der
-          drei Genres ist ein Icon zugeordnet, das vor dem Namen des
-          jeweiligen Autors deutlich macht, welche Textart(en) dieser
-          verfasst hat.
+          recensio.net publizierten Rezensionen und Kommentaren
+          sowie die Autoren von hier rezensierten Werken.
         </p>
         <p class="description" i18n:translate="description_authorsearch_2">
           Mit einem Klick auf den Autornamen erhalten Sie alle von
-          einem Autor publizierten Texte. Der Klick auf ein spezielles
-          Icon zeigt Ihnen gezielt die Treffer eines Genres an.
+          einem Autor publizierten Texte.
         </p>
       </div>
 
