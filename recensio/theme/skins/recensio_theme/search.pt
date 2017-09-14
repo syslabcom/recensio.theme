@@ -77,7 +77,7 @@
                      tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
                   <label for="use_navigation_root"
                          i18n:translate="">
-                      Plattformübergreifende Suche: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
+                      Plattform&uuml;bergreifende Suche: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
             </span>
 
             <p class="discreet"
@@ -147,7 +147,7 @@
         </h1>
 
         <p tal:condition="is_comment_search" i18n:translate="latest_comments_description">
-            Zu folgenden Rezensionen und Präsentationen wurden jüngst Kommentare abgegeben. Beteiligen Sie sich an der Diskussion mit Fachkollegen
+            Zu folgenden Rezensionen und Pr&auml;sentationen wurden j&uuml;ngst Kommentare abgegeben. Beteiligen Sie sich an der Diskussion mit Fachkollegen
         </p>
 
         <p class="discreet"

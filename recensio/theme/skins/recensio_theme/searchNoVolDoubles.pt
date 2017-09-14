@@ -135,7 +135,7 @@
         </h1>
 
         <p tal:condition="is_comment_search" i18n:translate="latest_comments_description">
-            Zu folgenden Rezensionen wurden jüngst Kommentare abgegeben. Beteiligen Sie sich an der Diskussion mit Fachkollegen
+            Zu folgenden Rezensionen wurden j&uuml;ngst Kommentare abgegeben. Beteiligen Sie sich an der Diskussion mit Fachkollegen
         </p>
 
         <p class="discreet"

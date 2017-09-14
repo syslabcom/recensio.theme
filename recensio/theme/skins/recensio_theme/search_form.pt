@@ -45,7 +45,7 @@
                      tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
                   <label for="use_navigation_root:boolean"
                          i18n:translate="">
-                      Plattformübergreifende Suche: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
+                      Plattform&uuml;bergreifende Suche: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
           </div>
 
 			<fieldset>
@@ -297,7 +297,7 @@
                    i18n:translate="label_year">Jahr</label>
             <div class="">
               <div class="formHelp" i18n:translate="help_year">
-                Erscheinungsjahr oder gezähltes Jahr
+                Erscheinungsjahr oder gez&auml;hltes Jahr
               </div>
 
               <input type="text"
@@ -563,7 +563,7 @@
 
             <label for="topic"
                    class=""
-                   i18n:translate="label_tags">Schlagwörter</label>
+                   i18n:translate="label_tags">Schlagw&ouml;rter</label>
 
             <div class="formHelp" i18n:translate="help_search_tags">
               Return items matching some or all of these tags.
@@ -619,7 +619,7 @@
             <dt class="collapsibleHeader">
             <h2 i18n:translate="label_magazines">Zeitschriften</h2>
               <div class="formHelp" i18n:translate="help_search_magazines">
-                Findet Artikel, die in einer der ausgewählten Zeitschrift erschienen sind.
+                Findet Artikel, die in einer der ausgew&auml;hlten Zeitschrift erschienen sind.
               </div>
 
             </dt>
