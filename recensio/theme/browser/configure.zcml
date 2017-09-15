@@ -178,4 +178,12 @@
         layer="recensio.theme.interfaces.IRecensioLayer"
         />
 
+    <browser:page
+        for="Products.ATContentTypes.interfaces.IATDocument"
+        name="datenschutz"
+        class=".views.DatenschutzView"
+        permission="zope2.View"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+
 </configure>

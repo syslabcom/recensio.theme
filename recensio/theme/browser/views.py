@@ -8,7 +8,9 @@ from zope.i18nmessageid import Message
 from zope.interface import implements
 
 from Products.Archetypes.utils import DisplayList
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.i18n.locales.languages import _languagelist
 from plone.registry.interfaces import IRegistry
 
@@ -141,3 +143,22 @@ class RedirectToPublication(BrowserView):
         uid = self.context.UID()
         return self.request.RESPONSE.redirect(pub.absolute_url()+
                                               "?expand:list="+uid+"#"+uid)
+
+
+class DatenschutzView(BrowserView):
+    template = ViewPageTemplateFile('templates/datenschutz.pt')
+    template_piwik_opt_out = ViewPageTemplateFile('templates/piwik_opt_out.pt')
+
+    def __call__(self):
+        return self.template(self)
+
+    def getText(self):
+        base_text = safe_unicode(self.context.getText())
+        if u'[PIWIK-OPT-OUT]' in base_text:
+            text = base_text.replace(
+                u'[PIWIK-OPT-OUT]',
+                self.template_piwik_opt_out(self),
+            )
+        else:
+            text = '\n'.join((base_text, self.template_piwik_opt_out(self)))
+        return text
