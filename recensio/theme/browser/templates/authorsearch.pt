@@ -28,17 +28,6 @@
                  i18n:attributes="value" />
         </form>
 
-        <ul id="authors-select-all">
-          <li id="all-reviews">
-            <span i18n:translate="label_all_reviews"
-                  >All reviews of an author</span>
-          </li>
-          <li id="all-comments">
-            <span i18n:translate="label_all_comments"
-                  >All comments of an author</span>
-          </li>
-          <div class="visualClear"></div>
-        </ul>
       </div>
 
       <div id="authorsearch-description">
