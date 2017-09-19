@@ -161,3 +161,7 @@ class AuthorSearchView(BrowserView):
             if part:
                 alpha_index[letter] = authors.index(part[0])
         return alpha_index
+
+    @property
+    def portal_title(self):
+        return getToolByName(self.context, 'portal_url').getPortalObject().Title()

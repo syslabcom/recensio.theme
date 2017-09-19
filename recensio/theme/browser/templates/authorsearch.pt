@@ -45,7 +45,8 @@
         <h1 i18n:translate="">Autorensuche</h1>
         <p class="description" i18n:translate="description_authorsearch_1">
           Sie finden hier die Autorinnen und Autoren von auf
-          recensio.net publizierten Rezensionen und Kommentaren
+          <span tal:replace="view/portal_title" i18n:name="portal_title">recensio.net</span>
+          publizierten Rezensionen und Kommentaren
           sowie die Autoren von hier rezensierten Werken.
         </p>
         <p class="description" i18n:translate="description_authorsearch_2">

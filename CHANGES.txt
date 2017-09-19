@@ -4,6 +4,8 @@ Changelog
 4.2.0 (unreleased)
 ------------------
 
+- Dynamic portal title in author search. Refs #15699
+  [reinhardt]
 - Added datenschutz view that displays Piwik opt-out. Refs #15889
   [reinhardt]
 - Removed references to presentations. Refs #15699
