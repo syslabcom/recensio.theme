@@ -4,6 +4,8 @@ Changelog
 4.2.0 (unreleased)
 ------------------
 
+- Pull in logo link so we can make it point to the portal URL. Refs #15816
+  [reinhardt]
 - Dynamic portal title in author search. Refs #15699
   [reinhardt]
 - Added datenschutz view that displays Piwik opt-out. Refs #15889

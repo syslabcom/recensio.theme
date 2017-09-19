@@ -118,8 +118,8 @@
   <drop css:theme="div#column3" if-content="not(//div[@id='portal-column-two']/*)" />
 
   <!-- transfer the logo -->
-  <replace content="//*[@id='recensio_logo']"
-           theme="//*[@id='recensio_logo']" />
+  <replace content="//*[@id='recensio_logo_anchor']"
+           theme="//*[@id='recensio_logo_anchor']" />
 
   <!-- transfer the content views for editing -->
   <prepend css:content="div#edit-bar"
