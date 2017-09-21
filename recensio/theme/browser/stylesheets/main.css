@@ -507,7 +507,7 @@ div.authorsearch {
 
 div#authorsearch-query {
    float:right;
-   margin: 0 1em;
+   margin: 3em 1em 0 1em;
 }
 
 div#authorsearch-query input.submit {
