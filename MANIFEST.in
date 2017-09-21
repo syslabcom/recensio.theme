@@ -1,4 +1,6 @@
 recursive-include recensio *
+recursive-include docs *
 include CHANGES.txt
 include README.txt
+include *.zcml
 global-exclude *pyc
