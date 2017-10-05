@@ -4,7 +4,8 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- search_rss must be called on navigation root. Refs #15955
+  [reinhardt]
 
 
 4.2.0 (2017-09-21)

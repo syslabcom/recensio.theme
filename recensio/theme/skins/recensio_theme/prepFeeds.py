@@ -19,7 +19,7 @@ zss = context.portal_catalog(
 feeds = []
 parms = {}
 
-tmpl = """search_rss?modified_usage=range%%3Amin&isbn=&series=&sort_order=descending&year=&path:list=%(path)s&sort_on=created&titleOrShortname=&publisher=&created:date:list=1970/02/01&b_size:int=100&Creator=&modified:date:list=1970/02/01&submit=Suche&SearchableText=&place=&authorsFulltext=&created_usage=range%%3Amin&recensio_id=&rss_title=%(rss_title)s"""
+tmpl = """../search_rss?modified_usage=range%%3Amin&isbn=&series=&sort_order=descending&year=&path:list=%(path)s&sort_on=created&titleOrShortname=&publisher=&created:date:list=1970/02/01&b_size:int=100&Creator=&modified:date:list=1970/02/01&submit=Suche&SearchableText=&place=&authorsFulltext=&created_usage=range%%3Amin&recensio_id=&rss_title=%(rss_title)s"""
 #tmpl = """search_rss?rss_title=%(rss_title)s&modified_usage=range%%3Amin&sort_order=descending&path:list=%(path)s&sort_on=created&created:date:list=1970/02/01&b_size:int=100&modified:date:list=1970/02/01&submit=Suche&created_usage=range%%3Amin"""
 
 for z in zss:
