@@ -447,6 +447,11 @@ font-style:italic;
 	-webkit-transition: all 0.2s;
 }
 
+#portletDownload p.external a {
+    padding: 25px 10px 8px 110px;
+    min-height: 33px;
+}
+
 #portletDownload p a em {
 	font-size: 10px;
 }

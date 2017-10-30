@@ -4,6 +4,8 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
+- External full text: adjusted padding. Refs #16044
+  [reinhardt]
 - search_rss must be called on navigation root. Refs #15955
   [reinhardt]
 
