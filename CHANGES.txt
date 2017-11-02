@@ -8,6 +8,8 @@ Changelog
   [reinhardt]
 - search_rss must be called on navigation root. Refs #15955
   [reinhardt]
+- Removed circle and arrow in homepage portlet. Refs #16044
+  [reinhardt]
 
 
 4.2.0 (2017-09-21)
