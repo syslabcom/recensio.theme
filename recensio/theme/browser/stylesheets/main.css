@@ -583,6 +583,7 @@ ul.authors li.author {
 .template-search #content-core dt {
    margin-bottom:0.5em;
    clear:both;
+   min-width: 80%;
 }
 
 /**************styles for themen-epochen-regionen****************/
