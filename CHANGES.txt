@@ -10,6 +10,8 @@ Changelog
   [reinhardt]
 - Removed circle and arrow in homepage portlet. Refs #16044
   [reinhardt]
+- Authorsearch: Only show authors of published content. Refs #16044
+  [reinhardt]
 
 
 4.2.0 (2017-09-21)

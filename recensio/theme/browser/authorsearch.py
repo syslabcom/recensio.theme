@@ -74,27 +74,28 @@ class AuthorSearchView(BrowserView):
             'facet.limit': '-1',
             'facet.mincount': '1',
         }
+        state_query = '+review_state:published '
         if self.request.get('use_navigation_root', True):
             base_query['path'] = navigation_root
 
         review_query = base_query.copy()
         review_query.update({
-            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
-                    % x, REVIEW_TYPES)) + ')',
+            'fq': state_query + '+portal_type:(' + ' OR '.join(
+                map(lambda x: '"%s"' % x, REVIEW_TYPES)) + ')',
         })
         reviews = catalog(review_query).facet_counts['facet_fields']['authors']
 
         presentation_query = base_query.copy()
         presentation_query.update({
-            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
-                    % x, PRESENTATION_TYPES)) + ')',
+            'fq': state_query + '+portal_type:(' + ' OR '.join(
+                map(lambda x: '"%s"' % x, PRESENTATION_TYPES)) + ')',
         })
         presentations = catalog(presentation_query).facet_counts['facet_fields']['authors']
 
         comment_query = base_query.copy()
         comment_query.update({
-            'fq': '+portal_type:(' + ' OR '.join(map(lambda x: '"%s"'
-                    % x, REVIEW_TYPES + PRESENTATION_TYPES)) + ')',
+            'fq': state_query + '+portal_type:(' + ' OR '.join(
+                map(lambda x: '"%s"' % x, REVIEW_TYPES + PRESENTATION_TYPES)) + ')',
             'facet.field': 'commentators',
         })
         comments = catalog(comment_query).facet_counts['facet_fields']['commentators']
