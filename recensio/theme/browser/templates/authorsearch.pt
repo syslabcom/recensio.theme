@@ -71,7 +71,7 @@
 
         <div id="no_authors" tal:condition="not: view/authors"
              i18n:translate="label_no_authors_found">
-          Es wurden keine Autoren gefunden die ihren Kriterien entsprechen
+          Es wurden keine Autoren gefunden, die Ihren Kriterien entsprechen.
         </div>
 
         <ul class="authors" tal:condition="view/authors" tal:define="use_navigation_root request/use_navigation_root|python:True">
