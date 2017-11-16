@@ -404,6 +404,7 @@ body.template-homepage-view .portletTALPortlet p .redPortletHeader {
 }
 
 body.template-homepage-view .portletTALPortlet p .arrow {
+    background-image: url("++resource++recensio.theme.images/play-button.png");
     background-position: right bottom;
     background-repeat: no-repeat;
     bottom: -5px;

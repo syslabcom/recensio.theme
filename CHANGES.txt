@@ -8,8 +8,6 @@ Changelog
   [reinhardt]
 - search_rss must be called on navigation root. Refs #15955
   [reinhardt]
-- Removed circle and arrow in homepage portlet. Refs #16044
-  [reinhardt]
 - Authorsearch: Only show authors of published content. Refs #16044
   [reinhardt]
 - Search: Improved layout for default content types. Refs #16044
