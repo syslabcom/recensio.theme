@@ -64,6 +64,14 @@ ul#portal-globalnav li:last-child {
    border-right: none !important;
 }
 
+/* social media buttons */
+#social-media-header {
+    float: right;
+}
+#column3 #social-media-content {
+    margin: 1.3em 0 1.3em;
+}
+
 /* gerken: styles for the newsletter input fields */
 body.template-newsletter-settings textarea {
     width: 570px;
@@ -2896,7 +2904,9 @@ td.dhip_zelle p {padding-right:10px;}
 
 body {height:100%;}
 
-#navigation {clear:both;}
+#navigation {
+    float: left;
+}
 
 /* recensio-styles for collapsible */
 
