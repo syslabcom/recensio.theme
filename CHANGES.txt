@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.2.2 (unreleased)
+4.2.2 (2018-01-18)
 ------------------
 
 - Added social media buttons. Refs #16159
