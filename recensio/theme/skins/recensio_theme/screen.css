@@ -436,13 +436,19 @@ body.template-homepage-view .box {
 }
 
 
-body.template-homepage-view .box a.one-line h2:before,
-body.template-homepage-view .box a.two-lines h2:before {
-    font-family: FontAwesome;
-    content: "\f04b";
+body.template-homepage-view .box a.one-line svg,
+body.template-homepage-view .box a.two-lines svg {
     color: white;
     font-size: 1.4em;
-    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+body.template-homepage-view .box a.one-line .play-button,
+body.template-homepage-view .box a.two-lines .play-button {
+    fill: rgba(255, 255, 255, 1);
+}
+body.template-homepage-view .box a.one-line h2,
+body.template-homepage-view .box a.two-lines h2 {
+    float: right;
 }
 body.template-homepage-view .box a.one-line,
 body.template-homepage-view .box a.two-lines {

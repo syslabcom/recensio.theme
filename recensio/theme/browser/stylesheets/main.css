@@ -696,22 +696,32 @@ div#browsing-menu .used_facet {
     font-weight: normal;
     padding: 5px;
 }
-.togglebutton {
+.submenu_title svg {
+  font-size: 1.8em;
+  float: right;
+}
+svg.togglebutton path {
+  fill: RGBA(127, 75, 43, 1);
+}
+div.togglebutton {
       padding: 0 5px 3px 0;  
 }
-.togglebutton:before {
-  font-size: 1.8em;
-  font-family: FontAwesome;
-  content: "\f0da";    
-  float: right;  
-  padding-top: 1px;
-}
 
-.submenu_title.empty .togglebutton {
+.submenu_title.empty .togglebutton.open,
+.submenu_title.empty .togglebutton.closed {
   display:none;
 }
-.submenu_title.open .togglebutton:before {
-  content: "\f0d7";
+.submenu_title .togglebutton.open {
+  display: none;
+}
+.submenu_title .togglebutton.closed {
+  display: block;
+}
+.submenu_title.open .togglebutton.open {
+  display: block;
+}
+.submenu_title.open .togglebutton.closed {
+  display: none;
 }
 
 .submenu_title.empty {

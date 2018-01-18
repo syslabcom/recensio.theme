@@ -209,6 +209,12 @@
                   <div class="submenu_title empty"
                        tal:attributes="id python:'sub-title-' + item['name'].replace(':','-').replace('.','_');
                                        class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
+                    <svg class="togglebutton closed" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="9" height="25.2" viewBox="0 0 9 25.2">
+                        <path d="m 8.55,12.600006 q 0,0.3654 -0.2664,0.6336 l -6.3,6.3 q -0.2664,0.2664 -0.6336,0.2664 -0.3672,0 -0.6336,-0.2664 Q 0.45,19.267206 0.45,18.900006 V 6.3000064 q 0,-0.3654 0.2664,-0.6336 0.2664,-0.2682 0.6336,-0.2664 0.3672,0.0018 0.6336,0.2664 l 6.3,6.2999996 q 0.2664,0.2664 0.2664,0.6336 z"></path>
+                    </svg>
+                    <svg class="togglebutton open" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14.4" height="25.2" viewBox="0 0 14.4 25.2">
+                        <path d="m 14.399994,9.4500004 q 0,0.3654 -0.2664,0.6335996 l -6.3,6.3 q -0.2664,0.2664 -0.6336,0.2664 -0.3672,0 -0.6336,-0.2664 l -6.30000004,-6.3 Q -6.0407349e-6,9.8172004 -6.0407349e-6,9.4500004 q 0,-0.3672 0.2664000007349,-0.6336 0.2664,-0.2664 0.6336,-0.2664 H 13.499994 q 0.3654,0 0.6336,0.2664 0.2682,0.2664 0.2664,0.6336 z"></path>
+                    </svg>
                     <div class="togglebutton" tal:condition="can_expand"/>
                     <div class="delimiterbox">
                       <tal:block tal:condition="exists:item/clearquery">

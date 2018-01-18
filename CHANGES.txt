@@ -6,6 +6,8 @@ Changelog
 
 - Added social media buttons. Refs #16159
   [reinhardt]
+- Replaced FontAwesome characters with inline SVGs. Refs #16405
+  [reinhardt]
 
 
 4.2.1 (2017-11-16)
