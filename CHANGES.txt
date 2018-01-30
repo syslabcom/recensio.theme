@@ -4,7 +4,10 @@ Changelog
 4.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make sure navigation does not float. Refs #16289
+  [reinhardt]
+- Firefox: Make sure first heading in document does not float. Refs #16289
+  [reinhardt]
 
 
 4.2.2 (2018-01-18)

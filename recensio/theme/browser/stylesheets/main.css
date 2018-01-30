@@ -67,6 +67,7 @@ ul#portal-globalnav li:last-child {
 /* social media buttons */
 #social-media-header {
     float: right;
+    clear: both;
 }
 #column3 #social-media-content {
     margin: 1.3em 0 1.3em;
@@ -2982,4 +2983,8 @@ input#doi_fallback {
 dl.searchResults dt.foreign,
 dl.searchResults dd.foreign {
     background-color: #EFECEC;
+}
+
+.portaltype-document .documentFirstHeading {
+    clear: both;
 }
