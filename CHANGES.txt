@@ -4,6 +4,11 @@ Changelog
 4.2.3 (unreleased)
 ------------------
 
+Fixed:
+
+- Advanced search is accessible as anonymous.
+  Technical: registry.get() was throwing Unauthorized. Refs #16173
+  [reinhardt]
 - Make sure navigation does not float. Refs #16289
   [reinhardt]
 - Firefox: Make sure first heading in document does not float. Refs #16289

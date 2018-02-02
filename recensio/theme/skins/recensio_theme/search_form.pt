@@ -396,7 +396,7 @@
           </div>
 		</fieldset>
 
-		<fieldset tal:condition="python:context.portal_registry.get('recensio.policy.interfaces.IRecensioSettings.show_thematic_search', True)">
+		<fieldset tal:condition="python:context.portal_registry['recensio.policy.interfaces.IRecensioSettings.show_thematic_search']">
 
           <dl class="collapsible collapsedOnLoad">
               <dt class="collapsibleHeader">
