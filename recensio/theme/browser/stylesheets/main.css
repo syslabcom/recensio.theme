@@ -701,7 +701,7 @@ div#browsing-menu .used_facet {
   font-size: 1.8em;
   float: right;
 }
-svg.togglebutton path {
+.submenu_title svg.togglebutton path {
   fill: RGBA(127, 75, 43, 1);
 }
 div.togglebutton {
@@ -831,18 +831,18 @@ a.oaisuggestion form input {
 a.trigger {
    font-weight:bold;
    color:black;
-   display:block;
-   background-image:url(++resource++recensio.theme.images/more_bg.gif);
-   background-repeat:no-repeat;
-   padding-left:5px;
-   width: 204px;
+   display: inline;
+   padding-left: 5px;
+   padding-right: 5px;
+   margin-left: 1px;
+   margin-right: 1px;
    line-height: 23px;
    height: 23px;
+   outline: solid 1px lightgrey;
    position: relative;
 }
 
 a.trigger.open {
-   background-image:url(++resource++recensio.theme.images/more_open_bg.gif);
 }
 
 #main .switch a.open {background:transparent none}
@@ -855,6 +855,22 @@ li.accordion-item {
    margin-bottom: 1em;
    display: block;
    word-wrap: break-word;
+}
+li.accordion-item .togglebutton {
+    float: right;
+}
+
+.togglebutton.open {
+    display: none;
+}
+.togglebutton.closed {
+    display: block;
+}
+a.trigger.open .togglebutton.open {
+    display: block;
+}
+a.trigger.open .togglebutton.closed {
+    display: none;
 }
 
 li.accordion-item dt {
