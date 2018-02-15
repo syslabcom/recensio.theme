@@ -13,6 +13,9 @@ Fixed:
   [reinhardt]
 - Firefox: Make sure first heading in document does not float. Refs #16289
   [reinhardt]
+- Participating journals: Links don't jump between portals.
+  Technical: Use full absolute_url in getPublications(). Refs #16175
+  [reinhardt]
 
 
 4.2.2 (2018-01-18)
