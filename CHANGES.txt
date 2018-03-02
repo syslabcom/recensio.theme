@@ -16,8 +16,14 @@ Fixed:
 - Participating journals: Links don't jump between portals.
   Technical: Use full absolute_url in getPublications(). Refs #16175
   [reinhardt]
+
+Changed:
+
 - Metadata accordion: removed GIFs; added styling for SVGs. Refs #16175
   [reinhardt]
+- Homepage View: Allowed overriding review languages. Refs #16527
+  [reinhardt]
+
 
 
 4.2.2 (2018-01-18)

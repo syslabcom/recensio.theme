@@ -19,12 +19,12 @@ from plone.memoize.instance import memoize
 import logging
 log = logging.getLogger('recensio.theme')
 
-REVIEW_LANGUAGES = [u'en', u'de', u'']
-
 class HomepageView(BrowserView):
     """ Dynamic elements on the homepage """
 
     template = ViewPageTemplateFile('templates/homepage.pt')
+
+    review_languages = [u'en', u'de', u'']
 
     def _render_cachekey(method, self):
         preflang = getToolByName(
@@ -75,17 +75,17 @@ class HomepageView(BrowserView):
             path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',
-            sort_order='reverse', b_size=10)
+            sort_order='reverse', b_size=30)
         resultset = list()
-        for lang in REVIEW_LANGUAGES:
+        for lang in self.review_languages:
             q = query.copy()
             if lang:
                 q['languageReview'] = [lang]
             else:
                 q['languageReview'] = list(
-                    set(langinfo.keys()).difference(set(REVIEW_LANGUAGES)))
+                    set(langinfo.keys()).difference(set(self.review_languages)))
             res = pc(q)
-            for part in range(2):
+            for part in range(6 / len(self.review_languages)):
                 resultset.append(
                     dict(
                         language=lang or 'int',
