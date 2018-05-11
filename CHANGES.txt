@@ -4,7 +4,7 @@ Changelog
 4.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Only show document byline to users with edit permission. Refs #16920
 
 
 4.3.0 (2018-03-05)

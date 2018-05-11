@@ -186,4 +186,12 @@
         layer="recensio.theme.interfaces.IRecensioLayer"
         />
 
+    <browser:viewlet
+        name="plone.belowcontenttitle.documentbyline"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class="plone.app.layout.viewlets.content.DocumentBylineViewlet"
+        permission="cmf.ModifyPortalContent"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        />
+
 </configure>
