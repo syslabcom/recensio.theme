@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Only show document byline to users with edit permission. Refs #16920
+- Moved "Datenschutz" link to footer. Refs #17066
 
 
 4.3.0 (2018-03-05)
