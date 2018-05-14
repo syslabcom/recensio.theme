@@ -21,7 +21,7 @@ class PublicationsView(BrowserView):
         if 'logo' in pubob.objectIds():
             logourl = brain.getURL()+'/logo/image_thumb'
         else:
-            logourl = self.context.portal_url()+'/empty_publication.jpg'
+            logourl = self.context.portal_url.getPortalPath() + '/empty_publication.jpg'
         if pubob.getDefaultPage():
             defob = getattr(pubob, pubob.getDefaultPage())
             defob = defob.getTranslation(lang) or defob
@@ -30,7 +30,7 @@ class PublicationsView(BrowserView):
         title = defob and defob.Title() != '' and defob.Title() \
                 or pubob.Title()
         desc = defob and defob.Description() or pubob.Description()
-        morelink = defob and defob.absolute_url() or ""
+        morelink = defob and '/'.join(defob.getPhysicalPath()) or ""
         return dict(title=title, desc=desc, logo=logourl, link=morelink)
 
     def publications(self):
@@ -42,5 +42,8 @@ class PublicationsView(BrowserView):
                   sort_on="sortable_title",
                   review_state='published')
         for pub in pubs:
-            publist.append(self.brain_to_pub(pub, currlang))
+            info = self.brain_to_pub(pub, currlang)
+            info['logo'] = self.request.physicalPathToURL(info['logo'])
+            info['link'] = self.request.physicalPathToURL(info['link'])
+            publist.append(info)
         return publist
