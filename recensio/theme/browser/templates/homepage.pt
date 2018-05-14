@@ -38,7 +38,7 @@
                 <li tal:repeat="res results">
                   <span  class="ellipsis_container">
                       <a href="#" class="ellipsis_text"
-                         tal:attributes="href res/review_url">
+                         tal:attributes="href python: request.physicalPathToURL(res['review_path'])">
                         <span tal:replace="res/publication_title">title</span>,
                         <span tal:condition="res/volume_title" tal:replace="res/volume_title" />,
                         <span tal:replace="res/Title">title</span>
@@ -79,7 +79,7 @@
                       <span tal:content="res/authors"/>
                       <span>
                         <a href="#" class="ellipsis_container"
-                           tal:attributes="href res/url;
+                           tal:attributes="href python: request.physicalPathToURL(res['path']);
                                            class string:ellipsis_container">
                           <span class="ellipsis_text"
                                 tal:content="res/title">
@@ -103,7 +103,7 @@
           <h3 i18n:translate="heading_participating_publications">
             Teilnehmende Zeitschriften</h3>
           <tal:rep repeat="publication view/getPublications">
-            <a tal:attributes="href publication/url"
+            <a tal:attributes="href python: request.physicalPathToURL(publication['path'])"
                tal:content="publication/title">
               Publication</a>
             <span tal:condition="not:repeat/publication/end">|</span>

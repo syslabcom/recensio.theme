@@ -6,7 +6,8 @@ Changelog
 
 - Only show document byline to users with edit permission. Refs #16920
 - Moved "Datenschutz" link to footer. Refs #17066
-- Fixed publication links being cached in context of wrong portal. Refs #16548
+- Fixed links on publications view and homepage being cached in context of
+  wrong portal. Refs #16548
 - Redirect to the correct portal. Refs #16548
 
 

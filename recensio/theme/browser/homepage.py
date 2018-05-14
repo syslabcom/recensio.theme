@@ -26,7 +26,7 @@ class HomepageView(BrowserView):
 
     review_languages = [u'en', u'de', u'']
 
-    def _render_cachekey(method, self):
+    def _render_cachekey(method, self, lang=u''):
         preflang = getToolByName(
             self.context, 'portal_languages').getPreferredLanguage()
         portal_membership = getToolByName(self.context, 'portal_membership')
@@ -36,7 +36,7 @@ class HomepageView(BrowserView):
         today = DateTime().strftime("%Y-%m-%d")
         root = api.portal.get_navigation_root(context=self.context)
         path = '/'.join(root.getPhysicalPath())
-        return (path, preflang, roles, today)
+        return (path, preflang, lang, self.review_languages, roles, today)
 
 #    @ram.cache(_render_cachekey)
     def __call__(self):
@@ -64,40 +64,51 @@ class HomepageView(BrowserView):
             return "%s%s%s:" %(initial, lastname, et_al)
         return ""
 
-    @ram.cache(_render_cachekey)
-    def getReviewMonographs(self):
-        pc = getToolByName(self.context, 'portal_catalog')
-        langinfo = _languagelist.copy()
-        langinfo[''] = { 'name':   'International',
-                         'native': 'int'}
+    @property
+    @memoize
+    def review_base_query(self):
         root = api.portal.get_navigation_root(context=self.context)
         query = dict(portal_type=["Review Monograph", "Review Journal"],
             path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',
             sort_order='reverse', b_size=30)
+        return query
+
+    @ram.cache(_render_cachekey)
+    def _getRmByLanguage(self, lang):
+        pc = getToolByName(self.context, 'portal_catalog')
+        langinfo = _languagelist.copy()
+        langinfo[''] = { 'name':   'International',
+                         'native': 'int'}
+        resultset = list()
+        query = self.review_base_query
+        q = query.copy()
+        if lang:
+            q['languageReview'] = [lang]
+        else:
+            q['languageReview'] = list(
+                set(langinfo.keys()).difference(set(self.review_languages)))
+        res = pc(q)
+        for part in range(6 / len(self.review_languages)):
+            resultset.append(
+                dict(
+                    language=lang or 'int',
+                    part=part,
+                    langname=langinfo[lang]['native'],
+                    results=[dict(authors=self.format_authors(x),
+                                    path=x.getPath(),
+                                    title=x.getObject().punctuated_title_and_subtitle,
+                                    date=self.format_effective_date(x['EffectiveDate'])) for x in res[part*5:part*5+4]],
+                    query_str=make_query(q))
+                )
+        # print "getReviewMonographs", lang, len(res)
+        return resultset
+
+    def getReviewMonographs(self):
         resultset = list()
         for lang in self.review_languages:
-            q = query.copy()
-            if lang:
-                q['languageReview'] = [lang]
-            else:
-                q['languageReview'] = list(
-                    set(langinfo.keys()).difference(set(self.review_languages)))
-            res = pc(q)
-            for part in range(6 / len(self.review_languages)):
-                resultset.append(
-                    dict(
-                        language=lang or 'int',
-                        part=part,
-                        langname=langinfo[lang]['native'],
-                        results=[dict(authors=self.format_authors(x),
-                                        url=x.getURL(),
-                                        title=x.getObject().punctuated_title_and_subtitle,
-                                        date=self.format_effective_date(x['EffectiveDate'])) for x in res[part*5:part*5+4]],
-                        query_str=make_query(q))
-                    )
-            # print "getReviewMonographs", lang, len(res)
+            resultset.extend(self._getRmByLanguage(lang))
         return resultset
 
     @ram.cache(_render_cachekey)
@@ -150,10 +161,8 @@ class HomepageView(BrowserView):
                     Title=result_title,
                     effective_date=self.format_effective_date(r.EffectiveDate),
                     publication_title=publication_title,
-                    publication_url=publication_url,
-                    review_url=r.getURL(),
+                    review_path=r.getPath(),
                     volume_title=volume_title,
-                    volume_url=volume_url
                     )
                 )
         # print "getReviewJournals", len(res)
@@ -187,7 +196,7 @@ class HomepageView(BrowserView):
                         pubs.append(translated_ob)
                 except Unauthorized:
                     continue
-            items = [dict(title=x.Title(), url=x.absolute_url()) for x in pubs]
+            items = [dict(title=x.Title(), path='/'.join(x.getPhysicalPath())) for x in pubs]
             return items
         else:
             # This can only happen, when there is no initial content yet
