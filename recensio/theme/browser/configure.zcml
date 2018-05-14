@@ -89,6 +89,14 @@
         />
 
     <browser:page
+        for="Products.ATContentTypes.interfaces.document.IATDocument"
+        name="document_view"
+        class=".views.EnsureCanonical"
+        layer="recensio.theme.interfaces.IRecensioLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
         for="*"
         name="publications-view"
         class=".publications.PublicationsView"
@@ -120,6 +128,13 @@
         for="recensio.contenttypes.interfaces.volume.IVolume"
         name="redirect-to-publication"
         class=".views.RedirectToPublication"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="recensio.contenttypes.interfaces.publication.IPublication"
+        name="base_view"
+        class=".views.EnsureCanonical"
         permission="zope2.View"
         />
 

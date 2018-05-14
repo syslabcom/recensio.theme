@@ -15,6 +15,7 @@ from plone.i18n.locales.languages import _languagelist
 from plone.registry.interfaces import IRegistry
 
 from recensio.contenttypes import contenttypesMessageFactory as _
+from recensio.contenttypes.browser.canonical import CanonicalURLHelper
 from recensio.contenttypes.interfaces.review import IParentGetter
 from recensio.policy.interfaces import IRecensioSettings
 
@@ -162,3 +163,12 @@ class DatenschutzView(BrowserView):
         else:
             text = '\n'.join((base_text, self.template_piwik_opt_out(self)))
         return text
+
+
+class EnsureCanonical(BrowserView, CanonicalURLHelper):
+
+    def __call__(self):
+        canonical_url = self.get_canonical_url()
+        if canonical_url != self.request['ACTUAL_URL']:
+            return self.request.response.redirect(canonical_url, status=301)
+        return self.context()

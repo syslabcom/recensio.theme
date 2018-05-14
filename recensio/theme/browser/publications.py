@@ -7,13 +7,22 @@ from plone.memoize import ram, view
 from plone.memoize.compress import xhtml_compress
 from plone.memoize.instance import memoize
 
+from recensio.contenttypes.browser.canonical import CanonicalURLHelper
+
+
 def _render_cachekey(method, self, brain, lang):
     return(brain.getPath(), lang, DateTime().dayOfYear())
 
-class PublicationsView(BrowserView):
+class PublicationsView(BrowserView, CanonicalURLHelper):
     """ Overview page of publications """
 
-    __call__ = ViewPageTemplateFile('templates/publications.pt')
+    template = ViewPageTemplateFile('templates/publications.pt')
+
+    def __call__(self):
+        canonical_url = self.get_canonical_url()
+        if canonical_url != self.request['ACTUAL_URL']:
+            return self.request.response.redirect(canonical_url, status=301)
+        return self.template()
 
     @ram.cache(_render_cachekey)
     def brain_to_pub(self, brain, lang):
