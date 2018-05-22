@@ -10,6 +10,7 @@
 
 
 portalPath = context.portal_url.getPortalPath()
+portalTitle = context.restrictedTraverse('plone_portal_state').portal_title()
 #zss = context.rezensionen.zeitschriften.objectValues()
 zss = context.portal_catalog(
   path=portalPath + '/rezensionen/zeitschriften',
@@ -26,7 +27,7 @@ for z in zss:
 #  parms['path'] = '/'+z.absolute_url(1)
 #  parms['path'] = '/'.join(z.getPhysicalPath())
   parms['path'] = z.getPath()
-  parms['rss_title'] = z['Title']
+  parms['rss_title'] = '{0}: {1}'.format(portalTitle, z['Title'])
   zurl = tmpl % parms
   feeds.append((z['Title'], zurl))
 

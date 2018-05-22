@@ -9,6 +9,7 @@ Changelog
 - Fixed links on publications view and homepage being cached in context of
   wrong portal. Refs #16548
 - Redirect to the correct portal. Refs #16548
+- Show portal title in publication RSS feed. Refs #17151
 
 
 4.3.0 (2018-03-05)
