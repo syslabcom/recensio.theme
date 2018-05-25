@@ -25,6 +25,10 @@ jq(document).ready(function () {
     if (jq('dl.error').length > 0 && !jq('#formfield-form-declaration_of_identity input.checkboxType').attr('checked')) {
         jq('#formfield-form-declaration_of_identity').addClass('error');
     }
+    jq('#formfield-form-data_protection_policy_accepted label').after('<span style="color: #f00;" title="Required" class="required"> ■ </span>')
+    if (jq('dl.error').length > 0 && !jq('#formfield-form-data_protection_policy_accepted input.checkboxType').attr('checked')) {
+        jq('#formfield-form-data_protection_policy_accepted').addClass('error');
+    }
 
     if (jq("textarea#subject").length) {
         jq.getJSON(portal_url + "/subject_list_json", function (data) {
