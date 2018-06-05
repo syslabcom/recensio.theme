@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.3.2 (unreleased)
+4.3.2 (2018-06-05)
 ------------------
 
 - Publications view: Also use paths instead of URLs for existing logos. #16548
