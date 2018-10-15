@@ -58,8 +58,7 @@
                  onClick="jq('.crossportalsearchform').submit()"
                  tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
               <label for="use_navigation_root"
-                      i18n:translate="">
-                  Plattform&uuml;bergreifende Suche</label>
+                      i18n:translate="">Plattform&uuml;bergreifender Autorenindex: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
         </form>
 
         <div id="authorsearch-alphabet" tal:define="ai view/alpha_index">

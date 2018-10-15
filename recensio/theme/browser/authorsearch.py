@@ -9,6 +9,7 @@ from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.utils import safe_unicode
 from plone.memoize import ram, instance
 from DateTime import DateTime
+from recensio.theme.browser.views import CrossPlatformMixin
 
 PRESENTATION_TYPES = ['Presentation Monograph',
                       'Presentation Online Resource',
@@ -17,7 +18,7 @@ PRESENTATION_TYPES = ['Presentation Monograph',
 REVIEW_TYPES = ['Review Journal', 'Review Monograph']
 
 
-class AuthorSearchView(BrowserView):
+class AuthorSearchView(BrowserView, CrossPlatformMixin):
 
     ''' Dynamic elements on the homepage '''
 

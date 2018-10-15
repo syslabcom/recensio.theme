@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Fixed margins of search results. #REC-985
+- Author Search: Added links to other portals. #REC-988
 
 
 4.3.2 (2018-06-05)

@@ -1,7 +1,12 @@
 """ Views and functions for Recensio.net
 """
+import logging
 import re
+from Acquisition import aq_parent
+from ZTUtils import make_query
 from zope.component.hooks import getSite
+from zope.component.hooks import setSite
+from zope.component import getUtility
 from zope.component import queryUtility
 from zope.i18n import translate
 from zope.i18nmessageid import Message
@@ -12,6 +17,7 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.i18n.locales.languages import _languagelist
+from plone.memoize import instance
 from plone.registry.interfaces import IRegistry
 
 from recensio.contenttypes import contenttypesMessageFactory as _
@@ -20,6 +26,8 @@ from recensio.contenttypes.interfaces.review import IParentGetter
 from recensio.policy.interfaces import IRecensioSettings
 
 from interfaces import IRecensioHelperView, IRedirectToPublication
+
+log = logging.getLogger(__name__)
 
 
 def listRecensioSupportedLanguages():
@@ -172,3 +180,65 @@ class EnsureCanonical(BrowserView, CanonicalURLHelper):
         if canonical_url != self.request['ACTUAL_URL']:
             return self.request.response.redirect(canonical_url, status=301)
         return self.context()
+
+
+class SwitchPortal(object):
+    def __init__(self, portal):
+        self.portal = portal
+
+    def __enter__(self):
+        self.original_portal = getSite()
+        setSite(self.portal)
+
+    def __exit__(self, type, value, traceback):
+        setSite(self.original_portal)
+        if value:
+            log.warn('Could not get portal url of ' + self.portal.id,
+                     exc_info=(type, value, traceback))
+            return True
+
+
+class CrossPlatformMixin(object):
+
+    def get_toggle_cross_portal_url(self):
+        new_form = self.request.form.copy()
+        new_form['use_navigation_root'] = not new_form.get('use_navigation_root', True)
+        return '?'.join((self.request['ACTUAL_URL'], make_query(new_form)))
+
+    @instance.memoize
+    def get_foreign_portal_url(self, portal_id):
+        other_portal = self.context.unrestrictedTraverse('/' + portal_id)
+        external_url = None
+        with SwitchPortal(other_portal):
+            registry = getUtility(IRegistry)
+            recensio_settings = registry.forInterface(IRecensioSettings)
+            external_url = recensio_settings.external_portal_url
+        return external_url
+
+    def get_foreign_url(self, result):
+        portal_id = result.getPath().split('/')[1]
+        other_portal = self.context.unrestrictedTraverse('/' + portal_id)
+        external_url = self.get_foreign_portal_url(portal_id)
+        if not external_url:
+            return result.getURL()
+        return result.getURL().replace(
+            other_portal.absolute_url(), external_url)
+
+    @instance.memoize
+    def get_all_portal_ids(self):
+        this_portal = getSite()
+        app = aq_parent(this_portal)
+        return app.objectIds('Plone Site')
+
+    def get_portal_link_snippet(self):
+        portal_ids = self.get_all_portal_ids()
+        link_tpl = '<a href="{1}">{0}</a>'
+        portal_infos = []
+        for portal_id in portal_ids:
+            portal_title = self.context.restrictedTraverse('/' + portal_id).Title()
+            portal_infos.append(
+                (portal_title, self.get_foreign_portal_url(portal_id)))
+        link_snippet = ', '.join([
+            link_tpl.format(*portal_info) for portal_info in portal_infos
+            if portal_info[1]])
+        return link_snippet
