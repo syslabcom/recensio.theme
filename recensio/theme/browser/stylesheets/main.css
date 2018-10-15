@@ -2916,7 +2916,14 @@ body.template-decorated_folder_listing #content-core dt {
 
 .template-browse-topics .searchResults dd,
 .template-filtered-search .searchResults dd,
-.template-search .searchResults dd {width:680px;float:left;margin-left:0px;}
+.template-search .searchResults dd {
+    width:680px;
+    float:left;
+    margin-left:47px;
+}
+.searchResults dt div.metadata {
+    margin-left:47px;
+}
 
 .section-themen-epochen-regionen #mainContent .searchResults dd,
 .section-themen-epochen-regionen-fr #mainContent .searchResults dd,

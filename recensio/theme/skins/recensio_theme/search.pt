@@ -203,6 +203,7 @@
                                        alt result_type;
                                        title result_type;"
                        i18n:attributes="alt; title;" />
+                  <div class="metadata">
 
                   <span class="authors"
                         tal:condition="listAuthors"><tal:authors tal:replace="structure listAuthors">Sanctus Keller (ed.): Rolf Pirminius &lt;Sanctus&gt;</tal:authors>:</span>
@@ -238,6 +239,7 @@
                         Presented by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock>
                   </span>
                   </tal:author>
+                  </div>
                 </dt>
 
                 <dd tal:attributes="class result_class">
