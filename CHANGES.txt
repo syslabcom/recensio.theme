@@ -7,6 +7,7 @@ Changelog
 - Fixed margins of search results. #REC-985
 - Author Search: Added links to other portals. #REC-988
 - Fixed first heading in firefox. #REC-993
+- Custom text for topic browsing. #REC-986
 
 
 4.3.2 (2018-06-05)
