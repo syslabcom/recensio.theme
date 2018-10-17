@@ -1016,6 +1016,10 @@ ul#portal-languageselector {
 top /*\**/:-11px\9
 }
 
+#content .firstmenu {
+    overflow: hidden;
+}
+
 /************************ Subnavi *************************/
 /* From the design mockup for the secondary navigation on
  recensio.net */
