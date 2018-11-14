@@ -139,7 +139,7 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
     @property
     @instance.memoize
     def authors(self):
-        author_string = self.request.get('authors')
+        author_string = safe_unicode(self.request.get('authors'))
         if author_string:
             retval = []
             authors = [x.lower() for x in author_string.strip("\"'").split(' ')]
