@@ -891,6 +891,10 @@ li.accordion-item .accordion-content {
    padding: 1em;
 }
 
+li.accordion-item#citation dd {
+    margin-left: 0;
+}
+
 
 /**************************Icons for bold text links****************************/
 
