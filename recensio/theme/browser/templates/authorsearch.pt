@@ -35,7 +35,9 @@
         <p class="description" i18n:translate="description_authorsearch_1">
           Sie finden hier die Autorinnen und Autoren von auf
           <span tal:replace="view/portal_title" i18n:name="portal_title">recensio.net</span>
-          publizierten Rezensionen und Kommentaren
+          publizierten Rezensionen
+          <span tal:condition="view/is_commenting_enabled|nothing" i18n:name="and_comments" i18n:translate="description_authorsearch_1a" tal:omit-tag="">&nbsp;und Kommentaren</span>
+          <span tal:condition="not:view/is_commenting_enabled|nothing" i18n:name="and_comments" tal:omit-tag=""></span>
           sowie die Autoren von hier rezensierten Werken.
         </p>
         <p class="description" i18n:translate="description_authorsearch_2">

@@ -9,7 +9,10 @@ from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.utils import safe_unicode
 from plone.memoize import ram, instance
 from DateTime import DateTime
+from plone.app.discussion.interfaces import IDiscussionSettings
+from plone.registry.interfaces import IRegistry
 from recensio.theme.browser.views import CrossPlatformMixin
+from zope.component import queryUtility
 
 PRESENTATION_TYPES = ['Presentation Monograph',
                       'Presentation Online Resource',
@@ -167,3 +170,9 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
     @property
     def portal_title(self):
         return getToolByName(self.context, 'portal_url').getPortalObject().Title()
+
+    @property
+    def is_commenting_enabled(self):
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(IDiscussionSettings, check=False)
+        return settings.globally_enabled
