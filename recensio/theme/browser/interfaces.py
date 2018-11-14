@@ -13,6 +13,9 @@ class IRecensioHelperView(Interface):
     def contains_one_of(self, items, values):
         """ """
 
+    def get_subtree(self, value):
+        """ """
+
 
 class IRedirectToPublication(Interface):
     """ Interface for RedirectToPublication """

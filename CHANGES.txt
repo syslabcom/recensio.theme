@@ -9,6 +9,7 @@ Changelog
 - Author Search: Only show "and comments" if commenting enabled. #REC-987
 - Fixed first heading in firefox. #REC-993
 - Custom text for topic browsing. #REC-986
+- Advanced Search: Fixed sorting of ddc values. #REC-983
 
 
 4.3.2 (2018-06-05)

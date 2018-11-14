@@ -412,7 +412,6 @@
 
                  tal:define="voc python:context.portal_vocabularies.getVocabularyByName('region_values');
                              avail_values python:dict(voc.getVocabularyDict(voc)).items();
-                             dummy python:avail_values.sort(key=lambda x: -2 if x[0] == '4' else -1 if x[0] == '3' else x[1]);
                              field_name string:ddcPlace;
                              prefix field_name;
                              selected_values python:request.get(field_name, []);
@@ -448,7 +447,7 @@
                            tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
                            tal:repeat="sublist valueLists">
                         <tal:items repeat="value sublist">
-                          <div tal:define="subtree python:dict(value[1][1] or {}).items();">
+                          <div tal:define="subtree python:recensiohelperview.get_subtree(value);">
                               <dl class="collapsible collapsedOnLoad" tal:omit-tag="not:subtree"
                                   tal:attributes="class python:(subtree and (recensiohelperview.contains_one_of(subtree, selected_values))) and 'collapsible' or 'collapsible collapsedOnLoad'">
                               <dt class="collapsibleHeader" tal:omit-tag="not:subtree">

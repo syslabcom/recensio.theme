@@ -122,6 +122,18 @@ class RecensioHelperView(BrowserView):
              self.contains_one_of(dict(item[1][1] or {}).items(), values)
              for item in items])
 
+    def get_subtree(self, value):
+        """ Retrieve the next level of a recursive vocabulary dict.
+        Value is expected to be a tuple like this:
+            ('4', ('Europa', OrderedDict([])))
+        The items of the OrderedDict are returned.
+
+        This method was added for search_form. We cannot access the items()
+        method of an OrderedDict there.
+        """
+        subtree = value[1][1] or {}
+        return subtree.items()
+
 
 class CreateNewPresentationView(BrowserView):
     """ Helper to direct to new presentation creation """
