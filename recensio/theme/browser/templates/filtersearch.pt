@@ -154,6 +154,7 @@
                                          title result_type;"
                          i18n:attributes="alt; title;" />
 
+                  <div class="metadata">
                   <tal:block condition="result/listAuthorsAndEditors">
                     <span class="authors" tal:condition="listEditors">
                       <tal:editors
@@ -198,6 +199,7 @@
                         Presented by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock>
                   </span>
                   </tal:author>
+                  </div>
                 </dt>
 
                 <dd>
