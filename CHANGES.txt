@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.3.3 (unreleased)
+4.3.3 (2018-12-12)
 ------------------
 
 - Fixed margins of search results. #REC-985
