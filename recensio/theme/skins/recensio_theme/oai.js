@@ -28,7 +28,7 @@ function showResults(data){
         tmpl[0].id = "";
         var result = data[result_id];
         for (key in result){
-            if (jq.inArray(key, ['keywords', 'authors']) < 0) {
+            if (jq.inArray(key, ['keywords', 'authors', 'editors']) < 0) {
                 tmpl.find('.oai_' + key + ' .value').text(result[key]);
             }
         }
@@ -41,9 +41,15 @@ function showResults(data){
         }
         for(var i=0;i<result['authors'].length;i++){
             var author = result['authors'][i];
-            tmpl.find('.oai_authors .value').empty().append('<div class="author"><span class="firstname">' +
+            tmpl.find('.oai_authors .value').append('<div class="author"><span class="firstname">' +
                 author['firstname'] + '</span> <span class="lastname">' +
                 author['lastname'] + '</span></div>');
+        }
+        for(var i=0;i<result['editors'].length;i++){
+            var editor = result['editors'][i];
+            tmpl.find('.oai_editors .value').append('<div class="editor"><span class="firstname">' +
+                editor['firstname'] + '</span> <span class="lastname">' +
+                editor['lastname'] + '</span></div>');
         }
         var ddcs = ['ddcSubject', 'ddcTime', 'ddcPlace'];
         for(var i=0;i<ddcs.length;i++){
