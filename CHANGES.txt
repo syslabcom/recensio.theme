@@ -4,7 +4,7 @@ Changelog
 4.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- OPAC search: Fixes for results box. #FLOW-328
 
 
 4.3.3 (2018-12-12)

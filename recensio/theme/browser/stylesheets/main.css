@@ -2573,7 +2573,8 @@ height:32px;
 
 .oaisuggestion table {
     padding:5px;
-    min-width: 300px;
+    width: 300px;
+    table-layout: fixed;
 }
 
 .oaisuggestion .missing {
@@ -2598,6 +2599,7 @@ height:32px;
 /*******styles for Opac search popup**********/
 .oaisuggestion tr {
    border-bottom:1px solid #CDCDCD;
+   width: 100%;
 }
 
 .oaisuggestion td.key {

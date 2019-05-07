@@ -28,16 +28,20 @@ function showResults(data){
         tmpl[0].id = "";
         var result = data[result_id];
         for (key in result){
-            tmpl.find('.oai_' + key + ' .value').text(result[key]);
+            if (jq.inArray(key, ['keywords', 'authors']) < 0) {
+                tmpl.find('.oai_' + key + ' .value').text(result[key]);
+            }
         }
         for(var i=0;i<result['keywords'].length;i++){
             tmpl.find('.oai_keywords .value ul').append('<li>'+result['keywords'][i]+'</li>')
         }
         var subtitle = tmpl.find('.oai_subtitle td.value');
-        subtitle.text(subtitle.text()[0].toUpperCase() + subtitle.text().substring(1));
+        if (subtitle.text()) {
+            subtitle.text(subtitle.text()[0].toUpperCase() + subtitle.text().substring(1));
+        }
         for(var i=0;i<result['authors'].length;i++){
             var author = result['authors'][i];
-            tmpl.find('.oai_authors .value').append('<div class="author"><span class="firstname">' +
+            tmpl.find('.oai_authors .value').empty().append('<div class="author"><span class="firstname">' +
                 author['firstname'] + '</span> <span class="lastname">' +
                 author['lastname'] + '</span></div>');
         }
