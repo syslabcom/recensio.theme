@@ -20,4 +20,10 @@
         name="recensio.theme"
         />
 
+  <subscriber
+     for="*
+          Products.CMFPlone.interfaces.IReorderedEvent"
+     handler=".eventhandlers.reindex_on_reorder"
+     />
+
 </configure>

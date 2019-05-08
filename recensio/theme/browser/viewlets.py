@@ -100,22 +100,24 @@ class publicationlisting(ViewletBase):
         return issue_dict
 
     def volumes(self):
-        objects = self.parent.getFolderContents(
-            {'portal_type': 'Volume'},
+        volume_objs = self.parent.getFolderContents(
+            {
+                'portal_type': 'Volume',
+                'sort_on': 'getObjPositionInParent',
+            },
             full_objects=True)
-        volume_objs = sorted(objects,
-                             key=lambda v: v.effective(),
-                             reverse=True)
         volumes = [self._make_iss_or_vol_dict(v) for v in volume_objs]
         return volumes
 
     def issues(self, volume):
         if not volume in self.parent.objectIds():
             return []
-        objects = self.parent[volume].getFolderContents(
-            {'portal_type': 'Issue'},
+        issue_objs = self.parent[volume].getFolderContents(
+            {
+                'portal_type': 'Issue',
+                'sort_on': 'getObjPositionInParent',
+            },
             full_objects=True)
-        issue_objs = sorted(objects, key=lambda v: v.effective(), reverse=True)
         issues = [self._make_iss_or_vol_dict(i) for i in issue_objs]
         return issues
 
@@ -125,13 +127,17 @@ class publicationlisting(ViewletBase):
             return []
         if issue is None:
             review_objs = self.parent[volume].getFolderContents(
-                {'portal_type': ['Review Monograph', 'Review Journal']},
+                {
+                    'portal_type': ['Review Monograph', 'Review Journal'],
+                },
                 full_objects=True)
         else:
             if not issue in self.parent[volume].objectIds():
                 return []
             review_objs = self.parent[volume][issue].getFolderContents(
-                {'portal_type': ['Review Monograph', 'Review Journal']},
+                {
+                    'portal_type': ['Review Monograph', 'Review Journal'],
+                },
                 full_objects=True)
         review_objs = sorted(review_objs,
                              key=lambda v: v.listAuthorsAndEditors())

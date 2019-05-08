@@ -4,6 +4,7 @@ Changelog
 4.3.4 (unreleased)
 ------------------
 
+- Publication viewlet: Sort on parent position. #FLOW-229
 - OPAC search: Fixes for results box. #FLOW-328
 
 
