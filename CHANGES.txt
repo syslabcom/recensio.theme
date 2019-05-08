@@ -6,6 +6,7 @@ Changelog
 
 - Publication viewlet: Sort on parent position. #FLOW-229
 - OPAC search: Fixes for results box. #FLOW-328
+- Search: Tweaked text and layout. #FLOW-436
 
 
 4.3.3 (2018-12-12)

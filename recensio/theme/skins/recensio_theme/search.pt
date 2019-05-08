@@ -59,6 +59,15 @@
               action="search"
               class="searchPage"
               tal:condition="not:is_advanced_search">
+            <span class="cross-portal">
+              <input type="checkbox" name="use_navigation_root:boolean" value="False" id="use_navigation_root"
+                     tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
+                  <label for="use_navigation_root"
+                         i18n:translate="">
+                      Plattform&uuml;bergreifende Suche: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
+            </span>
+            <br />
+
             <input class="searchPage"
                    name="SearchableText"
                    type="text"
@@ -72,23 +81,10 @@
                    value="Search"
                    i18n:attributes="value label_search;"/>
 
-            <span class="cross-portal">
-              <input type="checkbox" name="use_navigation_root:boolean" value="False" id="use_navigation_root"
-                     tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
-                  <label for="use_navigation_root"
-                         i18n:translate="">
-                      Plattform&uuml;bergreifende Suche: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
-            </span>
-
-            <p class="discreet"
-               i18n:translate="search_results_advanced">
-            Did you not find what you were looking for? Try the
-            <span i18n:name="advanced_search">
+            <p class="discreet">
             <a href=""
                i18n:translate="search_results_advanced_link"
                tal:attributes="href string:${advanced_search_url}?${request/QUERY_STRING}">Advanced Search</a>
-            </span>
-            to refine your search.
             </p>
         </form>
 
