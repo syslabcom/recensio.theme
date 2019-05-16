@@ -9,6 +9,7 @@ Changelog
 - Search: Tweaked text and layout. #FLOW-436
 - Footer: New images and style tweaks. #FLOW-434
 - Post-its: Exchanged images (contact instead of latest comments). #FLOW-435
+- Publication RSS: Sort on effective. #FLOW-230
 
 
 4.3.3 (2018-12-12)
