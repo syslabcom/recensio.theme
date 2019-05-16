@@ -7,7 +7,6 @@ Changelog
 - Publication viewlet: Sort on parent position. #FLOW-229
 - OPAC search: Fixes for results box. #FLOW-328
 - Search: Tweaked text and layout. #FLOW-436
-- Footer: New images and style tweaks. #FLOW-434
 - Post-its: Exchanged images (contact instead of latest comments). #FLOW-435
 - Publication RSS: Sort on effective. #FLOW-230
 

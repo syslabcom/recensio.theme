@@ -685,7 +685,7 @@ font-size:1.2em;
     border-radius: 10px;
 	font-size:0.9em;
 	margin-top: 15px;
-	height:99px;
+	height:115px;
 	padding-top:25px;
 
 }
@@ -716,11 +716,8 @@ font-size:1.2em;
     margin:-3px 0 5px 30px;
 }
 #footer div a img {
-    height: 39px;
-    padding-top: 0.5em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    padding-bottom: 2em;
+    height: 55px;
+    padding: 0.5em;
 }
 
 
