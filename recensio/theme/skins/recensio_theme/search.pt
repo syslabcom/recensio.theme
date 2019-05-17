@@ -186,7 +186,7 @@
                                result_foreign python:result_portal != portal_path[1:];
                                result_url python:result_foreign and view.get_foreign_url(result) or result_url;
                                url python:result_url+'/view' if result_type in use_view_action else result_url+'/';
-                               url python:url if searchterm is None else '%s?searchterm=%s' % (url, searchterm);
+                               url python:url if searchterm is None else u'%s?searchterm=%s' % (url, searchterm.decode('utf-8'));
                                result_class python:'contenttype-' + normalizeString(result.portal_type);
                                result_class python:result_foreign and (result_class + ' foreign portal-' + result_portal) or result_class;
                                ">
