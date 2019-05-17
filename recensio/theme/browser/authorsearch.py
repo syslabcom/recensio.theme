@@ -77,6 +77,7 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
             'facet.field': 'authors',
             'facet.limit': '-1',
             'facet.mincount': '1',
+            'b_size': 0,
         }
         state_query = '+review_state:published '
         if self.request.get('use_navigation_root', True):

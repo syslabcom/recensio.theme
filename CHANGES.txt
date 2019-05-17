@@ -11,6 +11,8 @@ Changelog
   characters. #FLOW-397
 - Post-its: Exchanged images (contact instead of latest comments). #FLOW-435
 - Publication RSS: Sort on effective. #FLOW-230
+- Author Search: Don't request an actual result set; we only need faceting info.
+  #FLOW-198
 
 
 4.3.3 (2018-12-12)
