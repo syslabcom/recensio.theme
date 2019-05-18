@@ -5,6 +5,8 @@ Changelog
 ------------------
 
 - Publication viewlet: Sort on parent position. #FLOW-229
+- Publication viewlet: Sped up review display by doing sorting in catalog
+  query. #FLOW-198
 - OPAC search: Fixes for results box. #FLOW-328
 - Search: Tweaked text and layout. #FLOW-436
 - Search: Fixed error when cross-portal search is used with non-ascii

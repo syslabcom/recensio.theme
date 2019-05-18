@@ -129,7 +129,10 @@ class publicationlisting(ViewletBase):
             review_objs = self.parent[volume].getFolderContents(
                 {
                     'portal_type': ['Review Monograph', 'Review Journal'],
+                    'sort_on': 'getAllAuthorData',
                 },
+                # XXX Could avoid getting objects by adding getDecoratedTitle
+                # to catalog metadata
                 full_objects=True)
         else:
             if not issue in self.parent[volume].objectIds():
@@ -137,10 +140,11 @@ class publicationlisting(ViewletBase):
             review_objs = self.parent[volume][issue].getFolderContents(
                 {
                     'portal_type': ['Review Monograph', 'Review Journal'],
+                    'sort_on': 'getAllAuthorData',
                 },
+                # XXX Could avoid getting objects by adding getDecoratedTitle
+                # to catalog metadata
                 full_objects=True)
-        review_objs = sorted(review_objs,
-                             key=lambda v: v.listAuthorsAndEditors())
         reviews = [self._make_dict(rev) for rev in review_objs]
         return reviews
 
