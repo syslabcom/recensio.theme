@@ -11,7 +11,7 @@ Changelog
 - Search: Tweaked text and layout. #FLOW-436
 - Search: Fixed error when cross-portal search is used with non-ascii
   characters. #FLOW-397
-- Search: Support for multipart titles. #FLOW-520
+- Search/Browsing: Support for multipart titles. #FLOW-520
 - Post-its: Exchanged images (contact instead of latest comments). #FLOW-435
 - Publication RSS: Sort on effective. #FLOW-230
 - Author Search: Don't request an actual result set; we only need faceting info.
