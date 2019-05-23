@@ -15,6 +15,7 @@ Changelog
 - Publication RSS: Sort on effective. #FLOW-230
 - Author Search: Don't request an actual result set; we only need faceting info.
   #FLOW-198
+- Social Media Buttons: moved to footer. #FLOW-439
 
 
 4.3.3 (2018-12-12)

@@ -92,8 +92,8 @@
            css:theme="div#navigation > ul " />
 
   <!-- social media buttons -->
-  <replace css:content="#social-media-header"
-           css:theme="#social-media-header" />
+  <replace css:content="#socialmedia-fuss"
+           css:theme="#socialmedia-fuss" />
 
   <!-- Secondary navigation -->
   <prepend content="//div[@id='secondary-nav-portlet']"
