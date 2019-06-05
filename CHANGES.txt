@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.3.4 (unreleased)
+4.4.0 (2019-06-05)
 ------------------
 
 - Publication viewlet: Sort on parent position. #FLOW-229
