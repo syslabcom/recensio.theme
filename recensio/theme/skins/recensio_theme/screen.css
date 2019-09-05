@@ -855,6 +855,9 @@ font-size: 14px;
     background: #E8E1D0;
 }
 /* hide newly surfaced Settings tab on review, fixes #8039 */
-body.template-atct_edit.portaltype-review-journal a#fieldsetlegend-settings {
+body.template-atct_edit.portaltype-review-journal a#fieldsetlegend-settings,
+body.template-atct_edit.portaltype-review-article-journal a#fieldsetlegend-settings,
+body.template-atct_edit.portaltype-review-article-collection a#fieldsetlegend-settings,
+body.template-atct_edit.portaltype-review-exhibition a#fieldsetlegend-settings {
         display: none;
 }
