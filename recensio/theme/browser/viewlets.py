@@ -10,6 +10,7 @@ from plone.app.layout.viewlets import ViewletBase
 from plone.memoize import ram
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
+from recensio.contenttypes.config import REVIEW_TYPES
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from ZTUtils import make_query
@@ -128,7 +129,7 @@ class publicationlisting(ViewletBase):
         if issue is None:
             review_objs = self.parent[volume].getFolderContents(
                 {
-                    'portal_type': ['Review Monograph', 'Review Journal'],
+                    'portal_type': REVIEW_TYPES,
                     'sort_on': 'getAllAuthorData',
                 },
                 # XXX Could avoid getting objects by adding getDecoratedTitle
@@ -139,7 +140,7 @@ class publicationlisting(ViewletBase):
                 return []
             review_objs = self.parent[volume][issue].getFolderContents(
                 {
-                    'portal_type': ['Review Monograph', 'Review Journal'],
+                    'portal_type': REVIEW_TYPES,
                     'sort_on': 'getAllAuthorData',
                 },
                 # XXX Could avoid getting objects by adding getDecoratedTitle

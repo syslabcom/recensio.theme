@@ -8,6 +8,7 @@ from plone.memoize.instance import memoize
 
 from Products.CMFCore.utils import getToolByName
 
+from recensio.contenttypes.config import REVIEW_TYPES
 from recensio.contenttypes.interfaces import IIssue, IVolume
 
 
@@ -32,7 +33,7 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
         next = None
 
         result = sorted(catalog(self.buildNextPreviousQuery()),
-                        key=lambda x: x["listAuthorsAndEditors"]
+                        key=lambda x: x.get("listAuthorsAndEditors", [])
                         and x["listAuthorsAndEditors"][0])
         if result and len(result) > 1:
             pathlist = [x.getPath() for x in result]
@@ -52,9 +53,7 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
 
     def buildNextPreviousQuery(self):
         query = {}
-        query['portal_type'] = [
-            'Review Journal', 'Review Monograph',
-        ]
+        query['portal_type'] = REVIEW_TYPES
         query['path'] = dict(query='/'.join(self.context.getPhysicalPath()),
                              depth=1)
         query['b_size'] = 10000

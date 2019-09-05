@@ -5,14 +5,15 @@ from Products.ATContentTypes.interfaces import IATTopic
 
 from plone.registry.interfaces import IRegistry
 
+from recensio.contenttypes.config import PRESENTATION_TYPES
+from recensio.contenttypes.config import REVIEW_TYPES
 from recensio.policy.utility import filter_facets
 from recensio.policy.interfaces import IRecensioSettings
 from recensio.theme.browser.views import listAvailableContentLanguages
 from topical import BrowseTopicsView
 
-PORTAL_TYPES = ['Presentation Online Resource', 'Presentation Article Review',
-    'Presentation Collection', 'Presentation Monograph',
-        'Review Journal', 'Review Monograph' ]
+PORTAL_TYPES = REVIEW_TYPES + PRESENTATION_TYPES
+
 
 class FilterSearchView(BrowseTopicsView):
     """Search view with language filter
