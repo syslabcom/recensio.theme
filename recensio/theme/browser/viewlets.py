@@ -5,9 +5,11 @@
 """
 
 from DateTime import DateTime
+from plone import api
 from plone.app.layout.nextprevious import view as npview
 from plone.app.layout.viewlets import ViewletBase
 from plone.memoize import ram
+from plone.memoize import instance
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from recensio.contenttypes.config import REVIEW_TYPES
@@ -42,6 +44,14 @@ class publicationlisting(ViewletBase):
         if len(parents) < 2:
             return False
         self.parent = self.request.PARENTS[1]
+
+    @instance.memoizedproperty
+    def meta_types(self):
+        portal_types = api.portal.get_tool('portal_types')
+        meta_types = [
+            portal_types[rev_type].content_meta_type
+            for rev_type in REVIEW_TYPES]
+        return meta_types
 
     def visible(self):
         """ should we display at all? """
@@ -80,7 +90,7 @@ class publicationlisting(ViewletBase):
 
     def _get_css_classes(self, obj):
         css_classes = []
-        if len(obj.objectIds(['ReviewMonograph', 'ReviewJournal'])) > 0:
+        if len(obj.objectIds(self.meta_types)) > 0:
             css_classes.append('review_container')
             if self.is_expanded(obj.UID()):
                 css_classes.append('expanded')
