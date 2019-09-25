@@ -105,6 +105,7 @@ function takeOver(elem){
     takeSimpleInputOver('seriesVol');
     takeSimpleInputOver('pages');
     takeSimpleInputOver('bv');
+    takeSimpleInputOver('ppn');
     takeSimpleInputOver('year', 'yearOfPublication');
     var new_lang = j.find('.oai_language .value').text().trim();
     jq('select#languageReviewedText').val(new_lang);

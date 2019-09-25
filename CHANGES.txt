@@ -4,7 +4,7 @@ Changelog
 4.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Support for SWB SRU search. #FLOW-650
 
 
 4.4.0 (2019-06-05)
