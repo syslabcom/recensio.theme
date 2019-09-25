@@ -249,7 +249,7 @@
                    i18n:translate="label_review_autor">Autor/Herausgeber</label>
             <div class="">
               <div class="formHelp" i18n:translate="help_review_autor">
-                Autor von Monographie/Aufsatz/Kommentar oder Herausgeber des Sammelbandes
+                Autor von Monographie/Aufsatz/Kommentar, Herausgeber des Sammelbandes oder Ausstellende Institution
               </div>
 
               <input type="text"
@@ -316,7 +316,7 @@
                    i18n:translate="label_place">Ort</label>
             <div class="">
               <div class="formHelp" i18n:translate="help_place">
-                Erscheinungsort
+                Erscheinungsort/Ausstellungsort
               </div>
 
               <input type="text"
