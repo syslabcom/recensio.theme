@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Support for SWB SRU search. #FLOW-650
+- Support for new content types. #FLOW-649
 
 
 4.4.0 (2019-06-05)
