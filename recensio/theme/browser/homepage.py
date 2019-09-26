@@ -5,6 +5,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
+from recensio.contenttypes.config import REVIEW_TYPES
 from recensio.contenttypes.interfaces import IParentGetter
 from plone import api
 from plone.i18n.locales.languages import _languagelist
@@ -68,7 +69,7 @@ class HomepageView(BrowserView):
     @memoize
     def review_base_query(self):
         root = api.portal.get_navigation_root(context=self.context)
-        query = dict(portal_type=["Review Monograph", "Review Journal"],
+        query = dict(portal_type=REVIEW_TYPES,
             path='/'.join(root.getPhysicalPath()),
             review_state="published",
             sort_on='effective',

@@ -9,13 +9,13 @@ from Products.CMFPlone.browser.navtree import getNavigationRoot
 from collective.solr.browser.facets import (
     SearchFacetsView, param)
 
-#from recensio.contenttypes.config import PORTAL_TYPES
+from recensio.contenttypes.config import REVIEW_TYPES
 from recensio.policy.utility import \
     convertFacets, browsing_facets
 from recensio.theme.browser.views import CrossPlatformMixin
 
 log = logging.getLogger('recensio.theme/topical.py')
-PORTAL_TYPES = ['Review Journal', 'Review Monograph']
+PORTAL_TYPES = REVIEW_TYPES
 
 
 class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):

@@ -11,14 +11,10 @@ from plone.memoize import ram, instance
 from DateTime import DateTime
 from plone.app.discussion.interfaces import IDiscussionSettings
 from plone.registry.interfaces import IRegistry
+from recensio.contenttypes.config import PRESENTATION_TYPES
+from recensio.contenttypes.config import REVIEW_TYPES
 from recensio.theme.browser.views import CrossPlatformMixin
 from zope.component import queryUtility
-
-PRESENTATION_TYPES = ['Presentation Monograph',
-                      'Presentation Online Resource',
-                      'Presentation Article Review',
-                      'Presentation Collection']
-REVIEW_TYPES = ['Review Journal', 'Review Monograph']
 
 
 class AuthorSearchView(BrowserView, CrossPlatformMixin):

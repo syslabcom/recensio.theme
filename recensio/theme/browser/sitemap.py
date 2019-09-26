@@ -1,6 +1,7 @@
 from plone.app.layout.sitemap.sitemap import SiteMapView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
+from recensio.contenttypes.config import REVIEW_TYPES
 
 
 class RecensioSiteMapView(SiteMapView):
@@ -29,7 +30,6 @@ class RecensioSiteMapView(SiteMapView):
                 }
             if ("rezensionen/zeitschriften/francia-recensio" in location
                 or "rezensionen/zeitschriften/sehepunkte" in location) \
-                and item.portal_type in ["Review Monograph",
-                                         "Review Journal"]:
+                and item.portal_type in REVIEW_TYPES:
                 map_item['priority'] = 0.1
             yield map_item
