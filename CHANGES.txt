@@ -4,7 +4,7 @@ Changelog
 4.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed OPAC import for daughter portals. #FLOW-770
 
 
 4.5.0 (2019-09-26)

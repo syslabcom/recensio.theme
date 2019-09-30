@@ -1,6 +1,6 @@
 oai_overlay=null;
 function getDataFromOAI(isbn){
-    var baseURL = '/recensio/metadata_query?identifier=';
+    var baseURL = portal_url + '/metadata_query?identifier=';
     jq.ajax({
         url: baseURL + isbn,
         dataType: 'json',
