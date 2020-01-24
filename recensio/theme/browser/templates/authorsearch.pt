@@ -83,7 +83,7 @@
                    tal:condition="author/presentations"
                    i18n:attributes="title label_all_presentations_author"
                    title="All presentations of this author"
-                   tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authorsFulltext=${author/name}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
+                   tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
                   <img i18n:attributes="alt label_all_presentations_author"
                        alt="All presentations of this author"
                        src="++resource++recensio.theme.images/InternetResource.png"/>
@@ -95,7 +95,7 @@
                    tal:condition="author/reviews"
                    i18n:attributes="title label_all_reviews_author"
                    title="All reviews of this author"
-                   tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authorsFulltext=${author/name}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
+                   tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
                   <img i18n:attributes="alt label_all_reviews_author"
                        alt="All reviews of this author"
                        src="++resource++recensio.theme.images/Aufsaetze.png" />
@@ -118,7 +118,7 @@
                 <a href="."
                    i18n:attributes="title label_all_items_author"
                    title="All items of this author"
-                   tal:attributes="href string:$portal_url/search?authorsFulltext=${author/name}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}"
+                   tal:attributes="href string:$portal_url/search?authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}"
                    tal:content="author/name">Author</a>
               </li>
             </ul>
