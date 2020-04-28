@@ -1,14 +1,13 @@
 from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.interfaces import INavigationBreadcrumbs
 from Products.CMFPlone.browser.navigation import PhysicalNavigationBreadcrumbs
-from Products.CMFCore.utils import getToolByName
-from zope.component import getMultiAdapter
-from zope.interface import implements
-
 from recensio.contenttypes.interfaces.issue import IIssue
 from recensio.contenttypes.interfaces.review import IParentGetter
 from recensio.contenttypes.interfaces.volume import IVolume
+from zope.component import getMultiAdapter
+from zope.interface import implements
 
 
 class RecensioNavigationBreadcrumbs(PhysicalNavigationBreadcrumbs):

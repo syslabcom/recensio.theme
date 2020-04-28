@@ -1,16 +1,16 @@
 import logging
 
-from Products.Five.browser import BrowserView
-from ZTUtils import make_query
-
+from collective.solr.browser.facets import SearchFacetsView
+from collective.solr.browser.facets import param
 from Products.Archetypes.utils import OrderedDict
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
-from collective.solr.browser.facets import SearchFacetsView, param
-
+from Products.Five.browser import BrowserView
 from recensio.contenttypes.config import REVIEW_TYPES
-from recensio.policy.utility import convertFacets, browsing_facets
+from recensio.policy.utility import browsing_facets
+from recensio.policy.utility import convertFacets
 from recensio.theme.browser.views import CrossPlatformMixin
+from ZTUtils import make_query
 
 log = logging.getLogger("recensio.theme/topical.py")
 PORTAL_TYPES = REVIEW_TYPES

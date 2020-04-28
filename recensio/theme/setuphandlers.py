@@ -1,10 +1,11 @@
 import logging
-from zope import component
-from plone.portlets.interfaces import IPortletManager
+
 from plone.portlets.interfaces import IPortletAssignmentMapping
+from plone.portlets.interfaces import IPortletManager
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.unsafe_transforms import build_transforms
-from plone.registry.interfaces import IRegistry
+from zope import component
 
 log = logging.getLogger("recensio.theme.setuphandlers.py")
 

@@ -1,23 +1,21 @@
-from DateTime import DateTime
+import logging
 
 from AccessControl import Unauthorized
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
-from recensio.contenttypes.config import REVIEW_TYPES
-from recensio.contenttypes.interfaces import IParentGetter
+from Acquisition import aq_inner
+from DateTime import DateTime
 from plone import api
 from plone.i18n.locales.languages import _languagelist
-from ZTUtils import make_query
-from Acquisition import aq_inner
-from zope.component import getMultiAdapter
-
 from plone.memoize import ram
 from plone.memoize.compress import xhtml_compress
 from plone.memoize.instance import memoize
-
-import logging
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from recensio.contenttypes.config import REVIEW_TYPES
+from recensio.contenttypes.interfaces import IParentGetter
+from zope.component import getMultiAdapter
+from ZTUtils import make_query
 
 log = logging.getLogger("recensio.theme")
 

@@ -1,15 +1,12 @@
-from zope.interface import implements
-from zope.component import adapts
-
-from Products.ATContentTypes.browser.nextprevious import ATFolderNextPrevious
-
 from plone.app.layout.nextprevious.interfaces import INextPreviousProvider
 from plone.memoize.instance import memoize
-
+from Products.ATContentTypes.browser.nextprevious import ATFolderNextPrevious
 from Products.CMFCore.utils import getToolByName
-
 from recensio.contenttypes.config import REVIEW_TYPES
-from recensio.contenttypes.interfaces import IIssue, IVolume
+from recensio.contenttypes.interfaces import IIssue
+from recensio.contenttypes.interfaces import IVolume
+from zope.component import adapts
+from zope.interface import implements
 
 
 class RecensioFolderNextPrevious(ATFolderNextPrevious):

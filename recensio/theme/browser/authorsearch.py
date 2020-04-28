@@ -2,15 +2,16 @@
 # -*- coding: utf-8 -*-
 
 from Acquisition import aq_parent
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from DateTime import DateTime
+from plone.app.discussion.interfaces import IDiscussionSettings
+from plone.memoize import instance
+from plone.memoize import ram
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.utils import safe_unicode
-from plone.memoize import ram, instance
-from DateTime import DateTime
-from plone.app.discussion.interfaces import IDiscussionSettings
-from plone.registry.interfaces import IRegistry
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from recensio.contenttypes.config import PRESENTATION_TYPES
 from recensio.contenttypes.config import REVIEW_TYPES
 from recensio.theme.browser.views import CrossPlatformMixin

@@ -1,12 +1,11 @@
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
-
-from plone.memoize import ram, view
+from plone.memoize import ram
+from plone.memoize import view
 from plone.memoize.compress import xhtml_compress
 from plone.memoize.instance import memoize
-
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from recensio.contenttypes.browser.canonical import CanonicalURLHelper
 
 

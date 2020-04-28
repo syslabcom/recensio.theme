@@ -1,11 +1,11 @@
 import logging
 import re
 
-from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
-from zope.component.hooks import getSite
-from zope.component import getUtility
+from plone.portlets.interfaces import IPortletManager
 from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.component.hooks import getSite
 
 log = logging.getLogger(__name__)
 

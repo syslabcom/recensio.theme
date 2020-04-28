@@ -4,19 +4,20 @@
 
 """
 
+import logging
+
 from DateTime import DateTime
 from plone import api
 from plone.app.layout.nextprevious import view as npview
 from plone.app.layout.viewlets import ViewletBase
-from plone.memoize import ram
 from plone.memoize import instance
+from plone.memoize import ram
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from recensio.contenttypes.config import REVIEW_TYPES
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from ZTUtils import make_query
-import logging
 
 log = logging.getLogger(__name__)
 

@@ -2,30 +2,29 @@
 """
 import logging
 import re
-from Acquisition import aq_parent
-from ZTUtils import make_query
-from zope.component.hooks import getSite
-from zope.component.hooks import setSite
-from zope.component import getUtility
-from zope.component import queryUtility
-from zope.i18n import translate
-from zope.i18nmessageid import Message
-from zope.interface import implements
 
+from Acquisition import aq_parent
+from interfaces import IRecensioHelperView
+from interfaces import IRedirectToPublication
+from plone.i18n.locales.languages import _languagelist
+from plone.memoize import instance
+from plone.registry.interfaces import IRegistry
 from Products.Archetypes.utils import DisplayList
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.i18n.locales.languages import _languagelist
-from plone.memoize import instance
-from plone.registry.interfaces import IRegistry
-
 from recensio.contenttypes import contenttypesMessageFactory as _
 from recensio.contenttypes.browser.canonical import CanonicalURLHelper
 from recensio.contenttypes.interfaces.review import IParentGetter
 from recensio.policy.interfaces import IRecensioSettings
-
-from interfaces import IRecensioHelperView, IRedirectToPublication
+from zope.component import getUtility
+from zope.component import queryUtility
+from zope.component.hooks import getSite
+from zope.component.hooks import setSite
+from zope.i18n import translate
+from zope.i18nmessageid import Message
+from zope.interface import implements
+from ZTUtils import make_query
 
 log = logging.getLogger(__name__)
 

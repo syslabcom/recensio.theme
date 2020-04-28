@@ -1,29 +1,27 @@
 # vim:fileencoding=utf8
-from cgi import escape
-from pkg_resources import resource_filename
 import logging
 import os
 import tempfile
+from cgi import escape
+
+from pkg_resources import resource_filename
 
 from plone.uuid.interfaces import IUUID
-
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
+from recensio.contenttypes import contenttypesMessageFactory as _
 from reportlab.lib.colors import grey
-from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
-
 from zope.i18n import translate
-
-from Products.CMFCore.utils import getToolByName
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.statusmessages.interfaces import IStatusMessage
-
-from recensio.contenttypes import contenttypesMessageFactory as _
 
 log = logging.getLogger("recensio.theme/pdfgen.py")
 

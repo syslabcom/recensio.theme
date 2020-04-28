@@ -1,16 +1,14 @@
-import Acquisition
-from DateTime import DateTime
 import urllib2
 
-from zope.component import getMultiAdapter
+import Acquisition
+from DateTime import DateTime
 from plone.memoize import instance
 from plone.memoize.instance import memoize
-
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from recensio.translations import RecensioMessageFactory as _
+from zope.component import getMultiAdapter
 
 
 class NewsletterView(BrowserView):

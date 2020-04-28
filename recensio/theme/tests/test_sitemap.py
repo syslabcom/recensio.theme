@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 import unittest2 as unittest
-
-from zope.component import getMultiAdapter
-from zope.interface import alsoProvides
-
 from recensio.policy.tests.layer import RECENSIO_INTEGRATION_TESTING
 from recensio.theme.interfaces import IRecensioLayer
+from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
 
 
 class TestSiteMap(unittest.TestCase):

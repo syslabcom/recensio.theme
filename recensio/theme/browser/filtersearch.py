@@ -1,16 +1,14 @@
-from zope.component import queryUtility
-from Products.Five.browser import BrowserView
+from plone.registry.interfaces import IRegistry
 from Products.Archetypes.utils import DisplayList
 from Products.ATContentTypes.interfaces import IATTopic
-
-from plone.registry.interfaces import IRegistry
-
+from Products.Five.browser import BrowserView
 from recensio.contenttypes.config import PRESENTATION_TYPES
 from recensio.contenttypes.config import REVIEW_TYPES
-from recensio.policy.utility import filter_facets
 from recensio.policy.interfaces import IRecensioSettings
+from recensio.policy.utility import filter_facets
 from recensio.theme.browser.views import listAvailableContentLanguages
 from topical import BrowseTopicsView
+from zope.component import queryUtility
 
 PORTAL_TYPES = REVIEW_TYPES + PRESENTATION_TYPES
 

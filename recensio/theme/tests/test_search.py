@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest2 as unittest
-from zope.interface import alsoProvides, noLongerProvides
-
 from recensio.policy.tests.layer import RECENSIO_INTEGRATION_TESTING
 from recensio.theme.browser.views import RecensioHelperView
 from recensio.theme.interfaces import IRecensioLayer
+from zope.interface import alsoProvides
+from zope.interface import noLongerProvides
 
 
 class TestSearch(unittest.TestCase):
