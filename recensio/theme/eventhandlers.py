@@ -11,4 +11,4 @@ def reindex_on_reorder(obj, evt):
         try:
             child.reindexObject()
         except Exception:
-            log.info('Not reindexing {}'.format(child.getId()))
+            log.info("Not reindexing {}".format(child.getId()))

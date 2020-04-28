@@ -15,6 +15,7 @@ from recensio.contenttypes.interfaces import IIssue, IVolume
 class RecensioFolderNextPrevious(ATFolderNextPrevious):
     """ Use EffectiveDate to determine next/previous instead of
         getObjPositionInParent """
+
     implements(INextPreviousProvider)
 
     @property
@@ -25,16 +26,18 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
     def itemRelatives(self, oid):
         """Get the relative next and previous items
         """
-        catalog = getToolByName(self.context, 'portal_catalog')
+        catalog = getToolByName(self.context, "portal_catalog")
         obj = self.context[oid]
-        path = '/'.join(obj.getPhysicalPath())
+        path = "/".join(obj.getPhysicalPath())
 
         previous = None
         next = None
 
-        result = sorted(catalog(self.buildNextPreviousQuery()),
-                        key=lambda x: x.get("listAuthorsAndEditors", [])
-                        and x["listAuthorsAndEditors"][0])
+        result = sorted(
+            catalog(self.buildNextPreviousQuery()),
+            key=lambda x: x.get("listAuthorsAndEditors", [])
+            and x["listAuthorsAndEditors"][0],
+        )
         if result and len(result) > 1:
             pathlist = [x.getPath() for x in result]
             if path in pathlist:
@@ -45,22 +48,21 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
                     next = self.buildNextPreviousItem(result[index + 1])
 
         nextPrevious = {
-            'next':       next,
-            'previous':   previous,
+            "next": next,
+            "previous": previous,
         }
 
         return nextPrevious
 
     def buildNextPreviousQuery(self):
         query = {}
-        query['portal_type'] = REVIEW_TYPES
-        query['path'] = dict(query='/'.join(self.context.getPhysicalPath()),
-                             depth=1)
-        query['b_size'] = 10000
+        query["portal_type"] = REVIEW_TYPES
+        query["path"] = dict(query="/".join(self.context.getPhysicalPath()), depth=1)
+        query["b_size"] = 10000
 
         # Filters on content
-        query['is_default_page'] = False
-        query['is_folderish'] = False
+        query["is_default_page"] = False
+        query["is_folderish"] = False
 
         return query
 

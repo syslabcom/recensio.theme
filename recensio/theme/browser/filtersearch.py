@@ -18,33 +18,40 @@ PORTAL_TYPES = REVIEW_TYPES + PRESENTATION_TYPES
 class FilterSearchView(BrowseTopicsView):
     """Search view with language filter
     """
+
     show_if_empty = True
 
     def __init__(self, context, request):
         self.facet_fields = filter_facets
-        self.default_query = {'portal_type': PORTAL_TYPES,
-                              'facet': 'true',
-                              'facet.field': self.facet_fields,
-                              'b_size': 10,
-                              'b_start': 0, }
+        self.default_query = {
+            "portal_type": PORTAL_TYPES,
+            "facet": "true",
+            "facet.field": self.facet_fields,
+            "b_size": 10,
+            "b_start": 0,
+        }
 
         if IATTopic.providedBy(context):
             self.default_query.update(context.buildQuery())
 
-        #self.vocDict = {'languageReview': listAvailableContentLanguages()}
+        # self.vocDict = {'languageReview': listAvailableContentLanguages()}
 
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(IRecensioSettings)
-        allowed_langs = getattr(settings, 'available_content_languages', '').replace('\r', '').split('\n')
-        self.vocDict = {'languageReview': DisplayList([(x, x) for x in allowed_langs])}
+        allowed_langs = (
+            getattr(settings, "available_content_languages", "")
+            .replace("\r", "")
+            .split("\n")
+        )
+        self.vocDict = {"languageReview": DisplayList([(x, x) for x in allowed_langs])}
 
         self.submenus = [
-            dict(title='Language',id='languageReview'),]
+            dict(title="Language", id="languageReview"),
+        ]
 
-        self.queryparam = 'languageReview'
+        self.queryparam = "languageReview"
 
         BrowserView.__init__(self, context, request)
 
     def sort(self, submenu):
-        return sorted(submenu, key=lambda x:x['name'])
-
+        return sorted(submenu, key=lambda x: x["name"])

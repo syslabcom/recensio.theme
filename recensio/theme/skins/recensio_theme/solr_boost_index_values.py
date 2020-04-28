@@ -17,14 +17,21 @@
 # the return value should be a dictionary consisting of field names and
 # their respecitive boost values.  use an empty string as the key to set
 # a boost value for the entire document/content item.
-if context.portal_type in ["Review Monograph", "Review Journal", "Review Article Journal", "Review Article Collection", "Review Exhibition",
-        "Presentation Monograph", "Presentation Article Review", "Presentation Collection", "Presentation Online Resource"]:
-    return {'': 256.,
-            'SearchableText': 256. }
-path = '/'.join(context.getPhysicalPath())
-path = path.replace('-fr','').replace('-en', '')
-if path.startswith('/recensio/newsletter/archiv'):
-    return {'': 2.2250738585072014e-308, 
-            'SearchableText': 2.2250738585072014e-308}
+if context.portal_type in [
+    "Review Monograph",
+    "Review Journal",
+    "Review Article Journal",
+    "Review Article Collection",
+    "Review Exhibition",
+    "Presentation Monograph",
+    "Presentation Article Review",
+    "Presentation Collection",
+    "Presentation Online Resource",
+]:
+    return {"": 256.0, "SearchableText": 256.0}
+path = "/".join(context.getPhysicalPath())
+path = path.replace("-fr", "").replace("-en", "")
+if path.startswith("/recensio/newsletter/archiv"):
+    return {"": 2.2250738585072014e-308, "SearchableText": 2.2250738585072014e-308}
 else:
     return {}

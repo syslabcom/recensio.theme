@@ -24,19 +24,19 @@ new_context.processForm()
 
 # Get the current language and put it in request/LANGUAGE
 form = REQUEST.form
-if form.has_key('current_lang'):
-    form['language'] = form.get('current_lang')
+if form.has_key("current_lang"):
+    form["language"] = form.get("current_lang")
 
-portal_status_message = _(u'Changes saved.')
+portal_status_message = _(u"Changes saved.")
 
 # handle navigation for multi-page edit forms
-next = not REQUEST.get('form.button.next', None) is None
-previous = not REQUEST.get('form.button.previous', None) is None
-fieldset = REQUEST.get('fieldset', None)
+next = not REQUEST.get("form.button.next", None) is None
+previous = not REQUEST.get("form.button.previous", None) is None
+fieldset = REQUEST.get("fieldset", None)
 schemata = new_context.Schemata()
 
 if next or previous:
-    s_names = [s for s in schemata.keys() if s != 'metadata']
+    s_names = [s for s in schemata.keys() if s != "metadata"]
 
     if previous:
         s_names.reverse()
@@ -45,45 +45,45 @@ if next or previous:
     try:
         index = s_names.index(fieldset)
     except ValueError:
-        raise 'Non-existing fieldset: %s' % fieldset
+        raise "Non-existing fieldset: %s" % fieldset
     else:
         index += 1
         if index < len(s_names):
             next_schemata = s_names[index]
             addStatusMessage(REQUEST, portal_status_message)
-            return state.set(status='next_schemata',
-                             context=new_context,
-                             fieldset=next_schemata)
+            return state.set(
+                status="next_schemata", context=new_context, fieldset=next_schemata
+            )
 
     if next_schemata != None:
         addStatusMessage(REQUEST, portal_status_message)
-        return state.set(status='next_schemata',
-                 context=new_context,
-                 fieldset=next_schemata)
+        return state.set(
+            status="next_schemata", context=new_context, fieldset=next_schemata
+        )
     else:
-        raise 'Unable to find next field set after %s' % fieldset
+        raise "Unable to find next field set after %s" % fieldset
 
 env = state.kwargs
-reference_source_url = env.get('reference_source_url')
+reference_source_url = env.get("reference_source_url")
 if reference_source_url is not None:
-    reference_source_url = env['reference_source_url'].pop()
-    reference_source_field = env['reference_source_field'].pop()
-    reference_source_fieldset = env['reference_source_fieldset'].pop()
+    reference_source_url = env["reference_source_url"].pop()
+    reference_source_field = env["reference_source_field"].pop()
+    reference_source_fieldset = env["reference_source_fieldset"].pop()
     portal = context.portal_url.getPortalObject()
     reference_obj = portal.restrictedTraverse(reference_source_url)
-    portal_status_message = _(u'message_reference_added',
-                              default=u'Reference added.')
+    portal_status_message = _(u"message_reference_added", default=u"Reference added.")
 
-    edited_reference_message = _(u'message_reference_edited',
-                                 default=u'Reference edited.')
+    edited_reference_message = _(
+        u"message_reference_edited", default=u"Reference edited."
+    )
 
     kwargs = {
-        'status':'success_add_reference',
-        'context':reference_obj,
-        'fieldset':reference_source_fieldset,
-        'field':reference_source_field,
-        'reference_focus':reference_source_field,
-        }
+        "status": "success_add_reference",
+        "context": reference_obj,
+        "fieldset": reference_source_fieldset,
+        "field": reference_source_field,
+        "reference_focus": reference_source_field,
+    }
     addStatusMessage(REQUEST, portal_status_message)
     return state.set(**kwargs)
 
@@ -96,24 +96,23 @@ if state.errors:
             fields.append((s, f_name))
     for s_name, f_name in fields:
         if errors.has_key(f_name):
-            REQUEST.set('fieldset', s_name)
+            REQUEST.set("fieldset", s_name)
             addStatusMessage(REQUEST, portal_status_message)
-            return state.set(
-                status='failure',
-                context=new_context)
+            return state.set(status="failure", context=new_context)
 
 if not state.errors:
     from Products.Archetypes.utils import transaction_note
-    transaction_note('Edited %s %s at %s' % (new_context.meta_type,
-                                             new_context.title_or_id(),
-                                             new_context.absolute_url()))
 
-if not REQUEST.get('form.button.save_and_submit', None) is None:
-    wftool = getToolByName(new_context, 'portal_workflow')
-    if not wftool.getInfoFor(new_context, 'review_state') in ('published','pending'):
-        wftool.doActionFor(new_context, 'submit')
-        portal_status_message = _(u'Submitted for publication.')
+    transaction_note(
+        "Edited %s %s at %s"
+        % (new_context.meta_type, new_context.title_or_id(), new_context.absolute_url())
+    )
+
+if not REQUEST.get("form.button.save_and_submit", None) is None:
+    wftool = getToolByName(new_context, "portal_workflow")
+    if not wftool.getInfoFor(new_context, "review_state") in ("published", "pending"):
+        wftool.doActionFor(new_context, "submit")
+        portal_status_message = _(u"Submitted for publication.")
 
 addStatusMessage(REQUEST, portal_status_message)
-return state.set(status='success',
-                 context=new_context)
+return state.set(status="success", context=new_context)

@@ -12,18 +12,20 @@ from Products.ZCTextIndex.ParseTree import ParseError
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
 
-results=[]
-catalog=context.portal_catalog
-indexes=catalog.indexes() + quote_logic_indexes
-query={}
-show_query=show_all
+results = []
+catalog = context.portal_catalog
+indexes = catalog.indexes() + quote_logic_indexes
+query = {}
+show_query = show_all
 second_pass = {}
 
 if REQUEST is None:
     REQUEST = context.REQUEST
 
+
 def quotestring(s):
     return '"%s"' % s
+
 
 def quotequery(s):
     if not s:
@@ -34,17 +36,17 @@ def quotequery(s):
         raise
     except:
         return s
-    tokens = ('OR', 'AND', 'NOT')
-    s_tokens = ('OR', 'AND')
+    tokens = ("OR", "AND", "NOT")
+    s_tokens = ("OR", "AND")
     check = (0, -1)
     for idx in check:
         if terms[idx].upper() in tokens:
             terms[idx] = quotestring(terms[idx])
     for idx in range(1, len(terms)):
-        if (terms[idx].upper() in s_tokens and
-            terms[idx-1].upper() in tokens):
+        if terms[idx].upper() in s_tokens and terms[idx - 1].upper() in tokens:
             terms[idx] = quotestring(terms[idx])
-    return ' '.join(terms)
+    return " ".join(terms)
+
 
 # We need to quote parentheses when searching text indices (we use
 # quote_logic_indexes as the list of text indices)
@@ -54,26 +56,29 @@ def quote_bad_chars(s):
         s = s.replace(char, quotestring(char))
     return s
 
+
 def ensureFriendlyTypes(query):
-    ploneUtils = getToolByName(context, 'plone_utils')
-    portal_type = query.get('portal_type', [])
+    ploneUtils = getToolByName(context, "plone_utils")
+    portal_type = query.get("portal_type", [])
     if not same_type(portal_type, []):
         portal_type = [portal_type]
-    Type = query.get('Type', [])
+    Type = query.get("Type", [])
     if not same_type(Type, []):
         Type = [Type]
     typesList = portal_type + Type
     if not typesList:
         friendlyTypes = ploneUtils.getUserFriendlyTypes(typesList)
-        query['portal_type'] = friendlyTypes
+        query["portal_type"] = friendlyTypes
+
 
 def rootAtNavigationRoot(query):
-    if 'path' not in query:
-        query['path'] = getNavigationRoot(context)
+    if "path" not in query:
+        query["path"] = getNavigationRoot(context)
+
 
 for k in REQUEST.keys():
     # Avoid creating a session implicitly.
-    if k == 'SESSION':
+    if k == "SESSION":
         continue
     v = REQUEST.get(k)
     if v and k in indexes:
@@ -81,21 +86,21 @@ for k in REQUEST.keys():
             v = quote_bad_chars(v)
             if quote_logic:
                 v = quotequery(v)
-        if k == 'isbn':
-            v = ''.join(v.split('-'))
-            v = ''.join(v.split(' '))
+        if k == "isbn":
+            v = "".join(v.split("-"))
+            v = "".join(v.split(" "))
         query[k] = v
         show_query = 1
-    elif k.endswith('_usage'):
+    elif k.endswith("_usage"):
         key = k[:-6]
-        param, value = v.split(':')
+        param, value = v.split(":")
         second_pass[key] = {param: value}
-    elif k in ('sort_on', 'sort_order', 'sort_limit'):
-        if k == 'sort_limit' and not same_type(v, 0):
+    elif k in ("sort_on", "sort_order", "sort_limit"):
+        if k == "sort_limit" and not same_type(v, 0):
             query[k] = int(v)
         else:
             query[k] = v
-    elif k in ('fq', 'fl', 'facet') or k.startswith('facet.'):
+    elif k in ("fq", "fl", "facet") or k.startswith("facet."):
         query[k] = v
 
 
@@ -103,7 +108,7 @@ for k, v in second_pass.items():
     qs = query.get(k)
     if qs is None:
         continue
-    query[k] = q = {'query': qs}
+    query[k] = q = {"query": qs}
     q.update(v)
 
 # doesn't normal call catalog unless some field has been queried
@@ -115,7 +120,7 @@ if show_query:
             ensureFriendlyTypes(query)
         if use_navigation_root:
             rootAtNavigationRoot(query)
-        query['show_inactive'] = show_inactive
+        query["show_inactive"] = show_inactive
         results = catalog(**query)
     except ParseError:
         pass
@@ -128,10 +133,10 @@ paths = []
 result_to_remove = []
 results = [x for x in results if x]
 for result in results:
-    paths.append(result.getPath().rstrip('/') + '/')
+    paths.append(result.getPath().rstrip("/") + "/")
 
 for result in results:
-    if len([x for x in paths if result.getPath().rstrip('/') + '/' in x]) > 1:
+    if len([x for x in paths if result.getPath().rstrip("/") + "/" in x]) > 1:
         result_to_remove.append(result)
 
 return [x for x in results if x not in result_to_remove]

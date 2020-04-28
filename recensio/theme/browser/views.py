@@ -33,37 +33,44 @@ log = logging.getLogger(__name__)
 def listRecensioSupportedLanguages():
     portal = getSite()
     vocab = portal.portal_languages.listSupportedLanguages()
-    terms = [(x[0], _languagelist[x[0]][u'native']) for x in vocab]
+    terms = [(x[0], _languagelist[x[0]][u"native"]) for x in vocab]
     return DisplayList(terms)
+
 
 def listAvailableContentLanguages():
     registry = queryUtility(IRegistry)
     settings = registry.forInterface(IRecensioSettings)
-    allowed_langs = getattr(
-        settings, 'available_content_languages', ''
-        ).replace('\r', '').split('\n')
+    allowed_langs = (
+        getattr(settings, "available_content_languages", "")
+        .replace("\r", "")
+        .split("\n")
+    )
     terms = []
     if allowed_langs != [u""]:
-        terms = [(x, _languagelist[x][u'native'])
-                 for x in allowed_langs]
+        terms = [(x, _languagelist[x][u"native"]) for x in allowed_langs]
         terms.sort()
     return DisplayList(terms)
+
 
 def recensioTranslate(msgid):
     portal = getSite()
     language = portal.portal_languages.getPreferredLanguage()
-    return translate(Message(msgid, domain="recensio"),
-                     target_language=language)
+    return translate(Message(msgid, domain="recensio"), target_language=language)
+
 
 def editorTypes():
-    return DisplayList((
+    return DisplayList(
+        (
             ("herausgeber", recensioTranslate(u"label_abbrev_herausgeber"),),
             ("bearbeiter", recensioTranslate(u"label_abbrev_bearbeiter"),),
             ("redaktion", recensioTranslate(u"label_abbrev_redaktion"),),
-            ))
+        )
+    )
+
 
 class RecensioHelperView(BrowserView):
     """ General purpose view methods for Recensio """
+
     implements(IRecensioHelperView)
 
     @property
@@ -72,13 +79,12 @@ class RecensioHelperView(BrowserView):
         Ajouter une ... """
         portal = getSite()
 
-        fti = portal.portal_types.getTypeInfo(self.context)#
+        fti = portal.portal_types.getTypeInfo(self.context)  #
         itemtype = fti.Title()
 
         lang = portal.portal_languages.getPreferredLanguage()
-        if (fti.content_meta_type.startswith("Presentation")
-            and lang == "fr"):
-            itemtype = "heading_add_%s_title" %fti.content_meta_type
+        if fti.content_meta_type.startswith("Presentation") and lang == "fr":
+            itemtype = "heading_add_%s_title" % fti.content_meta_type
 
         return itemtype
 
@@ -105,11 +111,11 @@ class RecensioHelperView(BrowserView):
         return p_title
 
     def normalize_isbns_in_text(self, text):
-        expr = re.compile(u'[0-9]+[ \-0-9]*[0-9]+')
+        expr = re.compile(u"[0-9]+[ \-0-9]*[0-9]+")
         for match in expr.findall(text):
             isbn = match
-            isbn = ''.join(isbn.split('-'))
-            isbn = ''.join(isbn.split(' '))
+            isbn = "".join(isbn.split("-"))
+            isbn = "".join(isbn.split(" "))
             text = text.replace(match, isbn)
         return text
 
@@ -118,9 +124,12 @@ class RecensioHelperView(BrowserView):
         a list of tuples as acquired by calling items() on a vocabulary dict.
         """
         return sum(
-            [item[0] in values or
-             self.contains_one_of(dict(item[1][1] or {}).items(), values)
-             for item in items])
+            [
+                item[0] in values
+                or self.contains_one_of(dict(item[1][1] or {}).items(), values)
+                for item in items
+            ]
+        )
 
     def get_subtree(self, value):
         """ Retrieve the next level of a recursive vocabulary dict.
@@ -142,9 +151,10 @@ class CreateNewPresentationView(BrowserView):
         membersfolder = self.context.portal_membership.getMembersFolder()
         homefolder = self.context.portal_membership.getHomeFolder()
         if homefolder is None:
-            return self.request.RESPONSE.redirect('login_form')
+            return self.request.RESPONSE.redirect("login_form")
         return self.request.RESPONSE.redirect(
-            membersfolder.absolute_url()+'/add_new_item')
+            membersfolder.absolute_url() + "/add_new_item"
+        )
 
 
 class ManageMyPresentationsView(BrowserView):
@@ -153,8 +163,9 @@ class ManageMyPresentationsView(BrowserView):
     def __call__(self):
         homefolder = self.context.portal_membership.getHomeFolder()
         if homefolder is None:
-            return self.request.RESPONSE.redirect('login_form')
+            return self.request.RESPONSE.redirect("login_form")
         return self.request.RESPONSE.redirect(homefolder.absolute_url())
+
 
 class RedirectToPublication(BrowserView):
     implements(IRedirectToPublication)
@@ -162,34 +173,33 @@ class RedirectToPublication(BrowserView):
     def __call__(self):
         pub = IParentGetter(self).get_parent_object_of_type("Publication")
         uid = self.context.UID()
-        return self.request.RESPONSE.redirect(pub.absolute_url()+
-                                              "?expand:list="+uid+"#"+uid)
+        return self.request.RESPONSE.redirect(
+            pub.absolute_url() + "?expand:list=" + uid + "#" + uid
+        )
 
 
 class DatenschutzView(BrowserView):
-    template = ViewPageTemplateFile('templates/datenschutz.pt')
-    template_piwik_opt_out = ViewPageTemplateFile('templates/piwik_opt_out.pt')
+    template = ViewPageTemplateFile("templates/datenschutz.pt")
+    template_piwik_opt_out = ViewPageTemplateFile("templates/piwik_opt_out.pt")
 
     def __call__(self):
         return self.template(self)
 
     def getText(self):
         base_text = safe_unicode(self.context.getText())
-        if u'[PIWIK-OPT-OUT]' in base_text:
+        if u"[PIWIK-OPT-OUT]" in base_text:
             text = base_text.replace(
-                u'[PIWIK-OPT-OUT]',
-                self.template_piwik_opt_out(self),
+                u"[PIWIK-OPT-OUT]", self.template_piwik_opt_out(self),
             )
         else:
-            text = '\n'.join((base_text, self.template_piwik_opt_out(self)))
+            text = "\n".join((base_text, self.template_piwik_opt_out(self)))
         return text
 
 
 class EnsureCanonical(BrowserView, CanonicalURLHelper):
-
     def __call__(self):
         canonical_url = self.get_canonical_url()
-        if canonical_url != self.request['ACTUAL_URL']:
+        if canonical_url != self.request["ACTUAL_URL"]:
             return self.request.response.redirect(canonical_url, status=301)
         return self.context()
 
@@ -205,21 +215,22 @@ class SwitchPortal(object):
     def __exit__(self, type, value, traceback):
         setSite(self.original_portal)
         if value:
-            log.warn('Could not get portal url of ' + self.portal.id,
-                     exc_info=(type, value, traceback))
+            log.warn(
+                "Could not get portal url of " + self.portal.id,
+                exc_info=(type, value, traceback),
+            )
             return True
 
 
 class CrossPlatformMixin(object):
-
     def get_toggle_cross_portal_url(self):
         new_form = self.request.form.copy()
-        new_form['use_navigation_root'] = not new_form.get('use_navigation_root', True)
-        return '?'.join((self.request['ACTUAL_URL'], make_query(new_form)))
+        new_form["use_navigation_root"] = not new_form.get("use_navigation_root", True)
+        return "?".join((self.request["ACTUAL_URL"], make_query(new_form)))
 
     @instance.memoize
     def get_foreign_portal_url(self, portal_id):
-        other_portal = self.context.unrestrictedTraverse('/' + portal_id)
+        other_portal = self.context.unrestrictedTraverse("/" + portal_id)
         external_url = None
         with SwitchPortal(other_portal):
             registry = getUtility(IRegistry)
@@ -228,29 +239,31 @@ class CrossPlatformMixin(object):
         return external_url
 
     def get_foreign_url(self, result):
-        portal_id = result.getPath().split('/')[1]
-        other_portal = self.context.unrestrictedTraverse('/' + portal_id)
+        portal_id = result.getPath().split("/")[1]
+        other_portal = self.context.unrestrictedTraverse("/" + portal_id)
         external_url = self.get_foreign_portal_url(portal_id)
         if not external_url:
             return result.getURL()
-        return result.getURL().replace(
-            other_portal.absolute_url(), external_url)
+        return result.getURL().replace(other_portal.absolute_url(), external_url)
 
     @instance.memoize
     def get_all_portal_ids(self):
         this_portal = getSite()
         app = aq_parent(this_portal)
-        return app.objectIds('Plone Site')
+        return app.objectIds("Plone Site")
 
     def get_portal_link_snippet(self):
         portal_ids = self.get_all_portal_ids()
         link_tpl = '<a href="{1}">{0}</a>'
         portal_infos = []
         for portal_id in portal_ids:
-            portal_title = self.context.restrictedTraverse('/' + portal_id).Title()
-            portal_infos.append(
-                (portal_title, self.get_foreign_portal_url(portal_id)))
-        link_snippet = ', '.join([
-            link_tpl.format(*portal_info) for portal_info in portal_infos
-            if portal_info[1]])
+            portal_title = self.context.restrictedTraverse("/" + portal_id).Title()
+            portal_infos.append((portal_title, self.get_foreign_portal_url(portal_id)))
+        link_snippet = ", ".join(
+            [
+                link_tpl.format(*portal_info)
+                for portal_info in portal_infos
+                if portal_info[1]
+            ]
+        )
         return link_snippet

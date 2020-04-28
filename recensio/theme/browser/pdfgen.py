@@ -25,7 +25,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from recensio.contenttypes import contenttypesMessageFactory as _
 
-log = logging.getLogger('recensio.theme/pdfgen.py')
+log = logging.getLogger("recensio.theme/pdfgen.py")
 
 COPYRIGHT = u"""This article may be downloaded and/or used within the
 private copying exemption. Any further use without permission of the
@@ -38,12 +38,13 @@ Nutzungen sind ohne weitere Genehmigung der Rechteinhaber nur im
 Rahmen der gesetzlichen Schrankenbestimmungen (§§ 44a-63a UrhG)
 zulässig."""
 
+
 class GeneratePdfRecension(BrowserView):
     """View to generate PDF cover sheets
     """
 
-    logo_main = '++resource++recensio.theme.images/logo2_fuer-Deckblatt.jpg'
-    logo_watermark = '++resource++recensio.theme.images/logo_icon_watermark.jpg'
+    logo_main = "++resource++recensio.theme.images/logo2_fuer-Deckblatt.jpg"
+    logo_watermark = "++resource++recensio.theme.images/logo_icon_watermark.jpg"
 
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
@@ -58,19 +59,20 @@ class GeneratePdfRecension(BrowserView):
             if pdf:
                 pdf_blob = pdf["blob"]
                 original = pdf_blob.open().name
-                fd, new_path = tempfile.mkstemp(prefix = 'final',
-                                                suffix = '.pdf')
-                os.close(fd) #2463
+                fd, new_path = tempfile.mkstemp(prefix="final", suffix=".pdf")
+                os.close(fd)  # 2463
                 error_code = os.system(
-                    'ulimit -t 5;pdftk %s %s cat output %s' % (
-                    cover, original, new_path
-                    )
-                    )
+                    "ulimit -t 5;pdftk %s %s cat output %s"
+                    % (cover, original, new_path)
+                )
             if error_code or not pdf:
                 IStatusMessage(self.request).add(
-                    _(u'Creating the pdf has failed! Please try again '
-                      'or ask for support'),
-                    'error')
+                    _(
+                        u"Creating the pdf has failed! Please try again "
+                        "or ask for support"
+                    ),
+                    "error",
+                )
                 return
             else:
                 pdfdata = file(new_path).read()
@@ -83,40 +85,33 @@ class GeneratePdfRecension(BrowserView):
         self._prepareHeader(len(pdfdata), "%s.pdf" % IUUID(self.context))
         return pdfdata
 
-    def _prepareHeader(self, contentlength, filename='review.pdf'):
+    def _prepareHeader(self, contentlength, filename="review.pdf"):
         R = self.request.RESPONSE
-        R.setHeader('content-type', 'application/pdf')
-        R.setHeader('content-disposition', 'inline; filename="%s"' % filename)
-        R.setHeader('content-length', str(contentlength))
+        R.setHeader("content-type", "application/pdf")
+        R.setHeader("content-disposition", 'inline; filename="%s"' % filename)
+        R.setHeader("content-length", str(contentlength))
 
     def _drawImage(self, fileurl, x, y, width, height, **kw):
         res = self.context.restrictedTraverse(fileurl)
         fullPath = res.context.path
-        self.canvas.drawImage(fullPath,
-            x, y, width, height,
-            **kw)
+        self.canvas.drawImage(fullPath, x, y, width, height, **kw)
 
     def _genCoverSheet(self):
-        file_handle, tmpfile = tempfile.mkstemp(prefix='cover', suffix='.pdf')
-        os.close(file_handle) #2463
+        file_handle, tmpfile = tempfile.mkstemp(prefix="cover", suffix=".pdf")
+        os.close(file_handle)  # 2463
         self.canvas = cover = canvas.Canvas(tmpfile, pagesize=A4)
-        pwidth,pheight = A4
+        pwidth, pheight = A4
 
-        language = self.request.get('language', '')
+        language = self.request.get("language", "")
         # I want the syntax for translation look as similar as the real thing
         # But not similar enough for freaking out the translation string
         # extractors
-        _X = lambda x: translate(x, target_language = language)
+        _X = lambda x: translate(x, target_language=language)
         # register the font (unicode-aware)
-        font =  os.path.abspath(__file__ +\
-                                '/../../data/DejaVuSerif.ttf')
-        pdfmetrics.registerFont( TTFont('DejaVu-Serif', font) )
+        font = os.path.abspath(__file__ + "/../../data/DejaVuSerif.ttf")
+        pdfmetrics.registerFont(TTFont("DejaVu-Serif", font))
 
-        self._drawImage(self.logo_main,
-                        0,
-                        pheight - 4.21*cm,
-                        28.28*cm,
-                        4.21*cm)
+        self._drawImage(self.logo_main, 0, pheight - 4.21 * cm, 28.28 * cm, 4.21 * cm)
 
         pdf_watermark = self.context.restrictedTraverse(self.logo_watermark)
         pdf_watermark_path = pdf_watermark.context.path
@@ -134,45 +129,47 @@ class GeneratePdfRecension(BrowserView):
             6 * cm,
             6 * cm,
             preserveAspectRatio=True,
-            anchor='sw',
-            mask='auto' # To support transparent PNGs
-            )
-        cover.setFont('DejaVu-Serif', 10)
+            anchor="sw",
+            mask="auto",  # To support transparent PNGs
+        )
+        cover.setFont("DejaVu-Serif", 10)
         cover.setFillColor(grey)
-        citation = translate(_(u'label_citation_style',
-                               default=u'citation style'),
-                             target_language=language)
-        cover.drawString(2.50*cm, pheight-5.5*cm, citation)
-        cover.drawString(2.50*cm, pheight-21.5*cm, u'copyright')
+        citation = translate(
+            _(u"label_citation_style", default=u"citation style"),
+            target_language=language,
+        )
+        cover.drawString(2.50 * cm, pheight - 5.5 * cm, citation)
+        cover.drawString(2.50 * cm, pheight - 21.5 * cm, u"copyright")
 
-        style = ParagraphStyle('citation style',
-                               fontName = 'DejaVu-Serif',
-                               fontSize = 10, textColor = grey)
+        style = ParagraphStyle(
+            "citation style", fontName="DejaVu-Serif", fontSize=10, textColor=grey
+        )
         try:
             P = Paragraph(_(self.context.get_citation_string()), style)
-        except UnicodeDecodeError:#ATF
+        except UnicodeDecodeError:  # ATF
             P = Paragraph(self.context.get_citation_string(), style)
-        realwidth, realheight = P.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
-        P.drawOn(cover, 6.20*cm, pheight-6.5*cm-realheight)
+        realwidth, realheight = P.wrap(pwidth - 6.20 * cm - 2.5 * cm, 10 * cm)
+        P.drawOn(cover, 6.20 * cm, pheight - 6.5 * cm - realheight)
         # A small calculation, how much this paragaph would overlap
         # into the next paragraph. If the number is positive, we have
         # an overlap, and apply it to the initial offset
-        overlap  = (pheight - 8.5 * cm) - (pheight - 6.5 * cm - realheight)
-        overlap += 15 # padding
+        overlap = (pheight - 8.5 * cm) - (pheight - 6.5 * cm - realheight)
+        overlap += 15  # padding
 
-        if hasattr(self.context, 'getFirstPublicationData'):
-            msgs = ['First published: ' + x
-                    for x in self.context.getFirstPublicationData()]
+        if hasattr(self.context, "getFirstPublicationData"):
+            msgs = [
+                "First published: " + x for x in self.context.getFirstPublicationData()
+            ]
             offset = max(overlap, 0)
             for msg in msgs:
-                P2 = Paragraph(msg, style) # msg got escaped"
-                realwidth, realheight = P2.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
-                P2.drawOn(cover, 6.20*cm, pheight-8.5*cm-realheight - offset)
+                P2 = Paragraph(msg, style)  # msg got escaped"
+                realwidth, realheight = P2.wrap(pwidth - 6.20 * cm - 2.5 * cm, 10 * cm)
+                P2.drawOn(cover, 6.20 * cm, pheight - 8.5 * cm - realheight - offset)
                 offset += realheight
 
         P3 = Paragraph(_X(self.context.getLicense()), style)
-        realwidth, realheight = P3.wrap(pwidth-6.20*cm-2.5*cm, 10*cm)
-        P3.drawOn(cover, 6.20*cm, pheight-22.5*cm-realheight)
+        realwidth, realheight = P3.wrap(pwidth - 6.20 * cm - 2.5 * cm, 10 * cm)
+        P3.drawOn(cover, 6.20 * cm, pheight - 22.5 * cm - realheight)
 
         cover.showPage()
         cover.save()

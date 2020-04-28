@@ -33,6 +33,7 @@ class IGeneratePdfRecension(Interface):
         """Generate and return a PDF version of the recension
         """
 
+
 class IBrowseTopics(Interface):
     """Interface for topical browsing (ddcPlace etc.)
     """
@@ -40,6 +41,7 @@ class IBrowseTopics(Interface):
     def __call__(self):
         """render the view
         """
+
 
 class INewsletterView(Interface):
     """ newsletter overview including subscription """
@@ -51,6 +53,7 @@ class INewsletterView(Interface):
 class IFilterSearchView(Interface):
     """Interface for FilterSearchView
     """
+
     def __call__():
         """Render the view"""
 
