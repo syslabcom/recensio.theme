@@ -243,21 +243,9 @@
                 <span class="documentByLine"
                       >
 
-                    <span class="documentEffective" tal:condition="python:toLocalizedTime(result.EffectiveDate, long_format=1)">
-                        <span i18n:translate="box_effective">
-                        published
-                        </span>
-                        <span
-                        tal:replace="python:toLocalizedTime(result.EffectiveDate, long_format=1)">
-                        August 16, 2001 at 23:35:59
-                        </span>
-                    </span>
-
-
                     <span tal:define="tags result/Subject|nothing"
                           tal:condition="tags">
-                        &mdash;
-                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
+                        <tal:filedunder i18n:translate="label_filed_under">Schlagw&ouml;rter:</tal:filedunder>
                             <span tal:repeat="tag tags">
                                 <a href=""
                                    class="link-tag"
