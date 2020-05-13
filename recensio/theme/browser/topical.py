@@ -74,7 +74,7 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
         if "set_language" in query:
             del query["set_language"]
         for key in query.keys():
-            if query[key] == "":
+            if query[key] in ["", []]:
                 del query[key]
         if form.get("use_navigation_root", True) and "path" not in query:
             query["path"] = getNavigationRoot(self.context)
