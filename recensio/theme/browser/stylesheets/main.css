@@ -651,16 +651,15 @@ div#browsing-menu .used_facet {
 }
 .submenu_title {
     white-space: nowrap;
+    clear: both;
 }
 .submenu_title a {
     font-weight: bold;
+    float: left;
+    width: 2em;
 }
 .submenu_title .delimiterbox {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-bottom: 3px;  
-    width: 155px;
+    white-space: normal;
 }
 .template-filtered-search .submenu_title a,
 .template-search .submenu_title a {
@@ -672,6 +671,9 @@ div#browsing-menu .used_facet {
     text-decoration: underline;
 }
 .template-browse-topics .submenu_title span {
+    float: left;
+    width: 12em;
+    padding: 0.15em 0 0.1em;
 }
 .template-browse-topics .submenu_title {
     cursor: pointer;
