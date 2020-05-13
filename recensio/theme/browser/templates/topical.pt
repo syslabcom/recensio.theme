@@ -72,8 +72,7 @@
 
             <tal:results repeat="result batch">
               <tal:has_results condition="result">
-                <tal:entry define="result_authors result/listAuthors;
-                                   result_url result/getURL;
+                <tal:entry define="result_url result/getURL;
                                    result_type result/portal_type;
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
@@ -95,10 +94,10 @@
                          i18n:attributes="alt; title;" />
                   <div class="metadata">
 
-                    <tal:block condition="result/listAuthors">
+                    <tal:block condition="result/listAuthorsAndEditors">
                         <span class="authors" tal:attributes="class string:authors">
                         <span class="author" tal:attributes="class string:author"
-                                tal:repeat="author result/listAuthors">
+                                tal:repeat="author result/listAuthorsAndEditors">
                             <a tal:content="author"
                                tal:attributes="href string:$portal_url/search?authors:list=$author&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
                     </tal:block>
@@ -211,7 +210,8 @@
                   <metal:macro define-macro="submenu">
                   <div class="submenu_title empty"
                        tal:attributes="id python:'sub-title-' + item['name'].replace(':','-').replace('.','_');
-                                       class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
+                                       class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');
+                                       title item/voc;">
                     <svg class="togglebutton closed" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="9" height="25.2" viewBox="0 0 9 25.2">
                         <path d="m 8.55,12.600006 q 0,0.3654 -0.2664,0.6336 l -6.3,6.3 q -0.2664,0.2664 -0.6336,0.2664 -0.3672,0 -0.6336,-0.2664 Q 0.45,19.267206 0.45,18.900006 V 6.3000064 q 0,-0.3654 0.2664,-0.6336 0.2664,-0.2682 0.6336,-0.2664 0.3672,0.0018 0.6336,0.2664 l 6.3,6.2999996 q 0.2664,0.2664 0.2664,0.6336 z"></path>
                     </svg>
@@ -229,10 +229,11 @@
                       <a href="#"
                          tal:condition="not:exists:item/clearquery"
                          tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
-                                         class python:item.has_key('clearquery') and 'selected_facet' or '';" >
+                                         class python:item.has_key('clearquery') and 'selected_facet' or '';
+                                         " >
                         <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
                       </a>
-                      <span tal:omit-tag="">
+                      <span>
                         <tal:title tal:replace="item/voc"/>
                         <tal:count tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                       </span>
