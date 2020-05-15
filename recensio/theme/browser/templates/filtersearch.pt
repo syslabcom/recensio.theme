@@ -137,8 +137,6 @@
                                    result_type result/portal_type;
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
-                                   has_issn python:result['isbn'] and result_type in ['Review Journal', 'Presentation Article Review'];
-                                   has_isbn python:result['isbn'] and not has_issn;
                                    listAuthors python:result['listAuthors'] or [];
                                    listAuthorsAndEditors python:result['listAuthorsAndEditors'] or [];
                                    listEditors python:[ed for ed in listAuthorsAndEditors if ed not in listAuthors];
@@ -182,9 +180,7 @@
                               </tal:block>
                           </tal:block>
                           <tal:block tal:content="result/pretty_title_or_id" /><tal:block condition="python: getattr(result, 'subtitle', False) and (result.pretty_title_or_id()[-1] not in '!?:;.,' or False)">.</tal:block><tal:block condition="result/subtitle | nothing"> </tal:block></a></span><tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
-                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="has_isbn">, ISBN </tal:block><tal:block tal:condition="has_issn">, ISSN </tal:block>
-                  <span class="isbn" tal:condition="real_ob/getIsbn | nothing" tal:content="real_ob/getIsbn" />
-                  <span class="isbn" tal:condition="real_ob/getIssn | nothing" tal:content="real_ob/getIssn" />
+                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
 
                   <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                         <br /><tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
