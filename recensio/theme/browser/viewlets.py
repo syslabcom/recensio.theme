@@ -139,7 +139,7 @@ class publicationlisting(ViewletBase):
             return []
         if issue is None:
             review_objs = self.parent[volume].getFolderContents(
-                {"portal_type": REVIEW_TYPES, "sort_on": "getAllAuthorData",},
+                {"portal_type": REVIEW_TYPES, "sort_on": "getObjPositionInParent",},
                 # XXX Could avoid getting objects by adding getDecoratedTitle
                 # to catalog metadata
                 full_objects=True,
@@ -148,7 +148,7 @@ class publicationlisting(ViewletBase):
             if not issue in self.parent[volume].objectIds():
                 return []
             review_objs = self.parent[volume][issue].getFolderContents(
-                {"portal_type": REVIEW_TYPES, "sort_on": "getAllAuthorData",},
+                {"portal_type": REVIEW_TYPES, "sort_on": "getObjPositionInParent",},
                 # XXX Could avoid getting objects by adding getDecoratedTitle
                 # to catalog metadata
                 full_objects=True,
