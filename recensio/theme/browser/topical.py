@@ -69,6 +69,10 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
                     for x in form[self.queryparam]
                     if x.split(":")[0].strip("+") in self.facet_fields
                 ]
+        form_facet_fields = form.get("facet.field", [])
+        if not isinstance(form_facet_fields, list):
+            form_facet_fields = [form_facet_fields]
+        form["facet.field"] = list(set(form_facet_fields + self.facet_fields))
         self.form = form
         query.update(self.form)
         if "set_language" in query:
