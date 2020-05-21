@@ -77,6 +77,7 @@
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
                                    item_icon python:plone_view.getIcon(result);
+                                   re python:result_type == 'Review Exhibition';
                                    portal_path context/portal_url/getPortalPath;
                                    result_portal python:result.getPath().split('/')[1];
                                    result_foreign python:result_portal != portal_path[1:];
@@ -88,7 +89,7 @@
                       tal:attributes="class result_class">
                     <img width="32" height="32"
                          tal:condition="python:is_review or is_presentation"
-                         tal:attributes="src python:(is_review and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
+                       tal:attributes="src python:(re and '%s/++resource++recensio.theme.images/Ausstellung32.png' or is_review and '%s/++resource++recensio.theme.images/Aufsatz32.png' or '%s/++resource++recensio.theme.images/Internetresource32.png') % portal_url;
                                          alt result_type;
                                          title result_type;"
                          i18n:attributes="alt; title;" />
@@ -101,6 +102,9 @@
                             <a tal:content="author"
                                tal:attributes="href string:$portal_url/search?authors:list=$author&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
                     </tal:block>
+
+                    <span class="authors"
+                            tal:condition="result/exhibitor|nothing"><tal:authors tal:replace="structure result/exhibitor">Aussteller</tal:authors>:</span>
 
                     <span class="title">
                         <a
@@ -115,7 +119,7 @@
                                   <span class="volume-title" tal:content="volume_title" /><tal:c condition="volume_title">, </tal:c>
                               </tal:block>
                           </tal:block>
-                        <tal:title-punctuated condition="python: result.punctuated_title_and_subtitle" content="python: result.punctuated_title_and_subtitle"/><tal:title-fallback condition="python: not result.punctuated_title_and_subtitle"><tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /><tal:block replace="result/subtitle | nothing" /></tal:title-fallback></a></span><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
+                          <tal:title-punctuated condition="python: result.punctuated_title_and_subtitle" content="python: result.punctuated_title_and_subtitle"/><tal:title-fallback condition="python: not result.punctuated_title_and_subtitle"><tal:block tal:condition="not:re" tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /><tal:block tal:condition="re" i18n:translate="">Dauerausstellung</tal:block><tal:block tal:condition="not:re" replace="result/subtitle | nothing" /></tal:title-fallback></a></span><tal:dates condition="result/listDates|nothing">, <span tal:content="result/listDates"></span></tal:dates><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
                         <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
 
                         <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
