@@ -157,7 +157,14 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
                 presentations=presentations.get(safe_unicode(x), 0),
                 comments=comments.get(safe_unicode(x), 0),
             )
-            for x in sorted(author_names)
+            for x in sorted(
+                author_names,
+                key=lambda name: safe_unicode(name)
+                .replace(u"ä", u"a")
+                .replace(u"ö", u"o")
+                .replace(u"ü", u"u")
+                .replace(u"ß", u"ss"),
+            )
         ]
         authors = filter(
             lambda x: x["presentations"] + x["reviews"] + (1 if x["comments"] else 0)
