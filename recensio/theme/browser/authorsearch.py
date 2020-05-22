@@ -160,6 +160,7 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
             for x in sorted(
                 author_names,
                 key=lambda name: safe_unicode(name)
+                .strip(", ")
                 .replace(u"ä", u"a")
                 .replace(u"ö", u"o")
                 .replace(u"ü", u"u")
