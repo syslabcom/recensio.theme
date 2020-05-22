@@ -2546,6 +2546,15 @@ position:relative;
 width:32px;
 height:32px;
 }
+
+#authorsearch-alphabet {
+    font-size: 1.5em;
+    margin: 1em 0 1.5em 0;
+}
+
+#authorsearch-alphabet a {
+    margin-right: 5px;
+}
 .letter_not_available {
     color:lightgrey;
 }
