@@ -497,8 +497,8 @@ div#portal-advanced-search {
 
 /* ---------------------------- */
 
-ul.authors li, li.inline_listing {
-   display: inline !important;
+#content ul.authors li, li.inline_listing {
+   display: inline;
 }
 li.inline_listing.authorname {
    width: 192px;
@@ -557,6 +557,11 @@ div#authorsearch-query input.text {
    line-height: 2em;
 }
 
+.authorsearch .column {
+    width: 33%;
+    float: left;
+    padding-bottom: 1em;
+}
 .authors {
    padding:0;
    margin-top:0;
@@ -569,8 +574,7 @@ div#authorsearch-query input.text {
 }
 
 ul.authors li.author {
-   float:left;
-   width:32%;
+   float:none;
 }
 
 .crossportalsearchform {
@@ -2550,6 +2554,15 @@ padding-right:5px;
 position:relative;
 width:32px;
 height:32px;
+}
+
+#authorsearch-alphabet {
+    font-size: 1.5em;
+    margin: 1em 0 1.5em 0;
+}
+
+#authorsearch-alphabet a {
+    margin-right: 5px;
 }
 .letter_not_available {
     color:lightgrey;

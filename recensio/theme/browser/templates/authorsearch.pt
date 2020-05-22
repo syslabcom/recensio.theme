@@ -50,6 +50,8 @@
                        b_size python:30; b_size request/b_size | b_size;
                        b_start python:0; b_start request/b_start | b_start;
                        batch python:Batch(view.authors, b_size, int(b_start), orphan=0);
+                       column_size python:b_size/3;
+                       columns python:[Batch(batch, column_size, start) for start in range(0, len(batch), column_size)];
                        portal_url context/portal_url;"
            class="authorsearch">
 
@@ -75,57 +77,60 @@
           Es wurden keine Autoren gefunden, die Ihren Kriterien entsprechen.
         </div>
 
-        <ul class="authors" tal:condition="view/authors" tal:define="use_navigation_root request/use_navigation_root|python:True">
-          <li class="author" tal:repeat="author batch">
-            <ul tal:condition="author">
-              <li class="inline_listing">
-                <a href="."
-                   tal:condition="author/presentations"
-                   i18n:attributes="title label_all_presentations_author"
-                   title="All presentations of this author"
-                   tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
-                  <img i18n:attributes="alt label_all_presentations_author"
-                       alt="All presentations of this author"
-                       src="++resource++recensio.theme.images/InternetResource.png"/>
-                </a>
-                <div class="authorsearch_placeholder" tal:condition="not:author/presentations" />
-              </li>
-              <li class="inline_listing">
-                <a href="."
-                   tal:condition="author/reviews"
-                   i18n:attributes="title label_all_reviews_author"
-                   title="All reviews of this author"
-                   tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
-                  <img i18n:attributes="alt label_all_reviews_author"
-                       alt="All reviews of this author"
-                       src="++resource++recensio.theme.images/Aufsaetze.png" />
-                </a>
-                <div class="authorsearch_placeholder" tal:condition="not:author/reviews" />
-              </li>
-              <li class="inline_listing">
-                <a href="."
-                   tal:condition="author/comments"
-                   i18n:attributes="title label_all_comments_author"
-                   title="All comments of this author"
-                   tal:attributes="href string:$portal_url/search?commentators=${author/comments}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
-                  <img i18n:attributes="alt label_all_comments_author"
-                       alt="All comments of this author"
-                       src="++resource++recensio.theme.images/Monograph.png" />
-                </a>
-                <div class="authorsearch_placeholder" tal:condition="not:author/comments" />
-              </li>
-              <li class="inline_listing authorname">
-                <a href="."
-                   i18n:attributes="title label_all_items_author"
-                   title="All items of this author"
-                   tal:attributes="href string:$portal_url/search?authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}"
-                   tal:content="author/name">Author</a>
-              </li>
-            </ul>
-          </li>
-		  <div class="visualClear"></div>
-        </ul>
+        <div class="column" tal:repeat="column columns">
+          <ul class="authors" tal:condition="view/authors" tal:define="use_navigation_root request/use_navigation_root|python:True">
+            <li class="author" tal:repeat="author column">
+              <ul tal:condition="author/name|nothing">
+                <li class="inline_listing">
+                  <a href="."
+                    tal:condition="author/presentations"
+                    i18n:attributes="title label_all_presentations_author"
+                    title="All presentations of this author"
+                    tal:attributes="href string:$portal_url/search?portal_type:list=Presentation+Monograph&amp;portal_type:list=Presentation+Online+Resource&amp;portal_type:list=Presentation+Article+Review&amp;portal_type:list=Presentation+Collection&amp;authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
+                    <img i18n:attributes="alt label_all_presentations_author"
+                        alt="All presentations of this author"
+                        src="++resource++recensio.theme.images/InternetResource.png"/>
+                  </a>
+                  <div class="authorsearch_placeholder" tal:condition="not:author/presentations" />
+                </li>
+                <li class="inline_listing">
+                  <a href="."
+                    tal:condition="author/reviews"
+                    i18n:attributes="title label_all_reviews_author"
+                    title="All reviews of this author"
+                    tal:attributes="href string:$portal_url/search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
+                    <img i18n:attributes="alt label_all_reviews_author"
+                        alt="All reviews of this author"
+                        src="++resource++recensio.theme.images/Aufsaetze.png" />
+                  </a>
+                  <div class="authorsearch_placeholder" tal:condition="not:author/reviews" />
+                </li>
+                <li class="inline_listing">
+                  <a href="."
+                    tal:condition="author/comments"
+                    i18n:attributes="title label_all_comments_author"
+                    title="All comments of this author"
+                    tal:attributes="href string:$portal_url/search?commentators=${author/comments}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}">
+                    <img i18n:attributes="alt label_all_comments_author"
+                        alt="All comments of this author"
+                        src="++resource++recensio.theme.images/Monograph.png" />
+                  </a>
+                  <div class="authorsearch_placeholder" tal:condition="not:author/comments" />
+                </li>
+                <li class="inline_listing authorname">
+                  <a href="."
+                    i18n:attributes="title label_all_items_author"
+                    title="All items of this author"
+                    tal:attributes="href string:$portal_url/search?authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}"
+                    tal:content="author/name">Author</a>
+                </li>
+              </ul>
+            </li>
+            <div class="visualClear"></div>
+          </ul>
+        </div>
 
+        <div class="visualClear"></div>
 
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
