@@ -80,7 +80,7 @@
         <div class="column" tal:repeat="column columns">
           <ul class="authors" tal:condition="view/authors" tal:define="use_navigation_root request/use_navigation_root|python:True">
             <li class="author" tal:repeat="author column">
-              <ul tal:condition="author">
+              <ul tal:condition="author/name|nothing">
                 <li class="inline_listing">
                   <a href="."
                     tal:condition="author/presentations"
