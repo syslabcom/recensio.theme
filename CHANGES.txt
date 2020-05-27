@@ -9,7 +9,7 @@ Changelog
 - Browsing/Search: Tweaked results display. #SCR-338 #SCR-345
 - Review Exhibition: Support for permanent exhibitons. #SCR-340
 - Author Search: Sort entries per column, not per row. #SCR-342
-- Author Search: Sort according to DIN 5007, Variant 1. #SCR-342
+- Author Search: Sort according to Unicode Collation Algorithm (UCA). #SCR-342
 - Author Search: Alphabet index larger. #SCR-342
 
 4.5.0 (2019-09-26)
