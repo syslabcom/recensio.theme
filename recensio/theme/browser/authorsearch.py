@@ -3,6 +3,8 @@
 
 from Acquisition import aq_parent
 from DateTime import DateTime
+from icu import Collator
+from icu import Locale
 from plone.app.discussion.interfaces import IDiscussionSettings
 from plone.memoize import instance
 from plone.memoize import ram
@@ -150,6 +152,7 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
             ] = commentator_id
 
         author_names = set(presentations.keys() + reviews.keys() + comments.keys())
+        collator = Collator.createInstance(Locale("de_DE.UTF-8"))
         authors = [
             dict(
                 name=x.strip(", "),
@@ -159,12 +162,7 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
             )
             for x in sorted(
                 author_names,
-                key=lambda name: safe_unicode(name)
-                .strip(", ")
-                .replace(u"ä", u"a")
-                .replace(u"ö", u"o")
-                .replace(u"ü", u"u")
-                .replace(u"ß", u"ss"),
+                key=lambda name: collator.getSortKey(safe_unicode(name).strip(u", ")),
             )
         ]
         authors = filter(
