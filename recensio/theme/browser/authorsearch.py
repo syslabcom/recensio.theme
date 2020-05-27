@@ -160,7 +160,10 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
                 presentations=presentations.get(safe_unicode(x), 0),
                 comments=comments.get(safe_unicode(x), 0),
             )
-            for x in sorted(author_names, key=collator.getSortKey,)
+            for x in sorted(
+                author_names,
+                key=lambda name: collator.getSortKey(safe_unicode(name).strip(u", ")),
+            )
         ]
         authors = filter(
             lambda x: x["presentations"] + x["reviews"] + (1 if x["comments"] else 0)
