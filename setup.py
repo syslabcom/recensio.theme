@@ -22,6 +22,7 @@ setup(
         "plone.app.theming",
         "plone.api",
         "plone.resource",
+        "PyICU",
         "logilab-common",
         "recensio.contenttypes",
         "reportlab",
