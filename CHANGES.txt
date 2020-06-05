@@ -9,6 +9,8 @@ Changelog
 - Author Search: Sort entries per column, not per row. #SCR-342
 - Author Search: Sort according to Unicode Collation Algorithm (UCA). #SCR-342
 - Author Search: Alphabet index larger. #SCR-342
+- Author Search: Fixed "0 results" for authors with only last name or only 
+  first name. #SCR-343
 
 4.5.0 (2019-09-26)
 ------------------
