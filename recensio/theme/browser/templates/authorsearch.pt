@@ -122,7 +122,7 @@
                     i18n:attributes="title label_all_items_author"
                     title="All items of this author"
                     tal:attributes="href string:$portal_url/search?authors=%22${author/name}%22&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}"
-                    tal:content="author/name">Author</a>
+                    tal:content="author/display_name">Author</a>
                 </li>
               </ul>
             </li>

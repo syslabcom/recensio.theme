@@ -155,7 +155,8 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
         collator = Collator.createInstance(Locale("de_DE.UTF-8"))
         authors = [
             dict(
-                name=x.strip(", "),
+                name=x,
+                display_name=x.strip(", "),
                 reviews=reviews.get(safe_unicode(x), 0),
                 presentations=presentations.get(safe_unicode(x), 0),
                 comments=comments.get(safe_unicode(x), 0),
