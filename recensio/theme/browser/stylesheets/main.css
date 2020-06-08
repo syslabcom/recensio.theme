@@ -664,6 +664,10 @@ div#browsing-menu .used_facet {
 }
 .submenu_title .delimiterbox {
     white-space: normal;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-grow: 100;
 }
 .template-filtered-search .submenu_title a,
 .template-search .submenu_title a {
@@ -686,6 +690,10 @@ div#browsing-menu .used_facet {
 .template-browse-topics .submenu_title.level-2 {
     font-weight: bold;
     padding: 5px;
+    display: flex;
+    align-items: center;
+    flex-flow: row-reverse;
+    justify-content: flex-end;
 }
 .template-browse-topics .submenu_title.level-3 {
     background-position: 165px 7px;
@@ -722,6 +730,7 @@ div.togglebutton {
 }
 .submenu_title .togglebutton.closed {
   display: block;
+  margin-right: 5px;
 }
 .submenu_title.open .togglebutton.open {
   display: block;
@@ -2448,10 +2457,15 @@ width:100%;
     margin: 0 10px 10px 0;
     width: 80px;
 }
-.template-filtered-search h1.documentFirstHeading,
-.template-search h1.documentFirstHeading {
+.template-filtered-search #content-core > *,
+.template-search #content-core > * {
     padding-left: 120px;
 }
+.template-filtered-search #content-core > #browsing-menu-wrapper,
+.template-search #content-core > #browsing-menu-wrapper {
+    padding-left: 0;
+}
+
 .template-browse-topics #browsing-menu dd,
 .template-filtered-search #browsing-menu dd,
 .template-search #browsing-menu dd {

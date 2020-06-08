@@ -13,6 +13,8 @@ Changelog
 - Author Search: Alphabet index larger. #SCR-342
 - Author Search: Fixed "0 results" for authors with only last name or only 
   first name. #SCR-343
+- Search: Hide languages that don't occur in the results. #SCR-391
+
 
 4.5.0 (2019-09-26)
 ------------------
