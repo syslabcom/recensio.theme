@@ -7,6 +7,7 @@ Changelog
 - Fixed OPAC import for daughter portals. #FLOW-770
 - Author Search: Fixed links to works of specific authors. #FLOW-947
 - Browsing/Search: Tweaked results display. #SCR-338 #SCR-345
+- Search: Hide languages that don't occur in the results. #SCR-391
 
 
 4.5.0 (2019-09-26)
