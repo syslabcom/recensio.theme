@@ -169,9 +169,9 @@
                        tal:repeat="editor listEditors">
                         <span class="author">
                           <a tal:content="editor"
-                             tal:attributes="href string:$portal_url/search?authors:list=$editor" /><tal:c condition="not: repeat/editor/end"> / </tal:c><tal:c condition="repeat/editor/end"></tal:c></span></tal:editors>&nbsp;<tal:label tal:condition="has_multiple_editors" i18n:translate="label_abbrev_editors">(eds.)</tal:label><tal:label tal:condition="not:has_multiple_editors" i18n:translate="label_abbrev_editor">(ed.)</tal:label><tal:colon condition="result/listAuthors">:</tal:colon></span>
+                             tal:attributes="href string:$portal_url/search?authors:list=$editor" /><tal:c condition="not: repeat/editor/end"> / </tal:c><tal:c condition="repeat/editor/end"></tal:c></span></tal:editors>&nbsp;<tal:label tal:condition="has_multiple_editors" i18n:translate="label_abbrev_editors">(eds.)</tal:label><tal:label tal:condition="not:has_multiple_editors" i18n:translate="label_abbrev_editor">(ed.)</tal:label><tal:colon condition="listAuthors">:</tal:colon></span>
                       <span class="author"
-                            tal:repeat="author result/listAuthors">
+                            tal:repeat="author listAuthors">
                         <a tal:content="author"
                            tal:attributes="href string:$portal_url/search?authors:list=$author" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span>:
                   </tal:block>
