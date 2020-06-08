@@ -99,7 +99,7 @@
                         <span class="author" tal:attributes="class string:author"
                                 tal:repeat="author result/listAuthorsAndEditors">
                             <a tal:content="author"
-                                tal:attributes="href string:$portal_url/search?authors:list=$author&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:ed tal:condition="python:not author in result['listAuthors']"> <tal:ed i18n:translate="label_abbrev_editor">(Hg.)</tal:ed></tal:ed><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
+                                tal:attributes="href string:$portal_url/search?authors:list=$author&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:ed tal:condition="python:not author in (result.get('listAuthors') or [])"> <tal:ed i18n:translate="label_abbrev_editor">(Hg.)</tal:ed></tal:ed><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
                     </tal:block>
 
                     <span class="title">
