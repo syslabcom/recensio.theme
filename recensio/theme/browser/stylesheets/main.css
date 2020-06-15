@@ -2245,8 +2245,13 @@ font-size:11px;
 
 #archetypes-fieldname-exhibiting_institution label.formQuestion,
 #archetypes-fieldname-exhibiting_organisation label.formQuestion,
+#archetypes-fieldname-years label.formQuestion,
 #archetypes-fieldname-dates label.formQuestion {
     display: none;
+}
+
+#archetypes-fieldname-years td.datagridwidget-cell {
+    padding-right: 68.5%;
 }
 
 
