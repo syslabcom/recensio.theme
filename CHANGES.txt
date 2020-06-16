@@ -6,7 +6,7 @@ Changelog
 
 - Fixed OPAC import for daughter portals. #FLOW-770
 - Author Search: Fixed links to works of specific authors. #FLOW-947
-- Browsing/Search: Tweaked results display. #SCR-338 #SCR-345
+- Browsing/Search: Tweaked results display. #SCR-338 #SCR-345 #SCR-402
 - Review Exhibition: Support for permanent exhibitons. #SCR-340
 - Author Search: Sort entries per column, not per row. #SCR-342
 - Author Search: Sort according to Unicode Collation Algorithm (UCA). #SCR-342
