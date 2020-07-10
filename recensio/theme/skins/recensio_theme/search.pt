@@ -244,12 +244,12 @@
                       >
 
                     <span class="documentEffective"
-                        tal:condition="python:result.review_state == 'published' and toLocalizedTime(result.EffectiveDate, long_format=1)">
+                        tal:condition="python:result.review_state == 'published' and toLocalizedTime(result.EffectiveDate)">
                         <span i18n:translate="box_effective">
                         Published
                         </span>
                         <span
-                        tal:replace="python:toLocalizedTime(result.EffectiveDate, long_format=1)">
+                        tal:replace="python:toLocalizedTime(result.EffectiveDate)">
                         August 16, 2001 at 23:35:59
                         </span>
                     </span>
