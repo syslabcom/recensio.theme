@@ -72,8 +72,7 @@
 
             <tal:results repeat="result batch">
               <tal:has_results condition="result">
-                <tal:entry define="result_authors result/listAuthors;
-                                   result_url result/getURL;
+                <tal:entry define="result_url result/getURL;
                                    result_type result/portal_type;
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
@@ -95,12 +94,12 @@
                          i18n:attributes="alt; title;" />
                   <div class="metadata">
 
-                    <tal:block condition="result/listAuthors">
+                    <tal:block condition="result/listAuthorsAndEditors">
                         <span class="authors" tal:attributes="class string:authors">
                         <span class="author" tal:attributes="class string:author"
-                                tal:repeat="author result/listAuthors">
+                                tal:repeat="author result/listAuthorsAndEditors">
                             <a tal:content="author"
-                               tal:attributes="href string:$portal_url/search?authors:list=$author&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
+                                tal:attributes="href string:$portal_url/search?authors:list=$author&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:ed tal:condition="python:not author in (result.get('listAuthors') or [])"> <tal:ed i18n:translate="label_abbrev_editor">(Hg.)</tal:ed></tal:ed><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span></span>:
                     </tal:block>
 
                     <span class="title">
@@ -117,9 +116,7 @@
                               </tal:block>
                           </tal:block>
                         <tal:title-punctuated condition="python: result.punctuated_title_and_subtitle" content="python: result.punctuated_title_and_subtitle"/><tal:title-fallback condition="python: not result.punctuated_title_and_subtitle"><tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /><tal:block replace="result/subtitle | nothing" /></tal:title-fallback></a></span><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
-                        <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="result/isbn | nothing">, ISBN </tal:block><tal:block tal:condition="result/issn | nothing">, ISSN </tal:block>
-                        <span class="isbn" tal:condition ="result/isbn | nothing" tal:content="result/isbn" />
-                        <span class="issn" tal:condition ="result/issn | nothing" tal:content="result/issn" />
+                        <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
 
                         <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                             <br />
@@ -143,20 +140,21 @@
                 <span class="documentByLine"
                       >
 
-                    <span class="documentModified">
-                        <span i18n:translate="box_last_modified">
-                        last modified
+                    <span class="documentEffective"
+                        tal:condition="python:result.review_state == 'published' and toLocalizedTime(result.EffectiveDate)">
+                        <span i18n:translate="box_effective">
+                        Published
                         </span>
-                        <span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=1)">
+                        <span
+                        tal:replace="python:toLocalizedTime(result.EffectiveDate)">
                         August 16, 2001 at 23:35:59
                         </span>
                     </span>
 
-
                     <span tal:define="tags result/Subject|nothing"
                           tal:condition="tags">
                         &mdash;
-                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
+                        <tal:filedunder i18n:translate="label_filed_under">Schlagw&ouml;rter:</tal:filedunder>
                             <span tal:repeat="tag tags">
                                 <a href=""
                                    class="link-tag"
@@ -211,7 +209,8 @@
                   <metal:macro define-macro="submenu">
                   <div class="submenu_title empty"
                        tal:attributes="id python:'sub-title-' + item['name'].replace(':','-').replace('.','_');
-                                       class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
+                                       class python:'submenu_title ' + 'level-' + str(level) + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');
+                                       title item/voc;">
                     <svg class="togglebutton closed" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="9" height="25.2" viewBox="0 0 9 25.2">
                         <path d="m 8.55,12.600006 q 0,0.3654 -0.2664,0.6336 l -6.3,6.3 q -0.2664,0.2664 -0.6336,0.2664 -0.3672,0 -0.6336,-0.2664 Q 0.45,19.267206 0.45,18.900006 V 6.3000064 q 0,-0.3654 0.2664,-0.6336 0.2664,-0.2682 0.6336,-0.2664 0.3672,0.0018 0.6336,0.2664 l 6.3,6.2999996 q 0.2664,0.2664 0.2664,0.6336 z"></path>
                     </svg>
@@ -229,10 +228,11 @@
                       <a href="#"
                          tal:condition="not:exists:item/clearquery"
                          tal:attributes="href string:${request/ACTUAL_URL}?${item/query};
-                                         class python:item.has_key('clearquery') and 'selected_facet' or '';" >
+                                         class python:item.has_key('clearquery') and 'selected_facet' or '';
+                                         " >
                         <img src="++resource++recensio.theme.images/checkbox_unselected_brown_bg.png"/>
                       </a>
-                      <span tal:omit-tag="">
+                      <span>
                         <tal:title tal:replace="item/voc"/>
                         <tal:count tal:condition="python:item['count'] > 0" tal:replace="string:(${item/count})" />
                       </span>

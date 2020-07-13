@@ -177,8 +177,6 @@
                                is_presentation python:result_type.startswith('Presentation');
                                item_icon python:plone_view.getIcon(result);
                                listAuthors python:getattr(result_obj, 'formatted_authors_editorial', None);
-                               issn result_obj/getIssn | nothing;
-                               isbn result_obj/getIsbn | nothing;
                                year python:(hasattr(result_obj, 'getYearOfPublication') and result_obj.getYearOfPublication()) or (hasattr(result_obj, 'getOfficialYearOfPublication') and result_obj.getOfficialYearOfPublication());
                                rj python:result_type == 'Review Journal';
                                portal_path context/portal_url/getPortalPath;
@@ -216,9 +214,7 @@
                             </tal:block>
                         </tal:block>
                         <tal:title-punctuated condition="python: result.punctuated_title_and_subtitle" content="python: result.punctuated_title_and_subtitle"/><tal:title-fallback condition="python: not result.punctuated_title_and_subtitle"><tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /><tal:block replace="result/subtitle | nothing" /></tal:title-fallback></a><tal:block tal:condition="python: not rj and year or False">,</tal:block>
-                    <tal:rj tal:condition="rj"><span tal:content="string:${result_obj/getVolumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span></tal:rj><span tal:condition="not:rj" class="year" tal:content="year" /><tal:block tal:condition="isbn | nothing">, ISBN </tal:block><tal:block tal:condition="issn | nothing">, ISSN </tal:block>
-                    <span class="isbn" tal:condition ="isbn | nothing" tal:content="isbn" />
-                    <span class="issn" tal:condition ="issn | nothing" tal:content="issn" />
+                    <tal:rj tal:condition="rj"><span tal:content="string:${result_obj/getVolumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span></tal:rj><span tal:condition="not:rj" class="year" tal:content="year" />
 
                     <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                         <br />
@@ -243,21 +239,21 @@
                 <span class="documentByLine"
                       >
 
-                    <span class="documentEffective" tal:condition="python:toLocalizedTime(result.EffectiveDate, long_format=1)">
+                    <span class="documentEffective"
+                        tal:condition="python:result.review_state == 'published' and toLocalizedTime(result.EffectiveDate)">
                         <span i18n:translate="box_effective">
-                        published
+                        Published
                         </span>
                         <span
-                        tal:replace="python:toLocalizedTime(result.EffectiveDate, long_format=1)">
+                        tal:replace="python:toLocalizedTime(result.EffectiveDate)">
                         August 16, 2001 at 23:35:59
                         </span>
                     </span>
 
-
                     <span tal:define="tags result/Subject|nothing"
                           tal:condition="tags">
                         &mdash;
-                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
+                        <tal:filedunder i18n:translate="label_filed_under">Schlagw&ouml;rter:</tal:filedunder>
                             <span tal:repeat="tag tags">
                                 <a href=""
                                    class="link-tag"

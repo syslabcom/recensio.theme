@@ -29,12 +29,22 @@
                             usedFacets view/getUsedFacets;"
                 >
 
-      <div id="content-core">
+      <div id="content-core"
+           tal:define="menu view/getMenu;
+                       show_language_menu python:len([lang for lang in menu['languageReview'] if lang['count'] > 0]) > 1;
+                       "
+          >
         <div id="browsing-menu-wrapper"
-            metal:define-macro="browsing-menu">
+            tal:define="
+                menu menu|view/getMenu;
+                show_language_menu python:len([lang for lang in menu['languageReview'] if lang['count'] > 0]) > 1;"
+             tal:condition="show_language_menu"
+             metal:define-macro="browsing-menu">
             <div id="browsing-menu"
-                 tal:define="menu view/getMenu;
-                             submenus view/getSubmenus;">
+                 tal:define="
+                    submenus view/getSubmenus;
+                 "
+                 >
               <tal:submenus repeat="submenu submenus">
                 <div class="submenu"
                      tal:attributes="id python:'submenu_' + submenu['id'];">
@@ -47,7 +57,7 @@
 
                   <div class="visualClear"><!-- --></div>
                   <tal:block tal:repeat="item python:menu[submenu['id']]">
-                    <div class="submenu-lvl2" tal:condition="python:(item['count']>=0 and item['query']) or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
+                    <div class="submenu-lvl2" tal:condition="python:(item['count']>0 and item['query']) or item.has_key('clearquery') or view.showSubmenu(item['submenu'])">
                       <div class="submenu_title empty fw-caret-right"
                            tal:attributes="id python:'sub-' + item['name'].replace(':','-').replace('.','_');
                                            class python:'fw-caret-right submenu_title' + (not item['submenu'] and ' empty' or '') + (view.expandSubmenu(item['submenu']) and ' open' or '');">
@@ -77,7 +87,7 @@
                           <li class="submenu_item"
                               tal:define="selected python:subitem.get('clearquery') and 'selected' or 'unselected'"
                               tal:attributes="class string:submenu_item ${selected}"
-                              tal:condition="python:subitem['count']>=0 or subitem.has_key('clearquery') or view.expandSubmenu(subitem['submenu'])">
+                              tal:condition="python:subitem['count']>0 or subitem.has_key('clearquery') or view.expandSubmenu(subitem['submenu'])">
 
                             <a href="#" tal:content="subitem/voc"
                                tal:condition="subitem/query"
@@ -128,7 +138,7 @@
                          batch python:Batch(results, b_size, int(b_start), orphan=0);">
 
 
-          <dl class="searchResults">
+                         <dl class="searchResults" tal:attributes="class python:'searchResults {}'.format('' if show_language_menu else 'nomenu')">
 
             <tal:results repeat="result batch">
               <tal:has_results condition="result">
@@ -137,8 +147,6 @@
                                    result_type result/portal_type;
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
-                                   has_issn python:result['isbn'] and result_type in ['Review Journal', 'Presentation Article Review'];
-                                   has_isbn python:result['isbn'] and not has_issn;
                                    listAuthors python:result['listAuthors'] or [];
                                    listAuthorsAndEditors python:result['listAuthorsAndEditors'] or [];
                                    listEditors python:[ed for ed in listAuthorsAndEditors if ed not in listAuthors];
@@ -161,9 +169,9 @@
                        tal:repeat="editor listEditors">
                         <span class="author">
                           <a tal:content="editor"
-                             tal:attributes="href string:$portal_url/search?authors:list=$editor" /><tal:c condition="not: repeat/editor/end"> / </tal:c><tal:c condition="repeat/editor/end"></tal:c></span></tal:editors>&nbsp;<tal:label tal:condition="has_multiple_editors" i18n:translate="label_abbrev_editors">(eds.)</tal:label><tal:label tal:condition="not:has_multiple_editors" i18n:translate="label_abbrev_editor">(ed.)</tal:label><tal:colon condition="result/listAuthors">:</tal:colon></span>
+                             tal:attributes="href string:$portal_url/search?authors:list=$editor" /><tal:c condition="not: repeat/editor/end"> / </tal:c><tal:c condition="repeat/editor/end"></tal:c></span></tal:editors>&nbsp;<tal:label tal:condition="has_multiple_editors" i18n:translate="label_abbrev_editors">(eds.)</tal:label><tal:label tal:condition="not:has_multiple_editors" i18n:translate="label_abbrev_editor">(ed.)</tal:label><tal:colon condition="listAuthors">:</tal:colon></span>
                       <span class="author"
-                            tal:repeat="author result/listAuthors">
+                            tal:repeat="author listAuthors">
                         <a tal:content="author"
                            tal:attributes="href string:$portal_url/search?authors:list=$author" /><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></span>:
                   </tal:block>
@@ -182,9 +190,7 @@
                               </tal:block>
                           </tal:block>
                           <tal:block tal:content="result/pretty_title_or_id" /><tal:block condition="python: getattr(result, 'subtitle', False) and (result.pretty_title_or_id()[-1] not in '!?:;.,' or False)">.</tal:block><tal:block condition="result/subtitle | nothing"> </tal:block></a></span><tal:block replace="result/subtitle | nothing" /><tal:block tal:condition="result/getYearOfPublication | result/getOfficialYearOfPublication">,</tal:block>
-                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" /><tal:block tal:condition="has_isbn">, ISBN </tal:block><tal:block tal:condition="has_issn">, ISSN </tal:block>
-                  <span class="isbn" tal:condition="real_ob/getIsbn | nothing" tal:content="real_ob/getIsbn" />
-                  <span class="isbn" tal:condition="real_ob/getIssn | nothing" tal:content="real_ob/getIssn" />
+                  <span class="year" tal:attributes="class string:year" tal:content="result/getYearOfPublication | result/getOfficialYearOfPublication" />
 
                   <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                         <br /><tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
@@ -208,21 +214,20 @@
                       >
 
                     <span class="documentEffective"
-                        tal:condition="python:result.review_state == 'published' and toLocalizedTime(result.EffectiveDate, long_format=1)">
+                        tal:condition="python:result.review_state == 'published' and toLocalizedTime(result.EffectiveDate)">
                         <span i18n:translate="box_effective">
-                        published
+                        Published
                         </span>
                         <span
-                        tal:replace="python:toLocalizedTime(result.EffectiveDate, long_format=1)">
+                        tal:replace="python:toLocalizedTime(result.EffectiveDate)">
                         August 16, 2001 at 23:35:59
                         </span>
                     </span>
 
-
                     <span tal:define="tags result/Subject|nothing"
                           tal:condition="tags">
                         &mdash;
-                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
+                        <tal:filedunder i18n:translate="label_filed_under">Schlagw&ouml;rter:</tal:filedunder>
                             <span tal:repeat="tag tags">
                                 <a href=""
                                    class="link-tag"
