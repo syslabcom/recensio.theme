@@ -2223,7 +2223,8 @@ div#commenting input.submit-widget {
 }
 
 /* Emulates the styling from the h1 tag */
-#archetypes-fieldname-title input {
+#archetypes-fieldname-title input,
+#archetypes-fieldname-titleProxy input {
     font-family:Verdana,Arial,Helvetica;
     line-height: 125%;
     color: Black;
@@ -2236,6 +2237,17 @@ div#commenting input.submit-widget {
 color:#666666;
 font-family:Verdana,Arial,Helvetica;
 font-size:11px;
+}
+
+#archetypes-fieldname-exhibiting_institution label.formQuestion,
+#archetypes-fieldname-exhibiting_organisation label.formQuestion,
+#archetypes-fieldname-years label.formQuestion,
+#archetypes-fieldname-dates label.formQuestion {
+    display: none;
+}
+
+#archetypes-fieldname-years td.datagridwidget-cell {
+    padding-right: 68.5%;
 }
 
 
