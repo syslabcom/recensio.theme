@@ -17,7 +17,7 @@ class FilterSearchView(BrowseTopicsView):
     """Search view with language filter
     """
 
-    show_if_empty = False
+    show_if_empty = True
 
     def __init__(self, context, request):
         self.facet_fields = filter_facets

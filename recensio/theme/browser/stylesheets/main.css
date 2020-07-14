@@ -2462,15 +2462,10 @@ width:100%;
     margin: 0 10px 10px 0;
     width: 80px;
 }
-.template-filtered-search #content-core > *,
-.template-search #content-core > * {
+.template-filtered-search h1.documentFirstHeading,
+.template-search h1.documentFirstHeading {
     padding-left: 120px;
 }
-.template-filtered-search #content-core > #browsing-menu-wrapper,
-.template-search #content-core > #browsing-menu-wrapper {
-    padding-left: 0;
-}
-
 .template-browse-topics #browsing-menu dd,
 .template-filtered-search #browsing-menu dd,
 .template-search #browsing-menu dd {
