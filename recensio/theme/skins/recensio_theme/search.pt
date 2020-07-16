@@ -176,11 +176,14 @@
                                is_review python:result_type.startswith('Review');
                                is_presentation python:result_type.startswith('Presentation');
                                item_icon python:plone_view.getIcon(result);
-                               listAuthors python:getattr(result_obj, 'formatted_authors_editorial', None);
-                               year python:(hasattr(result_obj, 'getYearOfPublication') and result_obj.getYearOfPublication()) or (hasattr(result_obj, 'getOfficialYearOfPublication') and result_obj.getOfficialYearOfPublication());
                                rj python:result_type == 'Review Journal';
                                raj python:result_type == 'Review Article Journal';
+                               raev python:result_type == 'Review Article Collection';
                                re python:result_type == 'Review Exhibition';
+                               listAuthors python:getattr(result_obj, 'formatted_authors_editorial', None);
+                               listAuthors python:getattr(result_obj, 'formatted_authors', None) if raev else listAuthors;
+                               editorial python:getattr(result_obj, 'formatted_editorial', None);
+                               year python:(hasattr(result_obj, 'getYearOfPublication') and result_obj.getYearOfPublication()) or (hasattr(result_obj, 'getOfficialYearOfPublication') and result_obj.getOfficialYearOfPublication());
                                portal_path context/portal_url/getPortalPath;
                                result_portal python:result.getPath().split('/')[1];
                                result_foreign python:result_portal != portal_path[1:];
@@ -191,7 +194,7 @@
                                result_class python:result_foreign and (result_class + ' foreign portal-' + result_portal) or result_class;
                                ">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
-                    tal:attributes="class result_class" tal:on-error="string:[private]">
+                    tal:attributes="class result_class" xtal:on-error="string:[private]">
 
                   <img width="32" height="32"
                        tal:condition="python:is_review or is_presentation"
@@ -219,8 +222,19 @@
                             </tal:block>
                         </tal:block>
                         <tal:title-punctuated condition="python: result.punctuated_title_and_subtitle" content="python: result.punctuated_title_and_subtitle"/><tal:title-fallback condition="python: not (re and result_obj.isPermanentExhibition) and not result.punctuated_title_and_subtitle"><tal:block tal:content="python:rhv.punctuated_title(result.pretty_title_or_id(), result.subtitle)" /><tal:block replace="result/subtitle | nothing" /></tal:title-fallback><tal:exhibition condition="re"><tal:permanent-exhibition tal:condition="python: result_obj.isPermanentExhibition"><tal:separator condition="python: result.punctuated_title_and_subtitle">. </tal:separator><span i18n:translate="">Dauerausstellung</span></tal:permanent-exhibition></tal:exhibition></a><tal:dates condition="result/listDates|nothing">, <span tal:content="result/listDates"></span></tal:dates><tal:block tal:condition="python: not (rj or re) and year or False">,</tal:block>
-                    <tal:rj tal:condition="rj"><span tal:content="string:${result_obj/getVolumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span></tal:rj><span tal:condition="python: not (rj or raj or re)" class="year" tal:content="year" />
-                        <tal:raj tal:condition="raj"><span i18n:translate="text_in">in:</span> <span tal:content="result_obj/getTitleJournal|nothing">Zeitschrift</span>, <span tal:content="string:${result_obj/getVolumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span>, <span i18n:translate="text_pages">p. </span> <span tal:content="result_obj/getPageStartOfArticle">1</span>-<span tal:content="result_obj/getPageEndOfArticle">9</span></tal:raj>
+                    <tal:rj tal:condition="rj"><span tal:content="string:${result_obj/getVolumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><span tal:condition="python:result_obj.issueNumber">, </span><span tal:content="python:result_obj.issueNumber"></span></tal:rj><span tal:condition="python: not (rj or raj or raev or re)" class="year" tal:content="year" />
+                        <tal:raj tal:condition="python: raj or raev">
+                            <span i18n:translate="text_in">in:</span>
+                            <tal:raj tal:condition="raj">
+                                <span tal:content="result_obj/getTitleJournal|nothing">Zeitschrift</span>, <span tal:content="string:${result_obj/getVolumeNumber}" tal:on-error="nothing"></span><span tal:condition="year" tal:content="string: (${year})"></span><tal:comma tal:condition="python:getattr(result_obj, 'issueNumber', None)">, </tal:comma>
+                                <span tal:content="python:getattr(result_obj, 'issueNumber', None)"></span>, 
+                            </tal:raj>
+                            <tal:raev tal:condition="raev">
+                                <span tal:condition="editorial" tal:content="string:${editorial}: " />
+                                <span tal:content="result_obj/getTitleEditedVolume|nothing">Titel Sammelband</span><tal:fullstop condition="result_obj/getSubtitleEditedVolume|nothing">. </tal:fullstop><span tal:content="result_obj/getSubtitleEditedVolume|nothing">Untertitel Sammelband</span><span tal:condition="year" tal:content="string:, ${year}"></span>, 
+                            </tal:raev>
+                            <span i18n:translate="text_pages">p. </span> <span tal:content="result_obj/getPageStartOfArticle|nothing">1</span>-<span tal:content="result_obj/getPageEndOfArticle|nothing">9</span>
+                        </tal:raj>
 
                     <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                         <br />
