@@ -4,7 +4,7 @@ Changelog
 4.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Show all review types in "latest reviews online" #HELP-2332
 
 
 4.6.0 (2020-07-20)

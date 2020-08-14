@@ -225,3 +225,11 @@ class HomepageView(BrowserView):
         else:
             # This can only happen, when there is no initial content yet
             return []
+
+    def get_portal_type_query(self):
+        return "&".join(
+            [
+                "portal_type:list={}".format(portal_type.replace(" ", "+"))
+                for portal_type in REVIEW_TYPES
+            ]
+        )
