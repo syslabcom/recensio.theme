@@ -60,8 +60,8 @@
          tal:attributes="id python:is_current and 'lastcurrent' or ''"
          >
         <a
-           tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/filtered-search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal&amp;sort_order=reverse&amp;sort_on=effective'"
-           href="filtered-search?portal_type:list=Review+Monograph&amp;portal_type:list=Review+Journal"
+           tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/filtered-search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;portal_type:list=Review+Article+Journal&amp;portal_type:list=Review+Article+Collection&amp;portal_type:list=Review+Exhibition&amp;sort_order=reverse&amp;sort_on=effective'"
+           href="filtered-search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;portal_type:list=Review+Article+Journal&amp;portal_type:list=Review+Article+Collection&amp;portal_type:list=Review+Exhibition"
            i18n:translate="label_secondary_nav_latest_reviews">Neueste Rezensionen</a>
       </li>
     </ul>
