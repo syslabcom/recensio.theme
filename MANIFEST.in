@@ -3,4 +3,5 @@ recursive-include docs *
 include CHANGES.txt
 include README.txt
 include *.zcml
+exclude *.sh
 global-exclude *pyc
