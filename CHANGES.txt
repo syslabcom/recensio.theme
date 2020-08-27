@@ -4,7 +4,8 @@ Changelog
 4.6.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Restored mainimage_en.png and mainimage_fr.png which had been accidentally
+  cleaned out. #FLOW-755
 
 
 4.6.1 (2020-08-27)
