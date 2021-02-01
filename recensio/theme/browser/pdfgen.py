@@ -8,6 +8,7 @@ from pkg_resources import resource_filename
 
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
@@ -31,7 +32,7 @@ rights shall be subject to legal licences (§§ 44a-63a UrhG / German
 Copyright Act).
 
 Dieser Beitrag kann vom Nutzer zu eigenen nicht-kommerziellen Zwecken
-heruntergeladen und/oder ausgedruckt werden. Darüber hinaus gehende
+heruntergeladen und/oder ausgedruckt werden. Darüber hinausgehende
 Nutzungen sind ohne weitere Genehmigung der Rechteinhaber nur im
 Rahmen der gesetzlichen Schrankenbestimmungen (§§ 44a-63a UrhG)
 zulässig."""
@@ -104,7 +105,7 @@ class GeneratePdfRecension(BrowserView):
         # I want the syntax for translation look as similar as the real thing
         # But not similar enough for freaking out the translation string
         # extractors
-        _X = lambda x: translate(x, target_language=language)
+        _X = lambda x: translate(safe_unicode(x), target_language=language)
         # register the font (unicode-aware)
         font = os.path.abspath(__file__ + "/../../data/DejaVuSerif.ttf")
         pdfmetrics.registerFont(TTFont("DejaVu-Serif", font))
