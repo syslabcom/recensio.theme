@@ -228,10 +228,10 @@
                       >
 
                     <span class="documentModified">
-                        <span i18n:translate="box_last_modified">
-                        last modified
+                        <span i18n:translate="box_effective">
+                        published
                         </span>
-                        <span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=1)">
+                        <span tal:replace="python:toLocalizedTime(result.ModificationDate)">
                         August 16, 2001 at 23:35:59
                         </span>
                     </span>
