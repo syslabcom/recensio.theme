@@ -1,8 +1,5 @@
 """ Views and functions for Recensio.net
 """
-import logging
-import re
-
 from Acquisition import aq_parent
 from interfaces import IRecensioHelperView
 from interfaces import IRedirectToPublication
@@ -25,6 +22,10 @@ from zope.i18n import translate
 from zope.i18nmessageid import Message
 from zope.interface import implements
 from ZTUtils import make_query
+
+import logging
+import re
+
 
 log = logging.getLogger(__name__)
 
@@ -60,22 +61,31 @@ def recensioTranslate(msgid):
 def editorTypes():
     return DisplayList(
         (
-            ("herausgeber", recensioTranslate(u"label_abbrev_herausgeber"),),
-            ("bearbeiter", recensioTranslate(u"label_abbrev_bearbeiter"),),
-            ("redaktion", recensioTranslate(u"label_abbrev_redaktion"),),
+            (
+                "herausgeber",
+                recensioTranslate(u"label_abbrev_herausgeber"),
+            ),
+            (
+                "bearbeiter",
+                recensioTranslate(u"label_abbrev_bearbeiter"),
+            ),
+            (
+                "redaktion",
+                recensioTranslate(u"label_abbrev_redaktion"),
+            ),
         )
     )
 
 
 class RecensioHelperView(BrowserView):
-    """ General purpose view methods for Recensio """
+    """General purpose view methods for Recensio"""
 
     implements(IRecensioHelperView)
 
     @property
     def heading_add_item_title(self):
-        """ For French Presentations the add form should display:
-        Ajouter une ... """
+        """For French Presentations the add form should display:
+        Ajouter une ..."""
         portal = getSite()
 
         fti = portal.portal_types.getTypeInfo(self.context)  #
@@ -94,10 +104,10 @@ class RecensioHelperView(BrowserView):
         return listAvailableContentLanguages()
 
     def punctuated_title(self, title, subtitle):
-        """ #4040
+        """#4040
 
         if the string already ends in an punctuation mark don't add
-        another """
+        another"""
         last_char = title[-1]
 
         p_title = title
@@ -131,7 +141,7 @@ class RecensioHelperView(BrowserView):
         )
 
     def get_subtree(self, value):
-        """ Retrieve the next level of a recursive vocabulary dict.
+        """Retrieve the next level of a recursive vocabulary dict.
         Value is expected to be a tuple like this:
             ('4', ('Europa', OrderedDict([])))
         The items of the OrderedDict are returned.
@@ -144,7 +154,7 @@ class RecensioHelperView(BrowserView):
 
 
 class CreateNewPresentationView(BrowserView):
-    """ Helper to direct to new presentation creation """
+    """Helper to direct to new presentation creation"""
 
     def __call__(self):
         membersfolder = self.context.portal_membership.getMembersFolder()
@@ -157,7 +167,7 @@ class CreateNewPresentationView(BrowserView):
 
 
 class ManageMyPresentationsView(BrowserView):
-    """ Helper to direct to my presentations """
+    """Helper to direct to my presentations"""
 
     def __call__(self):
         homefolder = self.context.portal_membership.getHomeFolder()
@@ -188,7 +198,8 @@ class DatenschutzView(BrowserView):
         base_text = safe_unicode(self.context.getText())
         if u"[PIWIK-OPT-OUT]" in base_text:
             text = base_text.replace(
-                u"[PIWIK-OPT-OUT]", self.template_piwik_opt_out(self),
+                u"[PIWIK-OPT-OUT]",
+                self.template_piwik_opt_out(self),
             )
         else:
             text = "\n".join((base_text, self.template_piwik_opt_out(self)))

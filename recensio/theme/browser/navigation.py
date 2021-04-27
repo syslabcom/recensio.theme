@@ -32,6 +32,9 @@ class RecensioNavigationBreadcrumbs(PhysicalNavigationBreadcrumbs):
         view = getMultiAdapter((container, request), name="breadcrumbs_view")
         base = tuple(view.breadcrumbs())
         base += (
-            {"absolute_url": "", "Title": utils.pretty_title_or_id(context, context),},
+            {
+                "absolute_url": "",
+                "Title": utils.pretty_title_or_id(context, context),
+            },
         )
         return base

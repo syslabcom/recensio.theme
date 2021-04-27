@@ -1,11 +1,6 @@
 # vim:fileencoding=utf8
-import logging
-import os
-import tempfile
 from cgi import escape
-
 from pkg_resources import resource_filename
-
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
@@ -24,6 +19,11 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
 from zope.i18n import translate
 
+import logging
+import os
+import tempfile
+
+
 log = logging.getLogger("recensio.theme/pdfgen.py")
 
 COPYRIGHT = u"""This article may be downloaded and/or used within the
@@ -39,8 +39,7 @@ zulässig."""
 
 
 class GeneratePdfRecension(BrowserView):
-    """View to generate PDF cover sheets
-    """
+    """View to generate PDF cover sheets"""
 
     logo_main = "++resource++recensio.theme.images/logo2_fuer-Deckblatt.jpg"
     logo_watermark = "++resource++recensio.theme.images/logo_icon_watermark.jpg"
@@ -61,8 +60,7 @@ class GeneratePdfRecension(BrowserView):
                 fd, new_path = tempfile.mkstemp(prefix="final", suffix=".pdf")
                 os.close(fd)  # 2463
                 error_code = os.system(
-                    "ulimit -t 5;pdftk %s %s cat output %s"
-                    % (cover, original, new_path)
+                    "ulimit -t 5;pdftk %s %s cat output %s" % (cover, original, new_path)
                 )
             if error_code or not pdf:
                 IStatusMessage(self.request).add(
@@ -175,7 +173,6 @@ class GeneratePdfRecension(BrowserView):
         return tmpfile
 
     def genPdfRecension(self):
-        """Generate and return a PDF version of the recension
-        """
+        """Generate and return a PDF version of the recension"""
         pdfdata = self._genCoverSheet()
         return pdfdata

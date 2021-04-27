@@ -1,7 +1,5 @@
-import logging
-
-from collective.solr.browser.facets import SearchFacetsView
 from collective.solr.browser.facets import param
+from collective.solr.browser.facets import SearchFacetsView
 from Products.Archetypes.utils import OrderedDict
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
@@ -12,13 +10,15 @@ from recensio.policy.utility import convertFacets
 from recensio.theme.browser.views import CrossPlatformMixin
 from ZTUtils import make_query
 
+import logging
+
+
 log = logging.getLogger("recensio.theme/topical.py")
 PORTAL_TYPES = REVIEW_TYPES
 
 
 class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
-    """View for topical browsing (ddcPlace etc.)
-    """
+    """View for topical browsing (ddcPlace etc.)"""
 
     show_if_empty = False
 
@@ -99,7 +99,7 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
         return tuple(used)
 
     def facets(self):
-        """ prepare and return facetting info for the given SolrResponse """
+        """prepare and return facetting info for the given SolrResponse"""
         results = self.kw.get("results", None)
         fcs = getattr(results, "facet_counts", None)
         if results is not None and fcs is not None:
@@ -162,8 +162,8 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
             )
 
     def selected(self):
-        """ determine selected facets and prepare links to clear them;
-            this assumes that facets are selected using filter queries """
+        """determine selected facets and prepare links to clear them;
+        this assumes that facets are selected using filter queries"""
         info = []
         facets = param(self, "facet.field")
         fq = param(self, self.queryparam)
@@ -208,9 +208,7 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
                 elif isinstance(item[1], tuple):
                     itemvoc = item[1][0]
 
-                iteminfo = dict(
-                    name=item[0], voc=itemvoc, count=0, query="", submenu=[]
-                )
+                iteminfo = dict(name=item[0], voc=itemvoc, count=0, query="", submenu=[])
                 # look if we have info from facets()
                 if facet:
                     facetinfo = filter(lambda x: x["name"] == item[0], facet["counts"])
@@ -275,7 +273,7 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
 
     def showSubmenu(self, submenu):
         """Returns True if submenu has an entry with query or clearquery set,
-            i.e. should be displayed
+        i.e. should be displayed
         """
         return (
             not filter(lambda x: x.has_key("clearquery") or x["count"] > 0, submenu)
@@ -284,7 +282,7 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
 
     def expandSubmenu(self, submenu):
         """Returns True if submenu has an entry with clearquery set, i.e.
-           should be displayed expanded
+        should be displayed expanded
         """
         return (
             not filter(

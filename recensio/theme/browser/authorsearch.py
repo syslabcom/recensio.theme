@@ -22,7 +22,7 @@ from zope.component import queryUtility
 
 class AuthorSearchView(BrowserView, CrossPlatformMixin):
 
-    """ Dynamic elements on the homepage """
+    """Dynamic elements on the homepage"""
 
     template = ViewPageTemplateFile("templates/authorsearch.pt")
     ALPHABET = [

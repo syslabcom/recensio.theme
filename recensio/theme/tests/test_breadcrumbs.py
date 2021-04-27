@@ -1,4 +1,3 @@
-import unittest2 as unittest
 from plone.app.testing.helpers import login
 from plone.app.testing.helpers import logout
 from plone.app.testing.interfaces import SITE_OWNER_NAME
@@ -7,6 +6,8 @@ from recensio.policy.tests.layer import RECENSIO_INTEGRATION_TESTING
 from recensio.theme.interfaces import IRecensioLayer
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
+
+import unittest2 as unittest
 
 
 class TestBreadcrumbs(unittest.TestCase):

@@ -14,7 +14,7 @@ def _render_cachekey(method, self, brain, lang):
 
 
 class PublicationsView(BrowserView, CanonicalURLHelper):
-    """ Overview page of publications """
+    """Overview page of publications"""
 
     template = ViewPageTemplateFile("templates/publications.pt")
 

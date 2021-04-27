@@ -5,11 +5,11 @@ from recensio.contenttypes.config import REVIEW_TYPES
 
 
 class RecensioSiteMapView(SiteMapView):
-    """ Customised sitemap which give reviews from Francia and
-    Sehepunkte a low priority #3100 """
+    """Customised sitemap which give reviews from Francia and
+    Sehepunkte a low priority #3100"""
 
     def objects(self):
-        """ Overrides the SiteMapView method """
+        """Overrides the SiteMapView method"""
         catalog = getToolByName(self.context, "portal_catalog")
         root = getNavigationRoot(self.context)
         query = {

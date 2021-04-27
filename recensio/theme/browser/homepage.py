@@ -1,5 +1,3 @@
-import logging
-
 from AccessControl import Unauthorized
 from Acquisition import aq_inner
 from DateTime import DateTime
@@ -17,20 +15,21 @@ from recensio.contenttypes.interfaces import IParentGetter
 from zope.component import getMultiAdapter
 from ZTUtils import make_query
 
+import logging
+
+
 log = logging.getLogger("recensio.theme")
 
 
 class HomepageView(BrowserView):
-    """ Dynamic elements on the homepage """
+    """Dynamic elements on the homepage"""
 
     template = ViewPageTemplateFile("templates/homepage.pt")
 
     review_languages = [u"en", u"de", u""]
 
     def _render_cachekey(method, self, lang=u""):
-        preflang = getToolByName(
-            self.context, "portal_languages"
-        ).getPreferredLanguage()
+        preflang = getToolByName(self.context, "portal_languages").getPreferredLanguage()
         portal_membership = getToolByName(self.context, "portal_membership")
         member = portal_membership.getAuthenticatedMember()
         roles = member.getRolesInContext(self.context)

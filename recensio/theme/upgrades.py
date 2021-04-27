@@ -1,11 +1,12 @@
-import logging
-import re
-
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.hooks import getSite
+
+import logging
+import re
+
 
 log = logging.getLogger(__name__)
 
@@ -25,10 +26,14 @@ def v2to3(portal_setup):
     frontpage = portal.get("front-page")
     translations = frontpage.getTranslations().values()
     for fp_trans, status in translations:
-        column = getUtility(
-            IPortletManager, name=u"plone.rightcolumn", context=fp_trans
+        column = getUtility(IPortletManager, name=u"plone.rightcolumn", context=fp_trans)
+        manager = getMultiAdapter(
+            (
+                fp_trans,
+                column,
+            ),
+            IPortletAssignmentMapping,
         )
-        manager = getMultiAdapter((fp_trans, column,), IPortletAssignmentMapping)
         postit = manager.get("postit")
         if postit is None:
             log.warn(

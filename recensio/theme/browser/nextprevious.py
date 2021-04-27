@@ -10,8 +10,8 @@ from zope.interface import implements
 
 
 class RecensioFolderNextPrevious(ATFolderNextPrevious):
-    """ Use EffectiveDate to determine next/previous instead of
-        getObjPositionInParent """
+    """Use EffectiveDate to determine next/previous instead of
+    getObjPositionInParent"""
 
     implements(INextPreviousProvider)
 
@@ -21,8 +21,7 @@ class RecensioFolderNextPrevious(ATFolderNextPrevious):
 
     @memoize
     def itemRelatives(self, oid):
-        """Get the relative next and previous items
-        """
+        """Get the relative next and previous items"""
         catalog = getToolByName(self.context, "portal_catalog")
         obj = self.context[oid]
         path = "/".join(obj.getPhysicalPath())

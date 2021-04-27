@@ -2,7 +2,7 @@ from zope.interface import Interface
 
 
 class IRecensioHelperView(Interface):
-    """ Interface for the RecensioHelperView """
+    """Interface for the RecensioHelperView"""
 
     def normalize_isbns_in_text(text):
         """Enables flexible full text search for ISBNs"""
@@ -18,41 +18,35 @@ class IRecensioHelperView(Interface):
 
 
 class IRedirectToPublication(Interface):
-    """ Interface for RedirectToPublication """
+    """Interface for RedirectToPublication"""
 
 
 class IGeneratePdfRecension(Interface):
-    """Interface for PDF generation BrowserView
-    """
+    """Interface for PDF generation BrowserView"""
 
     def genPdfRecension(self):
-        """Generate and return a PDF version of the recension
-        """
+        """Generate and return a PDF version of the recension"""
 
     def __call__(self):
-        """Generate and return a PDF version of the recension
-        """
+        """Generate and return a PDF version of the recension"""
 
 
 class IBrowseTopics(Interface):
-    """Interface for topical browsing (ddcPlace etc.)
-    """
+    """Interface for topical browsing (ddcPlace etc.)"""
 
     def __call__(self):
-        """render the view
-        """
+        """render the view"""
 
 
 class INewsletterView(Interface):
-    """ newsletter overview including subscription """
+    """newsletter overview including subscription"""
 
     def subscribe():
-        """ subscribe to newsletter """
+        """subscribe to newsletter"""
 
 
 class IFilterSearchView(Interface):
-    """Interface for FilterSearchView
-    """
+    """Interface for FilterSearchView"""
 
     def __call__():
         """Render the view"""

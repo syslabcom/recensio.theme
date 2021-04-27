@@ -1,5 +1,8 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
+
 import os
+
 
 version = "4.6.3.dev0"
 
@@ -8,7 +11,10 @@ setup(
     version=version,
     description="An Diazo theme for Plone 4",
     long_description=open("README.txt").read() + "\n" + open("CHANGES.txt").read(),
-    classifiers=["Framework :: Plone", "Programming Language :: Python :: 2.7",],
+    classifiers=[
+        "Framework :: Plone",
+        "Programming Language :: Python :: 2.7",
+    ],
     keywords="web zope plone theme",
     author="Syslab.com GmbH",
     author_email="info@syslab.com",
@@ -30,7 +36,9 @@ setup(
         "Products.CMFPlone",
         "z3c.jbot",
     ],
-    extras_require={"test": ["plone.app.testing", "recensio.policy"],},
+    extras_require={
+        "test": ["plone.app.testing", "recensio.policy"],
+    },
     entry_points="""
       [z3c.autoinclude.plugin]
       target = plone

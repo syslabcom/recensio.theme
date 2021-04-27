@@ -12,6 +12,7 @@ from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.ZCTextIndex.ParseTree import ParseError
 from ZODB.POSException import ConflictError
 
+
 results = []
 catalog = context.portal_catalog
 indexes = catalog.indexes() + quote_logic_indexes

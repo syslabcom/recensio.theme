@@ -10,12 +10,12 @@ from recensio.theme.browser.views import listAvailableContentLanguages
 from topical import BrowseTopicsView
 from zope.component import queryUtility
 
+
 PORTAL_TYPES = REVIEW_TYPES + PRESENTATION_TYPES
 
 
 class FilterSearchView(BrowseTopicsView):
-    """Search view with language filter
-    """
+    """Search view with language filter"""
 
     show_if_empty = True
 

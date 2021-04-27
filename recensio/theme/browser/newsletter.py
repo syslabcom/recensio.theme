@@ -1,6 +1,3 @@
-import urllib2
-
-import Acquisition
 from DateTime import DateTime
 from plone.memoize import instance
 from plone.memoize.instance import memoize
@@ -10,10 +7,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from recensio.translations import RecensioMessageFactory as _
 from zope.component import getMultiAdapter
 
+import Acquisition
+import urllib2
+
 
 class NewsletterView(BrowserView):
-    """View for handling the newsletter subscriptions
-    """
+    """View for handling the newsletter subscriptions"""
 
     template = ViewPageTemplateFile("templates/newsletter.pt")
 
@@ -21,7 +20,7 @@ class NewsletterView(BrowserView):
         return self.template()
 
     def subscribe(self, emailaddress, name=""):
-        """ helper method to enable mail subscription to anonymous user """
+        """helper method to enable mail subscription to anonymous user"""
         ptool = getToolByName(self.context, "portal_url")
         portal = ptool.getPortalObject()
         pp = getToolByName(portal, "portal_properties")

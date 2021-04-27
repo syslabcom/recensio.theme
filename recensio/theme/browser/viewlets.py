@@ -4,8 +4,6 @@
 
 """
 
-import logging
-
 from DateTime import DateTime
 from plone import api
 from plone.app.layout.nextprevious import view as npview
@@ -18,6 +16,9 @@ from recensio.contenttypes.config import REVIEW_TYPES
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from ZTUtils import make_query
+
+import logging
+
 
 log = logging.getLogger(__name__)
 
@@ -32,7 +33,7 @@ def _render_cachekey(method, self, volume, issue=None):
 
 
 class publicationlisting(ViewletBase):
-    """ Lists Volumes/Issues/Reviews in the current Publication"""
+    """Lists Volumes/Issues/Reviews in the current Publication"""
 
     implements(IViewlet)
 
@@ -55,7 +56,7 @@ class publicationlisting(ViewletBase):
         return meta_types
 
     def visible(self):
-        """ should we display at all? """
+        """should we display at all?"""
         if (
             hasattr(self.context, "portal_type")
             and self.context.portal_type == "Document"
@@ -117,7 +118,10 @@ class publicationlisting(ViewletBase):
 
     def volumes(self):
         volume_objs = self.parent.getFolderContents(
-            {"portal_type": "Volume", "sort_on": "getObjPositionInParent",},
+            {
+                "portal_type": "Volume",
+                "sort_on": "getObjPositionInParent",
+            },
             full_objects=True,
         )
         volumes = [self._make_iss_or_vol_dict(v) for v in volume_objs]
@@ -127,7 +131,10 @@ class publicationlisting(ViewletBase):
         if not volume in self.parent.objectIds():
             return []
         issue_objs = self.parent[volume].getFolderContents(
-            {"portal_type": "Issue", "sort_on": "getObjPositionInParent",},
+            {
+                "portal_type": "Issue",
+                "sort_on": "getObjPositionInParent",
+            },
             full_objects=True,
         )
         issues = [self._make_iss_or_vol_dict(i) for i in issue_objs]
@@ -139,7 +146,10 @@ class publicationlisting(ViewletBase):
             return []
         if issue is None:
             review_objs = self.parent[volume].getFolderContents(
-                {"portal_type": REVIEW_TYPES, "sort_on": "getObjPositionInParent",},
+                {
+                    "portal_type": REVIEW_TYPES,
+                    "sort_on": "getObjPositionInParent",
+                },
                 # XXX Could avoid getting objects by adding getDecoratedTitle
                 # to catalog metadata
                 full_objects=True,
@@ -148,7 +158,10 @@ class publicationlisting(ViewletBase):
             if not issue in self.parent[volume].objectIds():
                 return []
             review_objs = self.parent[volume][issue].getFolderContents(
-                {"portal_type": REVIEW_TYPES, "sort_on": "getObjPositionInParent",},
+                {
+                    "portal_type": REVIEW_TYPES,
+                    "sort_on": "getObjPositionInParent",
+                },
                 # XXX Could avoid getting objects by adding getDecoratedTitle
                 # to catalog metadata
                 full_objects=True,

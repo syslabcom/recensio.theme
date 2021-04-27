@@ -39,7 +39,9 @@ if batch:
 # Evaluate in catalog context because some containers override queryCatalog
 # with their own unrelated method (Topics)
 contents = context.portal_catalog.queryCatalog(
-    contentFilter, show_all=1, show_inactive=show_inactive,
+    contentFilter,
+    show_all=1,
+    show_inactive=show_inactive,
 )
 
 if full_objects:

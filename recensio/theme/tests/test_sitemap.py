@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-import unittest2 as unittest
 from recensio.policy.tests.layer import RECENSIO_INTEGRATION_TESTING
 from recensio.theme.interfaces import IRecensioLayer
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
+
+import unittest2 as unittest
 
 
 class TestSiteMap(unittest.TestCase):
@@ -17,7 +18,7 @@ class TestSiteMap(unittest.TestCase):
         alsoProvides(self.portal.REQUEST, IRecensioLayer)
 
     def test_sitemap_priorities(self):
-        """ The search engine sitemap has been customised to give a
+        """The search engine sitemap has been customised to give a
         low priority to reviews from Sehepunkte or Francia #3100"""
         sitemap_view = getMultiAdapter(
             (self.portal, self.portal.REQUEST), name="sitemap.xml.gz"
