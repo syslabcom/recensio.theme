@@ -120,6 +120,8 @@ if b_start is not None:
     query["b_start"] = b_start
 if b_size is not None:
     query["b_size"] = b_size
+if "b_size" not in query:
+    query["b_size"] = 10
 
 # doesn't normal call catalog unless some field has been queried
 # against. if you want to call the catalog _regardless_ of whether
