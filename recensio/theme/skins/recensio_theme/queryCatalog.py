@@ -136,5 +136,4 @@ if show_query:
         results = catalog(**query)
     except ParseError:
         pass
-
 return results
