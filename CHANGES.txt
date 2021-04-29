@@ -4,7 +4,7 @@ Changelog
 4.6.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add icons for latest review types on artium homepage #SCR-1049
 
 
 4.6.2 (2020-08-27)

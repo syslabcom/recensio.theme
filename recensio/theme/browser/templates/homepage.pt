@@ -75,7 +75,7 @@
                   </a>
                   <tal:res repeat="res langres/results">
                     <li tal:define="is_first python:repeat['res'].start and 'is_first' or 'not_first'"
-                        tal:attributes="class string:${is_first}">
+                        tal:attributes="class string:${is_first} ${res/meta_type}">
                       <span tal:content="res/authors"/>
                       <span>
                         <a href="#" class="ellipsis_container"

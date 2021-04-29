@@ -111,6 +111,7 @@ class HomepageView(BrowserView):
                             path=x.getPath(),
                             title=x.getObject().punctuated_title_and_subtitle,
                             date=self.format_effective_date(x["EffectiveDate"]),
+                            meta_type=x["meta_type"],
                         )
                         for x in res[part * 5 : part * 5 + 4]
                     ],
