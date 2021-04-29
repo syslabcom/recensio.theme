@@ -5,6 +5,8 @@ Changelog
 ------------------
 
 - Add icons for latest review types on artium homepage #SCR-1049
+- Dedicated views for "latest reviews" and "latest review sections" with
+  headings and without full text search. #SCR-1050
 
 
 4.6.2 (2020-08-27)

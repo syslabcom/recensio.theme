@@ -47,7 +47,7 @@
         id="secondary-nav-portlet" class="firstmenu">
     <ul>
       <li
-         tal:define="is_current python:context.getId().startswith('zeitschriften') and not 'search' in context.REQUEST.getURL()"
+         tal:define="is_current python:context.getId().startswith('zeitschriften') and not 'latest-review-items' in context.REQUEST.getURL()"
          tal:attributes="class python:is_current and 'first active' or 'first';
                          id python:is_current and 'firstcurrent' or ''"
          >
@@ -56,12 +56,12 @@
            i18n:translate="label_secondary_nav_journals">Zeitschriften</a>
       </li>
       <li class="last"
-         tal:define="is_current python:'search' in context.REQUEST.getURL()"
+         tal:define="is_current python:'latest-review-items' in context.REQUEST.getURL()"
          tal:attributes="id python:is_current and 'lastcurrent' or ''"
          >
         <a
-           tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/filtered-search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;portal_type:list=Review+Article+Journal&amp;portal_type:list=Review+Article+Collection&amp;portal_type:list=Review+Exhibition&amp;sort_order=reverse&amp;sort_on=effective'"
-           href="filtered-search?portal_type:list=Review+Journal&amp;portal_type:list=Review+Monograph&amp;portal_type:list=Review+Article+Journal&amp;portal_type:list=Review+Article+Collection&amp;portal_type:list=Review+Exhibition"
+           tal:attributes="class python:is_current and 'active' or ''; href python:context.rezensionen.zeitschriften.absolute_url() + '/latest-review-items'"
+           href="latest-review-items"
            i18n:translate="label_secondary_nav_latest_reviews">Neueste Rezensionen</a>
       </li>
     </ul>

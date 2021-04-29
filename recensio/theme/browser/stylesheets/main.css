@@ -623,26 +623,21 @@ div#browsing-menu .used_facet {
 }
 
 .template-browse-topics .searchResults dd,
-.template-filtered-search .searchResults dd,
-.template-search .searchResults dd {
+.searchResults dd {
     margin-bottom:0.5em;
 }
 
 .template-browse-topics .searchResults dt,
-.template-filtered-search .searchResults dt,
-.template-search .searchResults dt {
+.searchResults dt {
    clear:both;
 }
 
 .template-browse-topics .searchResults div.documentByLine,
-.template-filtered-search .searchResults div.documentByLine,
-.template-search .searchResults div.documentByLine {
+.searchResults div.documentByLine {
    padding-top: 1.5em;
 }
 
-.template-browse-topics .listingBar,
-.template-filtered-search .listingBar,
-.template-search .listingBar {
+.listingBar {
    clear: both;
 }
 
@@ -669,7 +664,7 @@ div#browsing-menu .used_facet {
     align-items: center;
     flex-grow: 100;
 }
-.template-filtered-search .submenu_title a,
+.language-filter .submenu_title a,
 .template-search .submenu_title a {
     font-weight: normal;
 }
@@ -701,7 +696,7 @@ div#browsing-menu .used_facet {
 .template-browse-topics .submenu_title.level-4 {
     background-position: 154px 7px;
 }
-.template-filtered-search .submenu_title,
+.language-filter .submenu_title,
 .template-search .submenu_title {
     background-position: 178px 7px;
     background-repeat: no-repeat;
@@ -747,7 +742,7 @@ div.togglebutton {
     width: 860px;
 }
 
-.template-filtered-search .submenu-lvl2,
+.language-filter .submenu-lvl2,
 .template-search .submenu-lvl2 {
     margin: 0 5px;
     width: 90px;
@@ -934,7 +929,7 @@ li.accordion-item#citation dd {
 .menu_headline {
 /*    padding:0 0 5px 24px;*/
 }
-.template-filtered-search .menu_headline span,
+.language-filter .menu_headline span,
 .template-search .menu_headline span {
     margin: 0 0.5em;
     position: relative;
@@ -2443,7 +2438,7 @@ width:100%;
 
 /****************** styles for browse topics*******************/
 
-.template-filtered-search #browsing-menu-wrapper,
+#browsing-menu-wrapper.language-filter,
 .template-search #browsing-menu-wrapper {
     border: 1px solid #D4D0CF;
     border-radius: 15px 15px 15px 15px;
@@ -2457,19 +2452,17 @@ width:100%;
     margin: 0 10px 10px 0;
     width: 200px;
 }
-.template-filtered-search #browsing-menu,
-.template-filtered-search #browsing-menu,
+.language-filter #browsing-menu,
 .template-search #browsing-menu {
     float: left;
     margin: 0 10px 10px 0;
     width: 80px;
 }
-.template-filtered-search h1.documentFirstHeading,
 .template-search h1.documentFirstHeading {
     padding-left: 120px;
 }
 .template-browse-topics #browsing-menu dd,
-.template-filtered-search #browsing-menu dd,
+.language-filter #browsing-menu dd,
 .template-search #browsing-menu dd {
     float:right;
     margin:0;
@@ -2519,11 +2512,13 @@ width:100%;
     float: right;
     width: 620px;
 }
-.template-search .searchResults,
-.template-filtered-search .searchResults {
+.searchResults {
     bottom: 1500px;
-    float: right;
+    /*float: right;*/
     width: 740px;
+}
+#browsing-menu-wrapper ~ div dl.searchResults {
+    float: right;
 }
 
 body.template-search #content-core {
@@ -2570,6 +2565,18 @@ padding-right:5px;
 position:relative;
 width:32px;
 height:32px;
+}
+
+.searchResults dd \{ margin-left: 40px;}
+.contenttype-volume,
+.contettype-issue {
+    margin-left: 40px;
+}
+.contenttype-volume a.state-published::before,
+.contenttype-issue a.state-published::before {
+    content: url(++resource++recensio.theme.images/blank_icon.png);
+    position: absolute;
+    left: 20px;
 }
 
 #authorsearch-alphabet {
@@ -2961,9 +2968,7 @@ body.template-decorated_folder_listing #content-core dt {
 .draggable img {float:left;margin-right:5px;}
 .contenttype-publication {width:450px;}
 
-.template-browse-topics .searchResults dd,
-.template-filtered-search .searchResults dd,
-.template-search .searchResults dd {
+.searchResults dd {
     width:680px;
     float:left;
     margin-left:47px;

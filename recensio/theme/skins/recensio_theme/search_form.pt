@@ -40,12 +40,12 @@
                           "
             >
 
-          <div class="field" tal:define="view nocall:context/filtered-search;">
+          <div class="field">
               <input type="checkbox" name="use_navigation_root:boolean" value="False"
                      tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
                   <label for="use_navigation_root:boolean"
                          i18n:translate="">
-                      Plattform&uuml;bergreifende Suche: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
+                      Plattform&uuml;bergreifende Suche: </label><tal:portals replace="structure recensiohelperview/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
           </div>
 
 			<fieldset>
