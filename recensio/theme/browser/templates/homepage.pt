@@ -24,37 +24,7 @@
 
           <div class="box">
             <a class="one-line"
-               href="#"
-               tal:attributes="href string:${portal}/searchNoVolDoubles?portal_type:list=Volume&amp;portal_type:list=Issue&amp;sort_on=effective&amp;sort_order=reverse">
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="14" viewBox="0 0 11 14">
-                  <path class="play-button" d="M10.812 7.242l-10.375 5.766q-0.18 0.102-0.309 0.023t-0.129-0.281v-11.5q0-0.203 0.129-0.281t0.309 0.023l10.375 5.766q0.18 0.102 0.18 0.242t-0.18 0.242z"></path>
-              </svg>
-              <h2 i18n:translate="label_latest_review_journals">
-                Neueste Rezensionsteile online</h2>
-            </a>
-            <div id="latest_reviewparts_box"
-                 tal:define="results view/getReviewJournals">
-              <ul>
-                <li tal:repeat="res results">
-                  <span  class="ellipsis_container">
-                      <a href="#" class="ellipsis_text"
-                         tal:attributes="href python: request.physicalPathToURL(res['review_path'])">
-                        <span tal:replace="res/publication_title">title</span>,
-                        <span tal:condition="res/volume_title" tal:replace="res/volume_title" />,
-                        <span tal:replace="res/Title">title</span>
-                      </a>
-                  </span>
-                  <div class="effective_date"
-                       tal:content="res/effective_date"/>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-
-          <div class="box right_box">
-            <a class="one-line"
-               tal:attributes="href string:${portal}/search?${view/get_portal_type_query}&amp;sort_on=effective&amp;sort_order=reverse">
+               tal:attributes="href string:${portal}/latest-review-items">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="14" viewBox="0 0 11 14">
                   <path class="play-button" d="M10.812 7.242l-10.375 5.766q-0.18 0.102-0.309 0.023t-0.129-0.281v-11.5q0-0.203 0.129-0.281t0.309 0.023l10.375 5.766q0.18 0.102 0.18 0.242t-0.18 0.242z"></path>
               </svg>
@@ -93,6 +63,36 @@
                 </ul>
                 <div class="visualClear"></div>
               </span>
+            </div>
+          </div>
+
+
+          <div class="box right_box">
+            <a class="one-line"
+               href="#"
+               tal:attributes="href string:${portal}/latest-review-sections">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="14" viewBox="0 0 11 14">
+                  <path class="play-button" d="M10.812 7.242l-10.375 5.766q-0.18 0.102-0.309 0.023t-0.129-0.281v-11.5q0-0.203 0.129-0.281t0.309 0.023l10.375 5.766q0.18 0.102 0.18 0.242t-0.18 0.242z"></path>
+              </svg>
+              <h2 i18n:translate="label_latest_review_journals">
+                Neueste Rezensionsteile online</h2>
+            </a>
+            <div id="latest_reviewparts_box"
+                 tal:define="results view/getReviewJournals">
+              <ul>
+                <li tal:repeat="res results">
+                  <span  class="ellipsis_container">
+                      <a href="#" class="ellipsis_text"
+                         tal:attributes="href python: request.physicalPathToURL(res['review_path'])">
+                        <span tal:replace="res/publication_title">title</span>,
+                        <span tal:condition="res/volume_title" tal:replace="res/volume_title" />,
+                        <span tal:replace="res/Title">title</span>
+                      </a>
+                  </span>
+                  <div class="effective_date"
+                       tal:content="res/effective_date"/>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

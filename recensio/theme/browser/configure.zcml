@@ -67,10 +67,33 @@
 
     <browser:page
         for="*"
-        name="filtered-search"
-        template="templates/filtersearch.pt"
-        class=".filtersearch.FilterSearchView"
-        allowed_interface=".interfaces.IFilterSearchView"
+        name="languagefilter"
+        template="templates/languagefilter.pt"
+        class=".languagefilter.LanguageFilterView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="results-listing"
+        template="templates/results-listing.pt"
+        class=".listing.ResultsListing"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="latest-review-sections"
+        template="templates/latest-items.pt"
+        class=".listing.ReviewSectionsListing"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
+        name="latest-review-items"
+        template="templates/latest-items.pt"
+        class=".listing.ReviewItemsListing"
         permission="zope2.View"
         />
 

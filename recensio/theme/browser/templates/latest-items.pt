@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="recensio">
+
+<body>
+  <metal:main fill-slot="main">
+    <div id="content-core"
+      tal:define="
+        results view/items;
+        rss_url view/rss_url;
+      ">
+        <div tal:condition="view/show_language_filter" tal:replace="structure context/languagefilter" />
+
+        <h1 class="documentFirstHeading">
+          <span tal:content="view/title">
+                Heading
+          </span>
+        </h1>
+
+        <p 
+           tal:condition="context/syndication-util/context_allowed"
+           metal:use-macro="context/results-listing/macros/rss-link"
+           />
+
+        <div tal:condition="results" metal:use-macro="context/results-listing/macros/results-listing" />
+
+    </div>
+
+</metal:main>
+</body>
+</html>

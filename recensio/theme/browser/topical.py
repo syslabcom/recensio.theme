@@ -1,5 +1,6 @@
 from collective.solr.browser.facets import param
 from collective.solr.browser.facets import SearchFacetsView
+from plone.memoize.view import memoize
 from Products.Archetypes.utils import OrderedDict
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
@@ -8,6 +9,7 @@ from recensio.contenttypes.config import REVIEW_TYPES
 from recensio.policy.utility import browsing_facets
 from recensio.policy.utility import convertFacets
 from recensio.theme.browser.views import CrossPlatformMixin
+from zope.annotation.interfaces import IAnnotations
 from ZTUtils import make_query
 
 import logging
@@ -23,15 +25,6 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
     show_if_empty = False
 
     def __init__(self, context, request):
-        self.facet_fields = browsing_facets
-        self.default_query = {
-            "portal_type": PORTAL_TYPES,
-            "facet": "true",
-            "facet.field": self.facet_fields,
-            "b_size": 10,
-            "b_start": 0,
-        }
-
         voc = getToolByName(context, "portal_vocabularies", None)
         if not voc:
             return dict(ddcPlace=[], ddcTime=[], ddcSubject=[])
@@ -56,10 +49,24 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
 
         BrowserView.__init__(self, context, request)
 
-    def __call__(self, *args, **kw):
-        self.args = args
-        self.kw = kw
-        query = self.default_query.copy()
+    @property
+    def default_query(self):
+        return {
+            "portal_type": PORTAL_TYPES,
+            "facet": "true",
+            "facet.field": self.facet_fields,
+            "b_size": 10,
+            "b_start": 0,
+        }
+
+
+    @property
+    def facet_fields(self):
+        return browsing_facets
+
+    @property
+    @memoize
+    def form(self):
         form = self.request.form
         if self.queryparam in form:
             # filter out everything but our ddc attributes
@@ -73,36 +80,37 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
         if not isinstance(form_facet_fields, list):
             form_facet_fields = [form_facet_fields]
         form["facet.field"] = list(set(form_facet_fields + self.facet_fields))
-        self.form = form
-        query.update(self.form)
-        if "set_language" in query:
-            del query["set_language"]
-        for key in query.keys():
-            if query[key] in ["", []]:
-                del query[key]
-        if form.get("use_navigation_root", True) and "path" not in query:
-            query["path"] = getNavigationRoot(self.context)
-        catalog = getToolByName(self.context, "portal_catalog")
-        self.results = catalog(query)
-        self.kw["results"] = self.results
-        return super(BrowseTopicsView, self).__call__(*args, **kw)
+        return form
 
-    def getResults(self):
-        return self.results or self.kw["results"]
-
-    def getUsedFacets(self):
-        fq = self.request.get(self.queryparam, [])
-        if isinstance(fq, basestring):
-            fq = [fq]
-        used = set([facet.split(":", 1)[0].strip("+") for facet in fq])
-        used = used.intersection(set(self.facet_fields))
-        return tuple(used)
+    @property
+    @memoize
+    def results(self):
+        ann = IAnnotations(self.request)
+        results = ann.get("recensio.query_results")
+        if not results:
+            if self.default_query:
+                query = self.default_query.copy()
+                query.update(self.form)
+                if "set_language" in query:
+                    del query["set_language"]
+                for key in query.keys():
+                    if query[key] in ["", []]:
+                        del query[key]
+                if self.form.get("use_navigation_root", True) and "path" not in query:
+                    query["path"] = getNavigationRoot(self.context)
+                catalog = getToolByName(self.context, "portal_catalog")
+                results = catalog(query)
+            else:
+                results = self.context.queryCatalog(
+                    REQUEST=self.request,
+                    use_navigation_root=self.request.get("use_navigation_root", True),
+                )
+        return results
 
     def facets(self):
         """prepare and return facetting info for the given SolrResponse"""
-        results = self.kw.get("results", None)
-        fcs = getattr(results, "facet_counts", None)
-        if results is not None and fcs is not None:
+        fcs = getattr(self.results, "facet_counts", None)
+        if self.results is not None and fcs is not None:
             filt = None  # lambda name, count: name and count > 0
             if self.queryparam in self.form:
                 if self.queryparam == "fq":
@@ -126,7 +134,7 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
             )
         else:
             return None
-        if results is not None:
+        if self.results is not None:
             # we have no facet information, solr probably not running
             filt = None
             catalog = getToolByName(self.context, "portal_catalog")
@@ -170,7 +178,6 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
         fq = [x for x in fq]
         if self.queryparam == "fq":
             fq = filter(lambda x: x.split(":")[0].strip("+") in self.facet_fields, fq)
-        form = self.form
         for idx, query in enumerate(fq):
             params = self.form.copy()
             if self.queryparam == "fq":
@@ -194,6 +201,7 @@ class BrowseTopicsView(SearchFacetsView, CrossPlatformMixin):
     def sort(self, submenu):
         return sorted(submenu, key=lambda x: x["count"], reverse=True)
 
+    @memoize
     def getMenu(self):
         facets = self.facets()
         selected = self.selected()
