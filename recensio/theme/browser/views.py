@@ -3,6 +3,7 @@
 from Acquisition import aq_parent
 from interfaces import IRecensioHelperView
 from interfaces import IRedirectToPublication
+from plone import api
 from plone.i18n.locales.languages import _languagelist
 from plone.memoize import instance
 from plone.registry.interfaces import IRegistry
@@ -11,6 +12,7 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from recensio.contenttypes import contenttypesMessageFactory as _
+from recensio.contenttypes.config import BLOCKED_TYPES
 from recensio.contenttypes.browser.canonical import CanonicalURLHelper
 from recensio.contenttypes.interfaces.review import IParentGetter
 from recensio.policy.interfaces import IRecensioSettings
@@ -198,6 +200,15 @@ class RecensioHelperView(BrowserView, CrossPlatformMixin):
         """
         subtree = value[1][1] or {}
         return subtree.items()
+
+    @property
+    def types_visible_in_search(self):
+        portal_catalog = api.portal.get_tool("portal_catalog")
+        all_used_types = portal_catalog.uniqueValuesFor('portal_type')
+        allowed_types = [x for x in all_used_types if x not in BLOCKED_TYPES]
+        plone_utils = api.portal.get_tool("plone_utils")
+        used_types = plone_utils.getUserFriendlyTypes(allowed_types);
+        return used_types
 
 
 class CreateNewPresentationView(BrowserView):
