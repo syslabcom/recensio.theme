@@ -59,6 +59,15 @@
         ></div></div>
     </div>
 
+    <input name="sort_on"
+           type="hidden"
+           value="sortable_year"
+    />
+    <input name="sort_order"
+           type="hidden"
+           value="reverse"
+    />
+
     <div tal:replace="structure view/hiddenfields"></div>
 
   </form>
@@ -69,7 +78,7 @@
     <a accesskey="5"
        href="#"
        tal:attributes="
-         href string:${view/site_url}/search_form;
+         href string:${view/site_url}/search_form?sort_on=sortable_year&amp;sort_order=reverse;
        "
        i18n:translate="label_advanced_search"
     >

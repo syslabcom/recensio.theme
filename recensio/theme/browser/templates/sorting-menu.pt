@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="recensio">
+      <style type="text/css">
+        a.current {
+          font-weight: bold;
+        }
+      </style>
+        <ul class="nav nav-tabs">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" i18n:translate="sort_by">Sort by</a>
+            <ul class="dropdown-menu dropdown-menu-md-end" id="sorting-options">
+              <li tal:repeat="item view/sort_options">
+                <a class="dropdown-item" href="${item/url}"
+                   tal:attributes="
+                       href item/url;
+                       class string:dropdown-item ${item/current};
+                   "
+                   tal:content="item/title">sort option</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+</html>

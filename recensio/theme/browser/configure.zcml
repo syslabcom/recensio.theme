@@ -75,6 +75,14 @@
 
     <browser:page
         for="*"
+        name="sorting-menu"
+        template="templates/sorting-menu.pt"
+        class=".listing.SortingMenuView"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="*"
         name="results-listing"
         template="templates/results-listing.pt"
         class=".listing.ResultsListing"

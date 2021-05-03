@@ -83,3 +83,52 @@ class ReviewItemsListing(ListingBase):
         if "languageReview" in self.request:
             query["languageReview"] = self.request.get("languageReview")
         return query
+
+
+class SortingMenuView(BrowserView):
+    """ """
+
+    @property
+    def sort_options(self):
+        return [
+            {
+                "title": _("Relevance"),
+                "url": self._url(None),
+                "current": self._current(None),
+            },
+            {
+                "title": _("Year Of Publication Title (younger first)"),
+                "url": self._url("sortable_year", reverse=True),
+                "current": self._current("sortable_year", reverse=True),
+            },
+            {
+                "title": _("Year Of Publication Title (older first)"),
+                "url": self._url("sortable_year"),
+                "current": self._current("sortable_year"),
+            },
+        ]
+
+    def _url(self, sortkey, reverse=False):
+        q = {}
+        q.update(self.request.form)
+        if 'sort_on' in q.keys():
+            del q['sort_on']
+        if 'sort_order' in q.keys():
+            del q['sort_order']
+        if sortkey:
+            q['sort_on'] = sortkey
+        if reverse:
+            q['sort_order'] = 'reverse'
+
+        base_url = self.request.URL
+        return base_url + '?' + make_query(q)
+
+    def _current(self, sortkey, reverse=False):
+        if not self.request.form.get("sort_on") and not sortkey:
+            # Default case - relevance/score; ignore reverse
+            return "current"
+        elif self.request.form.get("sort_on") == sortkey:
+            request_reverse = self.request.form.get("sort_order") == "reverse"
+            if request_reverse is reverse:
+                return "current"
+        return ""

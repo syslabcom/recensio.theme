@@ -782,19 +782,18 @@
             <select name="sort_on"
                     id="sort_on"
                     tal:define="selected request/form/sort_on|nothing">
-              <option value="created"
-                      tal:attributes="selected python:selected == 'created' and 'selected' or ''"
-                      i18n:translate="">Creation Date</option>
               <option value=""
                       tal:attributes="selected python:selected == '' and 'selected' or ''"
                       i18n:translate="">Relevance</option>
-              <option value="modified"
-                      tal:attributes="selected python:selected == 'modified' and 'selected' or ''"
-                      i18n:translate="">Modification Date</option>
-              <option value="sortable_title"
-                      tal:attributes="selected python:selected == 'sortable_title' and 'selected' or ''"
-                      i18n:translate="">Title</option>
+              <option value="sortable_year"
+                      tal:attributes="selected python:selected == 'sortable_year' and 'selected' or ''"
+                      i18n:translate="">Year Of Publication Title</option>
             </select>
+            
+            <input name="sort_order"
+                  type="hidden"
+                  value="reverse"
+            />
 
           </div>
 
