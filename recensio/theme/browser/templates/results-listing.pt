@@ -166,7 +166,7 @@
             </tal:results>
         </dl>
 
-        <div tal:replace="structure context/sorting-menu" />
+        <div tal:condition="view/show_sorting_menu|string:1" tal:replace="structure context/sorting-menu" />
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
       </div>

@@ -24,6 +24,7 @@ class ListingBase(BrowserView):
     """Base class for listing views."""
 
     show_language_filter = False
+    show_sorting_menu = False
 
     @property
     def rss_url(self):
