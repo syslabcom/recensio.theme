@@ -1,157 +1,160 @@
 /* For devices with narrow screens, phones, tablets, etc. */
-	
-#portal-column-one, 
+
+#portal-column-one,
 #portal-column-two,
-#portal-column-content { 
-	clear: both; 
-	width: 97.75%; 
-	margin-left: -98.875%; 
+#portal-column-content {
+    clear: both;
+    width: 97.75%;
+    margin-left: -98.875%;
 }
 
 #portal-logo {
-	display: none;
+    display: none;
 }
 /****specific recensio styles***/
 #logo {
-
 }
 /*end*/
 #portal-top {
-	font-size: 100%;
+    font-size: 100%;
 }
 #portal-personaltools {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 #portal-globalnav li a {
-	min-width: 3em !important;
-	padding:0.5em 1.5em 1em 0.5em;
+    min-width: 3em !important;
+    padding: 0.5em 1.5em 1em 0.5em;
 }
 #portal-searchbox {
-	float: none !important;
-	margin: 1em 0;
-	text-align: center;
+    float: none !important;
+    margin: 1em 0;
+    text-align: center;
 }
 #portal-searchbox input {
-	font-size: 100% !important;
+    font-size: 100% !important;
 }
 #content-views a {
-	font-size: 150%;
-	line-height: 2em !important;
-	padding: 0.5em;
+    font-size: 150%;
+    line-height: 2em !important;
+    padding: 0.5em;
 }
 #content li.formTab a {
-	font-size: 140%;
-	line-height: 2em !important;
-	padding: 0.25em;
+    font-size: 140%;
+    line-height: 2em !important;
+    padding: 0.25em;
 }
 #edit-bar {
-	min-height: 5em;
+    min-height: 5em;
 }
 
 #contentActionMenus a {
-	width: 100%;
-	line-height: 2em !important;
-	font-size: 150%;
+    width: 100%;
+    line-height: 2em !important;
+    font-size: 150%;
 }
 
-
-input, textarea {
-	font-size: 140% !important;
+input,
+textarea {
+    font-size: 140% !important;
 }
 div.managePortletsLink,
 a.managePortletsFallback {
-	font-size: 140%;
+    font-size: 140%;
 }
 div.overlay {
-	font-size: 120%;
+    font-size: 120%;
 }
 div.overlay-iframe,
 div.overlay-ajax {
-	width: 90%;
+    width: 90%;
 }
 
 /***specific recensio styles****/
 body {
-    background:#fff;
-    font-size:4px;
-    margin:0px;
+    background: #fff;
+    font-size: 4px;
+    margin: 0px;
 }
 
 #page_image {
-    display:none;
+    display: none;
 }
 
-#content_impressum, #content_tagung, #content_textseite, #mainContent {
-margin:0 !important;
+#content_impressum,
+#content_tagung,
+#content_textseite,
+#mainContent {
+    margin: 0 !important;
 }
 
-#mainContent, #content_impressum {
-margin:0;
-padding:0 10px 0 0;
+#mainContent,
+#content_impressum {
+    margin: 0;
+    padding: 0 10px 0 0;
 }
 
 #navigation img {
- display:none;
+    display: none;
 }
 
 #navigation ul {
-    background:#fff;
+    background: #fff;
 }
 #navigation li {
-padding:0!important;
+    padding: 0 !important;
 }
 #container {
-text-align:left;
-padding:0 10px;
+    text-align: left;
+    padding: 0 10px;
 }
 #content-core {
-    padding:0  0 10px 10px;
+    padding: 0 0 10px 10px;
 }
 #content-core ul {
-    padding:0;
+    padding: 0;
 }
 #content {
-font-size:6px;
-width:420px;
+    font-size: 6px;
+    width: 420px;
 }
 #column3 {
-    display:none;
+    display: none;
 }
 
 #navigation li {
-padding:0;
-margin-top:15px;
+    padding: 0;
+    margin-top: 15px;
 }
 #loc {
-background:#fff;
+    background: #fff;
 }
 #logo {
-    background:#fff;
+    background: #fff;
 }
 .logo-text {
-    background:#fff;
+    background: #fff;
 }
 #footer {
-display:none;
+    display: none;
 }
 #portal-siteactions {
-    display:none;
+    display: none;
 }
-#notes { 
-    display:none;
-    }
+#notes {
+    display: none;
+}
 #portal-languageselector {
-    position:relative;
-    right:430px;
-    margin-top:-90px!important;
+    position: relative;
+    right: 430px;
+    margin-top: -90px !important;
 }
 .logo-text {
-   /* width:400px;
+    /* width:400px;
     margin-bottom:20px;
     position:relative;
     right:378px;
     top:100px;*/
 }
 #portal-personaltools {
-    display:none;
+    display: none;
 }

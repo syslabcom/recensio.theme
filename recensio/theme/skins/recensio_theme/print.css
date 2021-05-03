@@ -1,52 +1,58 @@
-/* Removes certain elements when printing, and apply basic font styles 
+/* Removes certain elements when printing, and apply basic font styles
    for the remaining content. */
 
 body {
-	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
+    font-family: "Helvetica Neue", Arial, FreeSans, sans-serif;
 }
-h1, h2, h3, h4, h5, h6 {
-	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
-	font-weight: bold;
-	line-height: 125%;
-	page-break-inside: avoid; 
-	page-break-after: avoid;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Helvetica Neue", Arial, FreeSans, sans-serif;
+    font-weight: bold;
+    line-height: 125%;
+    page-break-inside: avoid;
+    page-break-after: avoid;
 }
-h1, h2 {
-	letter-spacing: -0.05em;
+h1,
+h2 {
+    letter-spacing: -0.05em;
 }
 a {
-	text-decoration: none;
-	border-bottom: 0.1em solid gray;
-	color: black;
+    text-decoration: none;
+    border-bottom: 0.1em solid gray;
+    color: black;
 }
 #portal-column-content {
-	width: 95%;
+    width: 95%;
 }
 
 .documentDescription {
-	font-weight: bold;
+    font-weight: bold;
 }
 pre {
-	border: 1pt dotted black;
-	white-space: pre;
-	font-size: 8pt;
-	overflow: auto;
-	padding: 1em 0;
+    border: 1pt dotted black;
+    white-space: pre;
+    font-size: 8pt;
+    overflow: auto;
+    padding: 1em 0;
 }
 table.listing,
 table.listing td {
-	border: 1pt solid black;
-	border-collapse: collapse;
+    border: 1pt solid black;
+    border-collapse: collapse;
 }
 
 /* Page break class for use when printing */
 div.pageBreak {
-	page-break-before: always;
+    page-break-before: always;
 }
 
 /* Uncomment these if you want link addresses inserted along with the link text
    when you print.
-#content a:link:after, 
+#content a:link:after,
 #content a:visited:after {
    content: " [" attr(href) "] ";
 }
@@ -98,59 +104,61 @@ div.top,
 .link-presentation,
 input.standalone,
 .overlay,
-.close, 
+.close,
 .visualNoPrint {
-	display: none;
+    display: none;
 }
 
 /* Image alignment classes */
 .image-left {
-	float: left;
-	clear: both;
-	margin: 0.5em 1em 0.5em 0;
-	border: 0.4pt solid Black;
+    float: left;
+    clear: both;
+    margin: 0.5em 1em 0.5em 0;
+    border: 0.4pt solid Black;
 }
 .image-inline {
-	float: none;
+    float: none;
 }
 .image-right {
-	float: right;
-	clear: both;
-	margin: 0.5em;
-	border: 0.4pt solid Black;
+    float: right;
+    clear: both;
+    margin: 0.5em;
+    border: 0.4pt solid Black;
 }
 dd.image-caption {
-	text-align:left;
-	padding: 0; margin:0;
+    text-align: left;
+    padding: 0;
+    margin: 0;
 }
 dl.captioned {
-	padding: 0.8em;
+    padding: 0.8em;
 }
 .newsImageContainer {
-	float:right;
-	margin: 0 0 0.5em 1em;
-	width: 16em;
+    float: right;
+    margin: 0 0 0.5em 1em;
+    width: 16em;
 }
 
 /****fix for main content position regarding the recensio project******/
 
 #logo {
-    width:400px;
-    float:left;
-    text-align:left;
+    width: 400px;
+    float: left;
+    text-align: left;
 }
 
-#mainContent, #content_impressum {
-margin:0px 0 20px;
+#mainContent,
+#content_impressum {
+    margin: 0px 0 20px;
 }
 
 #content-core {
-    width:900px;
+    width: 900px;
 }
 
 .discussion {
-    page-break-before:always;
-    padding-top:2em;
+    page-break-before: always;
+    padding-top: 2em;
 }
 
 /*#footer {

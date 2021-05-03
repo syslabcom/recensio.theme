@@ -713,7 +713,7 @@ div#browsing-menu .used_facet {
   fill: RGBA(127, 75, 43, 1);
 }
 div.togglebutton {
-      padding: 0 5px 3px 0;  
+      padding: 0 5px 3px 0;
 }
 
 .submenu_title.empty .togglebutton.open,
@@ -3049,7 +3049,7 @@ input#doi_fallback {
 
 
 .portaltype-review-journal #archetypes-fieldname-heading__page_number_of_presented_review_in_journal,
-.portaltype-review-journal #archetypes-fieldname-heading_presented_work, 
+.portaltype-review-journal #archetypes-fieldname-heading_presented_work,
 .portaltype-review-monograph #archetypes-fieldname-heading__page_number_of_presented_review_in_journal,
 .portaltype-review-monograph #archetypes-fieldname-heading_presented_work {
   display:none;

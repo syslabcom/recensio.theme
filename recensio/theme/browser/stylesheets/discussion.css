@@ -4,7 +4,6 @@
     display: none;
 }
 
-
 /* Comments Viewlet
    -------------------------------------------------------------------------- */
 
@@ -13,7 +12,7 @@
     /* Clear "float: left" from "manage portlets" div above the
        comment viewlet. This will get fixed in the next Plone 4
        release. */
-       /*had to take it out to fix a bug that we had in recensio - regarding the accordion when opened, the content dropped down*/
+    /*had to take it out to fix a bug that we had in recensio - regarding the accordion when opened, the content dropped down*/
     clear: left;
 }
 
@@ -32,7 +31,6 @@
 }
 
 .commentImage img {
-
 }
 
 .commentDate {
@@ -40,7 +38,7 @@
     font-size: 85%;
     line-height: 1.5em;
     padding-top: 0.5em;
-    color: #76797C;
+    color: #76797c;
 }
 
 .commentBody {
@@ -51,12 +49,12 @@
 
 .commentBody p {
     float: left;
- }
+}
 
 .discussion .documentByLine {
     float: left;
     margin-left: 0;
-	margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .commentActions {
@@ -85,7 +83,7 @@
 }
 
 .reply-to-comment-button {
-   /* Hide the reply-to-comment button and show it only if Javascript
+    /* Hide the reply-to-comment button and show it only if Javascript
     * is enabled. Since the reply functions rely on jQuery.
     */
     display: none;
@@ -97,7 +95,6 @@
      */
     display: none;
 }
-
 
 /* Moderation View
    -------------------------------------------------------------------------- */
@@ -173,5 +170,5 @@
 
 .row #commenting label,
 .row .discussion label {
-    font-weight:bold;
+    font-weight: bold;
 }
