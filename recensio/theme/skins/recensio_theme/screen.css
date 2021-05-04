@@ -65,6 +65,12 @@ a:hover {
     padding-left: 5px;
 }
 
+#navigation ul#portal-globalnav li a:hover,
+#navigation ul#portal-globalnav li.selected a {
+    color: #3b3c3d;
+    border-bottom: 1px solid #3b3c3d;
+}
+
 /* Subnavi
   --------------------------------------------------------------------------------------------------*/
 
@@ -96,49 +102,51 @@ a:hover {
     text-decoration: underline;
 }
 
-#content .firstmenu ul li.first a {
+#content .firstmenu ul li:first-child a {
     padding: 6px 35px 4px 25px;
     background: url(++resource++recensio.theme.images/navtab_first.png) no-repeat;
 }
 
-#content .firstmenu ul li.last {
+#content .firstmenu ul li:last-child {
     background: url(++resource++recensio.theme.images/navtab_last.png) no-repeat right
         top;
 }
 
-#content .firstmenu ul li.last a {
+#content .firstmenu ul li:last-child a {
     padding: 6px 25px 4px 12px;
 }
 
-#content .firstmenu ul li#firstcurrent {
+#content .firstmenu ul li.current:first-child {
     background: #fff url(++resource++recensio.theme.images/navtab_current.png) no-repeat
         right top;
 }
 
-#content .firstmenu ul li#firstcurrent a {
+#content .firstmenu ul li.current:first-child a {
     background: url(++resource++recensio.theme.images/navtab_current_first.png) no-repeat;
     color: #000;
 }
 
-#content .firstmenu ul li#current {
+#content .firstmenu ul li.current:not(:first-child) {
     margin-left: -30px;
+}
+
+#content .firstmenu ul li.current {
     background: #fff url(++resource++recensio.theme.images/navtab_current.png) no-repeat
         right top;
 }
 
-#content .firstmenu ul li#current a {
+#content .firstmenu ul li.current a {
     padding: 6px 35px 4px 32px;
     background: url(++resource++recensio.theme.images/navtab_current_left.png) no-repeat;
     color: #000;
 }
 
-#content .firstmenu ul li#lastcurrent {
-    margin-left: -30px;
+#content .firstmenu ul li.current:last-child {
     background: #fff url(++resource++recensio.theme.images/navtab_current_last.png)
         no-repeat right top;
 }
 
-#content .firstmenu ul li#lastcurrent a {
+#content .firstmenu ul li.current:last-child a {
     padding: 6px 28px 4px 30px;
     background: url(++resource++recensio.theme.images/navtab_current_left.png) no-repeat;
     color: #000;
@@ -602,6 +610,15 @@ body.template-homepage-view .column1 p {
     padding-bottom: 10px;
     border-bottom: 1px dashed #cccccc;
     margin-bottom: 20px;
+}
+
+.results-listing__sort_on {
+    display: block;
+    text-align: right;
+}
+.results-listing__sort_on > span {
+    display: inline-block;
+    padding: 0.6em 0 0 0;
 }
 
 /* Kontakt

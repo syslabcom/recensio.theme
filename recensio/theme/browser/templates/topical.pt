@@ -66,6 +66,7 @@
                          toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                          batch python:Batch(results, b_size, int(b_start), orphan=0);">
 
+          <div tal:condition="view/show_sorting_menu|string:1" tal:replace="structure context/sorting-menu" />
 
           <dl class="searchResults" tal:define="use_navigation_root request/use_navigation_root|python:True">
 
@@ -272,7 +273,6 @@
         </div>
 
 
-          <div tal:condition="view/show_sorting_menu|string:1" tal:replace="structure context/sorting-menu" />
           <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </div>

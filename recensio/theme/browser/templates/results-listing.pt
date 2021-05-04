@@ -26,6 +26,9 @@
                         b_start python:0;b_start request/b_start | b_start;
                         batch python:Batch(results, b_size, int(b_start), orphan=0);
                         ">
+
+        <div tal:condition="view/show_sorting_menu|string:1" tal:replace="structure context/sorting-menu" />
+
         <dl class="searchResults">
             <tal:results repeat="result batch">
             <tal:entry define="result_url result/getURL;
@@ -165,8 +168,6 @@
             </tal:entry>
             </tal:results>
         </dl>
-
-        <div tal:condition="view/show_sorting_menu|string:1" tal:replace="structure context/sorting-menu" />
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
       </div>
