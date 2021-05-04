@@ -1,8 +1,5 @@
 <div id="portal-searchbox"
      i18n:domain="plone"
-      tal:define="
-        rhv python:here.restrictedTraverse('@@recensio-helper-view');
-      "
 >
   <form action="search"
         name="searchform"
@@ -62,12 +59,6 @@
         ></div></div>
     </div>
 
-    <input tal:repeat="portal_type rhv/types_visible_in_search"
-           tal:attributes="value portal_type"
-           name="portal_type:list"
-           type="hidden"
-    />
-
     <input name="sort_on"
            type="hidden"
            value="sortable_year"
@@ -83,12 +74,11 @@
 
   <div class="hiddenStructure"
        id="portal-advanced-search"
-       tal:define="types_query python:'&portal_type:list='.join(rhv.types_visible_in_search);"
   >
     <a accesskey="5"
        href="#"
        tal:attributes="
-         href string:${view/site_url}/search_form?sort_on=sortable_year&amp;sort_order=reverse${types_query};
+         href string:${view/site_url}/search_form?sort_on=sortable_year&amp;sort_order=reverse;
        "
        i18n:translate="label_advanced_search"
     >
