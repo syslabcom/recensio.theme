@@ -520,7 +520,7 @@ div.authorsearch {
 
 div#authorsearch-query {
    text-align: center;
-   margin: 3em 1em 0 1em;
+   margin: 0 1em 3em 1em;
 }
 
 div#authorsearch-query input {
