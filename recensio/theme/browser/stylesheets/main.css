@@ -519,12 +519,13 @@ div.authorsearch {
 }
 
 div#authorsearch-query {
-   float:right;
+   text-align: center;
    margin: 3em 1em 0 1em;
 }
 
-div#authorsearch-query input.submit {
-   font-size: 1em;
+div#authorsearch-query input {
+  height: 2em;
+  padding: 0 0.5em;
 }
 
 div#authorsearch-query input.text {
@@ -533,9 +534,10 @@ div#authorsearch-query input.text {
    font-size:1.0em;
    vertical-align:bottom;
    line-height:normal;
-   width:160px;
+   width:50%;
    color:#777;
 }
+
 
 #authors-select-all {
    float: right;
@@ -3032,10 +3034,6 @@ input#doi_fallback {
 }
 
 /*IE7*/
-#authorsearch-description {width:550px}
-#authorsearch-query {width:250px;}
-.authorsearchform {text-align:right;}
-
 .fancybox-inner {
     top: 0px;
     left: 0px;
@@ -3063,3 +3061,6 @@ dl.searchResults dd.foreign {
 .portaltype-document .documentFirstHeading {
     clear: both;
 }
+
+span#breadcrumbs-you-are-here {display: none;}
+
