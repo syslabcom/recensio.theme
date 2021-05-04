@@ -16,20 +16,6 @@
 
     <metal:main fill-slot="main"
                 tal:define="ploneview python:context.restrictedTraverse('@@plone')">
-      <div id="authorsearch-query">
-        <form class="authorsearchform">
-          <input type="text" name="authors"
-                 class="text"
-                 tal:attributes="value request/authors|nothing"/>
-          <input type="hidden" name="use_navigation_root:boolean" value="True"
-                  tal:attributes="value request/use_navigation_root|python:True"/>
-          <input type="submit" value="Search"
-                 class="submit"
-                 i18n:attributes="value" />
-        </form>
-
-      </div>
-
       <div id="authorsearch-description">
         <h1 i18n:translate="">Autorensuche</h1>
         <p class="description" i18n:translate="description_authorsearch_1">
@@ -44,6 +30,21 @@
           Mit einem Klick auf den Autornamen erhalten Sie alle von
           einem Autor publizierten Texte.
         </p>
+      </div>
+
+      <div id="authorsearch-query">
+        <form class="authorsearchform">
+          <input type="text" name="authors"
+                 class="text"
+                 placeholder="authorsearch_placeholder"
+                 i18n:attributes="placeholder"
+                 tal:attributes="value request/authors|nothing"/>
+          <input type="hidden" name="use_navigation_root:boolean" value="True"
+                  tal:attributes="value request/use_navigation_root|python:True"/>
+          <input type="submit" value="Search"
+                 class="submit"
+                 i18n:attributes="value" />
+        </form>
       </div>
 
       <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
@@ -62,7 +63,7 @@
                  onClick="jq('.crossportalsearchform').submit()"
                  tal:attributes="checked python:((not request.get('use_navigation_root', 1)) ) and 'checked' or ''"/>
               <label for="use_navigation_root"
-                      i18n:translate="">Plattform&uuml;bergreifender Autorenindex: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
+                      i18n:translate="">Portal&uuml;bergreifender Autorenindex: </label><tal:portals replace="structure view/get_portal_link_snippet"><a href="http://www.recensio.net">recensio.net</a>, <a href="http://www.recensio.antiquitatis.net">recensio.antiquitatis</a></tal:portals>
         </form>
 
         <div id="authorsearch-alphabet" tal:define="ai view/alpha_index">

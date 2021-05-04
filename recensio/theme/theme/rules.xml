@@ -68,7 +68,6 @@
   <drop css:theme="a.language-fr" />
   <replace css:theme="p#language">
 		  <p id="language">
-		    Please choose your language:&#160;&#160;
             <xsl:for-each css:select="ul#portal-languageselector li a">
                 <xsl:if test="position()!=1">
 &#160;|&#160;
