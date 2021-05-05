@@ -25,7 +25,8 @@
                value request/SearchableText|nothing;
                id view/search_input_id;
              "
-             i18n:attributes="title title_search_site;"
+             i18n:domain="recensio"
+             i18n:attributes="title title_search_title;"
       />
 
       <input class="searchButton"
