@@ -3058,6 +3058,10 @@ dl.searchResults dd.foreign {
     background-color: #EFECEC;
 }
 
+.num_search_results {
+    font-weight: bold;
+}
+
 .portaltype-document .documentFirstHeading {
     clear: both;
 }
