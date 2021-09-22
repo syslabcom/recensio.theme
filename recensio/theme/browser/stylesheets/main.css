@@ -2225,6 +2225,7 @@ div#commenting input.submit-widget {
 
 /* Emulates the styling from the h1 tag */
 #archetypes-fieldname-title input,
+#archetypes-fieldname-subtitle input,
 #archetypes-fieldname-translatedTitle input,
 #archetypes-fieldname-titleProxy input {
     font-family:Verdana,Arial,Helvetica;
@@ -2335,6 +2336,7 @@ dl.enableFormTabbing dd {
     /*width: 100%;*/
 }
 input#title,
+input#subtitle,
 input#translatedTitle {
     /*changed the width to 75%**/
     width: 75%;
