@@ -85,7 +85,7 @@
                       <a href="#" class="ellipsis_text"
                          tal:attributes="href python: request.physicalPathToURL(res['review_path'])">
                         <span tal:replace="res/publication_title">title</span>,
-                        <span tal:condition="res/volume_title" tal:replace="res/volume_title" />,
+                        <span tal:condition="res/volume_title" tal:replace="res/volume_title" /><tal:comma tal:condition="res/Title">,</tal:comma>
                         <span tal:replace="res/Title">title</span>
                       </a>
                   </span>

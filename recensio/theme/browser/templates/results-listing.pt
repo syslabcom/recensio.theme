@@ -102,7 +102,7 @@
                         <br />
                         <tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
                         <tal:block tal:condition="result/get_publication_title | nothing">
-                            <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in: <tal:block i18n:name="get_publication_title" replace="result/get_publication_title" />, <tal:block i18n:name="get_volume_title" replace="result/get_volume_title" />, <tal:block i18n:name="get_issue_title" replace="result/get_issue_title" />
+                            <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in: <tal:block i18n:name="publication_volume_issue"><tal:publication tal:replace="result/get_publication_title" />, <tal:block replace="result/get_volume_title" /><tal:comma tal:condition="result/get_issue_title|nothing">, </tal:comma><tal:block replace="result/get_issue_title" /></tal:block>
                             </tal:journal>
                         </tal:block>
                     </span>
