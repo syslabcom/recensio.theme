@@ -8,6 +8,7 @@ Changelog
 - Dedicated views for "latest reviews" and "latest review sections" with
   headings and without full text search. #SCR-1050
 - Minor text and style adjustments. #SCR-1050
+- Exclude "admin."-domains from redirection to canonical URL. #SCR-1428
 
 
 4.6.2 (2020-08-27)

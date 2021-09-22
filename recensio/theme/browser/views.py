@@ -256,7 +256,10 @@ class DatenschutzView(BrowserView):
 class EnsureCanonical(BrowserView, CanonicalURLHelper):
     def __call__(self):
         canonical_url = self.get_canonical_url()
-        if canonical_url != self.request["ACTUAL_URL"]:
+        if (
+            not self.request["HTTP_HOST"].startswith("admin.")
+            and canonical_url != self.request["ACTUAL_URL"]
+        ):
             return self.request.response.redirect(canonical_url, status=301)
         return self.context()
 
