@@ -23,8 +23,6 @@ class ResultsListing(BrowserView):
 class ListingBase(BrowserView):
     """Base class for listing views."""
 
-    show_sorting_menu = False
-
     @property
     def rss_url(self):
         return "{}/search_rss?{}".format(
@@ -44,6 +42,7 @@ class ListingBase(BrowserView):
             msgid=msgid,
             context=self.request,
         )
+
 
 class ReviewSectionsListing(ListingBase):
     @property

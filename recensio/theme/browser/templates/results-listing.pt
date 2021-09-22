@@ -27,8 +27,6 @@
                         batch python:Batch(results, b_size, int(b_start), orphan=0);
                         ">
 
-        <div tal:condition="view/show_sorting_menu|string:1" tal:replace="structure context/sorting-menu" />
-
         <dl class="searchResults">
             <tal:results repeat="result batch">
             <tal:entry define="result_url result/getURL;
