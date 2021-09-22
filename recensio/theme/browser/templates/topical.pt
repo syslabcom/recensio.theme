@@ -42,7 +42,7 @@
             <span i18n:translate="batch_x_reviews_matching_your_criteria"
                   ><span i18n:name="number"
                          tal:omit-tag=""
-                         tal:content="python:len(results)">0</span> matching reviews</span>
+                         tal:content="python:len(results)">0</span> reviews matching</span>
           </span>
         </h1>
 
