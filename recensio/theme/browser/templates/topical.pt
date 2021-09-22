@@ -73,6 +73,7 @@
             <tal:results repeat="result batch">
               <tal:has_results condition="result">
                 <tal:entry define="result_url result/getURL;
+                                   result_obj result/getObject;
                                    result_type result/portal_type;
                                    is_review python:result_type.startswith('Review');
                                    is_presentation python:result_type.startswith('Presentation');
@@ -126,7 +127,7 @@
                             <br />
                             <tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
                         <tal:block tal:condition="result/get_publication_title | nothing">
-                            <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in: <tal:block i18n:name="publication_volume_issue"><tal:publication tal:replace="result/get_publication_title" />, <tal:block replace="result/get_volume_title" /><tal:comma tal:condition="result/get_issue_title|nothing">, </tal:comma><tal:block replace="result/get_issue_title" /></tal:block>
+                            <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in: <tal:block i18n:name="publication_volume_issue"><tal:publication tal:replace="result/get_publication_title" />, <tal:block replace="result/get_volume_title" /><tal:pages tal:condition="result_obj/page_start_end_in_print|nothing">, <tal:block i18n:translate="text_pages">p.</tal:block> <tal:block tal:replace="result_obj/page_start_end_in_print" /></tal:pages><tal:comma tal:condition="result/get_issue_title|nothing">, </tal:comma><tal:block replace="result/get_issue_title" /></tal:block>
                             </tal:journal>
                         </tal:block>
                     </span>
