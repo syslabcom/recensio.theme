@@ -83,13 +83,6 @@ class ReviewItemsListing(ListingBase):
         return query
 
 
-class FacettedReviewItemsListing(ReviewItemsListing):
-
-    @property
-    def title(self):
-        return self.translate(_("label_nav_reviews"))
-
-
 class SortingMenuView(BrowserView):
     """ """
 

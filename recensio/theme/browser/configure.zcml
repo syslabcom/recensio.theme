@@ -107,14 +107,6 @@
 
     <browser:page
         for="*"
-        name="facetted-review-items"
-        template="templates/latest-items.pt"
-        class=".listing.FacettedReviewItemsListing"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        for="*"
         name="authorsearch"
         class=".authorsearch.AuthorSearchView"
         permission="zope2.View"
