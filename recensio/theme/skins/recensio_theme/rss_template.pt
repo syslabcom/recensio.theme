@@ -63,7 +63,7 @@
                     has_effective exists:obj_item/aq_explicit/effective_date;
                     effective python:has_effective and obj_item.effective().HTML4() or '';
                     modified python:obj_item.modified().HTML4();
-                    authors_editors python:getattr(obj_item, 'formatted_authors_editorial', '');
+                    authors_editors python:getattr(obj_item, 'formatted_authors_editorial', lambda:'')();
                     full_title python:(brain.has_key('subtitle') and brain['subtitle']) and rhv.punctuated_title(brain.pretty_title_or_id(), brain['subtitle']) + brain['subtitle'] or brain.pretty_title_or_id()">
     <title tal:content="full_title">Title. Subtitle</title>
     <link tal:content="obj_item/Identifier">Identifier</link>

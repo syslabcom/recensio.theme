@@ -38,9 +38,9 @@
                                raj python:result_type == 'Review Article Journal';
                                raev python:result_type == 'Review Article Collection';
                                re python:result_type == 'Review Exhibition';
-                               listAuthors python:getattr(result_obj, 'formatted_authors_editorial', None);
-                               listAuthors python:getattr(result_obj, 'formatted_authors', None) if raev else listAuthors;
-                               editorial python:getattr(result_obj, 'formatted_editorial', None);
+                               listAuthors python:getattr(result_obj, 'formatted_authors_editorial', lambda:None)();
+                               listAuthors python:getattr(result_obj, 'formatted_authors', lambda:None)() if raev else listAuthors;
+                               editorial python:getattr(result_obj, 'formatted_editorial', lambda:None)();
                                year python:(hasattr(result_obj, 'getYearOfPublication') and result_obj.getYearOfPublication()) or (hasattr(result_obj, 'getOfficialYearOfPublication') and result_obj.getOfficialYearOfPublication());
                                portal_path context/portal_url/getPortalPath;
                                result_portal python:result.getPath().split('/')[1];
