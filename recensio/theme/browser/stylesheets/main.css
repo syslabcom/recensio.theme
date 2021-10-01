@@ -332,6 +332,10 @@ a#preview-image img {
    margin: 0 20px 20px 0;
 }
 
+a img.gnd {
+    height: 2em;
+}
+
 /**********styles shadow for webkit browsers, livesearch container************/
 #LSResult fieldset {
     -webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.4);
