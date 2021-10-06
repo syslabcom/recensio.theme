@@ -5,6 +5,7 @@ from Acquisition import aq_parent
 from DateTime import DateTime
 from icu import Collator
 from icu import Locale
+from plone import api
 from plone.app.discussion.interfaces import IDiscussionSettings
 from plone.memoize import instance
 from plone.memoize import ram
@@ -77,7 +78,7 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
 
         base_query = {
             "facet": "true",
-            "facet.field": "authors",
+            "facet.field": "authorsUID",
             "facet.limit": "-1",
             "facet.mincount": "1",
             "b_size": 0,
@@ -95,7 +96,7 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
                 + ")",
             }
         )
-        reviews = catalog(review_query).facet_counts["facet_fields"]["authors"]
+        reviews = catalog(review_query).facet_counts["facet_fields"]["authorsUID"]
 
         presentation_query = base_query.copy()
         presentation_query.update(
@@ -107,68 +108,37 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
             }
         )
         presentations = catalog(presentation_query).facet_counts["facet_fields"][
-            "authors"
+            "authorsUID"
         ]
 
-        comment_query = base_query.copy()
-        comment_query.update(
-            {
-                "fq": state_query
-                + "+portal_type:("
-                + " OR ".join(
-                    map(lambda x: '"%s"' % x, REVIEW_TYPES + PRESENTATION_TYPES)
-                )
-                + ")",
-                "facet.field": "commentators",
-            }
+        author_uids = set(presentations.keys() + reviews.keys())
+        gnd_view = api.content.get_view(
+            context=self.context, request=self.request, name="gnd-view"
         )
-        comments = catalog(comment_query).facet_counts["facet_fields"]["commentators"]
-        commentator_user_ids = comments.keys()
-        comments = {}
-        for commentator_id in commentator_user_ids:
-            member = membership_tool.getMemberById(commentator_id)
-            if not member:
-                portal = portal_url.getPortalObject()
-                siblings = aq_parent(portal).objectValues("Plone Site")
-                for sibling in siblings:
-                    if sibling == portal:
-                        continue
-                    mt = getToolByName(sibling, "portal_membership")
-                    member = mt.getMemberById(commentator_id)
-                    if member:
-                        break
-                if not member:
-                    continue
-            comments[
-                safe_unicode(
-                    (
-                        "%s, %s"
-                        % (
-                            member.getProperty("lastname"),
-                            member.getProperty("firstname"),
-                        )
-                    )
-                )
-            ] = commentator_id
 
-        author_names = set(presentations.keys() + reviews.keys() + comments.keys())
+        def _get_name(uid):
+            brain = gnd_view.getByUID(uid)
+            return brain.Title if brain else ""
+
+        pairs = [(uid, _get_name(uid)) for uid in author_uids]
         collator = Collator.createInstance(Locale("de_DE.UTF-8"))
         authors = [
             dict(
-                name=x,
-                display_name=x.strip(", "),
-                reviews=reviews.get(safe_unicode(x), 0),
-                presentations=presentations.get(safe_unicode(x), 0),
-                comments=comments.get(safe_unicode(x), 0),
+                uid=uid,
+                name=name,
+                display_name=name.strip(", "),
+                reviews=reviews.get(uid, 0),
+                presentations=presentations.get(uid, 0),
             )
-            for x in sorted(
-                author_names,
-                key=lambda name: collator.getSortKey(safe_unicode(name).strip(u", ")),
+            for uid, name in sorted(
+                pairs,
+                key=lambda author: collator.getSortKey(safe_unicode(author[1]).strip(
+                    u", "
+                )),
             )
         ]
         authors = filter(
-            lambda x: x["presentations"] + x["reviews"] + (1 if x["comments"] else 0)
-            != 0,
+            lambda x: x["presentations"] + x["reviews"] != 0,
             authors,
         )
 
@@ -207,9 +177,3 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
     @property
     def portal_title(self):
         return getToolByName(self.context, "portal_url").getPortalObject().Title()
-
-    @property
-    def is_commenting_enabled(self):
-        registry = queryUtility(IRegistry)
-        settings = registry.forInterface(IDiscussionSettings, check=False)
-        return settings.globally_enabled
