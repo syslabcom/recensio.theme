@@ -25,6 +25,7 @@
                         b_size python:10; b_size request/b_size | b_size;
                         b_start python:0;b_start request/b_start | b_start;
                         batch python:Batch(results, b_size, int(b_start), orphan=0);
+                        gnd_view nocall:context/@@gnd-view;
                         ">
 
         <dl class="searchResults">
@@ -38,8 +39,6 @@
                                raj python:result_type == 'Review Article Journal';
                                raev python:result_type == 'Review Article Collection';
                                re python:result_type == 'Review Exhibition';
-                               listAuthors python:getattr(result_obj, 'formatted_authors_editorial', lambda:None)();
-                               listAuthors python:getattr(result_obj, 'formatted_authors', lambda:None)() if raev else listAuthors;
                                editorial python:getattr(result_obj, 'formatted_editorial', lambda:None)();
                                year python:(hasattr(result_obj, 'getYearOfPublication') and result_obj.getYearOfPublication()) or (hasattr(result_obj, 'getOfficialYearOfPublication') and result_obj.getOfficialYearOfPublication());
                                portal_path context/portal_url/getPortalPath;
@@ -54,6 +53,10 @@
                                normalizeString nocall: context/plone_utils/normalizeString;
                                result_class python:'contenttype-' + normalizeString(result.portal_type);
                                result_class python:result_foreign and (result_class + ' foreign portal-' + result_portal) or result_class;
+                               people_uids result/authorsUID;
+                               people python:[gnd_view.getByUID(uid) for uid in people_uids] if people_uids else [];
+                               authors_and_editors python:[item for item in people if item.Title in (result.listAuthorsAndEditors or [])];
+                               review_authors python:[item for item in people if item.Title in (result.listReviewAuthors or [])];
                                ">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class result_class" xtal:on-error="string:[private]">
@@ -66,12 +69,24 @@
                        i18n:attributes="alt; title;" />
                   <div class="metadata">
 
-                    <span class="authors"
-                            tal:condition="listAuthors"><tal:authors tal:replace="structure listAuthors">Sanctus Keller (ed.): Rolf Pirminius &lt;Sanctus&gt;</tal:authors>:</span>
+                    <tal:block condition="result/listAuthorsAndEditors">
+                        <span class="authors" tal:attributes="class string:authors">
+                        <span class="author" tal:attributes="class string:author"
+                                tal:repeat="author authors_and_editors"
+                        >
+                            <tal:author
+                                tal:define="
+                                  author_name author/Title;
+                                "
+                            >
+                            <a tal:content="author_name"
+                               tal:attributes="href string:$portal_url/search?authorsUID:list=${author/UID}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:ed tal:condition="python:not author_name in (result.get('listAuthors') or [])"> <tal:ed i18n:translate="label_abbrev_editor">(Hg.)</tal:ed></tal:ed><tal:c condition="not: repeat/author/end"> / </tal:c><tal:c condition="repeat/author/end"></tal:c></tal:author></span></span>:
+                    </tal:block>
 
                     <span class="authors"
                             tal:condition="result/exhibitor|nothing"><tal:authors tal:replace="structure result/exhibitor">Aussteller</tal:authors>:</span>
 
+                    <span class="title">
                     <a href="#"
                         tal:attributes="href url;
                                         class string:$item_wf_state_class">
@@ -97,10 +112,12 @@
                             </tal:raev>
                             <span i18n:translate="text_pages">p. </span> <span tal:content="result_obj/getPageStartOfArticle|nothing">1</span>-<span tal:content="result_obj/getPageEndOfArticle|nothing">9</span>
                         </tal:raj>
+                    </span>
 
                     <span class="review-author" tal:condition="is_review" tal:attributes="class string:review-author">
                         <br />
-                        <tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor result/listReviewAuthorsFirstnameFirst"><tal:block tal:replace="reviewAuthor"/><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
+                            <tal:author i18n:translate="reviewed_by">Reviewed by <tal:nameblock i18n:name="review_authors"><tal:repeatblock repeat="reviewAuthor review_authors"><a tal:content="python:' '.join(reversed(reviewAuthor.Title.split(', ')))"
+                               tal:attributes="href string:$portal_url/search?authorsUID:list=${reviewAuthor/UID}&amp;advanced_search:boolean=True&amp;use_navigation_root:boolean=${use_navigation_root}" /><tal:c condition="not: repeat/reviewAuthor/end"> / </tal:c></tal:repeatblock></tal:nameblock></tal:author><tal:block tal:condition="result/get_publication_title | nothing">, </tal:block>
                         <tal:block tal:condition="result/get_publication_title | nothing">
                             <tal:journal tal:condition="result/get_publication_title | nothing" i18n:translate="source_journal">in: <tal:block i18n:name="publication_volume_issue"><tal:publication tal:replace="result/get_publication_title" />, <tal:block replace="result/get_volume_title" /><tal:comma tal:condition="result/get_issue_title|nothing">, </tal:comma><tal:block replace="result/get_issue_title" /></tal:block>
                             </tal:journal><tal:pages tal:condition="result_obj/page_start_end_in_print|nothing">, <tal:block i18n:translate="text_pages">p.</tal:block> <tal:block tal:replace="result_obj/page_start_end_in_print" /></tal:pages>
