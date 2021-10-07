@@ -25,6 +25,7 @@
                         b_size python:10; b_size request/b_size | b_size;
                         b_start python:0;b_start request/b_start | b_start;
                         batch python:Batch(results, b_size, int(b_start), orphan=0);
+                        use_navigation_root use_navigation_root|python:True;
                         gnd_view nocall:context/@@gnd-view;
                         ">
 
@@ -153,7 +154,7 @@
                           tal:condition="tags">
                         &mdash;
                         <tal:filedunder i18n:translate="label_filed_under">Schlagw&ouml;rter:</tal:filedunder>
-                            <span tal:repeat="tag tags" tal:define="use_navigation_root use_navigation_root|python:True">
+                            <span tal:repeat="tag tags">
                                 <a href=""
                                    class="link-tag"
                                    rel="tag"
