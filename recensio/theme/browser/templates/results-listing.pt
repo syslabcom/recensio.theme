@@ -56,8 +56,8 @@
                                result_class python:result_foreign and (result_class + ' foreign portal-' + result_portal) or result_class;
                                people_uids result/authorsUID;
                                people python:[gnd_view.getByUID(uid) for uid in people_uids] if people_uids else [];
-                               authors_and_editors python:[item for item in people if item.Title in (result.listAuthorsAndEditors or [])];
-                               review_authors python:[item for item in people if item.Title in (result.listReviewAuthors or [])];
+                               authors_and_editors python:[item for item in people if item and item.Title in (result.listAuthorsAndEditors or [])];
+                               review_authors python:[item for item in people if item and item.Title in (result.listReviewAuthors or [])];
                                ">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class result_class" xtal:on-error="string:[private]">
