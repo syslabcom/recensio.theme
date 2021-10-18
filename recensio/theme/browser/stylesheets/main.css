@@ -2231,6 +2231,9 @@ div#commenting input.submit-widget {
 #archetypes-fieldname-title input,
 #archetypes-fieldname-subtitle input,
 #archetypes-fieldname-translatedTitle input,
+#archetypes-fieldname-titleEditedVolume input,
+#archetypes-fieldname-subtitleEditedVolume input,
+#archetypes-fieldname-translatedTitleEditedVolume input,
 #archetypes-fieldname-titleProxy input {
     font-family:Verdana,Arial,Helvetica;
     line-height: 125%;
@@ -2341,7 +2344,10 @@ dl.enableFormTabbing dd {
 }
 input#title,
 input#subtitle,
-input#translatedTitle {
+input#translatedTitle,
+input#titleEditedVolume,
+input#subtitleEditedVolume,
+input#translatedTitleEditedVolume {
     /*changed the width to 75%**/
     width: 75%;
 }
