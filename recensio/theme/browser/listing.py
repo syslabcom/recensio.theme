@@ -66,7 +66,7 @@ class ReviewItemsListing(ListingBase):
 
     @property
     def title(self):
-        return self.translate(_("label_latest_reviews"))
+        return self.translate(_("label_nav_reviews"))
 
     @property
     def query(self):
