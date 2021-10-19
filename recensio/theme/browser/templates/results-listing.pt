@@ -29,8 +29,6 @@
                         gnd_view nocall:context/@@gnd-view;
                         ">
 
-        <div tal:replace="structure context/sorting-menu" />
-
         <dl class="searchResults">
             <tal:results repeat="result batch">
             <tal:entry define="result_url result/getURL;
