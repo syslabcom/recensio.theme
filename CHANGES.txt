@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.6.3 (unreleased)
+4.8.0 (2021-10-20)
 ------------------
 
 - Add icons for latest review types on artium homepage #SCR-1049
@@ -9,6 +9,7 @@ Changelog
   headings and without full text search. #SCR-1050
 - Minor text and style adjustments. #SCR-1050
 - Exclude "admin."-domains from redirection to canonical URL. #SCR-1428
+- GND support. #SCR-1422
 
 
 4.6.2 (2020-08-27)
