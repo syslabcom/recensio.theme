@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.8.1 (unreleased)
+4.8.1 (2021-10-25)
 ------------------
 
 - Further authorsearch optimization. #SCR-1422
