@@ -100,7 +100,6 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
                     b_start = idx
                     break
             b_start = int(b_start / 30) * 30
-        print(b_start)
         return b_start
 
     @property
