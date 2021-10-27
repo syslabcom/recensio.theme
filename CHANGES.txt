@@ -4,7 +4,7 @@ Changelog
 4.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Authorsearch: Fixed cross-portal author index switch. #SCR-1422
 
 
 4.8.1 (2021-10-25)
