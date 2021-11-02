@@ -68,8 +68,6 @@
                          toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                          batch python:Batch(results, b_size, int(b_start), orphan=0);">
 
-          <div tal:replace="structure context/sorting-menu" />
-
           <dl class="searchResults" tal:define="use_navigation_root request/use_navigation_root|python:True">
 
             <tal:results repeat="result batch">
