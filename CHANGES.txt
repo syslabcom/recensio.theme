@@ -4,7 +4,7 @@ Changelog
 4.8.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Restored sorting options in advanced search. #HELP-3874
 
 
 4.8.2 (2021-10-27)
