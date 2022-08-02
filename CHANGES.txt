@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.8.4 (unreleased)
+4.8.4 (2022-08-02)
 ------------------
 
 - Redirect contact-info to ueber-uns/kontakt. #HELP-4594
