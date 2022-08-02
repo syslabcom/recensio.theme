@@ -4,4 +4,7 @@ include CHANGES.txt
 include README.txt
 include *.zcml
 exclude *.sh
+exclude .editorconfig
+exclude *.js
+exclude *.json
 global-exclude *pyc
