@@ -25,8 +25,9 @@ class ListingBase(BrowserView):
 
     @property
     def rss_url(self):
+        portal_url = api.portal.get().absolute_url()
         return "{}/search_rss?{}".format(
-            self.context.absolute_url(), make_query(self.query)
+            portal_url, make_query(self.query)
         )
 
     @property
