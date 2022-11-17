@@ -42,10 +42,15 @@ class TestAuthorSearch(unittest.TestCase):
         b_start = self.get_b_start()
         self.assertEqual(b_start, 60)
 
+    def test_alphabet_r(self):
+        self.request.form = {"letter": "R"}
+        b_start = self.get_b_start()
+        self.assertEqual(b_start, 90)
+
     def test_alphabet_z(self):
         self.request.form = {"letter": "Z"}
         b_start = self.get_b_start()
-        self.assertEqual(b_start, 60)
+        self.assertEqual(b_start, 120)
 
     def test_search(self):
         self.request.form = {"authors": "Eimer"}

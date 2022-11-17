@@ -9,6 +9,9 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from recensio.theme.browser.views import CrossPlatformMixin
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def _render_cachekey(method, self):
@@ -83,29 +86,38 @@ class AuthorSearchView(BrowserView, CrossPlatformMixin):
             if num_authors == 0:
                 return 0
             b_size = 30
-            query["b_size"] = b_size
+            query["b_size"] = b_size + 1
             partition = [0, num_authors]
+            sample_idx = 0
             while True:
-                b_start = max(
-                    partition[0] + (partition[1] - partition[0]) / 2 - b_size / 2,
+                sample_start = max(
+                    partition[0] + (partition[1] - partition[0]) / 2,
                     0,
                 )
-                query["b_start"] = b_start
+                sample_start = int(sample_start / b_size) * b_size
+                query["b_start"] = max(sample_start - 1, 0)
                 sample = catalog(query)
-                last_index = min(b_start + b_size - 1, num_authors - 1)
-                if sample[last_index]["Title"][0].lower() < letter:
-                    partition[0] = min(last_index, num_authors)
-                elif sample[b_start]["Title"][0].lower() < letter or b_start == 0:
+                sample_end = min(sample_start + b_size - 1, num_authors - 1)
+                if sample[sample_end]["Title"][0].lower() < letter:
+                    # last item in sample is before letter - move further towards end
+                    partition[0] = min(sample_end + 1, num_authors)
+                elif sample_start == 0 or sample[sample_start - 1]["Title"][0].lower() < letter:
                     break
-                elif sample[b_start]["Title"][0].lower() == letter:
-                    partition[1] = max(b_start + 2, 0)
                 else:
-                    partition[1] = max(b_start, 0)
-            for idx in range(b_start, last_index):
+                    # first item in sample is our letter or after - move further towards beginning
+                    partition[1] = max(sample_start - 1, 0)
+
+                sample_idx += 1
+                if sample_idx >= 9:
+                    logger.warning("Bailing out to avoid infinite loop")
+                    break
+
+            b_start = sample_start
+            for idx in range(sample_start, sample_end):
                 if sample[idx]["Title"].lower().startswith(letter):
                     b_start = idx
                     break
-            b_start = int(b_start / 30) * 30
+            b_start = int(b_start / b_size) * b_size
         return b_start
 
     @property
