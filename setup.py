@@ -4,7 +4,7 @@ from setuptools import setup
 import os
 
 
-version = "4.8.6"
+version = "4.8.7.dev0"
 
 setup(
     name="recensio.theme",
