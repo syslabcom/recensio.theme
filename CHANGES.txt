@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.8.6 (unreleased)
+4.8.6 (2022-11-17)
 ------------------
 
 - Authorsearch: Alphabet fix. #HELP-5317
